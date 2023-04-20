@@ -13,13 +13,39 @@ public class ComplaintType {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ComplaintID ")
-	private Integer ComplaintID ;
+	@Column(name="ComplaintTypeID ")
+	private Integer ComplaintTypeID ;
 	
 	@Column(name="ComplaintName")
 	private String ComplaintName;
 	
 	@Column(name="ComplaintDiscription")
 	private Integer ComplaintDiscription;
-  
+	
+
+
+	public Integer getComplaintTypeID() {
+		return ComplaintTypeID;
+	}
+
+	public void setComplaintTypeID(Integer complaintTypeID) {
+		ComplaintTypeID = complaintTypeID;
+	}
+
+	public String getComplaintName() {
+		return ComplaintName;
+	}
+
+	public void setComplaintName(String complaintName) {
+		ComplaintName = complaintName;
+	}
+
+	public Integer getComplaintDiscription() {
+		return ComplaintDiscription;
+	}
+
+	public void setComplaintDiscription(Integer complaintDiscription) {
+		ComplaintDiscription = complaintDiscription;
+	}
+
 }
