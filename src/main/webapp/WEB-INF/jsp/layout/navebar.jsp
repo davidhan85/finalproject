@@ -59,23 +59,21 @@
 
 							<div class="collapse navbar-collapse" id="navbarSupportedContent">
 								<ul class="navbar-nav  mx-auto ">
-									<li class="nav-item"><a class="nav-link" href="index.html">會員
+								
+									<li class="nav-item"><a class="nav-link" href="${contextRoot}/mall">商城
 										</a></li>
-									<li class="nav-item"><a class="nav-link" href="index.html">商城
-										</a></li>
-									<li class="nav-item"><a class="nav-link" href="menu.html">購物車</a>
+			
+									<li class="nav-item"><a class="nav-link" href="${contextRoot}/board">論壇</a>
 									</li>
-									<li class="nav-item"><a class="nav-link" href="about.html">論壇</a>
-									</li>
-									<li class="nav-item active"><a class="nav-link" href="book.html">活動 <span
+									<li class="nav-item active"><a class="nav-link" href="${contextRoot}/activity">活動 <span
 												class="sr-only">(current)</span>
 										</a></li>
-									<li class="nav-item"><a class="nav-link" href="about.html">客服</a>
+									<li class="nav-item"><a class="nav-link" href="${contextRoot}/customerService">客服</a>
 									</li>
 								</ul>
 								<div class="user_option">
-									<a href="" class="user_link"> <i class="fa fa-user" aria-hidden="true"></i>
-									</a> <a class="cart_link" href="#"> <svg version="1.1" id="Capa_1"
+									<a href="${contextRoot}/member" class="user_link"> <i class="fa fa-user" aria-hidden="true"></i>
+									</a> <a class="cart_link" href="${contextRoot}/shoppingcart"> <svg version="1.1" id="Capa_1"
 											xmlns="http://www.w3.org/2000/svg"
 											xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 											viewBox="0 0 456.029 456.029"
@@ -107,7 +105,7 @@
 											<i class="fa fa-search" aria-hidden="true"></i>
 										</button>
 									</form>
-									<a href="" class="order_online"> Order Online </a>
+									<a href="${contextRoot}/newmember" class="order_online"> 加入會員 </a>
 								</div>
 							</div>
 						</nav>
