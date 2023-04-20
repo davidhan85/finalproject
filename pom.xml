@@ -48,12 +48,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-<<<<<<< HEAD
 			<groupId>com.ispan</groupId>
 			<artifactId>springbootdemo</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-=======
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
@@ -67,7 +66,6 @@
     <artifactId>lombok</artifactId>  
     <scope>provided</scope>
   </dependency>
->>>>>>> 0919a4c74321ee92fa92f76f15df9794b685af6f
 	</dependencies>
 	<build>
 		<plugins>

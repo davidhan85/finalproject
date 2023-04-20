@@ -27,7 +27,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class member {
+public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //SQL自動給號
@@ -77,7 +77,7 @@ public class member {
 	
 	
 	
-	public member() {
+	public Member() {
 	}
 
 }

@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <jsp:include page="layout/navebar.jsp"></jsp:include>
+        <jsp:include page="../layout/navebar.jsp"></jsp:include>
         <section class="book_section layout_padding">
             <div class="container">
                 <div class="heading_container">
