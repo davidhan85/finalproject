@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.team5.finalTopic.model.member.Member;
 
 @Entity
 @Table(name="SubArticleMessageLikes")
@@ -28,8 +29,8 @@ public class SubArticleMessageLikes {
 	private Integer samessagelike_id;
 	
 	
-	@Column(name="author_id", nullable = false)
-	private Integer author_id;
+//	@Column(name="author_id", nullable = false)
+//	private Integer author_id;
 	
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss EEEE",timezone = "GMT+8")
@@ -53,6 +54,10 @@ public class SubArticleMessageLikes {
 	@ManyToOne
 	@JoinColumn(name="fk_SAMELK_SAME_Id", nullable = false)
 	private SubArticleMessages subarticlemessagesforsamelk;
+	
+	@ManyToOne
+	@JoinColumn(name="author_id", nullable = false)
+	private Member author_idforSAML;
 
 	
 }
