@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,29 +22,45 @@ public class OrderDetail {
 	
 	
 
-	@Column(name = "ProductID",columnDefinition="NVARCHAR(30) NOT NULL")
+	@Column(name = "ProductID",columnDefinition="NVARCHAR(30)",nullable = false)
 	private String ProductID	;
 	
-	@Column(name = "ProductName",columnDefinition="NVARCHAR(50) NOT NULL")
+	@Column(name = "ProductName",columnDefinition="NVARCHAR(50)",nullable = false)
 	private String ProductName;
 	
-	@Column(name = "UnitPrice",columnDefinition="int NOT NULL")
+	@Column(name = "UnitPrice",columnDefinition="int",nullable = false)
 	private Integer UnitPrice;
 	
-	@Column(name = "ProductQuantity",columnDefinition="int NOT NULL")
+	@Column(name = "ProductQuantity",columnDefinition="int",nullable = false)
 	private Integer ProductQuantity;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "OrderID")
-    private Order order;
+	@ManyToOne
+  @JoinColumn(name = "OrderID ")
+  private Orders Orders;
 	
 //	@ManyToOne
 //    @JoinColumn(name = "ListedProduct")
 //    private ListedProduct listedProduct;
 	
-	public OrderDetail(){
-	}
+//	public Order getOrderID() {
+//		return orderID;
+//	}
+//
+//	public void setOrderID(Order orderID) {
+//		this.orderID = orderID;
+//	}
+//
+//	public OrderDetail(){
+//	}
 	
+	public Orders getOrder() {
+		return Orders;
+	}
+
+	public void setOrder(Orders order) {
+		this.Orders = order;
+	}
+
 	@Override
 	public String toString() {
 	    return "OrderDetail{" +
