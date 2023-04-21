@@ -10,7 +10,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+//測試中，測次完成
 @Entity
 @Table(name = "activity")
 public class Activity {
