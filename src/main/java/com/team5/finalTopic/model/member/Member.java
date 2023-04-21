@@ -2,6 +2,8 @@ package com.team5.finalTopic.model.member;
 
 import java.sql.Blob;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,6 +23,14 @@ import javax.persistence.UniqueConstraint;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.team5.finalTopic.model.board.MainArticleLikes;
+import com.team5.finalTopic.model.board.MainArticleMessageLikes;
+import com.team5.finalTopic.model.board.MainArticleMessages;
+import com.team5.finalTopic.model.board.MainArticles;
+import com.team5.finalTopic.model.board.SubArticleLikes;
+import com.team5.finalTopic.model.board.SubArticleMessageLikes;
+import com.team5.finalTopic.model.board.SubArticleMessages;
+import com.team5.finalTopic.model.board.SubArticles;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -80,6 +91,33 @@ public class Member {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="point_id")
 	private points point_id;
+	
+	@OneToMany(mappedBy = "author_idforMA")
+	Set<MainArticles> memberMainArticles = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "author_idforSA")
+	Set<SubArticles> memberSubArticles = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "author_idforMAL")
+	Set<MainArticleLikes> memberMainArticleLikes = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "author_idforMAM")
+	Set<MainArticleMessages> memberMainArticleMessages = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "author_idforMAML")
+	Set<MainArticleMessageLikes> memberMainArticleMessageLikes = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "author_idforSAL")
+	Set<SubArticleLikes> memberSubArticleLikes = new LinkedHashSet<>();
+
+	@OneToMany(mappedBy = "author_idforSAM")
+	Set<SubArticleMessages> memberSubArticleMessages = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "author_idforSAML")
+	Set<SubArticleMessageLikes> memberSubArticleMessageLikes = new LinkedHashSet<>();
+	
+	
+	
 	
 	
 	

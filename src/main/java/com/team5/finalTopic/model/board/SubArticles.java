@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.team5.finalTopic.model.member.Member;
 
 @Entity
 @Table(name="SubArticles")
@@ -30,8 +31,8 @@ public class SubArticles {
 	@Column(name="sub_id")
 	private Integer sub_id;
 	
-	@Column(name="author_id", nullable = false)
-	private Integer author_id;
+//	@Column(name="author_id", nullable = false)
+//	private Integer author_id;
 	
 	
 	@Column(name="content",columnDefinition = "nvarchar(Max)", nullable = false)
@@ -65,5 +66,9 @@ public class SubArticles {
 	
 	@OneToMany(mappedBy = "subarticlesforsam")
 	Set<SubArticleMessages> subarticlemessages = new LinkedHashSet<>();  //副文章留言關聯
+	
+	@ManyToOne
+	@JoinColumn(name="author_id", nullable = false)
+	private Member author_idforSA;
 	
 }

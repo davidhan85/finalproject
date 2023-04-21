@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.team5.finalTopic.model.member.Member;
 
 	@Entity
 	@Table(name="SubArticleMessages")
@@ -31,8 +32,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 		private Integer samessage_id;
 		
 		
-		@Column(name="author_id", nullable = false)
-		private Integer author_id;
+//		@Column(name="author_id", nullable = false)
+//		private Integer author_id;
 		
 		
 		@Column(name="content",columnDefinition = "nvarchar(Max)", nullable = false)
@@ -63,4 +64,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 		
 		@OneToMany(mappedBy = "subarticlemessagesforsamelk")
 		Set<SubArticleMessageLikes> subarticlemessagelikes = new LinkedHashSet<>();
+		
+		
+		@ManyToOne
+		@JoinColumn(name="author_id", nullable = false)  
+		private Member author_idforSAM;
 }
