@@ -20,9 +20,7 @@ public class OrderDetail {
 	private Integer ID;
 	
 	
-//	@Column(name = "OrderID")
-//	private String OrderID;
-	
+
 	@Column(name = "ProductID",columnDefinition="NVARCHAR(30) NOT NULL")
 	private String ProductID	;
 	
