@@ -16,6 +16,8 @@ public interface MemberService {
     //用id找會員
     public  Member findById(Integer m_number);
 
+    public void updateNoEncoding(Member member);
+
     //刪除
     public void deleteById(Integer m_number);
 

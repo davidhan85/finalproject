@@ -3,8 +3,14 @@ package com.team5.finalTopic.model.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -47,6 +53,13 @@ public class MemberServiceImpl  implements MemberService{
     }
 
     @Override
+    public void updateNoEncoding(Member member) {
+        if (member.getM_number()!=null){ //修改但沒更改密碼時
+            memberRepository.save(member);
+        }
+    }
+
+    @Override
     public void deleteById(Integer m_number) {
         memberRepository.deleteById(m_number);
     }
@@ -64,9 +77,33 @@ public class MemberServiceImpl  implements MemberService{
 
     @Override
     public Member savePictureInDB(Member member, Boolean isInsert) {
+        MultipartFile picture = member.getProductImage(); //取得 MultipartFile
+        if(picture!=null&&picture.isEmpty()){
+            try {
+                byte[] b = picture.getBytes();
+                Blob blob = new SerialBlob(b); //塞進blob
+                member.setM_image(blob);
+                //建立唯一的圖片名稱
+                member.setFilename(System.currentTimeMillis()+"_"+picture.getOriginalFilename());
+                return member;
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException("檔案上傳異常"+e.getMessage());
+            }
+        }else {
+            //如果更改時沒有上傳圖片
+            if (!isInsert){ //更改時
+                try {
+                    member.setM_image(findById(member.m_number).getM_image());//找舊的圖片
+                    member.setFilename(findById(member.m_number).getFilename());//找舊的檔名
+                    return member;
 
-        return null;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    throw new RuntimeException("修改時圖片上船異常"+e.getMessage());
+                }
+            }
+        }
+        return member;
     }
-
-
 }
