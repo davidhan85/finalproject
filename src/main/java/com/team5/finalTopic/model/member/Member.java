@@ -66,6 +66,8 @@ public class Member {
 	@Column(columnDefinition = "int",name="member_verify")
 	Integer m_verify; //加入會員的驗證碼
 
+	String filename;
+
 	@Transient
 	MultipartFile productImage;
 	
