@@ -1,4 +1,6 @@
-package com.team5.finalTopic.model.member;
+package com.team5.finalTopic.service.member;
+
+import com.team5.finalTopic.model.member.Member;
 
 import java.util.List;
 
@@ -22,9 +24,9 @@ public interface MemberService {
     public void deleteById(Integer m_number);
 
     //檢查資料庫內是否已經有此帳號
-    public Boolean existsByMiAccount(String m_account);
+    public Boolean existsByM_account(String m_account);
 
-    public Member findByAccount(String m_account);
+    public Member findByM_account(String m_account);
 
     //把大頭貼存進資料庫
     public Member savePictureInDB(Member member,Boolean isInsert);

@@ -1,21 +1,19 @@
 package com.team5.finalTopic.model.member;
 
+import com.team5.finalTopic.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
 import javax.transaction.Transactional;
-import java.io.IOException;
 import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
 @Transactional
-public class MemberServiceImpl  implements MemberService{
+public class MemberServiceImpl  implements MemberService {
 
     @Autowired
     private MemberRepository memberRepository;
@@ -63,17 +61,18 @@ public class MemberServiceImpl  implements MemberService{
     public void deleteById(Integer m_number) {
         memberRepository.deleteById(m_number);
     }
-    @Override
-    public Boolean existsByMiAccount(String m_account) {
-
-        return memberRepository.existsByMiAccount(m_account);
-    }
 
     @Override
-    public Member findByAccount(String m_account) {
-//        Member account = memberRepository.findByAccount(m_account);
-        return memberRepository.findByAccount(m_account);
+    public Member findByM_account(String m_account) {
+        return memberRepository.findByM_account(m_account);
     }
+    @Override
+    public Boolean existsByM_account(String m_account) {
+
+        return memberRepository.existsByM_account(m_account);
+    }
+
+
 
     @Override
     public Member savePictureInDB(Member member, Boolean isInsert) {
