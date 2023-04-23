@@ -20,7 +20,7 @@ public class ComplaintType {
 	private String ComplaintName;
 	
 	@Column(name="ComplaintDiscription")
-	private Integer ComplaintDiscription;
+	private String ComplaintDiscription;
 	
 
 
@@ -40,11 +40,11 @@ public class ComplaintType {
 		ComplaintName = complaintName;
 	}
 
-	public Integer getComplaintDiscription() {
+	public String getComplaintDiscription() {
 		return ComplaintDiscription;
 	}
 
-	public void setComplaintDiscription(Integer complaintDiscription) {
+	public void setComplaintDiscription(String complaintDiscription) {
 		ComplaintDiscription = complaintDiscription;
 	}
 

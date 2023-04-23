@@ -48,6 +48,44 @@ public class Member {
 	@Column(name="member_number")
 	Integer m_number; 
 	
+
+
+
+
+
+
+
+
+	public Integer getM_number() {
+		return m_number;
+	}
+
+
+
+
+
+
+
+
+
+	public Date getM_creatdate() {
+		return m_creatdate;
+	}
+
+
+
+
+
+
+	public void setM_creatdate(Date m_creatdate) {
+		this.m_creatdate = m_creatdate;
+	}
+
+
+
+
+
+
 	@Column(columnDefinition = "NVARCHAR(50) not null",name="member_account")
 	String m_account;
 	
