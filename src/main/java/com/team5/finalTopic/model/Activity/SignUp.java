@@ -25,6 +25,7 @@ public class SignUp {
 	@Column(name="id") //流水號
 	Integer id;
 	
+
 	@ManyToOne
 	@JoinColumn(name = "activity_id")
 	private Activity activity_id;
@@ -40,7 +41,45 @@ public class SignUp {
 	@ManyToOne
 	@JoinColumn(name = "member_number")
 	private Member m_number;
+	
+	public Integer getId() {
+		return id;
+	}
 
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public Activity getActivity_id() {
+		return activity_id;
+	}
+
+
+	public void setActivity_id(Activity activity_id) {
+		this.activity_id = activity_id;
+	}
+
+
+	public Date getSignup_date() {
+		return signup_date;
+	}
+
+
+	public void setSignup_date(Date signup_date) {
+		this.signup_date = signup_date;
+	}
+
+
+	public Member getM_number() {
+		return m_number;
+	}
+
+
+	public void setM_number(Member m_number) {
+		this.m_number = m_number;
+	}
 
 
 	public String getPaystatus() {

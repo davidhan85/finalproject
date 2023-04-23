@@ -41,7 +41,7 @@ public class Activity {
 		
 		
 		@Column(columnDefinition = "Integer not null",name="activity_cost")
-		String activity_cost; 
+		Integer activity_cost; 
 		
 		@Column(columnDefinition = "NVARCHAR(50) not null",name="activity_discription")
 		String activity_discription; 
@@ -133,14 +133,14 @@ public class Activity {
 
 
 
-		public String getActivity_cost() {
+		public Integer getActivity_cost() {
 			return activity_cost;
 		}
 
 
 
 
-		public void setActivity_cost(String activity_cost) {
+		public void setActivity_cost(Integer activity_cost) {
 			this.activity_cost = activity_cost;
 		}
 
