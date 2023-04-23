@@ -40,7 +40,8 @@
             <td>${member.m_id}</td>
             <td>${member.point_id}</td>
             <td>${member.m_creatdate}</td>
-            <td>${member.m_image}</td>
+<%--            <td>${member.m_image}</td>--%>
+            <img src="data:image/jpg;base64,${Base64.getEncoder().encodeToString(member.m_image)}" alt="member image" />
         </tr>
     </c:forEach>
 </table>

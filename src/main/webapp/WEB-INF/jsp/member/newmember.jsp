@@ -14,8 +14,9 @@
     <title>新增會員</title>
 </head>
 <body>
+<jsp:include page="../layout/navebar.jsp"></jsp:include>
 <h1>新增會員</h1>
-<form:form method="post" action="${contextRoot}/MemberController/newmember" enctype="multipart/form-data" modelAttribute="member">
+<form:form method="post" action="${contextRoot}/messages/newmember" enctype="multipart/form-data" modelAttribute="member">
 <table>
     <tr>
      <td>帳號：</td>
@@ -51,10 +52,10 @@
     </tr>
      <tr>
       <td>大頭貼：</td>
-    <td> <form:input path="m_image" type="file" required="ture"/></td>
+    <td> <form:input path="productImage" type="file"  required="ture"/></td>
 </tr>
 </table>
-    <button type="submit">新增</button>
+ <button type="submit">新增</button>
 </form:form>
 
 </body>

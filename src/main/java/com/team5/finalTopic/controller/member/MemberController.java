@@ -38,20 +38,22 @@ public class MemberController {
 		model.addAttribute("member", new Member());
 		return "member/newmember";
 	}
-	@PostMapping(value = "/newmember")
+	@PostMapping(value = "/messages/newmember")
 	public String addMember(@ModelAttribute("member")Member member){
 
-		boolean isInsert = member.getM_number() == null; //判斷是否為insert
+		boolean isInsert = (member.getM_number() == null); //判斷是否為insert
 
 		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以BLOB型態塞進DB
 
 		memberService.save(member1);
 
-		return "redirect:member/memberlists";
+		return "redirect:/memberlist";
 	}
+
+
 	
 	public MemberController() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 }

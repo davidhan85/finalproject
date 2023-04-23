@@ -77,11 +77,11 @@ public class MemberServiceImpl  implements MemberService {
     @Override
     public Member savePictureInDB(Member member, Boolean isInsert) {
         MultipartFile picture = member.getProductImage(); //取得 MultipartFile
-        if(picture!=null&&picture.isEmpty()){
+        if(picture!=null){
             try {
                 byte[] b = picture.getBytes();
-                Blob blob = new SerialBlob(b); //塞進blob
-                member.setM_image(blob);
+//                Blob blob = new SerialBlob(b); //塞進blob
+                member.setM_image(b);
                 //建立唯一的圖片名稱
                 member.setFilename(System.currentTimeMillis()+"_"+picture.getOriginalFilename());
                 return member;

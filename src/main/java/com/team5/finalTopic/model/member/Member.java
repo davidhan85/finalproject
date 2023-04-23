@@ -45,12 +45,12 @@ public class Member {
 	String m_email;
 	
 	@Column(columnDefinition = "Date",name="member_birth")
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date m_birth;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-	@Column(columnDefinition = "datetime",name="member_creatdate")
+	@Column(columnDefinition = "datetime",name="member_creatdate", updatable = false)
 	Date m_creatdate;
 	
 	@Column(columnDefinition = "Integer",name="member_points")
@@ -59,8 +59,8 @@ public class Member {
 	@Column(columnDefinition = "NVARCHAR(10) not null",name="member_id")
 	String m_id;
 	@Lob
-	@Column(name="member_image")
-	Blob m_image; //會員大頭貼
+	@Column(name="member_image" ,columnDefinition ="varbinary(MAX)")
+	byte[] m_image; //會員大頭貼
 
 	@Column(columnDefinition = "int",name="member_verify")
 	Integer m_verify; //加入會員的驗證碼
@@ -119,8 +119,13 @@ public class Member {
 		return m_id;
 	}
 
-	public Blob getM_image() {
+
+	public byte[] getM_image() {
 		return m_image;
+	}
+
+	public void setM_image(byte[] m_image) {
+		this.m_image = m_image;
 	}
 
 	public Integer getM_verify() {
@@ -171,8 +176,13 @@ public class Member {
 		this.m_birth = m_birth;
 	}
 
+
 	public void setM_creatdate(Date m_creatdate) {
 		this.m_creatdate = m_creatdate;
+	}
+	@PrePersist
+	protected void onCreate() {
+		m_creatdate = new Date();
 	}
 
 	public void setM_points(Integer m_points) {
@@ -183,9 +193,7 @@ public class Member {
 		this.m_id = m_id;
 	}
 
-	public void setM_image(Blob m_image) {
-		this.m_image = m_image;
-	}
+
 
 	public void setM_verify(Integer m_verify) {
 		this.m_verify = m_verify;
