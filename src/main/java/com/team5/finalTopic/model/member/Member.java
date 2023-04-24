@@ -1,18 +1,41 @@
 package com.team5.finalTopic.model.member;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.team5.finalTopic.model.board.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.persistence.*;
-import java.sql.Blob;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.team5.finalTopic.model.board.MainArticleLikes;
+import com.team5.finalTopic.model.board.MainArticleMessageLikes;
+import com.team5.finalTopic.model.board.MainArticleMessages;
+import com.team5.finalTopic.model.board.MainArticles;
+import com.team5.finalTopic.model.board.SubArticleLikes;
+import com.team5.finalTopic.model.board.SubArticleMessageLikes;
+import com.team5.finalTopic.model.board.SubArticleMessages;
+import com.team5.finalTopic.model.board.SubArticles;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "memberdata", uniqueConstraints = { @UniqueConstraint(columnNames = "member_number") })
@@ -22,6 +45,7 @@ import java.util.Set;
 public class Member {
 
 	@Id
+<<<<<<< HEAD
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // SQL自動給號
 	@Column(name = "member_number")
 	Integer m_number;
@@ -39,6 +63,13 @@ public class Member {
 	}
 
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_account")
+=======
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //SQL自動給號
+	@Column(name="member_number")
+	Integer m_number; 
+
+	@Column(columnDefinition = "NVARCHAR(50) not null",name="member_account")
+>>>>>>> ba4f19d27b4ae77f732824d4395d60b687093fd6
 	String m_account;
 
 	@Column(columnDefinition = "NVARCHAR(20) not null", name = "member_password")
@@ -55,15 +86,35 @@ public class Member {
 
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_email")
 	String m_email;
+<<<<<<< HEAD
 
 	@Column(columnDefinition = "Date", name = "member_birth")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+=======
+	
+	@Column(columnDefinition = "Date",name="member_birth")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+>>>>>>> ba4f19d27b4ae77f732824d4395d60b687093fd6
 	Date m_birth;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+<<<<<<< HEAD
 	@Column(columnDefinition = "datetime", name = "member_creatdate")
 	Date m_creatdate;
+=======
+	@Column(columnDefinition = "datetime",name="member_creatdate", updatable = false)
+	Date m_creatdate;
+	
+	@Column(columnDefinition = "Integer",name="member_points")
+	Integer m_points;
+
+	@Column(columnDefinition = "NVARCHAR(10) not null",name="member_id")
+	String m_id;
+	@Lob
+	@Column(name="member_image" ,columnDefinition ="varbinary(MAX)")
+	byte[] m_image; //會員大頭貼
+>>>>>>> ba4f19d27b4ae77f732824d4395d60b687093fd6
 
 	@Column(columnDefinition = "Integer", name = "member_points")
 	Integer m_points;
@@ -87,6 +138,147 @@ public class Member {
 	@JoinColumn(name = "point_id")
 	private points point_id;
 
+<<<<<<< HEAD
+=======
+
+	
+	public Integer getM_number() {
+		return m_number;
+	}
+
+	public String getM_account() {
+		return m_account;
+	}
+
+	public String getM_password() {
+		return m_password;
+	}
+
+	public String getM_name() {
+		return m_name;
+	}
+
+	public String getM_phone() {
+		return m_phone;
+	}
+
+	public String getM_address() {
+		return m_address;
+	}
+
+	public String getM_email() {
+		return m_email;
+	}
+
+	public Date getM_birth() {
+		return m_birth;
+	}
+
+	public Date getM_creatdate() {
+		return m_creatdate;
+	}
+
+	public Integer getM_points() {
+		return m_points;
+	}
+
+	public String getM_id() {
+		return m_id;
+	}
+
+
+	public byte[] getM_image() {
+		return m_image;
+	}
+
+	public void setM_image(byte[] m_image) {
+		this.m_image = m_image;
+	}
+
+	public Integer getM_verify() {
+		return m_verify;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public points getPoint_id() {
+		return point_id;
+	}
+
+	public void setM_number(Integer m_number) {
+		this.m_number = m_number;
+	}
+
+	public void setM_account(String m_account) {
+		this.m_account = m_account;
+	}
+
+	public void setM_password(String m_password) {
+		this.m_password = m_password;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+
+	public void setM_phone(String m_phone) {
+		this.m_phone = m_phone;
+	}
+
+	public void setM_address(String m_address) {
+		this.m_address = m_address;
+	}
+
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
+	}
+
+	public void setM_birth(Date m_birth) {
+		this.m_birth = m_birth;
+	}
+
+
+	public void setM_creatdate(Date m_creatdate) {
+		this.m_creatdate = m_creatdate;
+	}
+	@PrePersist
+	protected void onCreate() {
+		m_creatdate = new Date();
+	}
+
+	public void setM_points(Integer m_points) {
+		this.m_points = m_points;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+
+
+	public void setM_verify(Integer m_verify) {
+		this.m_verify = m_verify;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
+
+	public void setPoint_id(points point_id) {
+		this.point_id = point_id;
+	}
+
+>>>>>>> ba4f19d27b4ae77f732824d4395d60b687093fd6
 	@OneToMany(mappedBy = "author_idforMA")
 	Set<MainArticles> memberMainArticles = new LinkedHashSet<>();
 
