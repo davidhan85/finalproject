@@ -24,6 +24,7 @@ import javax.persistence.UniqueConstraint;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.team5.finalTopic.model.board.MainArticleLikes;
 import com.team5.finalTopic.model.board.MainArticleMessageLikes;
 import com.team5.finalTopic.model.board.MainArticleMessages;
@@ -45,31 +46,13 @@ import lombok.ToString;
 public class Member {
 
 	@Id
-<<<<<<< HEAD
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // SQL自動給號
 	@Column(name = "member_number")
 	Integer m_number;
 
-	public Integer getM_number() {
-		return m_number;
-	}
-
-	public Date getM_creatdate() {
-		return m_creatdate;
-	}
-
-	public void setM_creatdate(Date m_creatdate) {
-		this.m_creatdate = m_creatdate;
-	}
-
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_account")
-=======
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //SQL自動給號
-	@Column(name="member_number")
-	Integer m_number; 
 
-	@Column(columnDefinition = "NVARCHAR(50) not null",name="member_account")
->>>>>>> ba4f19d27b4ae77f732824d4395d60b687093fd6
 	String m_account;
 
 	@Column(columnDefinition = "NVARCHAR(20) not null", name = "member_password")
@@ -86,45 +69,27 @@ public class Member {
 
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_email")
 	String m_email;
-<<<<<<< HEAD
 
-	@Column(columnDefinition = "Date", name = "member_birth")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-=======
-	
-	@Column(columnDefinition = "Date",name="member_birth")
+	@Column(columnDefinition = "Date", name = "member_birth")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
->>>>>>> ba4f19d27b4ae77f732824d4395d60b687093fd6
+
 	Date m_birth;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-<<<<<<< HEAD
+
 	@Column(columnDefinition = "datetime", name = "member_creatdate")
 	Date m_creatdate;
-=======
-	@Column(columnDefinition = "datetime",name="member_creatdate", updatable = false)
-	Date m_creatdate;
-	
-	@Column(columnDefinition = "Integer",name="member_points")
-	Integer m_points;
-
-	@Column(columnDefinition = "NVARCHAR(10) not null",name="member_id")
-	String m_id;
-	@Lob
-	@Column(name="member_image" ,columnDefinition ="varbinary(MAX)")
-	byte[] m_image; //會員大頭貼
->>>>>>> ba4f19d27b4ae77f732824d4395d60b687093fd6
 
 	@Column(columnDefinition = "Integer", name = "member_points")
 	Integer m_points;
 
 	@Column(columnDefinition = "NVARCHAR(10) not null", name = "member_id")
 	String m_id;
-
 	@Lob
-	@Column(name = "member_image")
-	Blob m_image; // 會員大頭貼
+	@Column(name = "member_image", columnDefinition = "varbinary(MAX)")
+	byte[] m_image; // 會員大頭貼
 
 	@Column(columnDefinition = "int", name = "member_verify")
 	Integer m_verify; // 加入會員的驗證碼
@@ -138,10 +103,6 @@ public class Member {
 	@JoinColumn(name = "point_id")
 	private points point_id;
 
-<<<<<<< HEAD
-=======
-
-	
 	public Integer getM_number() {
 		return m_number;
 	}
@@ -185,7 +146,6 @@ public class Member {
 	public String getM_id() {
 		return m_id;
 	}
-
 
 	public byte[] getM_image() {
 		return m_image;
@@ -243,10 +203,10 @@ public class Member {
 		this.m_birth = m_birth;
 	}
 
-
 	public void setM_creatdate(Date m_creatdate) {
 		this.m_creatdate = m_creatdate;
 	}
+
 	@PrePersist
 	protected void onCreate() {
 		m_creatdate = new Date();
@@ -259,8 +219,6 @@ public class Member {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
-
-
 
 	public void setM_verify(Integer m_verify) {
 		this.m_verify = m_verify;
@@ -278,8 +236,8 @@ public class Member {
 		this.point_id = point_id;
 	}
 
->>>>>>> ba4f19d27b4ae77f732824d4395d60b687093fd6
 	@OneToMany(mappedBy = "author_idforMA")
+
 	Set<MainArticles> memberMainArticles = new LinkedHashSet<>();
 
 	@OneToMany(mappedBy = "author_idforSA")

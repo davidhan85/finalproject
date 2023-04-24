@@ -26,25 +26,27 @@ public class CustomerComplaints {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer CustomerComplaintsID;
-	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss EEEE",timezone = "GMT+8")
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
 	@Column(name = "CreateDate", columnDefinition = "datetime")
 	private Date CreateDate;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_Customer_ID",referencedColumnName="member_number")
+	@JoinColumn(name = "FK_Customer_ID", referencedColumnName = "member_number")
 	private Member Customer;
+
 	private String CustomerName;
 
 	private String Email;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_ComplaintType_ID",referencedColumnName="ComplaintName")
-	private ComplaintType ComplaintType;
 	private String Title;
 	private String Content;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_ComplaintType_ID", referencedColumnName = "ComplaintTypeID")
+	private ComplaintType ComplaintType;
 
 	public Integer getCustomerComplaintsID() {
 		return CustomerComplaintsID;
@@ -58,8 +60,9 @@ public class CustomerComplaints {
 		return CreateDate;
 	}
 
-	public void setCreateDate(Date createDate) {
-		CreateDate = createDate;
+	public void setCreateDate() {
+		
+		this.CreateDate = new Date();
 	}
 
 	public Member getCustomer() {
@@ -86,14 +89,6 @@ public class CustomerComplaints {
 		Email = email;
 	}
 
-	public ComplaintType getComplaintType() {
-		return ComplaintType;
-	}
-
-	public void setComplaintType(ComplaintType complaintType) {
-		ComplaintType = complaintType;
-	}
-
 	public String getTitle() {
 		return Title;
 	}
@@ -109,4 +104,13 @@ public class CustomerComplaints {
 	public void setContent(String content) {
 		Content = content;
 	}
+
+	public ComplaintType getComplaintType() {
+		return ComplaintType;
+	}
+
+	public void setComplaintType(ComplaintType complaintType) {
+		ComplaintType = complaintType;
+	}
+
 }

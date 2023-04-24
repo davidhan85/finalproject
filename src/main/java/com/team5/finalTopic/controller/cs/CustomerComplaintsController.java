@@ -27,11 +27,9 @@ public class CustomerComplaintsController {
 	}
 	
 	@PostMapping("/ComplaintsForm")
-	public String postMessage(@ModelAttribute("form")CustomerComplaints cs,
-//			                 @RequestParam(value="Customer.m_number", required=false) String mNumber,
-			                 Model model) {
+	public String postMessage(@ModelAttribute("form")CustomerComplaints cs,Model model) {
 		
-//		 cs.getCustomer(Integer.parseInt(mNumber));
+
 		 CSS.addForm(cs);
       
 		model.addAttribute("form",new CustomerComplaints());
