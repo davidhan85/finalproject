@@ -1,15 +1,16 @@
-package com.team5.finalTopic.model.member;
+package com.team5.finalTopic.service.member;
 
-import com.team5.finalTopic.service.member.MemberService;
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.sql.rowset.serial.SerialBlob;
-import javax.transaction.Transactional;
-import java.sql.Blob;
-import java.util.List;
+import com.team5.finalTopic.model.member.Member;
+import com.team5.finalTopic.model.member.MemberRepository;
 
 @Service
 @Transactional
@@ -25,13 +26,13 @@ public class MemberServiceImpl  implements MemberService {
 
     @Override
     public void save(Member member) {
-    BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+    //BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
     if (member.getM_number()!=null){//修改時
-    String oldpwd=memberRepository.findById(member.getM_number()).get().m_password;
+    String oldpwd=memberRepository.findById(member.getM_number()).get().getM_password();
     if (member.getM_password().equals(oldpwd)){//有修改密碼
-    member.setM_password(passwordEncoder.encode(member.getM_password()));
+    member.setM_password((member.getM_password()));
     }else {
-        member.setM_password(passwordEncoder.encode(member.getM_password()));
+        member.setM_password((member.getM_password()));
     }
 
     }
@@ -41,8 +42,8 @@ public class MemberServiceImpl  implements MemberService {
     //專門為重設密碼專用
     @Override
     public void save(Member member, String newpwd) {
-        BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-        member.setM_password(passwordEncoder.encode(member.getM_password()));
+       // BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        member.setM_password((member.getM_password()));
     }
 
     @Override
@@ -93,8 +94,8 @@ public class MemberServiceImpl  implements MemberService {
             //如果更改時沒有上傳圖片
             if (!isInsert){ //更改時
                 try {
-                    member.setM_image(findById(member.m_number).getM_image());//找舊的圖片
-                    member.setFilename(findById(member.m_number).getFilename());//找舊的檔名
+                    member.setM_image(findById(member.getM_number()).getM_image());//找舊的圖片
+                    member.setFilename(findById(member.getM_number()).getFilename());//找舊的檔名
                     return member;
 
                 }catch (Exception e){
@@ -105,4 +106,17 @@ public class MemberServiceImpl  implements MemberService {
         }
         return member;
     }
+
+	@Override
+	public byte[] getMemberImage(Integer m_number) {
+		  Optional<Member> option	=memberRepository.findById(m_number);
+		  if(option.isPresent()) {
+			  Member member=option.get();
+			  return member.getM_image();
+		  }else {
+			  return null;
+		  }
+		
+		
+	}
 }

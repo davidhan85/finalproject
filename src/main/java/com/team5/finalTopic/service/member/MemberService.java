@@ -30,6 +30,8 @@ public interface MemberService {
 
     //把大頭貼存進資料庫
     public Member savePictureInDB(Member member,Boolean isInsert);
+    
+    public byte[] getMemberImage(Integer m_number);
 
 
 

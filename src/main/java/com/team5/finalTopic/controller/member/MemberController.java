@@ -1,16 +1,22 @@
 package com.team5.finalTopic.controller.member;
 
-import com.team5.finalTopic.model.member.Member;
-import com.team5.finalTopic.model.member.MemberRepository;
-import com.team5.finalTopic.service.member.MemberService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
+import com.team5.finalTopic.model.member.Member;
+import com.team5.finalTopic.model.member.MemberRepository;
+import com.team5.finalTopic.service.member.MemberService;
 
 @Controller
 public class MemberController {
@@ -49,9 +55,14 @@ public class MemberController {
 
 		return "redirect:/memberlist";
 	}
-
-
 	
+	@GetMapping(value = "/memberlist/{m_number}")
+	public ResponseEntity<byte[]> getImage(@PathVariable("m_number") Integer m_number) {
+		byte[] imageBytes = memberService.getMemberImage(m_number);
+		HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);		
+	}	
 	public MemberController() {
 
 	}

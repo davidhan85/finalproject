@@ -41,7 +41,7 @@
             <td>${member.point_id}</td>
             <td>${member.m_creatdate}</td>
 <%--            <td>${member.m_image}</td>--%>
-            <img src="data:image/jpg;base64,${Base64.getEncoder().encodeToString(member.m_image)}" alt="member image" />
+           <td> <img src="<c:url value='/memberlist/${member.m_number}'/>" alt="member image" /> </td>
         </tr>
     </c:forEach>
 </table>
