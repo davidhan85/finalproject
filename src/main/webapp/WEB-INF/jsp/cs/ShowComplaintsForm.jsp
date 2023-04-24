@@ -25,7 +25,7 @@
                         <div class="form_container">
                             <form:form modelAttribute="form" action="${contextRoot}/ComplaintsForm">
 
-                                    <form:input type="hidden" path="Customer.member_number" value="6"/>
+                                    <form:input type="hidden" path="Customer.m_number" value="6"/>
                                 <div>
                                     <h4>聯絡人</h4>
                                     <form:input type="text" class="form-control" placeholder="(請輸入聯絡人)" path="CustomerName"/>

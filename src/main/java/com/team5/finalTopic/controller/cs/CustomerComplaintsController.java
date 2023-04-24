@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team5.finalTopic.model.cs.CustomerComplaints;
 import com.team5.finalTopic.service.cs.CustomerComplaintsService;
@@ -26,8 +27,11 @@ public class CustomerComplaintsController {
 	}
 	
 	@PostMapping("/ComplaintsForm")
-	public String postMessage(@ModelAttribute("form")CustomerComplaints cs, Model model) {
+	public String postMessage(@ModelAttribute("form")CustomerComplaints cs,
+//			                 @RequestParam(value="Customer.m_number", required=false) String mNumber,
+			                 Model model) {
 		
+//		 cs.getCustomer(Integer.parseInt(mNumber));
 		 CSS.addForm(cs);
       
 		model.addAttribute("form",new CustomerComplaints());

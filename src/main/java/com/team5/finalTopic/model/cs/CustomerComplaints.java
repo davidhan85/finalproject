@@ -34,7 +34,7 @@ public class CustomerComplaints {
 	private Date CreateDate;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "FK_Customer_ID")
+	@JoinColumn(name = "FK_Customer_ID",referencedColumnName="member_number")
 	private Member Customer;
 	private String CustomerName;
 
