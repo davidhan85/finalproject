@@ -1,8 +1,8 @@
 package com.team5.finalTopic.service.member;
 
-import com.team5.finalTopic.model.member.Member;
-
 import java.util.List;
+
+import com.team5.finalTopic.model.member.Member;
 
 
 public interface MemberService {
@@ -31,6 +31,7 @@ public interface MemberService {
     //把大頭貼存進資料庫
     public Member savePictureInDB(Member member,Boolean isInsert);
     
+    //再查詢頁面抓出圖片
     public byte[] getMemberImage(Integer m_number);
 
 

@@ -1,18 +1,41 @@
 package com.team5.finalTopic.model.member;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.team5.finalTopic.model.board.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.persistence.*;
-import java.sql.Blob;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.team5.finalTopic.model.board.MainArticleLikes;
+import com.team5.finalTopic.model.board.MainArticleMessageLikes;
+import com.team5.finalTopic.model.board.MainArticleMessages;
+import com.team5.finalTopic.model.board.MainArticles;
+import com.team5.finalTopic.model.board.SubArticleLikes;
+import com.team5.finalTopic.model.board.SubArticleMessageLikes;
+import com.team5.finalTopic.model.board.SubArticleMessages;
+import com.team5.finalTopic.model.board.SubArticles;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name="memberdata",uniqueConstraints = {@UniqueConstraint(columnNames = "member_number")})
@@ -25,44 +48,6 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //SQL自動給號
 	@Column(name="member_number")
 	Integer m_number; 
-	
-
-
-
-
-
-
-
-
-	public Integer getM_number() {
-		return m_number;
-	}
-
-
-
-
-
-
-
-
-
-	public Date getM_creatdate() {
-		return m_creatdate;
-	}
-
-
-
-
-
-
-	public void setM_creatdate(Date m_creatdate) {
-		this.m_creatdate = m_creatdate;
-	}
-
-
-
-
-
 
 	@Column(columnDefinition = "NVARCHAR(50) not null",name="member_account")
 	String m_account;
@@ -113,6 +98,7 @@ public class Member {
 	private points point_id;
 
 
+	
 	public Integer getM_number() {
 		return m_number;
 	}
