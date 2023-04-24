@@ -27,7 +27,7 @@ public class CustomerComplaintsService {
 		ComplaintType type = null;
 
 		if (CC.getComplaintType().getComplaintTypeID() != 0) {
-			type = CTR.findById(CC.getComplaintType().getComplaintTypeID());
+			type = CTR.findById(CC.getComplaintType().getComplaintTypeID()).orElse(null);
 		}
 
 		Member customer = MR.findById(CC.getCustomer().getM_number()).orElse(null);	
