@@ -29,6 +29,8 @@ public class MemberServiceImpl  implements MemberService {
     //BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
     if (member.getM_number()!=null){//修改時
     String oldpwd=memberRepository.findById(member.getM_number()).get().getM_password();
+    System.out.println(oldpwd);
+    System.out.println(member.getM_password());
     if (member.getM_password().equals(oldpwd)){//有修改密碼
     member.setM_password((member.getM_password()));
     }else {
@@ -92,7 +94,7 @@ public class MemberServiceImpl  implements MemberService {
             }
         }else {
             //如果更改時沒有上傳圖片
-            if (!isInsert){ //更改時
+            if (!isInsert){ //沒更改時
                 try {
                     member.setM_image(findById(member.getM_number()).getM_image());//找舊的圖片
                     member.setFilename(findById(member.getM_number()).getFilename());//找舊的檔名

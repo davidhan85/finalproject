@@ -49,12 +49,29 @@ public class MemberController {
 
 		boolean isInsert = (member.getM_number() == null); //判斷是否為insert
 
-		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以BLOB型態塞進DB
+		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
 
 		memberService.save(member1);
 
 		return "redirect:/memberlist";
 	}
+	
+	@GetMapping(value = "/updatemember")
+	public String showUpdateMemberForm(Model model) {
+		model.addAttribute("member", new Member());
+		return "member/updatemember";
+	}
+	
+	@PostMapping(value = "/updatemember/{m_number}")
+	public String updateMember(@PathVariable("m_number")Integer m_number, @ModelAttribute Member member){
+
+		boolean isInsert = (member.getM_number() == null); //判斷是否為insert
+		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
+		memberService.save(member1);
+		return "redirect:/memberlist";
+	}
+	
+	
 	
 	@GetMapping(value = "/memberlist/{m_number}")
 	public ResponseEntity<byte[]> getImage(@PathVariable("m_number") Integer m_number) {
