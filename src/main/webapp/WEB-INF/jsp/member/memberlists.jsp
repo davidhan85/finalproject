@@ -44,12 +44,13 @@
 <%--            <td>${member.m_image}</td>--%>
             <td> <img src="<c:url value='/memberlist/${member.m_number}'/>" alt="member image" /> </td>
             <td>
-              <form:form method="post" action="${contextRoot}/updatemember/${member.m_number}">
+              <form:form method="get" action="${contextRoot}/updatememberform/${member.m_number}">
                     <input type="submit" value="更新" />
                 </form:form>
-                <form method="post" action="${contextRoot}/Backendmember/delete/${member.m_number}">
+                <form:form method="post" action="${contextRoot}/deletemember/${member.m_number}">
+                    <input type="hidden" name="_method" value="delete">
                     <input type="submit" value="刪除" onclick="return confirm('確定要刪除嗎？')"/>
-                </form>
+                </form:form>
             </td>
         </tr>
     </c:forEach>

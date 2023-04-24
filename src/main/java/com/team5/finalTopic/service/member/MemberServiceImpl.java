@@ -28,13 +28,15 @@ public class MemberServiceImpl  implements MemberService {
     public void save(Member member) {
     //BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
     if (member.getM_number()!=null){//修改時
+//        Optional<Member> optionalMember = memberRepository.findById(member.getM_number());
+//        System.out.println(optionalMember);
     String oldpwd=memberRepository.findById(member.getM_number()).get().getM_password();
-    System.out.println(oldpwd);
-    System.out.println(member.getM_password());
-    if (member.getM_password().equals(oldpwd)){//有修改密碼
+//    System.out.println(oldpwd);
+//    System.out.println(member.getM_password());
+    if (!member.getM_password().equals(oldpwd)){//有修改密碼
     member.setM_password((member.getM_password()));
     }else {
-        member.setM_password((member.getM_password()));
+        member.setM_password((oldpwd));
     }
 
     }
@@ -109,16 +111,16 @@ public class MemberServiceImpl  implements MemberService {
         return member;
     }
 
-	@Override
-	public byte[] getMemberImage(Integer m_number) {
-		  Optional<Member> option	=memberRepository.findById(m_number);
-		  if(option.isPresent()) {
-			  Member member=option.get();
-			  return member.getM_image();
-		  }else {
-			  return null;
-		  }
-		
-		
-	}
+    @Override
+    public byte[] getMemberImage(Integer m_number) {
+        Optional<Member> option =memberRepository.findById(m_number);
+        if(option.isPresent()) {
+            Member member=option.get();
+            return member.getM_image();
+        }else {
+            return null;
+        }
+
+
+    }
 }
