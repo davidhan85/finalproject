@@ -1,6 +1,7 @@
 package com.team5.finalTopic.controller.member;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,10 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.model.member.MemberRepository;
@@ -39,6 +37,14 @@ public class MemberController {
 		return "member/memberlists";
 
 	}
+//	@GetMapping("/findmember/{m_number}")
+//	public 	Optional<Member> findByID(@PathVariable("m_number") Integer m_number ){
+//		Optional<Member> byId = memberRepository.findById(m_number);
+//		return byId;
+//
+//	}
+
+
 	@GetMapping(value = "/newmember")
 	public String showNewMemberForm(Model model) {
 		model.addAttribute("member", new Member());
@@ -49,12 +55,37 @@ public class MemberController {
 
 		boolean isInsert = (member.getM_number() == null); //判斷是否為insert
 
-		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以BLOB型態塞進DB
+		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
 
 		memberService.save(member1);
 
 		return "redirect:/memberlist";
 	}
+
+	@DeleteMapping(value = "/deletemember/{m_number}")
+	public String deleteMember(@PathVariable Integer m_number){
+		memberRepository.deleteById(m_number);
+		return "redirect:/memberlist";
+	}
+
+	
+	@GetMapping(value = "/updatememberform/{m_number}")
+	public String showUpdateMemberForm(@PathVariable("m_number") Integer m_number,Model model) {
+		Optional<Member> byId = memberRepository.findById(m_number);
+		model.addAttribute("member", byId);
+		return "member/updatemember";
+	}
+	
+	@PutMapping (value = "/updatemember/{m_number}")
+	public String updateMember(@PathVariable Integer m_number , Member member){
+
+		boolean isInsert = (member.getM_number() == null); //判斷是否為insert
+		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
+		memberService.save(member1);
+		return "redirect:/memberlist";
+	}
+	
+	
 	
 	@GetMapping(value = "/memberlist/{m_number}")
 	public ResponseEntity<byte[]> getImage(@PathVariable("m_number") Integer m_number) {

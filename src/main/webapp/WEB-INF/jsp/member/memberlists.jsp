@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
     <title>會員清單</title>
@@ -41,7 +42,16 @@
             <td>${member.point_id}</td>
             <td>${member.m_creatdate}</td>
 <%--            <td>${member.m_image}</td>--%>
-           <td> <img src="<c:url value='/memberlist/${member.m_number}'/>" alt="member image" /> </td>
+            <td> <img src="<c:url value='/memberlist/${member.m_number}'/>" alt="member image" /> </td>
+            <td>
+              <form:form method="get" action="${contextRoot}/updatememberform/${member.m_number}">
+                    <input type="submit" value="更新" />
+                </form:form>
+                <form:form method="post" action="${contextRoot}/deletemember/${member.m_number}">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="submit" value="刪除" onclick="return confirm('確定要刪除嗎？')"/>
+                </form:form>
+            </td>
         </tr>
     </c:forEach>
 </table>
