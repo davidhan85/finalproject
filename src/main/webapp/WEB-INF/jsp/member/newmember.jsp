@@ -21,10 +21,12 @@
     <tr>
      <td>帳號：</td>
    <td><form:input path="m_account"  required="ture"/> </td>
+     <td> <form:errors path="m_account"  cssClass="error"/></td>
     </tr>
     <tr>
      <td>密碼：</td>
    <td> <form:input path="m_password"  required="ture"/></td>
+    <td> <form:errors path="m_password" cssClass="error" /></td>
     </tr>
     <tr>
      <td>姓名：</td>
@@ -33,6 +35,7 @@
     <tr>
      <td>手機：</td>
     <td> <form:input path="m_phone"  required="ture"/></td>
+    <td> <form:errors path="m_phone"  cssClass="error"/></td>
     </tr>
     <tr>
      <td>地址：</td>
@@ -41,6 +44,7 @@
     <tr>
      <td>信箱</td>
     <td> <form:input path="m_email" type="email" required="ture"/></td>
+
     </tr>
     <tr>
      <td>生日：</td>
@@ -49,6 +53,7 @@
     <tr>
      <td>身分證：</td>
     <td> <form:input path="m_id"  required="ture"/></td>
+   <td> <form:errors path="m_id"  cssClass="error"/></td>
     </tr>
      <tr>
       <td>大頭貼：</td>

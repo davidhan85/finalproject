@@ -1,42 +1,20 @@
 package com.team5.finalTopic.model.member;
 
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.team5.finalTopic.model.board.MainArticleLikes;
-import com.team5.finalTopic.model.board.MainArticleMessageLikes;
-import com.team5.finalTopic.model.board.MainArticleMessages;
-import com.team5.finalTopic.model.board.MainArticles;
-import com.team5.finalTopic.model.board.SubArticleLikes;
-import com.team5.finalTopic.model.board.SubArticleMessageLikes;
-import com.team5.finalTopic.model.board.SubArticleMessages;
-import com.team5.finalTopic.model.board.SubArticles;
-
+import com.team5.finalTopic.model.board.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "memberdata", uniqueConstraints = { @UniqueConstraint(columnNames = "member_number") })
@@ -51,29 +29,33 @@ public class Member {
 	@Column(name = "member_number")
 	Integer m_number;
 
+	@NotBlank(message = "帳號不能為空")
+	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,16}$", message = "帳號必須包含英文字母和數字，並且長度在8-16之間")
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_account")
-
 	String m_account;
 
+	@NotBlank(message = "密碼不能為空")
+//	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,16}$", message = "密碼必須包含英文字母和數字，並且長度在8-16之間")
 	@Column(columnDefinition = "NVARCHAR(20) not null", name = "member_password")
 	String m_password;
 
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_name")
 	String m_name;
 
+	@Pattern(regexp = "^09[0-9]{8}$", message = "手機號碼格式不正確")
 	@Column(columnDefinition = "NVARCHAR(20) not null", name = "member_phone")
 	String m_phone;
 
 	@Column(columnDefinition = "NVARCHAR(100) not null", name = "member_address")
 	String m_address;
 
+	@Email(message = "信箱格式不正確")
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_email")
 	String m_email;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(columnDefinition = "Date", name = "member_birth")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-
 	Date m_birth;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -85,8 +67,10 @@ public class Member {
 	@Column(columnDefinition = "Integer", name = "member_points")
 	Integer m_points;
 
+	@Pattern(regexp = "^[A-Z][1	2]\\d{8}$", message = "身分證字號格式不正確")
 	@Column(columnDefinition = "NVARCHAR(10) not null", name = "member_id")
 	String m_id;
+
 	@Lob
 	@Column(name = "member_image", columnDefinition = "varbinary(MAX)")
 	byte[] m_image; // 會員大頭貼
