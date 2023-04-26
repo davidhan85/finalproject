@@ -31,7 +31,7 @@ public class Member {
 
 	@NotBlank(message = "帳號不能為空")
 	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,16}$", message = "帳號必須包含英文字母和數字，並且長度在8-16之間")
-	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_account")
+	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_account",unique = true)
 	String m_account;
 
 	@NotBlank(message = "密碼不能為空")

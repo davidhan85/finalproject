@@ -65,11 +65,10 @@ public class MemberController {
 			return "member/newmember";
 		}else {
 			boolean isInsert = (member.getM_number() == null); //判斷是否為insert
-
-			String encryptPwd = encryptString(member.getM_password());
-			System.out.println(encryptPwd);
-			member.setM_password(encryptPwd);
-
+//
+//			String encryptPwd = encryptString(member.getM_password());
+//			System.out.println(encryptPwd);
+//			member.setM_password(encryptPwd);
 			Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
 
 			memberService.save(member1);
