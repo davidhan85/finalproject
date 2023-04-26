@@ -26,6 +26,11 @@ public class CustomerComplaintsController {
 		return "cs/ComplaintsForm";
 	}
 	
+	@GetMapping("/chat")
+	public String showChatPage(Model model) {
+		return "cs/ChatRoom";
+	}
+	
 	@PostMapping("/ComplaintsForm")
 	public String postMessage(@ModelAttribute("form")CustomerComplaints cs,Model model) {
 		
