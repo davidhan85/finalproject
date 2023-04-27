@@ -1,6 +1,7 @@
 package com.team5.finalTopic.controller.login;
 
 import com.team5.finalTopic.model.login.LoginRepository;
+import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.service.login.LoginServiceImpl;
 
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class LoginController {
     private LoginRepository loginRepository;
 
     @Autowired
-    private LoginServiceImpl LoginService;
+    private LoginServiceImpl loginService;
 
     @GetMapping(value = "/Login")
     public String goLoginPage(){
@@ -28,26 +29,30 @@ public class LoginController {
     }
     @PostMapping(value = "/checkLogin")
     public String checkLogin(@RequestParam("username")String username,@RequestParam("password") String pwd, Model model) {
-    	Map<String,String>error=new HashMap<String,String>();
-    	model.addAttribute("error",error);
-    	if(username==null||username.length()==0) {
-    		
-    		
-    	}
-		return null;
-    	
+        Map<String,String>error=new HashMap<String,String>();
+        model.addAttribute("error",error);
+        System.out.println(username);
+        System.out.println(pwd);
+        if(username==null||username.length()==0) {
+            error.put("account","帳號不能為空");
+        }
+        if (pwd==null||pwd.length()==0){
+            error.put("pwd","密碼不能為空");
+        }
+//        if (error!=null){
+//            System.out.println("錯誤");
+//            return "Login/Loginpage";
+//        }
+        Member memberexisted = loginService.findByM_accountAndM_password(username, pwd);
+        if (memberexisted!=null){
+            System.out.println("登入");
+            model.addAttribute("account",username);
+            model.addAttribute("pwd",pwd);
+            return "/index";
+        }
+        error.put("msg","請輸入正確的帳號跟密碼");
+        return "Login/Loginpage";
+//        return "member/newmember";
     }
-    
-
-
-
-
-
-
-
-
-
-
-
 
 }

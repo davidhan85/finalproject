@@ -60,7 +60,6 @@ public class Member {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-
 	@Column(columnDefinition = "datetime", name = "member_creatdate")
 	Date m_creatdate;
 

@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <html>
 <head>
     <title>登入</title>
@@ -51,7 +54,6 @@
     .container {
       padding: 16px;
     }
-
     /* 設定表單容器標題樣式 */
     h2 {
       text-align: center;
@@ -62,7 +64,7 @@
 <jsp:include page="../layout/navebar.jsp"></jsp:include>
 <div class="container">
   <h2>登入</h2>
-  <form action="login.jsp" method="post">
+  <form action="${contextRoot}/checkLogin" method="post">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text" id="username" placeholder="Enter username" name="username">
@@ -71,10 +73,17 @@
       <label for="password">Password:</label>
       <input type="password" id="password" placeholder="Enter password" name="password">
     </div>
-    <button type="submit">Login</button>
+    <button type="submit">登入</button>
+    <c:if test="${not empty error}">
+      <div class="alert-danger">
+        <strong>錯誤:</strong>
+        <c:forEach var="errors" items="${error}">
+          ${errors.value}<br />
+        </c:forEach>
+      </div>
+    </c:if>
   </form>
 </div>
 
-</div>
 </body>
 </html>
