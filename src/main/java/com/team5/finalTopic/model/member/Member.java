@@ -27,60 +27,63 @@ public class Member {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // SQL自動給號
 	@Column(name = "member_number")
-	Integer m_number;
+    private Integer m_number;
 
 	@NotBlank(message = "帳號不能為空")
 	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,16}$", message = "帳號必須包含英文字母和數字，並且長度在8-16之間")
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_account",unique = true)
-	String m_account;
+	private	String m_account;
 
 	@NotBlank(message = "密碼不能為空")
 //	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,16}$", message = "密碼必須包含英文字母和數字，並且長度在8-16之間")
 	@Column(columnDefinition = "NVARCHAR(20) not null", name = "member_password")
-	String m_password;
+	private	String m_password;
 
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_name")
-	String m_name;
+	private	String m_name;
 
 	@Pattern(regexp = "^09[0-9]{8}$", message = "手機號碼格式不正確")
 	@Column(columnDefinition = "NVARCHAR(20) not null", name = "member_phone")
-	String m_phone;
+	private	String m_phone;
 
 	@Column(columnDefinition = "NVARCHAR(100) not null", name = "member_address")
-	String m_address;
+	private	String m_address;
 
 	@Email(message = "信箱格式不正確")
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_email")
-	String m_email;
+	private	String m_email;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(columnDefinition = "Date", name = "member_birth")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date m_birth;
+	private	Date m_birth;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(columnDefinition = "datetime", name = "member_creatdate")
-	Date m_creatdate;
+	private	Date m_creatdate;
 
 	@Column(columnDefinition = "Integer", name = "member_points")
-	Integer m_points;
+	private	Integer m_points;
 
 	@Pattern(regexp = "^[A-Z][1	2]\\d{8}$", message = "身分證字號格式不正確")
 	@Column(columnDefinition = "NVARCHAR(10) not null", name = "member_id")
-	String m_id;
+	private	String m_id;
+	
+	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_Role")
+	private	String m_Role;
 
 	@Lob
 	@Column(name = "member_image", columnDefinition = "varbinary(MAX)")
-	byte[] m_image; // 會員大頭貼
+	private	byte[] m_image; // 會員大頭貼
 
 	@Column(columnDefinition = "int", name = "member_verify")
-	Integer m_verify; // 加入會員的驗證碼
+	private	Integer m_verify; // 加入會員的驗證碼
 
-	String filename;
+	private	String filename;
 
 	@Transient
-	MultipartFile productImage;
+	private	MultipartFile productImage;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "point_id")
@@ -218,6 +221,16 @@ public class Member {
 	public void setPoint_id(points point_id) {
 		this.point_id = point_id;
 	}
+	
+
+	public String getM_Role() {
+		return m_Role;
+	}
+
+	public void setM_Role(String m_Role) {
+		this.m_Role = m_Role;
+	}
+
 
 	@OneToMany(mappedBy = "author_idforMA")
 

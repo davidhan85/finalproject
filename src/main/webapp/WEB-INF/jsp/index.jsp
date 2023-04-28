@@ -10,4 +10,5 @@
 <jsp:include page="layout/navebar.jsp"></jsp:include>
  <h1></h1>
 </body>
+${memberbean.m_account}
 </html>

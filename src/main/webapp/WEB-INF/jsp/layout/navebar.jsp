@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<!DOCTYPE html>
 		<html>
 
@@ -100,12 +101,17 @@
 											</g>
 										</svg>
 									</a>
+									<c:if test="${not empty memberbean}">
 									<form class="form-inline">
 										<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
 											<i class="fa fa-search" aria-hidden="true"></i>
 										</button>
 									</form>
+									 <a href="${contextRoot}/member" class="order_online">會員中心</a>
+									</c:if>
+									<c:if test="${empty memberbean}">
 									<a href="${contextRoot}/newmember" class="order_online"> 加入會員 </a>
+									</c:if>
 								</div>
 							</div>
 						</nav>

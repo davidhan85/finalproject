@@ -19,7 +19,7 @@
           <jsp:include page="../layout/navebar.jsp"></jsp:include>
           <h1>新增會員</h1>
           <form:form method="post" action="${contextRoot}/messages/newmember" enctype="multipart/form-data"
-            modelAttribute="member" id="newmemberform">
+            modelAttribute="member" id="newmemberform" onsubmit="return submitForm();">
             <table>
               <tr>
                 <td>帳號：</td>
@@ -62,8 +62,6 @@
                   <form:input path="m_email" type="email" required="ture" id="email" />
                   <span id="emailError" class="error"></span>
                 </td>
-
-
               </tr>
               <tr>
                 <td>生日：</td>
@@ -71,6 +69,16 @@
                   <form:input path="m_birth" type="date" required="ture" />
                 </td>
               </tr>
+              <tr>
+              <td>身分:</td>
+              <td>
+              <form:select path="m_Role" >
+              <form:option value="adaim" label="管理員" />
+              <form:option value="user" label="一般使用者" />
+              </form:select>
+              </td>
+              </tr> 
+                          
               <tr>
                 <td>身分證：</td>
                 <td>
@@ -96,7 +104,6 @@
               var email = document.getElementById("email").value;
               var id = document.getElementById("id").value;
               console.log(pwd);
-
 
               var accountRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
               var phoneRegex = /^09\d{8}$/;
@@ -137,12 +144,9 @@
               } else {
                 document.getElementById("idError").innerHTML = "";
               }
-
+				return true;
             }
-            document.querySelector('#newmemberform').addEventListener('submit', function (event) {
-              event.preventDefault();
-              submitForm();
-            })
+            
             document.querySelector('#account').addEventListener('blur', function (event
             ) {
               submitForm();

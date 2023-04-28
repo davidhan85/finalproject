@@ -7,6 +7,8 @@ import com.team5.finalTopic.service.login.LoginServiceImpl;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,7 @@ public class LoginController {
         return "Login/Loginpage";
     }
     @PostMapping(value = "/checkLogin")
-    public String checkLogin(@RequestParam("username")String username,@RequestParam("password") String pwd, Model model) {
+    public String checkLogin(@RequestParam("username")String username,@RequestParam("password") String pwd, Model model,HttpSession session) {
         Map<String,String>error=new HashMap<String,String>();
         model.addAttribute("error",error);
         System.out.println(username);
@@ -46,13 +48,18 @@ public class LoginController {
         Member memberexisted = loginService.findByM_accountAndM_password(username, pwd);
         if (memberexisted!=null){
             System.out.println("登入");
+            session.setAttribute("memberbean", memberexisted);
             model.addAttribute("account",username);
             model.addAttribute("pwd",pwd);
-            return "/index";
+            return "redirect:/home";
         }
         error.put("msg","請輸入正確的帳號跟密碼");
         return "Login/Loginpage";
-//        return "member/newmember";
+    }
+    public String Loginout(HttpSession session) {
+    	session.removeAttribute("username");
+		return "redirect:/index";
+    	
     }
 
 }
