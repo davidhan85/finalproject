@@ -25,6 +25,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.team5.finalTopic.model.Activity.MultiMember;
+import com.team5.finalTopic.model.Activity.SignUp;
 import com.team5.finalTopic.model.board.MainArticleLikes;
 import com.team5.finalTopic.model.board.MainArticleMessageLikes;
 import com.team5.finalTopic.model.board.MainArticleMessages;
@@ -102,7 +104,12 @@ public class Member {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "point_id")
 	private points point_id;
-
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "memberss")
+	private Set<MultiMember> miltis = new LinkedHashSet<>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "member")
+	private Set<SignUp> signmiltis = new LinkedHashSet<>();	
 	public Integer getM_number() {
 		return m_number;
 	}
