@@ -36,7 +36,7 @@ public class CustomerComplaintsService {
 		CC.setComplaintType(type);
 		CCR.save(CC);
 		CCR.flush();
-
 	}
+	
 
 }

@@ -21,7 +21,7 @@ public class CustomerComplaintsController {
 	
 	@GetMapping("/CustomerComplaints")
 	public String CustomerComplaints(Model model) {
-		
+			
 	    model.addAttribute("form", new CustomerComplaints());
 		return "cs/ComplaintsForm";
 	}
