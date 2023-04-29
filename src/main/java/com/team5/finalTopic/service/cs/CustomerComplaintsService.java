@@ -1,5 +1,7 @@
 package com.team5.finalTopic.service.cs;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ public class CustomerComplaintsService {
 	@Autowired
 	private ComplaintTypeRepository CTR;
 
+	//新增資料
 	public void addForm(CustomerComplaints CC) {
 
 		ComplaintType type = null;
@@ -36,7 +39,13 @@ public class CustomerComplaintsService {
 		CC.setComplaintType(type);
 		CCR.save(CC);
 		CCR.flush();
-
 	}
+	
+	//搜尋全部資料
+	public List <CustomerComplaints> FindAllComplaints(){
+		
+		return CCR.findAll();
+	}
+	
 
 }
