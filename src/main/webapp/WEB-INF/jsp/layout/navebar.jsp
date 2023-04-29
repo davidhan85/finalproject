@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
@@ -7,6 +8,13 @@
 <!-- Basic -->
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+		<!DOCTYPE html>
+		<html>
+>>>>>>> bc1231d66292afd30902900db970bf64fb331c77
 
 <!-- Mobile Metas -->
 <meta name="viewport"
@@ -56,6 +64,7 @@
 							首頁 </span>
 					</a>
 
+<<<<<<< HEAD
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -89,6 +98,29 @@
 									viewBox="0 0 456.029 456.029"
 									style="enable-background: new 0 0 456.029 456.029;"
 									xml:space="preserve">
+=======
+							<div class="collapse navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav  mx-auto ">
+								
+									<li class="nav-item"><a class="nav-link" href="${contextRoot}/mall">商城
+										</a></li>
+			
+									<li class="nav-item"><a class="nav-link" href="${contextRoot}/board">論壇</a>
+									</li>
+									<li class="nav-item active"><a class="nav-link" href="${contextRoot}/activity">活動 <span
+												class="sr-only">(current)</span>
+										</a></li>
+									<li class="nav-item"><a class="nav-link" href="${contextRoot}/CustomerComplaints">客服</a>
+									</li>
+								</ul>
+								<div class="user_option">
+									<a href="${contextRoot}/Login" class="user_link"> <i class="fa fa-user" aria-hidden="true"></i>
+									</a> <a class="cart_link" href="${contextRoot}/shoppingcart"> <svg version="1.1" id="Capa_1"
+											xmlns="http://www.w3.org/2000/svg"
+											xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+											viewBox="0 0 456.029 456.029"
+											style="enable-background: new 0 0 456.029 456.029;" xml:space="preserve">
+>>>>>>> bc1231d66292afd30902900db970bf64fb331c77
 											<g>
 												<g>
 													<path
@@ -113,6 +145,7 @@
 												</g>
 											</g>
 										</svg>
+<<<<<<< HEAD
 							</a>
 							<form class="form-inline">
 								<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
@@ -122,6 +155,23 @@
 							<a href="${contextRoot}/newmember" class="order_online"> 加入會員
 							</a>
 						</div>
+=======
+									</a>
+									<c:if test="${not empty memberbean}">
+									<form class="form-inline">
+										<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</button>
+									</form>
+									 <a href="${contextRoot}/member" class="order_online">會員中心</a>
+									</c:if>
+									<c:if test="${empty memberbean}">
+									<a href="${contextRoot}/newmember" class="order_online"> 加入會員 </a>
+									</c:if>
+								</div>
+							</div>
+						</nav>
+>>>>>>> bc1231d66292afd30902900db970bf64fb331c77
 					</div>
 				</nav>
 			</div>
