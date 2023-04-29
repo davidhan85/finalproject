@@ -32,7 +32,7 @@
 <body>
 	<ul
 		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-		id="accordionSidebar">
+		id="accordionSidebar" style="width: 10%; position: absolute;">
 
 		<!-- Sidebar - Brand -->
 		<a
@@ -85,7 +85,7 @@
 		</a></li>
 		<hr class="sidebar-divider">
 
-		<li class="nav-item"><a class="nav-link" href="${contextRoot}/CMS/CS"> <i
+		<li class="nav-item"><a class="nav-link" href="${contextRoot}/showAllComplaints"> <i
 				class="fas fa-fw fa-table"></i> <span>客服系統</span></a></li>
 
 		<hr class="sidebar-divider">
