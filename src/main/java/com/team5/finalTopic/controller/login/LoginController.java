@@ -56,9 +56,10 @@ public class LoginController {
         error.put("msg","請輸入正確的帳號跟密碼");
         return "Login/Loginpage";
     }
+    @GetMapping(value = "/checkout")
     public String Loginout(HttpSession session) {
-    	session.removeAttribute("username");
-		return "redirect:/index";
+    	session.removeAttribute("memberbean");
+		return "index";
     	
     }
 

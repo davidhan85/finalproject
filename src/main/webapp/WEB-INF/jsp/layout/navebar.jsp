@@ -71,6 +71,10 @@
 										</a></li>
 									<li class="nav-item"><a class="nav-link" href="${contextRoot}/CustomerComplaints">客服</a>
 									</li>
+									<c:if test="${not empty memberbean}">
+									<li class="nav-item"><a class="nav-link" href="${contextRoot}/checkout">登出</a>
+										</c:if>
+									</li>
 								</ul>
 								<div class="user_option">
 									<a href="${contextRoot}/Login" class="user_link"> <i class="fa fa-user" aria-hidden="true"></i>
