@@ -83,7 +83,8 @@
 										</c:if>
 									</li>
 									<li class="nav-item"><a class="nav-link"
-										href="${contextRoot}/CMS">後台系統 </a></li>
+										href="${contextRoot}/CMS">後台系統 </a>
+									</li>
 								</ul>
 							
 						
@@ -122,23 +123,21 @@
 											</g>
 										</svg>
 							</a>
+									<c:if test="${not empty memberbean}">
 							<form class="form-inline">
 								<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
 									<i class="fa fa-search" aria-hidden="true"></i>
 								</button>
 							</form>
-							<a href="${contextRoot}/newmember" class="order_online"> 加入會員
-							</a>
+										<a href="${contextRoot}/membercenter" class="order_online">會員中心</a>
+									</c:if>
+
+									<c:if test="${empty memberbean}">
+									<a href="${contextRoot}/newmember" class="order_online"> 加入會員
+									</a>
+									</c:if>
 						</div>
 									</a>
-							<c:if test="${not empty memberbean}">
-								<form class="form-inline">
-									<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-										<i class="fa fa-search" aria-hidden="true"></i>
-									</button>
-								</form>
-								<a href="${contextRoot}/member" class="order_online">會員中心</a>
-							</c:if>
 						</div>
 					</div>
 				</nav>

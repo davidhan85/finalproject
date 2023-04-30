@@ -6,9 +6,108 @@
         <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
         <html>
         <style>
+          /* 表單輸入和標籤的樣式 */
+          input[type="text"],
+          input[type="email"],
+          input[type="date"],
+          select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 3px;
+            background-color: #f1f1f1;
+          }
+
+          label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+          }
+
+          /* 表單容器的樣式 */
+          .container {
+            width: 50%;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+
+          /* 錯誤訊息的樣式 */
           .error {
             color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
           }
+
+          /* 送出按鈕的樣式 */
+          button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+            float: right;
+          }
+
+          /* 檔案輸入的樣式 */
+          input[type="file"] {
+            margin-top: 10px;
+            margin-bottom: 20px;
+          }
+
+          /* 表單標題的樣式 */
+          h1 {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+
+          /*!* 導覽列的樣式 *!*/
+          /*.navbar {*/
+          /*  background-color: #333;*/
+          /*  overflow: hidden;*/
+          /*  position: fixed;*/
+          /*  top: 0;*/
+          /*  width: 100%;*/
+          /*}*/
+
+          /*!* 導覽列連結的樣式 *!*/
+          /*.navbar a {*/
+          /*  float: left;*/
+          /*  display: block;*/
+          /*  color: #f2f2f2;*/
+          /*  text-align: center;*/
+          /*  padding: 14px 16px;*/
+          /*  text-decoration: none;*/
+          /*}*/
+
+          /*!* 目前選取的導覽列連結樣式 *!*/
+          /*.active {*/
+          /*  background-color: #4CAF50;*/
+          /*}*/
+
+          /*!* 小螢幕時的導覽列樣式 *!*/
+          /*@media screen and (max-width: 600px) {*/
+          /*  .navbar a {*/
+          /*    float: none;*/
+          /*    display: block;*/
+          /*    text-align: left;*/
+          /*  }*/
+
+          /*  .navbar a.right {*/
+          /*    float: right;*/
+          /*  }*/
+
+          /*  .active {*/
+          /*    background-color: #4CAF50;*/
+          /*    color: white;*/
+          /*  }*/
+          /*}*/
+
         </style>
 
         <head>
@@ -18,6 +117,7 @@
         <body>
           <jsp:include page="../layout/navebar.jsp"></jsp:include>
           <h1>新增會員</h1>
+          <div class="container">
           <form:form method="post" action="${contextRoot}/messages/newmember" enctype="multipart/form-data"
             modelAttribute="member" id="newmemberform" onsubmit="return submitForm();">
             <table>
@@ -95,6 +195,7 @@
             </table>
             <button type="submit">新增</button>
           </form:form>
+          </div>
           <script>
 
             function submitForm() {
@@ -167,11 +268,6 @@
             ) {
               submitForm();
             })
-
-
-
-
           </script>
         </body>
-
         </html>

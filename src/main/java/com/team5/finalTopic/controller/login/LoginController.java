@@ -62,5 +62,10 @@ public class LoginController {
 		return "index";
     	
     }
+    @GetMapping(value = "/membercenter")
+    public String MemberCenter(){
+
+        return "member/membercenter";
+    }
 
 }
