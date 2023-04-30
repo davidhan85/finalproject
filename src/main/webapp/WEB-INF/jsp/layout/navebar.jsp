@@ -138,10 +138,8 @@
 					</div>
 				</nav>
 			</div>
-
 	</div>
-
-	</header>
+</header>
 	<!-- end header section -->
 	</div>
 
