@@ -43,7 +43,7 @@
 <link href="${contextRoot}/css/responsive.css" rel="stylesheet" />
 </head>
 
-<body class="sub_page">
+<div class="sub_page">
 	<div class="hero_area">
 		<div class="bg-box">
 			<img src="${contextRoot}/images/hero-bg.jpg" alt="">
@@ -124,26 +124,24 @@
 										</svg>
 							</a>
 									<c:if test="${not empty memberbean}">
-							<form class="form-inline">
-								<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-									<i class="fa fa-search" aria-hidden="true"></i>
-								</button>
-							</form>
-										<a href="${contextRoot}/membercenter" class="order_online">會員中心</a>
+										<form class="form-inline">
+											<button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+												<i class="fa fa-search" aria-hidden="true"></i>
+											</button>
+										</form>
+										<a href="${contextRoot}/member" class="order_online">會員中心</a>
 									</c:if>
-
 									<c:if test="${empty memberbean}">
-									<a href="${contextRoot}/newmember" class="order_online"> 加入會員
-									</a>
+										<a href="${contextRoot}/newmember" class="order_online"> 加入會員 </a>
 									</c:if>
 						</div>
-									</a>
-						</div>
+							</div>
 					</div>
 				</nav>
 			</div>
-			</nav>
+
 	</div>
+
 	</header>
 	<!-- end header section -->
 	</div>
