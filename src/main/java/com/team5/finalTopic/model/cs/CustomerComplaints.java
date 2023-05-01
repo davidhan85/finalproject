@@ -37,7 +37,7 @@ public class CustomerComplaints {
 	@JoinColumn(name = "FK_Customer_ID", referencedColumnName = "member_number")
 	private Member Customer;
 
-	private String CustomerName;
+	private String customerName;
 
 	private String Email;
 
@@ -73,12 +73,20 @@ public class CustomerComplaints {
 		Customer = customer;
 	}
 
+//	public String getCustomerName() {
+//		return CustomerName;
+//	}
+//
+//	public void setCustomerName(String customerName) {
+//		CustomerName = customerName;
+//	}
+
 	public String getCustomerName() {
-		return CustomerName;
+		return customerName;
 	}
 
 	public void setCustomerName(String customerName) {
-		CustomerName = customerName;
+		this.customerName = customerName;
 	}
 
 	public String getEmail() {

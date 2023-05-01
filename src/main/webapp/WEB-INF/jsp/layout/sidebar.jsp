@@ -85,7 +85,7 @@
 		</a></li>
 		<hr class="sidebar-divider">
 
-		<li class="nav-item"><a class="nav-link" href="${contextRoot}/showAllComplaints"> <i
+		<li class="nav-item"><a class="nav-link" href="${contextRoot}/showAllComplaintsPage"> <i
 				class="fas fa-fw fa-table"></i> <span>客服系統</span></a></li>
 
 		<hr class="sidebar-divider">
