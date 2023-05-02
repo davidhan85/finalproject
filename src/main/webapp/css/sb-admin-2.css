@@ -4133,7 +4133,6 @@ input[type="button"].btn-block {
 }
 
 .navbar-nav {
-  width: 20%;
   display: flex;
   flex-direction: column;
   padding-left: 0;

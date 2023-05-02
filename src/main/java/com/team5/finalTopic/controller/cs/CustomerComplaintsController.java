@@ -11,9 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.team5.finalTopic.model.cs.ApplyComplaints;
 import com.team5.finalTopic.model.cs.CustomerComplaints;
 import com.team5.finalTopic.service.cs.CustomerComplaintsService;
 
@@ -35,6 +34,15 @@ public class CustomerComplaintsController {
 		return "cs/ChatRoom";
 	}
 
+	@GetMapping("/ViewComplient")
+	public String viewComplient(@RequestParam Integer id, Model model) {
+
+		CustomerComplaints customerComplaint = CSS.GetComplaintsByID(id).get();
+		model.addAttribute("Complaint", customerComplaint);
+		return "CMS/ViewComplient";
+	}
+
+	// 填寫客服表單
 	@PostMapping("/ComplaintsForm")
 	public String postMessage(@ModelAttribute("form") CustomerComplaints cs, Model model) {
 
@@ -43,6 +51,28 @@ public class CustomerComplaintsController {
 		model.addAttribute("form", new CustomerComplaints());
 
 		return "cs/ComplaintsForm";
+	}
+
+	// 跳轉到回覆表單頁面
+	@GetMapping("/ApplyComplaintsPage")
+	public String ApplyComplaintsPage(@RequestParam Integer id, Model model) {
+
+		CustomerComplaints CC = CSS.GetComplaintsByID(id).get();
+
+		model.addAttribute("apply", CC);
+
+		return "cs/ApplyComplaints";
+	}
+
+	// 回覆表單問題
+	@GetMapping("/ApplyComplaints")
+	public String addApplyComplaints(@RequestParam Integer id, @RequestParam String content, Model model) {
+
+		CustomerComplaints CC = CSS.GetComplaintsByID(id).get();
+
+		CSS.addApplyComplaints(CC, content);
+
+		return "CMS/ShowAllCompliants";
 	}
 
 	@GetMapping("/showAllComplaintsPage")
@@ -70,6 +100,7 @@ public class CustomerComplaintsController {
 		}
 		return ResponseEntity.ok().contentType(MediaType.valueOf("application/json")).body(Complaints);
 	}
+
 	// 透過name取得資料
 	@GetMapping("/getComplaintsByName")
 	public ResponseEntity<List<CustomerComplaints>> getComplaintsByName(@RequestParam("name") String name) {
@@ -86,10 +117,10 @@ public class CustomerComplaintsController {
 	public ResponseEntity<List<CustomerComplaints>> getComplaintsByType(@RequestParam("type") String type) {
 
 		List<CustomerComplaints> Complaints = new ArrayList<CustomerComplaints>();
-	
+
 		Complaints = CSS.GetComplaintsByType(type);
 
 		return ResponseEntity.ok().contentType(MediaType.valueOf("application/json")).body(Complaints);
 	}
-	
+
 }

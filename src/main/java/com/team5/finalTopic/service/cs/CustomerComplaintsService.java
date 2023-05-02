@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team5.finalTopic.model.cs.ApplyComplaints;
+import com.team5.finalTopic.model.cs.ApplyComplaintsRepository;
 import com.team5.finalTopic.model.cs.ComplaintType;
 import com.team5.finalTopic.model.cs.ComplaintTypeRepository;
 import com.team5.finalTopic.model.cs.CustomerComplaints;
@@ -24,6 +26,9 @@ public class CustomerComplaintsService {
 
 	@Autowired
 	private ComplaintTypeRepository CTR;
+	
+	@Autowired
+	private ApplyComplaintsRepository ACR;
 
 	// 新增資料
 	public void addForm(CustomerComplaints CC) {
@@ -66,6 +71,19 @@ public class CustomerComplaintsService {
 
 		return CCR.findByTypeName(name);
 
+	}
+	
+	//新增客服回答
+	public ApplyComplaints addApplyComplaints(CustomerComplaints CC,String content) {
+
+		ApplyComplaints AC =  new ApplyComplaints();
+		
+		AC.setCreateDate();
+		AC.setCustomerComplaints(CC);
+		AC.setContent(content);
+	    AC = ACR.save(AC);
+		ACR.flush();
+		return AC;
 	}
 
 }
