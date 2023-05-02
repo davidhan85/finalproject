@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -105,7 +106,6 @@ public class MemberController {
 		return "redirect:/memberlist";
 	}
 
-
 	@GetMapping(value = "/memberlist/{m_number}")
 	public ResponseEntity<byte[]> getImage(@PathVariable("m_number") Integer m_number) {
 		byte[] imageBytes = memberService.getMemberImage(m_number);
@@ -114,6 +114,14 @@ public class MemberController {
         return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/memberimage")
+	public ResponseEntity<byte[]> getCenterImage(HttpServletRequest request ) {
+		Member memberbean = (Member) request.getSession().getAttribute("memberbean");
+		byte[] imageBytes = memberService.getMemberImage(memberbean.getM_number());
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_JPEG);
+		return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+	}
 	public MemberController() {
 
 	}

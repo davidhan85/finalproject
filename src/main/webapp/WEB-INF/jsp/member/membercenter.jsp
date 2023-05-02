@@ -12,6 +12,21 @@
 <html>
 <head>
     <title>會員中心</title>
+    <style>
+        /* 加入樣式，讓頭像顯示在頁面正中間 */
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
 <%-- 導入導覽列 --%>
@@ -22,11 +37,19 @@
     Member member = (Member) session.getAttribute("memberbean");
 %>
 
-<%-- 顯示會員名稱 --%>
-<h1>歡迎，<%= member.getM_name() %>！</h1>
+<div class="avatar-container">
+    <%-- 顯示會員頭像 --%>
+        <img class="avatar" src="<c:url value='/memberlist/${memberbean.m_number}' />" alt="member image" />
+    <%-- 顯示會員帳號 --%>
+    <h2><%= member.getM_account() %></h2>
+</div>
 
 <%-- 顯示會員資料 --%>
 <table>
+    <tr>
+        <td>編號：</td>
+        <td><%= member.getM_number() %></td>
+    </tr>
     <tr>
         <td>帳號：</td>
         <td><%= member.getM_account() %></td>
@@ -57,7 +80,7 @@
     </tr>
 </table>
 <%-- 登出按鈕 --%>
-<form method="post" action="${contextRoot}/logout">
+<form method="post" action="${contextRoot}/checkout">
     <button type="submit">登出</button>
 </form>
 
