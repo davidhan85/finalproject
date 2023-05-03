@@ -58,7 +58,6 @@
     </style>
 </head>
 <body>
-<jsp:include page="../layout/navebar.jsp"></jsp:include>
 <%--<jsp:include page="../layout/navebar.jsp"></jsp:include>--%>
 <div class="container">
 <form:form method="post" action="${contextRoot}/updatemember/${m_number}" enctype="multipart/form-data" modelAttribute="member">

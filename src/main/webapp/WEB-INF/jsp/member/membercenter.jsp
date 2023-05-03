@@ -26,13 +26,6 @@
             border-radius: 50%;
             object-fit: cover;
         }
-        table {
-            margin: 0 auto; /* 水平置中 */
-            text-align: center; /* 水平置中 */
-        }
-        td {
-            vertical-align: middle; /* 垂直置中 */
-        }
     </style>
 </head>
 <body>
@@ -85,16 +78,11 @@
         <td>身分證：</td>
         <td><%= member.getM_id() %></td>
     </tr>
-    <tr>
-        <td></td> <!-- 空的 td 元素，用來將更新按鈕置中 -->
-        <td style="text-align: center;">
-            <form:form method="get" action="${contextRoot}/updatememberform/${memberbean.m_number}">
-                <input type="submit" value="更新" />
-            </form:form>
-        </td>
-    </tr>
 </table>
-
+<%-- 登出按鈕 --%>
+<form method="post" action="${contextRoot}/checkout">
+    <button type="submit">登出</button>
+</form>
 
 </body>
 </html>
