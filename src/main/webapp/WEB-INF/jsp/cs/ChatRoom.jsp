@@ -1,183 +1,73 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>Chat Tupi | Spring Boot + WebSocket</title>
-<link rel="stylesheet" href="/css/main.css" />
-</head>
-<body background="maxresdefault.jpg"
-	style="background-position: center; background-repeat: no-repeat; background-size: cover;">
-	<noscript>
-		<h2>Opa! Parece que este browser não suporta JavaScript</h2>
-	</noscript>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
+			<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+				<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+					<!DOCTYPE html>
+					<html>
 
-	<div id="username-page">
-		<div class="username-page-container">
-			<h1 class="title">Digite seu nome</h1>
-			<form id="usernameForm" name="usernameForm">
-				<div class="form-group">
-					<input type="text" id="name" placeholder="Nome" autocomplete="off"
-						class="form-control" />
-				</div>
-				<div class="form-group">
-					<button type="submit" class="accent username-submit">Comece
-						a conversar</button>
-				</div>
-			</form>
-		</div>
-	</div>
+					<head>
+						<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+						<title>Chat Tupi | Spring Boot + WebSocket</title>
+						<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
+						<jsp:include page="../layout/navebar.jsp"></jsp:include>
+						<link rel="stylesheet" href="${contextRoot}/css/main.css" />
+						<link rel="stylesheet" href="${contextRoot}/css/style4.css">
+					</head>
 
-	<div id="chat-page" class="hidden">
-		<div class="chat-container">
-			<div class="chat-header">
-				<h2>ChatBox Tupi</h2>
-			</div>
-			<div class="connecting">Conectando ao chat...</div>
-			<ul id="messageArea">
+					<body>
+						<!-- partial:index.partial.html -->
+						<ul class="chat-thread">
+							<li>Are we meeting today?</li>
+							<li>yes, what time suits you?</li>
+							<li>I was thinking after lunch, I have a meeting in the morning</li>
+						</ul>
 
-			</ul>
-			<form id="messageForm" name="messageForm" nameForm="messageForm">
-				<div class="form-group">
-					<div class="input-group clearfix">
-						<input type="text" id="message"
-							placeholder="Digite uma mensagem..." autocomplete="off"
-							class="form-control" />
-						<button type="submit" class="primary">Enviar</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+						<form class="chat-window">
+							<input class="chat-window-message" name="chat-window-message" type="text" autocomplete="off"
+								autofocus />
+							<button type="button" onclick="sendMessage()">发送</button>
+						</form>
 
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script src="/js/main.js"></script>
-</body>
-</html>
-<script src='${contextRoot}/js/script.js'></script>
-<script>
-	'use strict';
+						<!-- partial -->
+						<script src='${contextRoot}/js/jquery.min.js'></script>
+						<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+						<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-	var usernamePage = document.querySelector('#username-page');
-	var chatPage = document.querySelector('#chat-page');
-	var usernameForm = document.querySelector('#usernameForm');
-	var messageForm = document.querySelector('#messageForm');
-	var messageInput = document.querySelector('#message');
-	var messageArea = document.querySelector('#messageArea');
-	var connectingElement = document.querySelector('.connecting');
 
-	var stompClient = null;
-	var username = null;
 
-	var colors = [ '#2196F3', '#32c787', '#00BCD4', '#ff5652', '#ffc107',
-			'#ff85af', '#FF9800', '#39bbb0' ];
+						<%-- <script src='${contextRoot}/js/script.js'></script> --%>
 
-	function connect(event) {
-		username = document.querySelector('#name').value.trim();
+							<script>
+								var socket = new SockJS('/finalTopic_5/websocket');
+								var stompClient = Stomp.over(socket);
+								stompClient.connect({}, function (frame) {
+									stompClient.subscribe('/topic/chatroom', function (message) {
+										console.log('Received message: ' + message.body);
+										showMessage(JSON.parse(message.body));
+									});
+								});
 
-		if (username) {
-			usernamePage.classList.add('hidden');
-			chatPage.classList.remove('hidden');
+								function sendMessage() {
+									var message = document.querySelector('.chat-window-message').value;
+									if (message) {
+										stompClient.send("/app/chatroom/sendMessage", {}, JSON
+											.stringify({
+												'content': message,
+												'timestamp': new Date().getTime()
+											}));
+										document.querySelector('.chat-window-message').value = '';
+									}
+								}
 
-			var socket = new SockJS('/websocket');
-			stompClient = Stomp.over(socket);
+								function showMessage(message) {
+									var chatThread = document.querySelector('.chat-thread');
+									var li = document.createElement('li');
+									li.textContent = message.content;
+									chatThread.appendChild(li);
+								}
+							</script>
 
-			stompClient.connect({}, onConnected, onError);
-		}
-		event.preventDefault();
-	}
+					</body>
 
-	function onConnected() {
-		// Subscribe to the Public Topic
-		stompClient.subscribe('/topic/public', onMessageReceived);
-
-		// Tell your username to the server
-		stompClient.send("/app/chat.register", {}, JSON.stringify({
-			sender : username,
-			type : 'JOIN'
-		}))
-
-		connectingElement.classList.add('hidden');
-	}
-
-	function onError(error) {
-		connectingElement.textContent = 'Não foi possível se conectar ao WebSocket! Atualize a página e tente novamente ou entre em contato com o administrador.';
-		connectingElement.style.color = 'red';
-	}
-
-	function send(event) {
-		var messageContent = messageInput.value.trim();
-
-		if (messageContent && stompClient) {
-			var chatMessage = {
-				sender : username,
-				content : messageInput.value,
-				type : 'CHAT'
-			};
-
-			stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
-			messageInput.value = '';
-		}
-		event.preventDefault();
-	}
-
-	function onMessageReceived(payload) {
-		var message = JSON.parse(payload.body);
-
-		var messageElement = document.createElement('li');
-
-		if (message.type === 'JOIN') {
-			messageElement.classList.add('event-message');
-			message.content = message.sender + ' joined!';
-		} else if (message.type === 'LEAVE') {
-			messageElement.classList.add('event-message');
-			message.content = message.sender + ' left!';
-		} else {
-			messageElement.classList.add('chat-message');
-
-			var avatarElement = document.createElement('i');
-			var avatarText = document.createTextNode(message.sender[0]);
-			avatarElement.appendChild(avatarText);
-			avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
-			messageElement.appendChild(avatarElement);
-
-			var usernameElement = document.createElement('span');
-			var usernameText = document.createTextNode(message.sender);
-			usernameElement.appendChild(usernameText);
-			messageElement.appendChild(usernameElement);
-		}
-
-		var textElement = document.createElement('p');
-		var messageText = document.createTextNode(message.content);
-		textElement.appendChild(messageText);
-
-		messageElement.appendChild(textElement);
-
-		messageArea.appendChild(messageElement);
-		messageArea.scrollTop = messageArea.scrollHeight;
-	}
-
-	function getAvatarColor(messageSender) {
-		var hash = 0;
-		for (var i = 0; i < messageSender.length; i++) {
-			hash = 31 * hash + messageSender.charCodeAt(i);
-		}
-
-		var index = Math.abs(hash % colors.length);
-		return colors[index];
-	}
-
-	usernameForm.addEventListener('submit', connect, true)
-	messageForm.addEventListener('submit', send, true)
-</script>
-
-</body>
-
-</html>
+					</html>
