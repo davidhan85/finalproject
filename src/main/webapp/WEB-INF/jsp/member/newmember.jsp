@@ -161,6 +161,7 @@
                 <td>
                   <form:input path="m_email" type="email" required="ture" id="email" />
                   <span id="emailError" class="error"></span>
+                  <button type="button" onclick="sendVerificationEmail()">發送驗證信</button>
                 </td>
               </tr>
               <tr>
@@ -268,6 +269,33 @@
             ) {
               submitForm();
             })
+
+            function sendVerificationEmail(){
+            var EmailInput=document.getElementById("email");
+            var email=EmailInput.Value;
+            console.log(email);
+
+              fetch(`${contextRoot}/sendmail`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+              })
+                      .then(response => {
+                        if (response.ok) {
+                          // 成功發送驗證電子郵件的操作
+                          console.log("發送成功")
+                        } else {
+                          // 發送驗證電子郵件失敗的操作
+                          console.log("發送失敗")
+                        }
+                      })
+                      .catch(error => {
+                        console.error('發送驗證電子郵件失敗', error);
+                      });
+
+            }
           </script>
         </body>
         </html>

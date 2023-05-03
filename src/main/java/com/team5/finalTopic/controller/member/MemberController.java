@@ -2,6 +2,7 @@ package com.team5.finalTopic.controller.member;
 
 import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.model.member.MemberRepository;
+import com.team5.finalTopic.service.member.EmailService;
 import com.team5.finalTopic.service.member.GlobalService;
 import com.team5.finalTopic.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static com.team5.finalTopic.service.member.GlobalService.encryptString;
 
@@ -32,6 +34,9 @@ public class MemberController {
 
 
 	private GlobalService globalService;
+
+	@Autowired
+	private EmailService emailService;
 
 
 	public MemberController(MemberService memberService) {
@@ -74,13 +79,33 @@ public class MemberController {
 
 			memberService.save(member1);
 		}
-//		boolean isInsert = (member.getM_number() == null); //判斷是否為insert
-//
-//		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
-//
-//		memberService.save(member1);
+		return "redirect:/Login";
+	}
 
-		return "redirect:/memberlist";
+	@PostMapping("/sendmail")
+	public String sendVerificationEmail(@RequestBody Member member){
+		//產生token
+		String Token= UUID.randomUUID().toString();
+		member.setM_verify(Token);
+		System.out.println(Token);
+		//發送驗證信件
+		String confirmationUrl="http://localhost:8079/finalTopic_5/confirm?email="+member.getM_email()+"&token="+Token;
+		emailService.sendRegistrationConfirmationEmail(member,confirmationUrl);
+
+		return "發送成功";
+	}
+
+	@GetMapping("/confirm")
+	public String confirmRegistration(@RequestParam("email") String email, @RequestParam("token") String token) {
+//		Member member = memberRepository.findByM_email(email);
+//		if (member != null && member.getMember_verify().equals(token)) {
+//			member.setMember_status("已驗證完成");
+//			memberRepository.save(member);
+//			return "Registration confirmed successfully";
+//		} else {
+//			return "Error confirming registration";
+//		}
+		return  null;
 	}
 
 	@DeleteMapping(value = "/deletemember/{m_number}")
@@ -122,6 +147,7 @@ public class MemberController {
 		headers.setContentType(MediaType.IMAGE_JPEG);
 		return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
 	}
+
 	public MemberController() {
 
 	}

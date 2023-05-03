@@ -77,8 +77,8 @@ public class Member {
 	@Column(name = "member_image", columnDefinition = "varbinary(MAX)")
 	private	byte[] m_image; // 會員大頭貼
 
-	@Column(columnDefinition = "int", name = "member_verify")
-	private	Integer m_verify; // 加入會員的驗證碼
+	@Column(columnDefinition = "NVARCHAR(100)", name = "member_verify")
+	private	String m_verify; // 加入會員的驗證碼
 
 	private	String filename;
 
@@ -91,6 +91,14 @@ public class Member {
 
 	public Integer getM_number() {
 		return m_number;
+	}
+
+	public String getM_verify() {
+		return m_verify;
+	}
+
+	public void setM_verify(String m_verify) {
+		this.m_verify = m_verify;
 	}
 
 	public String getM_account() {
@@ -141,9 +149,6 @@ public class Member {
 		this.m_image = m_image;
 	}
 
-	public Integer getM_verify() {
-		return m_verify;
-	}
 
 	public String getFilename() {
 		return filename;
@@ -206,9 +211,6 @@ public class Member {
 		this.m_id = m_id;
 	}
 
-	public void setM_verify(Integer m_verify) {
-		this.m_verify = m_verify;
-	}
 
 	public void setFilename(String filename) {
 		this.filename = filename;
