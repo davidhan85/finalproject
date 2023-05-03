@@ -12,6 +12,28 @@
 <html>
 <head>
     <title>會員中心</title>
+    <style>
+        /* 加入樣式，讓頭像顯示在頁面正中間 */
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        table {
+            margin: 0 auto; /* 水平置中 */
+            text-align: center; /* 水平置中 */
+        }
+        td {
+            vertical-align: middle; /* 垂直置中 */
+        }
+    </style>
 </head>
 <body>
 <%-- 導入導覽列 --%>
@@ -22,11 +44,19 @@
     Member member = (Member) session.getAttribute("memberbean");
 %>
 
-<%-- 顯示會員名稱 --%>
-<h1>歡迎，<%= member.getM_name() %>！</h1>
+<div class="avatar-container">
+    <%-- 顯示會員頭像 --%>
+        <img class="avatar" src="<c:url value='/memberlist/${memberbean.m_number}' />" alt="member image" />
+    <%-- 顯示會員帳號 --%>
+    <h2><%= member.getM_account() %></h2>
+</div>
 
 <%-- 顯示會員資料 --%>
 <table>
+    <tr>
+        <td>編號：</td>
+        <td><%= member.getM_number() %></td>
+    </tr>
     <tr>
         <td>帳號：</td>
         <td><%= member.getM_account() %></td>
@@ -55,11 +85,16 @@
         <td>身分證：</td>
         <td><%= member.getM_id() %></td>
     </tr>
+    <tr>
+        <td></td> <!-- 空的 td 元素，用來將更新按鈕置中 -->
+        <td style="text-align: center;">
+            <form:form method="get" action="${contextRoot}/updatememberform/${memberbean.m_number}">
+                <input type="submit" value="更新" />
+            </form:form>
+        </td>
+    </tr>
 </table>
-<%-- 登出按鈕 --%>
-<form method="post" action="${contextRoot}/logout">
-    <button type="submit">登出</button>
-</form>
+
 
 </body>
 </html>
