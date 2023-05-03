@@ -65,7 +65,7 @@ public class LoginController {
     @GetMapping(value = "/membercenter")
     public String MemberCenter(){
 
-        return "member/membercenter";
+        return "member/membercenter2";
     }
 
 }

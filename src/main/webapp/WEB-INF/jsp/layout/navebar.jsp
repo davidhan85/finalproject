@@ -90,7 +90,7 @@
 
 							<div class="user_option">
 								<c:if test="${not empty memberbean}">
-   								 <a href="${contextRoot}/member" class="user_link">
+   								 <a href="${contextRoot}/membercenter" class="user_link">
   							      <i class="fa fa-user" aria-hidden="true"></i>
    								 </a>
 								</c:if>
@@ -137,7 +137,7 @@
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</button>
 								</form>
-								<a href="${contextRoot}/member" class="order_online">會員中心</a>
+								<a href="${contextRoot}/membercenter" class="order_online">會員中心</a>
 							</c:if>
 							<c:if test="${empty memberbean}">
 								<a href="${contextRoot}/newmember" class="order_online">加入會员</a>
