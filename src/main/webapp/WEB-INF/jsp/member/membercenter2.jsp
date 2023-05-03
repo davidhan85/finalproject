@@ -46,13 +46,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active text-center">
-        <a class="nav-link" href="#">個人資料</a>
+        <a class="nav-link" href="${contextRoot}/membercenter">個人資料</a>
       </li>
       <li class="nav-item text-center">
         <a class="nav-link" href="#">修改密碼</a>
       </li>
       <li class="nav-item text-center">
         <a class="nav-link" href="#">訂單紀錄</a>
+      </li>
+      <li class="nav-item text-center">
+        <a class="nav-link" href="#">優惠卷</a>
       </li>
     </ul>
   </div>

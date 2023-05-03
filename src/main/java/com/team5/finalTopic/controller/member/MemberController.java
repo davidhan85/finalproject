@@ -80,7 +80,7 @@ public class MemberController {
 //
 //		memberService.save(member1);
 
-		return "redirect:/memberlist";
+		return "redirect:/Login";
 	}
 
 	@DeleteMapping(value = "/deletemember/{m_number}")
