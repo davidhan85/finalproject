@@ -76,7 +76,14 @@
 								<li class="nav-item active"><a class="nav-link" href="${contextRoot}/activity">活動 <span
 										class="sr-only">(current)</span>
 								</a></li>
-								<li class="nav-item"><a class="nav-link" href="${contextRoot}/CustomerComplaints">客服</a>
+								<li class="nav-item">
+								<c:if test="${not empty memberbean}">
+								<a class="nav-link" href="${contextRoot}/CustomerComplaints">客服</a>
+								</c:if>
+								<c:if test="${empty memberbean}">
+									<a class="nav-link" href="${contextRoot}/Login">客服</a>
+								</c:if>
+								
 								</li>
 								<c:if test="${not empty memberbean}">
 								<li class="nav-item"><a class="nav-link" href="${contextRoot}/checkout">登出</a>
@@ -140,7 +147,7 @@
 								<a href="${contextRoot}/membercenter" class="order_online">會員中心</a>
 							</c:if>
 							<c:if test="${empty memberbean}">
-								<a href="${contextRoot}/newmember" class="order_online">加入會员</a>
+								<a href="${contextRoot}/newmember" class="order_online">加入會員</a>
 							</c:if>
 							</div>
 							</a>
@@ -154,7 +161,6 @@
 </header>
 <!-- end header section -->
 </div>
-
 <!-- book section -->
 <!-- <section class="book_section layout_padding">
             <div class="container">

@@ -24,7 +24,7 @@
 					<div class="form_container">
 						<form:form modelAttribute="form" action="ComplaintsForm">
 
-							<form:input type="hidden" path="Customer.m_number" value="1" />
+							<form:input type="hidden" path="Customer.m_number" value="${memberbean.m_number}" />
 							<div>
 								<h4>聯絡人</h4>
 								<form:input type="text" class="form-control"
