@@ -25,7 +25,6 @@
         <th>會員生日</th>
         <th>會員信箱</th>
         <th>會員身分證</th>
-        <th>會員腳色</th>
         <th>會員點數</th>
         <th>會員創建日期</th>
         <th>會員圖片</th>
@@ -40,7 +39,6 @@
             <td>${member.m_birth}</td>
             <td>${member.m_email}</td>
             <td>${member.m_id}</td>
-             <td>${member.m_Role}</td>
             <td>${member.point_id}</td>
             <td>${member.m_creatdate}</td>
 <%--            <td>${member.m_image}</td>--%>

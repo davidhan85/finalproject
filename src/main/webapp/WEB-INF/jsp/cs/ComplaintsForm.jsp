@@ -24,7 +24,7 @@
 					<div class="form_container">
 						<form:form modelAttribute="form" action="ComplaintsForm">
 
-							<form:input type="hidden" path="Customer.m_number" value="${memberbean.m_number}" />
+							<form:input type="hidden" path="Customer.m_number" value="6" />
 							<div>
 								<h4>聯絡人</h4>
 								<form:input type="text" class="form-control"
@@ -65,8 +65,6 @@
 								<button>確定</button>
 							</div>
 						</form:form>
-						<a class="nav-link" href="${contextRoot}/finalTopic_5/chat/">聊天室</a>
-								
 					</div>
 				</div>
 				<div class="col-md-6">
