@@ -6,6 +6,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Service
 public class EmailService {
@@ -17,7 +18,8 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
-    public  void sendRegistrationConfirmationEmail(@RequestBody Member member , String confirmationUrl){
+    @ResponseBody
+    public  void sendRegistrationConfirmationEmail(Member member , String confirmationUrl){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(member.getM_email());
         System.out.println(message);

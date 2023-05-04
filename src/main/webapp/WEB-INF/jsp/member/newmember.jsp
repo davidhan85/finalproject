@@ -107,7 +107,6 @@
           /*    color: white;*/
           /*  }*/
           /*}*/
-
         </style>
 
         <head>
@@ -118,84 +117,83 @@
           <jsp:include page="../layout/navebar.jsp"></jsp:include>
           <h1>新增會員</h1>
           <div class="container">
-          <form:form method="post" action="${contextRoot}/messages/newmember" enctype="multipart/form-data"
-            modelAttribute="member" id="newmemberform" onsubmit="return submitForm();">
-            <table>
-              <tr>
-                <td>帳號：</td>
-                <td>
-                  <form:input path="m_account" required="ture" id="account" /><span id="accountError"
-                    class="error"></span>
+            <form:form method="post" action="${contextRoot}/messages/newmember" enctype="multipart/form-data"
+              modelAttribute="member" id="newmemberform" onsubmit="return submitForm();">
+              <table>
+                <tr>
+                  <td>帳號：</td>
+                  <td>
+                    <form:input path="m_account" required="ture" id="account" /><span id="accountError"
+                      class="error"></span>
 
-                </td>
-              </tr>
-              <tr>
-                <td>密碼：</td>
-                <td>
-                  <form:input path="m_password" required="ture" id="password" />
-                  <span id="passwordError" class="error"></span>
-                </td>
-              </tr>
-              <tr>
-                <td>姓名：</td>
-                <td>
-                  <form:input path="m_name" required="ture" />
-                </td>
-              </tr>
-              <tr>
-                <td>手機：</td>
-                <td>
-                  <form:input path="m_phone" required="ture" id="phone" />
-                  <span id="phoneError" class="error"></span>
-                </td>
+                  </td>
+                </tr>
+                <tr>
+                  <td>密碼：</td>
+                  <td>
+                    <form:input path="m_password" required="ture" id="password" />
+                    <span id="passwordError" class="error"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>姓名：</td>
+                  <td>
+                    <form:input path="m_name" required="ture" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>手機：</td>
+                  <td>
+                    <form:input path="m_phone" required="ture" id="phone" />
+                    <span id="phoneError" class="error"></span>
+                  </td>
 
-              </tr>
-              <tr>
-                <td>地址：</td>
-                <td>
-                  <form:input path="m_address" required="ture" />
-                </td>
-              </tr>
-              <tr>
-                <td>信箱</td>
-                <td>
-                  <form:input path="m_email" type="email" required="ture" id="email" />
-                  <span id="emailError" class="error"></span>
-                  <button type="button" onclick="sendVerificationEmail()">發送驗證信</button>
-                </td>
-              </tr>
-              <tr>
-                <td>生日：</td>
-                <td>
-                  <form:input path="m_birth" type="date" required="ture" />
-                </td>
-              </tr>
-              <tr>
-              <td>身分:</td>
-              <td>
-              <form:select path="m_Role" >
-              <form:option value="adaim" label="管理員" />
-              <form:option value="user" label="一般使用者" />
-              </form:select>
-              </td>
-              </tr> 
-                          
-              <tr>
-                <td>身分證：</td>
-                <td>
-                  <form:input path="m_id" required="ture" id="id" />
-                  <span id="idError" class="error"></span>
-                </td>
-              </tr>
-              <tr>
-                <td>大頭貼：</td>
-                <td>
-                  <form:input path="productImage" type="file" required="ture" />
-                </td>
-              </tr>
-            </table>
-            <button type="submit">新增</button>
-          </form:form>
+                </tr>
+                <tr>
+                  <td>地址：</td>
+                  <td>
+                    <form:input path="m_address" required="ture" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>信箱</td>
+                  <td>
+                    <form:input path="m_email" type="email" required="ture" id="email" />
+                    <span id="emailError" class="error"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>生日：</td>
+                  <td>
+                    <form:input path="m_birth" type="date" required="ture" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>身分:</td>
+                  <td>
+                    <form:select path="m_Role">
+                      <form:option value="adaim" label="管理員" />
+                      <form:option value="user" label="一般使用者" />
+                    </form:select>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>身分證：</td>
+                  <td>
+                    <form:input path="m_id" required="ture" id="id" />
+                    <span id="idError" class="error"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>大頭貼：</td>
+                  <td>
+                    <form:input path="productImage" type="file" required="ture" />
+                  </td>
+                </tr>
+              </table>
+              <button type="submit" onclick="sendVerificationEmail()">新增</button>
+            </form:form>
           </div>
           <script>
 
@@ -246,9 +244,9 @@
               } else {
                 document.getElementById("idError").innerHTML = "";
               }
-				return true;
+              return true;
             }
-            
+
             document.querySelector('#account').addEventListener('blur', function (event
             ) {
               submitForm();
@@ -270,32 +268,40 @@
               submitForm();
             })
 
-            function sendVerificationEmail(){
-            var EmailInput=document.getElementById("email");
-            var email=EmailInput.Value;
-            console.log(email);
+            function sendVerificationEmail() {
+              var email = document.getElementById("email").value;
+              var data = {
+                m_email: email
+              };
 
-              fetch(`${contextRoot}/sendmail`, {
+              console.log(data);
+
+              fetch(`${contextRoot}/messages/newmember`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email })
+                body: JSON.stringify(data)
               })
-                      .then(response => {
-                        if (response.ok) {
-                          // 成功發送驗證電子郵件的操作
-                          console.log("發送成功")
-                        } else {
-                          // 發送驗證電子郵件失敗的操作
-                          console.log("發送失敗")
-                        }
-                      })
-                      .catch(error => {
-                        console.error('發送驗證電子郵件失敗', error);
-                      });
+                .then(response => {
+                    
+                  if (response.ok) {
+                    // 成功發送驗證電子郵件的操作
+                    console.log("發送成功")
+                    alert("請去信箱接收驗證信")
+
+                  } else {
+                    // 發送驗證電子郵件失敗的操作
+                    console.log("發送失敗")
+                    alert("驗證信發送失敗")
+                  }
+                })
+                .catch(error => {
+                  console.error('發送驗證電子郵件失敗', error);
+                });
 
             }
           </script>
         </body>
+
         </html>

@@ -97,6 +97,15 @@
      <td> <label for="m_id">身分證：</label></td>
     <td> <form:input path="m_id"  required="ture"/></td>
     </tr>
+   <tr>
+                  <td>身分:</td>
+                  <td>
+                    <form:select path="m_Role">
+                      <form:option value="adaim" label="管理員" />
+                      <form:option value="user" label="一般使用者" />
+                    </form:select>
+                  </td>
+                </tr>
      <tr>
       <td><label for="productImage">大頭貼：</label></td>
     <td> <form:input path="productImage" type="file"  /></td>

@@ -5,6 +5,8 @@ import com.team5.finalTopic.model.board.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,13 +60,14 @@ public class Member {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private	Date m_birth;
 
+	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-	@Column(columnDefinition = "datetime", name = "member_creatdate")
+	@Column(columnDefinition = "datetime", name = "member_creatdate", nullable = false, updatable = false )
 	private	Date m_creatdate;
 
 	@Column(columnDefinition = "Integer", name = "member_points")
-	private	Integer m_points;
+	private	Integer m_points=0;
 
 	@Pattern(regexp = "^[A-Z][1	2]\\d{8}$", message = "身分證字號格式不正確")
 	@Column(columnDefinition = "NVARCHAR(10) not null", name = "member_id")
@@ -72,6 +75,9 @@ public class Member {
 	
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "member_Role")
 	private	String m_Role;
+	
+	@Column(columnDefinition = "NVARCHAR(50)  default 'false' ",name = "member_status")
+	private String m_status="false";
 
 	@Lob
 	@Column(name = "member_image", columnDefinition = "varbinary(MAX)")
@@ -95,6 +101,15 @@ public class Member {
 
 	public String getM_verify() {
 		return m_verify;
+	}
+	
+
+	public String getM_status() {
+		return m_status;
+	}
+
+	public void setM_status(String m_status) {
+		this.m_status = m_status;
 	}
 
 	public void setM_verify(String m_verify) {

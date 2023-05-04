@@ -13,4 +13,9 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
         Member findByM_account(@Param(value="m_account")String m_account);
 //
 //    void deleteById(Integer mNumber);
+
+        @Query("from Member  where m_email=:m_email" )
+		Member findByM_email(@Param(value = "m_email") String m_email);
+        
+      
 }
