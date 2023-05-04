@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,10 +62,10 @@ public class SubArticles {
 	@JoinColumn(name="fk_SA_MA_Id", nullable = false)    //對主文章關聯
 	private MainArticles mainarticlesforsa;
 	
-	@OneToMany(mappedBy = "subarticlesforsalk")
+	@OneToMany(mappedBy = "subarticlesforsalk" , cascade = CascadeType.ALL)
 	Set<SubArticleLikes> subarticlelikes = new LinkedHashSet<>();  //副文章讚數關聯
 	
-	@OneToMany(mappedBy = "subarticlesforsam")
+	@OneToMany(mappedBy = "subarticlesforsam" , cascade = CascadeType.ALL)
 	Set<SubArticleMessages> subarticlemessages = new LinkedHashSet<>();  //副文章留言關聯
 	
 	@ManyToOne

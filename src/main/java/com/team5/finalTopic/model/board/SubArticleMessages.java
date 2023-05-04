@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -62,7 +63,7 @@ import com.team5.finalTopic.model.member.Member;
 		@JoinColumn(name="fk_SAM_SA_Id", nullable = false)  //對副文章留言關聯
 		private SubArticles subarticlesforsam;
 		
-		@OneToMany(mappedBy = "subarticlemessagesforsamelk")
+		@OneToMany(mappedBy = "subarticlemessagesforsamelk"  , cascade = CascadeType.ALL)
 		Set<SubArticleMessageLikes> subarticlemessagelikes = new LinkedHashSet<>();
 		
 		
