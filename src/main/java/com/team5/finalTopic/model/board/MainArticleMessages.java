@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,6 +54,63 @@ public class MainArticleMessages {
 	}
 	
 	
+	public Integer getMamessage_id() {
+		return mamessage_id;
+	}
+
+	public void setMamessage_id(Integer mamessage_id) {
+		this.mamessage_id = mamessage_id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Date getUpdatedatetime() {
+		return updatedatetime;
+	}
+
+	public void setUpdatedatetime(Date updatedatetime) {
+		this.updatedatetime = updatedatetime;
+	}
+
+	public Date getCreatedatetime() {
+		return createdatetime;
+	}
+
+	public void setCreatedatetime(Date createdatetime) {
+		this.createdatetime = createdatetime;
+	}
+
+	public MainArticles getMainarticlesformam() {
+		return mainarticlesformam;
+	}
+
+	public void setMainarticlesformam(MainArticles mainarticlesformam) {
+		this.mainarticlesformam = mainarticlesformam;
+	}
+
+	public Set<MainArticleMessageLikes> getMainarticlemessagelikes() {
+		return mainarticlemessagelikes;
+	}
+
+	public void setMainarticlemessagelikes(Set<MainArticleMessageLikes> mainarticlemessagelikes) {
+		this.mainarticlemessagelikes = mainarticlemessagelikes;
+	}
+
+	public Member getAuthor_idforMAM() {
+		return author_idforMAM;
+	}
+
+	public void setAuthor_idforMAM(Member author_idforMAM) {
+		this.author_idforMAM = author_idforMAM;
+	}
+
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "createdatetime", columnDefinition = "datetime")
@@ -63,10 +121,10 @@ public class MainArticleMessages {
 	private MainArticles mainarticlesformam;
 	
 	
-	@OneToMany(mappedBy = "mainarticlemessagesformamelk")
+	@OneToMany(mappedBy = "mainarticlemessagesformamelk", cascade = CascadeType.ALL)
 	Set<MainArticleMessageLikes> mainarticlemessagelikes = new LinkedHashSet<>();
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="author_id", nullable = false)
 	private Member author_idforMAM;
 }

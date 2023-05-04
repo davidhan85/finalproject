@@ -233,7 +233,6 @@ public class Member {
 
 
 	@OneToMany(mappedBy = "author_idforMA")
-
 	Set<MainArticles> memberMainArticles = new LinkedHashSet<>();
 
 	@OneToMany(mappedBy = "author_idforSA")
@@ -244,6 +243,72 @@ public class Member {
 
 	@OneToMany(mappedBy = "author_idforMAM")
 	Set<MainArticleMessages> memberMainArticleMessages = new LinkedHashSet<>();
+
+	
+
+	public Set<MainArticles> getMemberMainArticles() {
+		return memberMainArticles;
+	}
+
+	public void setMemberMainArticles(Set<MainArticles> memberMainArticles) {
+		this.memberMainArticles = memberMainArticles;
+	}
+
+	public Set<SubArticles> getMemberSubArticles() {
+		return memberSubArticles;
+	}
+
+	public void setMemberSubArticles(Set<SubArticles> memberSubArticles) {
+		this.memberSubArticles = memberSubArticles;
+	}
+
+	public Set<MainArticleLikes> getMemberMainArticleLikes() {
+		return memberMainArticleLikes;
+	}
+
+	public void setMemberMainArticleLikes(Set<MainArticleLikes> memberMainArticleLikes) {
+		this.memberMainArticleLikes = memberMainArticleLikes;
+	}
+
+	public Set<MainArticleMessages> getMemberMainArticleMessages() {
+		return memberMainArticleMessages;
+	}
+
+	public void setMemberMainArticleMessages(Set<MainArticleMessages> memberMainArticleMessages) {
+		this.memberMainArticleMessages = memberMainArticleMessages;
+	}
+
+	public Set<MainArticleMessageLikes> getMemberMainArticleMessageLikes() {
+		return memberMainArticleMessageLikes;
+	}
+
+	public void setMemberMainArticleMessageLikes(Set<MainArticleMessageLikes> memberMainArticleMessageLikes) {
+		this.memberMainArticleMessageLikes = memberMainArticleMessageLikes;
+	}
+
+	public Set<SubArticleLikes> getMemberSubArticleLikes() {
+		return memberSubArticleLikes;
+	}
+
+	public void setMemberSubArticleLikes(Set<SubArticleLikes> memberSubArticleLikes) {
+		this.memberSubArticleLikes = memberSubArticleLikes;
+	}
+
+	public Set<SubArticleMessages> getMemberSubArticleMessages() {
+		return memberSubArticleMessages;
+	}
+
+	public void setMemberSubArticleMessages(Set<SubArticleMessages> memberSubArticleMessages) {
+		this.memberSubArticleMessages = memberSubArticleMessages;
+	}
+
+	public Set<SubArticleMessageLikes> getMemberSubArticleMessageLikes() {
+		return memberSubArticleMessageLikes;
+	}
+
+	public void setMemberSubArticleMessageLikes(Set<SubArticleMessageLikes> memberSubArticleMessageLikes) {
+		this.memberSubArticleMessageLikes = memberSubArticleMessageLikes;
+	}
 
 	@OneToMany(mappedBy = "author_idforMAML")
 	Set<MainArticleMessageLikes> memberMainArticleMessageLikes = new LinkedHashSet<>();

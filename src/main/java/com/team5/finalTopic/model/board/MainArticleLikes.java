@@ -33,7 +33,7 @@ public class MainArticleLikes {
 //	private Integer author_id;
 	
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss EEEE",timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss ",timezone = "GMT+8")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "updatedatetime", columnDefinition = "datetime")
@@ -47,6 +47,7 @@ public class MainArticleLikes {
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss ",timezone = "GMT+8")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "createdatetime", columnDefinition = "datetime")
 	private Date createdatetime;
