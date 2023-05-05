@@ -48,7 +48,7 @@
 		<hr class="sidebar-divider my-0">
 
 		<!-- Nav Item - Dashboard -->
-		<li class="nav-item"><a class="nav-link" href="#"> <i
+		<li class="nav-item"><a class="nav-link" href="${contextRoot}/memberlist"> <i
 				class="fas fa-fw fa-tachometer-alt"></i> <span>會員系統</span></a></li>
 
 		<!-- Divider -->
