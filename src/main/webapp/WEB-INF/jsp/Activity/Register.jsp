@@ -26,8 +26,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form_container">
-						<form:form modelAttribute="111" action="${contextRoot}/store"
-							method="get">
+						<form:form modelAttribute="111" action="${contextRoot}/store" method="post">
 
 							<%-- 							<form:input type="hidden" path="m_number.m_number" value="${memberss.} " /> --%>
 							<%-- 							<form:input type="number" path="id" readonly="true" value="${id}" /> --%>
@@ -38,13 +37,14 @@
 								<form:input type="text" class="form-control" id="activity_id"
 									name="activity_id" placeholder="活動編號"
 									path="activity.activity_id" style="text-align:center;"
-									value="${activity_id}" />
+									value="${activity.activity_id}" />
 								<!-- 有寫path，就會自動找到相對應的欄位並將我輸入的值注入進去，苦是如果次外來件，則必須要透過Service裡面的企業邏輯去將外外艦給save進去							</div> -->
 								<div style="text-align: center;">
 									<h4 style="text-align: center;">會員編號</h4>
 									<form:input type="text" class="form-control" id="member_number"
 										name="member_number" placeholder="會員編號"
-										path="memberss.m_number" style="text-align:center;" />
+										value="${memberbean.m_number}" path="memberss.m_number"
+										style="text-align:center;" />
 								</div>
 								<div style="text-align: center;">
 									<div>
@@ -70,20 +70,21 @@
 						<!-- 								style="float: right; margin-right: 10px;" /> -->
 						<%-- 						</form:form> --%>
 
+						<%-- 						<form:form modelAttribute="multiMember" --%>
+						<%-- 							action="${contextRoot}/next" method="post"> --%>
+						<!-- 							<input type="hidden" name="memberss.m_number" -->
+						<%-- 								value="${multiMember.memberss.m_number}" /> --%>
+						<!-- 							<input type="submit" value="下一步" -->
+						<!-- 								style="float: right; margin-right: 10px;" /> -->
+						<%-- 						</form:form> --%>
 <%-- 						<form:form modelAttribute="multiMember" --%>
 <%-- 							action="${contextRoot}/next" method="post"> --%>
-<!-- 							<input type="hidden" name="memberss.m_number" -->
-<%-- 								value="${multiMember.memberss.m_number}" /> --%>
-<!-- 							<input type="submit" value="下一步" -->
-<!-- 								style="float: right; margin-right: 10px;" /> -->
+<%-- 							<form:input type="hidden" path="memberss.m_number" --%>
+<%-- 								value="${memberbean.m_number}" /> --%>
+<!-- 														<input type="submit" value="下一步" -->
+<!-- 															style="float: right; margin-right: 10px;" /> -->
+<!-- 							<button type="submit" style="float: right; margin-right: 10px;">下一步</button> -->
 <%-- 						</form:form> --%>
-						<form:form modelAttribute="multiMember"
-							action="${contextRoot}/next" method="post">
-							<input type="hidden" name="memberss.m_number"
-								value="${multiMember.memberss.m_number}" />
-							<input type="submit" value="下一步"
-								style="float: right; margin-right: 10px;" />
-						</form:form>
 
 					</div>
 				</div>

@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 //測試中，測次完成
@@ -32,9 +34,10 @@ public class Activity {
 	@Column(columnDefinition = "NVARCHAR(50) not null", name = "activity_name")
 	private String activity_name;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+//	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss EEEE",timezone = "GMT+8")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(columnDefinition = "Date", name = "activity_date")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+	@Column(columnDefinition = "DateTime", name = "activity_date")
 	private Date activity_date;
 
 	@Column(columnDefinition = "Integer not null", name = "attendance")

@@ -60,6 +60,7 @@
 							<button type="submit" class="btn btn-danger">刪除</button>
 						</form>
 					</td>
+
 					</tr>
 				</c:forEach>
 			</tbody>

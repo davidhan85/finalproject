@@ -55,15 +55,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${multiList}" var="multiLists">
+				<c:forEach items="${multis}" var="multiLists">
 					<tr>
+<%-- 						<td>${multiLists.memberss.m_number}</td> --%>
 						<td>${multiLists.memberss.m_number}</td>
 						<td>${multiLists.activity.activity_id}</td>
 						<td>${multiLists.name}</td>
 						<td>${multiLists.email}</td>
 						<td>${multiLists.id}</td>
 						<td>
-							<form action="${contextRoot}/payment" method="get">
+<%-- 							<form action="${contextRoot}/ecpayCheckout" method="get"> --%>
+							<form action="${contextRoot}/ecpayCheckout" method="post">
 								<input type="hidden" name="id"
 									value="${multiLists.id}"> <input type="submit"
 									value="未付款" class="btn btn-primary">
