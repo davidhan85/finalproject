@@ -150,6 +150,20 @@ public class MemberController {
 		memberService.save(member1);
 		return "redirect:/memberlist";
 	}
+	
+	@GetMapping("/existsAccount")
+	@ResponseBody
+	public ResponseEntity<?> existsAccount(@RequestBody @RequestParam("account") String account ){
+		
+		Boolean existsaccount=memberService.existsByM_account(account);
+		System.out.println(existsaccount);
+		if(existsaccount) {
+			return ResponseEntity.status(HttpStatus.OK).body("此帳號已有人使用");
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body("此帳號可以使用");
+		}
+				
+	}
 
 	@GetMapping(value = "/memberlist/{m_number}")
 	public ResponseEntity<byte[]> getImage(@PathVariable("m_number") Integer m_number) {

@@ -6,8 +6,9 @@ import org.springframework.data.repository.query.Param;
 
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
+	//抓出來的資料為Member物件
         @Query("from Member  where m_account=:m_account")
-     boolean existsByM_account(@Param(value="m_account")String m_account);
+     Member existsByM_account(@Param(value="m_account")String m_account);
 
         @Query("from Member  where m_account=:m_account" )
         Member findByM_account(@Param(value="m_account")String m_account);
