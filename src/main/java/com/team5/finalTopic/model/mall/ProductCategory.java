@@ -22,9 +22,7 @@ public class ProductCategory {
     @Column(name = "category_name",columnDefinition = "nvarchar(Max)",nullable = false) //分類名稱
     private String categoryName;
 
-    @OneToMany(mappedBy = "ProductCategorynumber") //listproduct參考
-    private Set<ListedProduct> listedProducts;
-
+  
 
 
 	public Integer getProductCategorynumber() {
@@ -43,18 +41,10 @@ public class ProductCategory {
 		this.categoryName = categoryName;
 	}
 
-	public Set<ListedProduct> getListedProducts() {
-		return listedProducts;
-	}
-
-	public void setListedProducts(Set<ListedProduct> listedProducts) {
-		this.listedProducts = listedProducts;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "ProductCategory [ProductCategorynumber=" + ProductCategorynumber + ", categoryName=" + categoryName + ", listedProducts="
-				+ listedProducts + "]";
+		return "ProductCategory [ProductCategorynumber=" + ProductCategorynumber + ", categoryName=" + categoryName +  "]";
 	}
 
 }

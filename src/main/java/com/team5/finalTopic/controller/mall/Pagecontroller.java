@@ -22,14 +22,15 @@ public class Pagecontroller {
 	}
 	@GetMapping("/ShowAllProduct")
 	public String ShowAllProduct() {
+
 		return "/mall/ShowAllProduct";
 	}
 
 	@GetMapping("/mallshowone")
 	public String mallshowone() {
+
 		return "/mall/mallshowone";
 	}
 
-	
 
 }

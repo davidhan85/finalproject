@@ -19,31 +19,31 @@
 
 	<jsp:include page="mallnarbar.jsp"></jsp:include>
   
-  <!-- 導覽列 -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-         
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        分類
-      </a>
-      
-      <div class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-        <a class="dropdown-item" href="#">所有商品</a>
-        <a class="dropdown-item" href="#">遊戲軟體</a>
-        <a class="dropdown-item" href="#">周邊</a>
-        <a class="dropdown-item" href="#">書籍</a>
-        <a class="dropdown-item" href="#">其他</a>
-      </div>
-      
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<%--  <!-- 導覽列 -->--%>
+<%--  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">--%>
+<%--    <div class="container-fluid">--%>
+<%--      --%>
+<%--      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">--%>
+<%--        <span class="navbar-toggler-icon"></span>--%>
+<%--      </button>--%>
+<%--         --%>
+<%--      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+<%--        分類--%>
+<%--      </a>--%>
+<%--      --%>
+<%--      <div class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">--%>
+<%--        <a class="dropdown-item" href="#">所有商品</a>--%>
+<%--        <a class="dropdown-item" href="#">遊戲軟體</a>--%>
+<%--        <a class="dropdown-item" href="#">周邊</a>--%>
+<%--        <a class="dropdown-item" href="#">書籍</a>--%>
+<%--        <a class="dropdown-item" href="#">其他</a>--%>
+<%--      </div>--%>
+<%--      --%>
+<%--          </li>--%>
+<%--        </ul>--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </nav>--%>
 
   
  
@@ -75,7 +75,7 @@
 			</a>
 		</div>
 
-
+    <!-- End Image Carousel -->
     <div>&nbsp;</div>
     <div>&#8203;</div>
    
@@ -87,7 +87,7 @@
 
 </div>
 
-
+    <!-- End isell -->
 <div>&nbsp;</div>
 <div>&#8203;</div>
 
@@ -97,7 +97,7 @@
   <div class="container">
     <div class="heading_container heading_center">
       <h2>
-        熱門商品
+        所有商品
       </h2>
     </div>
 
@@ -571,7 +571,7 @@
       </div>
     </div>
     <div class="btn-box">
-      <a href="">
+      <a href="${contextRoot}/AllProduct">
         View More
       </a>
     </div>

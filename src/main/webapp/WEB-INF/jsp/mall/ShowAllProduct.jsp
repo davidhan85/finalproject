@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,24 +72,32 @@
 							<td>${product.productQuantity}</td>
 							<td>${product.productUploadStatus }</td>
 							<td><img
-								src="<c:url value='/ProductImage/${product.productImage.productImageId}'/>" width="100" height="100"
-								class="product-img"></td>
+								src="<c:url value='/ProductImage/${product.productImage.productImageId}'/>"
+								width="100" height="100" class="product-img"></td>
 							<td>
 								<div class="btn-group" role="group">
-									<form action="${pageContext.request.contextPath}/editListedProducts" method="get">
-										<input type="hidden" name="ProductId" value="${product.productId}" />  
-										
-										<button type="submit" class="btn btn-primary">Edit</button>
-										
-									</form>
 									
-								
-									<form action="${pageContext.request.contextPath}/listedProducts/${product.productId}" method="post" onsubmit="return confirm('您確定要刪除嗎?')">
-									<input type="hidden" name="_method" value="delete" />
-										
+<%-- 									<form --%>
+<%-- 										action="${pageContext.request.contextPath}/editListedProducts"> --%>
+<!-- 										<input type="hidden" name="ProductId" -->
+<%-- 											value="${product.productId}" /> --%>
+<!-- 										<button type="submit" class="btn btn-primary">Edit</button> -->
+<%-- 									</form> --%>
+
+									<form:form method="get"
+										action="${pageContext.request.contextPath}/editListedProducts/${product.productId}">
+										<input type="submit" value="更新" />
+									</form:form>
+
+
+									<form
+										action="${pageContext.request.contextPath}/listedProducts/${product.productId}"
+										method="post" onsubmit="return confirm('您確定要刪除嗎?')">
+										<input type="hidden" name="_method" value="delete" />
+
 										<button type="submit" class="btn btn-danger">Delete</button>
 									</form>
-									
+
 								</div>
 							</td>
 						</tr>

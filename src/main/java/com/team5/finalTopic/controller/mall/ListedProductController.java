@@ -1,25 +1,23 @@
 package com.team5.finalTopic.controller.mall;
 
+
 import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.team5.finalTopic.model.mall.ListedProduct;
-import com.team5.finalTopic.model.mall.ProductCategory;
 import com.team5.finalTopic.service.mall.ListedProductService;
 import com.team5.finalTopic.service.mall.ProductCategoryService;
 
@@ -55,12 +53,27 @@ public class ListedProductController {
 		return service.getListedProductById(id);
 	}
 
-	@GetMapping("/listedProducts")   //取得所有
+	@GetMapping("/listedProducts")   //取得所有商品後台
 	public String getAllListedProducts(Model model) {
 		List<ListedProduct> pList = service.getAll();
 		model.addAttribute("pList", pList);
 		return "/mall/ShowAllProduct";
 	}
+
+
+
+
+	@GetMapping("/AllProduct")   //取得所有全部商品頁面
+	public String getAllProducts(Model model, @RequestParam(name = "p",defaultValue = "1") int page) {
+		System.out.println("pageNum"+page);
+		Pageable pageable = PageRequest.of(page-1, 3, Sort.Direction.ASC, "listedTime"); // 每頁顯示 筆資料
+		Page<ListedProduct> pPage = service.pageGetAll(pageable);
+		model.addAttribute("pPage", pPage);
+
+		return "/mall/ShowAllProductFront";
+	}
+
+
 
 	@GetMapping("/ProductImage/{ProductImageId}")  //圖片
 	public ResponseEntity<byte[]> getImage(@PathVariable("ProductImageId") Integer ProductImageId) {
@@ -86,39 +99,17 @@ public class ListedProductController {
 		return "redirect:/listedProducts";
 	}
 
-//	@GetMapping("/editListedProducts")
-//	public String editPage(@RequestParam("ProductId") Integer id, Model model) {
-//		ListedProduct product = service.getListedProductById(id);
-//		model.addAttribute("product", product);
-//		
-//		return "mall/editProduct";
-//	}
-	
-//	@GetMapping("/editListedProducts")
-//	public String editListedProduct(@RequestParam("ProductId") Integer productId, Model model) {
-//	    ListedProduct product = service.getListedProductById(productId);
-//	    List<ProductCategory> categories = productCategoryService.findAll();
-//	    model.addAttribute("product", product);
-//	    model.addAttribute("productCategories", categories);
-//	    return "mall/editProduct";
-//	}
-	@GetMapping("/editListedProducts/{id}")
-	public String showEditForm(@PathVariable("id") Integer id, Model model) {
-        ListedProduct product = service.getListedProductById(id);
-        model.addAttribute("product", product);
+	@GetMapping(value = "/editListedProducts/{ProductId}")  //編輯取得id
+	public String showEditForm(@PathVariable("ProductId") Integer id, Model model) {
+        ListedProduct productbyId = service.getListedProductById(id);
+        model.addAttribute("listedProduct", productbyId);
         return "mall/editProduct";
     }
-
-
-	@PutMapping("/editListedProducts/{id}")
-	public String updateListedProduct(@PathVariable("id") Integer id,
-			@ModelAttribute("product") ListedProduct updatedProduct) {
-		try {
-			service.updateListedProduct(id, updatedProduct);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	
+	@PutMapping (value = "/updateListedProducts/{id}")  //透過抓取id並更新
+	public String updateProduct(@PathVariable("id") Integer id , ListedProduct ListedProduct) throws IOException{
+		ListedProduct ListedProduct1 = service.updateListedProduct(id,ListedProduct);// 取得MultipartFile，把圖片以byte[]型態塞進DB
+//		service.saveListedProduct(ListedProduct1);
 		return "redirect:/listedProducts";
 	}
 

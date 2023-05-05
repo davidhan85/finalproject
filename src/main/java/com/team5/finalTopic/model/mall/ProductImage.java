@@ -1,6 +1,8 @@
 package com.team5.finalTopic.model.mall;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -26,9 +29,9 @@ public class ProductImage {
 	    @Column(name = "productImage",columnDefinition = "varbinary(MAX)")//上架照片
 	    byte[] m_image;
 
-	    
-	    @OneToMany(mappedBy = "ProductImage") //ProductImageId參考
-	    private List<ListedProduct> listedProducts;
+		
+	    @OneToOne(mappedBy = "productImage",cascade = CascadeType.ALL) //ProductImageId參考
+	    private ListedProduct listedProducts;
 	    
 	    		
 		public Integer getProductImageId() {
@@ -55,13 +58,17 @@ public class ProductImage {
 
 
 
-		public List<ListedProduct> getListedProducts() {
+	
+
+
+
+		public ListedProduct getListedProducts() {
 			return listedProducts;
 		}
 
 
 
-		public void setListedProducts(List<ListedProduct> listedProducts) {
+		public void setListedProducts(ListedProduct listedProducts) {
 			this.listedProducts = listedProducts;
 		}
 

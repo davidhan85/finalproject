@@ -6,9 +6,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Transient;
+
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.team5.finalTopic.controller.mall.ListedProductRepository;
@@ -37,12 +42,10 @@ public class ListedProductService {
 	public ListedProduct saveListedProduct(ListedProduct product) throws IOException {
 		System.out.println("enter saveListedProduct");
 		System.out.println("Time" + product.getListedTime());
-		List<ListedProduct> products = new ArrayList<>();
 		if (product.getImgFile() != null) {
 			ProductImage img = new ProductImage();
 			img.setM_image(product.getImgFile().getBytes());
-			products.add(product);
-			img.setListedProducts(products);
+			img.setListedProducts(product);
 			imageRepository.save(img);
 			product.setProductImage(img);
 		}
@@ -68,7 +71,7 @@ public class ListedProductService {
 			if (product.getProductImage() != null) {
 				imageRepository.deleteById(product.getProductImage().getProductImageId());
 			}
-			repository.deleteById(id);
+
 		}
 	}
 
@@ -81,47 +84,41 @@ public class ListedProductService {
 	}
 
 	public List<ListedProduct> getAll() {
-
-		List<ListedProduct> products = repository.getAll();
-		for (ListedProduct product : products) {
-			Hibernate.initialize(product.getImgFile());
-		}
+//		List<ListedProduct> products = repository.getAll();
+		List<ListedProduct> products=repository.findAll();
 		return products;
 	}
 
-	public ListedProduct updateListedProduct(Integer id, ListedProduct updatedProduct) throws IOException {
-		return repository.findById(id).map(product -> {
+	public Page<ListedProduct> pageGetAll(Pageable pageable) {
+		Page<ListedProduct> page=repository.findAll(pageable);
+		return page;
+	}
 
+
+	public ListedProduct updateListedProduct(Integer id, ListedProduct updatedProduct) throws IOException {
+		Optional<ListedProduct> optional = repository.findById(id);
+		if (optional.isPresent()) {
+			ListedProduct product = optional.get();
 			product.setProductName(updatedProduct.getProductName());
-			product.setProductCategorynumber(updatedProduct.getProductCategorynumber());
 			product.setProductDescription(updatedProduct.getProductDescription());
 			product.setUnitPrice(updatedProduct.getUnitPrice());
 			product.setProductQuantity(updatedProduct.getProductQuantity());
 			product.setProductUploadStatus(updatedProduct.getProductUploadStatus());
-
-			ProductCategory pro=null;
-			if (updatedProduct.getProductCategorynumber().getProductCategorynumber()!=0) {
-				pro=productCategoryRepository.findById(updatedProduct.getProductCategorynumber().getProductCategorynumber()).orElse(null);
-}
-
-			
-			product.setProductCategorynumber(pro);
-			
-			if (updatedProduct.getImgFile() != null) {
-				ProductImage img = new ProductImage();
-				try {
-					img.setM_image(updatedProduct.getImgFile().getBytes());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				img.setListedProducts(Collections.singletonList(product));
-				imageRepository.save(img);
-				product.setProductImage(img);
+			product.setProductCategorynumber(updatedProduct.getProductCategorynumber());
+			ProductImage image = imageRepository.findImage(id);
+			if (image != null) {
+				System.out.println("image.getProductImageId:"+image.getProductImageId());
+				image.setM_image(updatedProduct.getImgFile().getBytes());
 			}
+//			ProductImage image=new ProductImage();
+//			image.setM_image(updatedProduct.getImgFile().getBytes());
+//			product.setProductImage(image);	
+			repository.save(product);
+			return product;
 
-			return repository.save(product);
-		}).orElseThrow(() -> new RuntimeException("Product not found with id " + id));
+		}
+
+		return null;
 	}
 
 }

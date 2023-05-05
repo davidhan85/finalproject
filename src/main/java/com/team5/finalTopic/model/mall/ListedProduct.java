@@ -62,7 +62,7 @@ public class ListedProduct {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ProductImageId") // 產品圖片
-	private ProductImage ProductImage;
+	private ProductImage productImage;
 
 	 @Transient
 	    private MultipartFile imgFile;
@@ -157,11 +157,11 @@ public class ListedProduct {
 
 
 	public ProductImage getProductImage() {
-		return ProductImage;
+		return productImage;
 	}
 
 	public void setProductImage(ProductImage productImage) {
-		ProductImage = productImage;
+		this.productImage = productImage;
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class ListedProduct {
 		return "ListedProduct [member=" + m_number + ", ProductId=" + ProductId + ", listedTime=" + listedTime
 				+ ", productName=" + productName + ", ProductCategorynumber=" + ProductCategorynumber + ", productDescription="
 				+ productDescription + ", unitPrice=" + unitPrice + ", productQuantity=" + productQuantity
-				+ ", productUploadStatus=" + productUploadStatus + ", ProductImage=" + ProductImage + "]";
+				+ ", productUploadStatus=" + productUploadStatus + ", ProductImage=" + productImage + "]";
 	}
 
 }
