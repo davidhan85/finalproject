@@ -14,9 +14,9 @@
 
 <body>
 	<jsp:include page="../layout/navebar.jsp"></jsp:include>
-	<section class="book_section layout_padding">
-		<div class="container">
-			<div class="heading_container">
+	<section class="book_section layout_padding" >
+		<div class="container" style="position: absolute; left: 20%;" >
+			<div class="heading_container" >
 				<h2>我要提問</h2>
 			</div>
 			<div class="row">
