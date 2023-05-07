@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -92,12 +93,12 @@ public class MemberController {
 			//發送驗證信件
 			String confirmationUrl="http://localhost:8079/finalTopic_5/confirm?email="+member.getM_email()+"&token="+Token;
 			emailService.sendRegistrationConfirmationEmail(member,confirmationUrl);
-			
+
 			Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
 
 			memberService.save(member1);
 		}
-		
+
 		return new RedirectView("/finalTopic_5/Login");
 	}
 
@@ -114,19 +115,19 @@ public class MemberController {
 //
 //		return "發送成功";
 //	}
-	//驗證 註冊驗證信的email和token是否一致
-	@GetMapping("/confirm")
-	public String confirmRegistration(@RequestParam("email") String email, @RequestParam("token") String token) {
-		Member member = memberRepository.findByM_email(email);
-		if (member != null && member.getM_verify().equals(token)) {
-			member.setM_status("success");
-			memberRepository.save(member);
-			return "redirect:/Login";
-		} else {
-			return "/index";
-		}
-//		return  null;
+//驗證 註冊驗證信的email和token是否一致
+@GetMapping("/confirm")
+public String confirmRegistration(@RequestParam("email") String email, @RequestParam("token") String token) {
+	Member member = memberRepository.findByM_email(email);
+	if (member != null && member.getM_verify().equals(token)) {
+		member.setM_status("success");
+		memberRepository.save(member);
+		return "redirect:/Login";
+	} else {
+		return "/index";
 	}
+//		return  null;
+}
 
 	@DeleteMapping(value = "/deletemember/{m_number}")
 	public String deleteMember(@PathVariable Integer m_number){
@@ -150,11 +151,44 @@ public class MemberController {
 		memberService.save(member1);
 		return "redirect:/memberlist";
 	}
-	
+
+	@GetMapping(value = "/changePwdPage")
+	public String changePwdPage(HttpServletRequest request,Model model){
+		HttpSession session = request.getSession(false);
+		if (session==null||session.getAttribute("memberbean")==null){
+			return "redirect:/Login";
+		}
+		model.addAttribute("memeber",new Member());
+		return "member/changepwdpage";
+
+	}
+
+	//重設密碼專用
+	@PostMapping(value = "/frontSave")
+	public String frontSave(HttpServletRequest request,
+							@RequestParam("newPassword") String newpwd,
+							@RequestParam("password") String pwd){
+		System.out.println("修改密碼");
+		HttpSession session = request.getSession();
+		Member memberbean = (Member) session.getAttribute("memberbean");
+		System.out.println(memberbean.getM_password());
+		System.out.println(pwd);
+		System.out.println(newpwd);
+		if (!memberbean.getM_password().equals(pwd)){
+			System.out.println("修改失敗");
+			return "member/changepwdpage";
+		}else {
+			System.out.println("修改成功");
+			memberbean.setM_password(newpwd);
+			memberService.frontSave(memberbean,newpwd);
+			return "redirect:/membercenter";
+		}
+	}
+
 	@GetMapping("/existsAccount")
 	@ResponseBody
 	public ResponseEntity<?> existsAccount(@RequestBody @RequestParam("account") String account ){
-		
+
 		Boolean existsaccount=memberService.existsByM_account(account);
 		System.out.println(existsaccount);
 		if(existsaccount) {
@@ -162,7 +196,7 @@ public class MemberController {
 		}else {
 			return ResponseEntity.status(HttpStatus.OK).body("此帳號可以使用");
 		}
-				
+
 	}
 
 	@GetMapping(value = "/memberlist/{m_number}")

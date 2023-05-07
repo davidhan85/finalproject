@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                           <form:input path="m_account" required="true" id="account" class="form-control" />
                           <span id="accountError" class="error"></span>
-                          <span id="accountError" class="error"></span>
+                          <span id="accountMessage" ></span>
                         </div>
                       </div>
 
@@ -161,7 +161,7 @@
                   if (data === "此帳號已有人使用") {
                     document.getElementById("accountError").innerHTML = "此帳號已被註冊"
                   } else {
-                    document.getElementById("accountError").innerHTML = "此帳號可以使用"
+                    document.getElementById("accountMessage").innerHTML = "此帳號可以使用"
                   }
                 })
                 .catch(error => {

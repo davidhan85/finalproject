@@ -46,9 +46,8 @@ public class MemberServiceImpl  implements MemberService {
 
     //專門為重設密碼專用
     @Override
-    public void save(Member member, String newpwd) {
-       // BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-        member.setM_password((member.getM_password()));
+    public void frontSave(Member member, String newpwd) {
+        memberRepository.save(member);
     }
 
     @Override
