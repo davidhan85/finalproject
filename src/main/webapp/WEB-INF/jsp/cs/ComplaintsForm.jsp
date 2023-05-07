@@ -65,7 +65,6 @@
 								<button>確定</button>
 							</div>
 						</form:form>
-						<a class="nav-link" href="${contextRoot}/finalTopic_5/chat/">聊天室</a>
 								
 					</div>
 				</div>

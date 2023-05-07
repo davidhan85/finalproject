@@ -87,7 +87,7 @@ body {
 } */
 
 .chat-thread li.chat-myself:before {
-	right: -50px;
+	right: -150px;
 	 content: attr(data-username);
 	top: -20px;
 	width: 200px;

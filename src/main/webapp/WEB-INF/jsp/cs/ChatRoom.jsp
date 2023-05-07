@@ -134,7 +134,7 @@
 									const img = document.createElement('img');
 									img.setAttribute('src', '${contextRoot}/memberlist/' + imageNumber);
 									img.setAttribute('class', 'profile-pic-left');
-									li.appendChild(img);sssssssssssssssssssssssssssssssssss
+									li.appendChild(img);
 								}
 								chatThread.appendChild(li);
 

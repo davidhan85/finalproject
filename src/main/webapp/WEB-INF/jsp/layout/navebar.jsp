@@ -78,7 +78,7 @@
 								</a></li>
 								<li class="nav-item">
 								<c:if test="${not empty memberbean}">
-								<a class="nav-link" href="${contextRoot}/CustomerComplaints">客服</a>
+								<a class="nav-link" href="${contextRoot}/customerService">客服</a>
 								</c:if>
 								<c:if test="${empty memberbean}">
 									<a class="nav-link" href="${contextRoot}/Login">客服</a>

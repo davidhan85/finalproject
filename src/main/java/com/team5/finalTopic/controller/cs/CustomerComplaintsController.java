@@ -34,6 +34,11 @@ public class CustomerComplaintsController {
 		return "cs/ChatRoom";
 	}
 
+	//跳轉到客服表單選擇頁面
+	@GetMapping("/customerService")
+	public String customerService(Model model) {
+		return "cs/CustomerServiceSelection";
+	}
 	@GetMapping("/ViewComplient")
 	public String viewComplient(@RequestParam Integer id, Model model) {
 
