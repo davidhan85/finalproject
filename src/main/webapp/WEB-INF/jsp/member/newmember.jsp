@@ -37,7 +37,6 @@
                       modelAttribute="member" id="newmemberform" onsubmit="return submitForm();">
                       <div class="form-group row">
                         <label for="account" class="col-md-4 col-form-label text-md-right">帳號</label>
-
                         <div class="col-md-6">
                           <form:input path="m_account" required="true" id="account" class="form-control" />
                           <span id="accountError" class="error"></span>
@@ -133,35 +132,36 @@
               </div>
             </div>
           </div>
-
           <script>
-
             function submitForm() {
               var useraccount = document.getElementById("account").value;
               var pwd = document.getElementById("password").value;
               var phone = document.getElementById("phone").value;
               var email = document.getElementById("email").value;
               var id = document.getElementById("id").value;
+              var account=document.getElementById("account");
+                         
 
               var accountRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
               var phoneRegex = /^09\d{8}$/;
               var idRegex = /^[A-Z][12]\d{8}$/;
               var emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-
+		
               if (!accountRegex.test(useraccount)) {
                 document.getElementById("accountError").innerHTML = "帳號必須包含英文字母和數字，並且長度在8-16之間";
                 return false;
               } else {
-                document.getElementById("accountError").innerHTML = "";
+                document.getElementById("accountError").innerHTML = "";          
               }
 
-              fetch(`${contextRoot}/existsAccount?account=useraccount`)
+              fetch('${contextRoot}/existsAccount?account=' + useraccount)
                 .then(response => response.text())
                 .then(data => {
                   if (data === "此帳號已有人使用") {
                     document.getElementById("accountError").innerHTML = "此帳號已被註冊"
                   } else {
                     document.getElementById("accountMessage").innerHTML = "此帳號可以使用"
+                    	  console.log(useraccount)
                   }
                 })
                 .catch(error => {

@@ -76,7 +76,11 @@ public class MemberServiceImpl  implements MemberService {
     @Override
     @ResponseBody
     public Boolean existsByM_account(String m_account) {
-        return memberRepository.existsByM_account(m_account)!=null;
+    	System.out.println(memberRepository.existsByM_account(m_account));
+    	if(memberRepository.existsByM_account(m_account)!=null)
+    		return true;
+    	else
+    		return false;
     }
 
 
