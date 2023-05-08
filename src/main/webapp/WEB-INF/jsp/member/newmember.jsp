@@ -18,8 +18,13 @@
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
           <style>
-            .error {
-              color: red;
+        
+            span{
+            font-size: 16px;
+            color: red;
+            }
+            label{
+             font-size: 16px;
             }
           </style>
         </head>
@@ -39,8 +44,8 @@
                         <label for="account" class="col-md-4 col-form-label text-md-right">帳號</label>
                         <div class="col-md-6">
                           <form:input path="m_account" required="true" id="account" class="form-control" />
-                          <span id="accountError" class="error"></span>
-                          <span id="accountMessage"></span>
+                          <span id="accountError" ></span>
+                          <label id="accountMessage"></label>
                         </div>
                       </div>
 
@@ -49,7 +54,7 @@
 
                         <div class="col-md-6">
                           <form:input path="m_password" required="true" id="password" class="form-control" />
-                          <span id="passwordError" class="error"></span>
+                          <span id="passwordError" ></span>
                         </div>
                       </div>
 
@@ -66,7 +71,7 @@
 
                         <div class="col-md-6">
                           <form:input path="m_phone" required="true" id="phone" class="form-control" />
-                          <span id="phoneError" class="error"></span>
+                          <span id="phoneError" ></span>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -80,7 +85,7 @@
 
                         <div class="col-md-6">
                           <form:input path="m_email" type="email" required="true" id="email" class="form-control" />
-                          <span id="emailError" class="error"></span>
+                          <span id="emailError" ></span>
                         </div>
                       </div>
 
@@ -108,7 +113,7 @@
 
                         <div class="col-md-6">
                           <form:input path="m_id" required="true" id="id" class="form-control" />
-                          <span id="idError" class="error"></span>
+                          <span id="idError" ></span>
                         </div>
                       </div>
 
@@ -132,7 +137,7 @@
               </div>
             </div>
           </div>
-          <%-- <jsp:include page="../layout/footerbar.jsp"></jsp:include> --%>
+          
             <script>
               function submitForm() {
                 var useraccount = document.getElementById("account").value;
@@ -161,8 +166,7 @@
                     if (data === "此帳號已有人使用") {
                       document.getElementById("accountError").innerHTML = "此帳號已被註冊"
                     } else {
-                      document.getElementById("accountMessage").innerHTML = "此帳號可以使用"
-                      console.log(useraccount)
+                      document.getElementById("accountMessage").innerHTML = "此帳號可以使用"                  
                     }
                   })
                   .catch(error => {
@@ -264,6 +268,7 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
               integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
               crossorigin="anonymous"></script>
+              <jsp:include page="../layout/footerbar.jsp"></jsp:include>
         </body>
 
         </html>
