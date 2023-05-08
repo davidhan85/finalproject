@@ -11,7 +11,13 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <html>
 <head>
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>修改密碼</title>
+     <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-JBO3qQ0M5rMfRUzRdjst9X+5ScdQu0vGeiG3OWly/m3HTqImlHmdFAvzCZ6OTxg9XOj6YH/C6l09Ug2+yhh6Kw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 </head>
 <body>
 <jsp:include page="../layout/navebar.jsp"></jsp:include>
@@ -35,18 +41,36 @@
         </ul>
     </div>
 </nav>
-<h1>修改密碼</h1>
-<form:form method="post" action="${contextRoot}/frontSave">
-    <label for="password">現在的密碼：</label>
-    <input type="password" id="password" name="password"/><br>
-    <label for="newPassword">新密碼：</label>
-    <input type="password" id="newPassword" name="newPassword"/><br>
-    <span id="passwordError2" style="color:red;"></span><br>
-    <label for="newPassword2">再輸入一次新密碼：</label>
-    <input type="password" id="newPassword2" name="newPassword2"/><br>
-    <span id="passwordError" style="color:red;"></span><br>
-    <input type="submit" value="確認修改" id="submitButton" disabled/>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">修改密碼</h5>
+          </div>
+          <div class="card-body">
+            <form:form method="post" action="${contextRoot}/frontSave">
+              <div class="form-group">
+                <label for="password">現在的密碼：</label>
+                <input type="password" class="form-control" id="password" name="password"/>
+              </div>
+              <div class="form-group">
+                <label for="newPassword">新密碼：</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword"/>
+              </div>
+              <div class="form-group">
+                <label for="newPassword2">再輸入一次新密碼：</label>
+   <input type="password" class="form-control" id="newPassword2" name="newPassword2"/>
+<small id="passwordError" class="form-text text-danger"></small>
+</div>
+   <button type="submit" class="btn btn-primary" id="submitButton" disabled>確認修改</button>
 </form:form>
+</div>
+</div>
+</div>
+</div>
+
+  </div>
 
 <script>
 
@@ -85,6 +109,11 @@
 
 
 </script>
+
+  <!-- Bootstrap 4 JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-7JL8vHYcE7B9gBC9QV7bW8QvXEqtPTcNJw+L6ZkBKTWG8sNOc+JlwI1G9lTnA6UdJ6UaDnRrctLTKZjKOMLrjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js" integrity="sha512-RK8BZ4ur20dc/JtAvKjJc+uOXzX9ftJk/qdSv2jK5x3qEUPKZmiYXMl2FJfbHI3q3C9rFTex+DyP6oECxYoNrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-lzT9QI9l1MZjHvOGUf91JnZcLDKbdCMYwfyQryGzO3vpHTD7Ft1QJ3q3vUb+v+jO+TAVTJ+yHfXQuhT/nEiLCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 </html>
