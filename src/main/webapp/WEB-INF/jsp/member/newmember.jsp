@@ -133,7 +133,7 @@
               </div>
             </div>
           </div>
-
+<%-- <jsp:include page="../layout/footerbar.jsp"></jsp:include> --%>
           <script>
 
             function submitForm() {
