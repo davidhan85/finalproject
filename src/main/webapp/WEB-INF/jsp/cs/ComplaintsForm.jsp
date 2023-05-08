@@ -8,14 +8,14 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>客服表單</title>
 
 </head>
 
 <body>
 	<jsp:include page="../layout/navebar.jsp"></jsp:include>
 	<section class="book_section layout_padding" >
-		<div class="container" style="position: absolute; left: 20%;" >
+		<div class="container" style="position:relative;" >
 			<div class="heading_container" >
 				<h2>我要提問</h2>
 			</div>
@@ -76,6 +76,7 @@
 			</div>
 		</div>
 	</section>
+		<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>客服首頁</title>
+<title>書贏遊你來決定-客服首頁</title>
 <jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!-- Styles -->
 <link
@@ -51,6 +51,7 @@
 	</header>
 	<!-- end of header -->
 	<!-- end of header -->
+	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 </body>
 
 </html>

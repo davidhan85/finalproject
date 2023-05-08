@@ -8,7 +8,7 @@
 
 					<head>
 						<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-						<title>Chat Tupi | Spring Boot + WebSocket</title>
+						<title>客服聊天室</title>
 						<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
 						<jsp:include page="../layout/navebar.jsp"></jsp:include>
 						<link rel="stylesheet" href="${contextRoot}/css/main.css" />
@@ -17,9 +17,9 @@
 
 					<body>
 						<!-- partial:index.partial.html -->
-						<ul class="chat-thread">
+						<ul class="chat-thread" style="position: relative;">
 						</ul>
-						<form class="chat-window" onsubmit="return false;">
+						<form class="chat-window" onsubmit="return false;" style="position: relative;" >
 							<input class="chat-window-message" name="chat-window-message" type="text" autocomplete="off"
 								autofocus />
 							<button type="button" onclick="sendMessage()">發送</button>
@@ -30,7 +30,7 @@
 						<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 						<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-
+						<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 
 						<script>
 
