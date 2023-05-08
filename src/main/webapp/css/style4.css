@@ -103,6 +103,7 @@ body {
 }
 
 .chat-other {
+	width: 40%;
 	animation: show-chat-odd 0.15s 1 ease-in;
 	-moz-animation: show-chat-odd 0.15s 1 ease-in;
 	-webkit-animation: show-chat-odd 0.15s 1 ease-in;
@@ -136,6 +137,7 @@ body {
 }
 
 .profile-pic-left{
+	top: 0;
 	width: 45px;
 	height: 45px;
 	bottom: 10px;
@@ -184,7 +186,7 @@ body {
 @media all and (min-width: 768px) {
 	.chat-thread {
 		width: 40%;
-		height: 500px;
+		height: 700px;
 	}
 
 	.chat-window {

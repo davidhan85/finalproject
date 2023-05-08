@@ -39,7 +39,7 @@
 							href="${contextRoot}/CustomerComplaints"
 							style="background-color: red;">聯絡表單</a> <a
 							class="btn-solid-lg page-scroll" href="chat">真人客服</a> <a
-							class="btn-outline-lg page-scroll" href="#contact">智慧客服</a>
+							class="btn-outline-lg page-scroll" href="GptChat">智慧客服</a>
 					</div>
 					<!-- end of button-container -->
 				</div>

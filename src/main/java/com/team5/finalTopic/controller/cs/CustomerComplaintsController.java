@@ -29,9 +29,16 @@ public class CustomerComplaintsController {
 		return "cs/ComplaintsForm";
 	}
 
+	//客服聊天室
 	@GetMapping("/chat")
 	public String showChatPage(Model model) {
 		return "cs/ChatRoom";
+	}
+	
+	//智慧客服聊天室
+	@GetMapping("/GptChat")
+	public String showGptChatPage(Model model) {
+		return "cs/GptChatRoom";
 	}
 
 	//跳轉到客服表單選擇頁面

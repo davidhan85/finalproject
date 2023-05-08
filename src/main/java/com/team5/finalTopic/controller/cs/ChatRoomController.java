@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team5.finalTopic.model.cs.ChatMessage;
+import com.team5.finalTopic.model.cs.GptChatMessage;
 import com.team5.finalTopic.service.cs.ChatroomService;
 
 @Controller
@@ -19,6 +20,8 @@ public class ChatRoomController {
 
     @Autowired
     private ChatroomService chatroomService;
+    
+
 
     @MessageMapping("/chatroom/sendMessage")
     @SendTo("/topic/chatroom")
@@ -28,6 +31,18 @@ public class ChatRoomController {
     	System.out.println(message.getCustomer());
         return chatroomService.addMessage(message);
     }
+    
+    //接收智慧客服前端傳來的訊息
+    @MessageMapping("/api/Chatmessages")
+    @SendTo("/topic/chatroom")
+    @ResponseBody
+    public GptChatMessage sendGptMessage(@Payload GptChatMessage message) {
+    	
+    	chatroomService.GPTAddMessage(message);   	
+    	return chatroomService.GPTResponseMessage(message);
+    }
+    
+    
     
     @GetMapping("/api/messages")
     @ResponseBody

@@ -22,7 +22,7 @@
 						<form class="chat-window" onsubmit="return false;" style="position: relative;" >
 							<input class="chat-window-message" name="chat-window-message" type="text" autocomplete="off"
 								autofocus />
-							<button type="button" onclick="sendMessage()">發送</button>
+							<button type="button" onclick="sendMessage()" style="position: relative; right:-100%; bottom: 30px;">發送</button>
 						</form>
 
 						<!-- partial -->
