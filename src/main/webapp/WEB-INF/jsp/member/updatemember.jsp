@@ -1,109 +1,104 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>會員更新</title>
-    <style>
-        /* Styles for form input and label */
-        input[type="text"],
-        input[type="email"],
-        input[type="date"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-        }
-        label {
-            font-weight: bold;
-            display: inline-block;
-            width: 100px;
-            margin-right: 20px;
-            text-align: right;
-        }
-        /* Style for form container */
-        .container {
-            margin-top: 50px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        /* Style for submit button */
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            float: right;
-        }
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+            <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+            <!DOCTYPE html>
+            <html>
 
-        /* Style for file input */
-        input[type="file"] {
-            margin-top: 6px;
-            margin-bottom: 16px;
-        }
-    </style>
-</head>
-<body>
-<jsp:include page="../layout/navebar.jsp"></jsp:include>
-<%--<jsp:include page="../layout/navebar.jsp"></jsp:include>--%>
-<div class="container">
-<form:form method="post" action="${contextRoot}/updatemember/${m_number}" enctype="multipart/form-data" modelAttribute="member">
-    <input type="hidden" name="_method" value="put">
-<%--    <form:hidden path="m_number" value="${m_number}"/>--%>
-    <table>
-        <tr>
-            <td> <label for="m_account">帳號：</label> </td>
-            <td><form:input path="m_account"  required="ture" readonly="true"/> </td>
-        </tr>
-        <tr>
-            <td>  <label for="m_password">密碼：</label> </td>
-            <td> <form:input path="m_password"  required="ture" readonly="true"/></td>
-        </tr>
- <tr>
-     <td>  <label for="m_name">姓名：</label> </td>
-    <td><form:input path="m_name"  required="ture"/></td>
-    </tr>
-    <tr>
-     <td><label for="m_phone">手機：</label></td>
-    <td> <form:input path="m_phone"  required="ture"/></td>
-    </tr>
-    <tr>
-     <td><label for="m_address">地址：</label></td>
-    <td>  <form:input path="m_address"  required="ture"/></td>
-    </tr>
-    <tr>
-     <td><label for="m_email">信箱：</label></td>
-    <td> <form:input path="m_email" type="email" required="ture"/></td>
-    </tr>
-    <tr>
-     <td><label for="m_birth">生日：</label></td>
-    <td> <form:input path="m_birth" type="date" required="ture"/></td>
-    </tr>
-    <tr>
-     <td> <label for="m_id">身分證：</label></td>
-    <td> <form:input path="m_id"  required="ture"/></td>
-    </tr>
-     <tr>
-      <td><label for="productImage">大頭貼：</label></td>
-    <td> <form:input path="productImage" type="file"  /></td>
-</tr>
-</table>
-    <button type="submit">更新</button>
-</form:form>
+            <head>
+                <meta charset="UTF-8">
+                <title>會員更新</title>
+                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+                
+            </head>
+
+            <body>
+                <jsp:include page="../layout/navebar.jsp"></jsp:include>
+                <%--<jsp:include page="../layout/navebar.jsp"></jsp:include>--%>
+                    <div class="container mt-5">
+    <h2 class="mb-5">更新會員</h2>
+    <form:form method="post" action="${contextRoot}/updatemember/${m_number}" enctype="multipart/form-data" modelAttribute="member">
+        <input type="hidden" name="_method" value="put">
+
+        <div class="form-group row">
+            <label for="m_account" class="col-sm-2 col-form-label">帳號：</label>
+            <div class="col-sm-10">
+                <form:input path="m_account" required="true" readonly="true" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="m_password" class="col-sm-2 col-form-label">密碼：</label>
+            <div class="col-sm-10">
+                <form:input path="m_password" required="true" readonly="true" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="m_name" class="col-sm-2 col-form-label">姓名：</label>
+            <div class="col-sm-10">
+                <form:input path="m_name" required="true" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="m_phone" class="col-sm-2 col-form-label">手機：</label>
+            <div class="col-sm-10">
+                <form:input path="m_phone" required="true" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="m_address" class="col-sm-2 col-form-label">地址：</label>
+            <div class="col-sm-10">
+                <form:input path="m_address" required="true" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="m_email" class="col-sm-2 col-form-label">信箱：</label>
+            <div class="col-sm-10">
+                <form:input path="m_email" type="email" required="true" class="form-control" />
+            </div>
+        </div><div class="form-group row">
+  <label for="m_birth" class="col-sm-2 col-form-label">生日：</label>
+<div class="col-sm-10">
+<form:input path="m_birth" type="date" required="true" class="form-control" />
 </div>
-</body>
-</html>
+</div><div class="form-group row">
+        <label for="m_id" class="col-sm-2 col-form-label">身分證：</label>
+        <div class="col-sm-10">
+            <form:input path="m_id" required="true" class="form-control" />
+        </div>
+    </div>
+
+    <input type="hidden" name="m_status" value="success" />
+
+    <div class="form-group row">
+        <label for="m_Role" class="col-sm-2 col-form-label">身分：</label>
+        <div class="col-sm-10">
+            <form:select path="m_Role" class="form-control">
+                <form:option value="adaim" label="管理員" />
+                <form:option value="user" label="一般使用者" />
+            </form:select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="productImage" class="col-sm-2 col-form-label">大頭貼：</label>
+        <div class="col-sm-10">
+            <form:input path="productImage" type="file" class="form-control-file" />
+        </div>
+    </div>
+
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">更新</button>
+    </div>
+</form:form>
+                    </div>
+                    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js" integrity="sha384-EAuwFkLWgGKfQWoiv49tuzf3qdQiqq3eBStDD5XKMF5vHkCG//20Tk5hxFw0JGKj" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha384-2o3h3nJu3z5FYnOzKAtn0IlRyUITLfkt2w5veLGMoNs/72CvaptU8I6UweJXMEhl" crossorigin="anonymous"></script>
+            </body>
+
+            </html>

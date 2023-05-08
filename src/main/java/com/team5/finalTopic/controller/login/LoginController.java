@@ -2,6 +2,7 @@ package com.team5.finalTopic.controller.login;
 
 import com.team5.finalTopic.model.login.LoginRepository;
 import com.team5.finalTopic.model.member.Member;
+import com.team5.finalTopic.model.member.MemberRepository;
 import com.team5.finalTopic.service.login.LoginServiceImpl;
 
 import java.util.HashMap;
@@ -24,6 +25,9 @@ public class LoginController {
 
     @Autowired
     private LoginServiceImpl loginService;
+    
+    @Autowired
+    private MemberRepository memberRepository;
 
     @GetMapping(value = "/Login")
     public String goLoginPage(){
@@ -47,11 +51,20 @@ public class LoginController {
 //        }
         Member memberexisted = loginService.findByM_accountAndM_password(username, pwd);
         if (memberexisted!=null){
-            System.out.println("登入");
-            session.setAttribute("memberbean", memberexisted);
-            model.addAttribute("account",username);
-            model.addAttribute("pwd",pwd);
-            return "redirect:/home";
+        	if(memberexisted.getM_status().equals("success")) {
+        		 System.out.println("登入");
+                 session.setAttribute("memberbean", memberexisted);
+                 model.addAttribute("account",username);
+                 model.addAttribute("pwd",pwd);
+                 return "redirect:/home";
+        	}
+        	error.put("msgg", "尚未註冊請先註冊");
+        	 return "Login/Loginpage";
+//            System.out.println("登入");
+//            session.setAttribute("memberbean", memberexisted);
+//            model.addAttribute("account",username);
+//            model.addAttribute("pwd",pwd);
+//            return "redirect:/home";
         }
         error.put("msg","請輸入正確的帳號跟密碼");
         return "Login/Loginpage";

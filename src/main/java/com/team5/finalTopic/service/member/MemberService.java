@@ -13,7 +13,7 @@ public interface MemberService {
     public void save(Member member);
 
     //前台重設密碼用
-    public void save(Member member, String newpwd);
+    public void frontSave(Member member, String newpwd);
 
     //用id找會員
     public  Member findById(Integer m_number);

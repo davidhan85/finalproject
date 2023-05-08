@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.team5.finalTopic.model.member.Member;
@@ -45,9 +46,8 @@ public class MemberServiceImpl  implements MemberService {
 
     //專門為重設密碼專用
     @Override
-    public void save(Member member, String newpwd) {
-       // BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-        member.setM_password((member.getM_password()));
+    public void frontSave(Member member, String newpwd) {
+        memberRepository.save(member);
     }
 
     @Override
@@ -71,10 +71,16 @@ public class MemberServiceImpl  implements MemberService {
     public Member findByM_account(String m_account) {
         return memberRepository.findByM_account(m_account);
     }
+    
+    //把抓出來的account轉成Boolen傳回去
     @Override
+    @ResponseBody
     public Boolean existsByM_account(String m_account) {
-
-        return memberRepository.existsByM_account(m_account);
+    	System.out.println(memberRepository.existsByM_account(m_account));
+    	if(memberRepository.existsByM_account(m_account)!=null)
+    		return true;
+    	else
+    		return false;
     }
 
 

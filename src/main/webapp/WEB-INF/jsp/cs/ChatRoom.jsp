@@ -1,38 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
-			<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-				<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-					<!DOCTYPE html>
-					<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE html>
+<html>
 
-					<head>
-						<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-						<title>客服聊天室</title>
-						<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
-						<jsp:include page="../layout/navebar.jsp"></jsp:include>
-						<link rel="stylesheet" href="${contextRoot}/css/main.css" />
-						<link rel="stylesheet" href="${contextRoot}/css/style4.css">
-					</head>
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>客服聊天室</title>
+<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<jsp:include page="../layout/navebar.jsp"></jsp:include>
+<link rel="stylesheet" href="${contextRoot}/css/main.css" />
+<link rel="stylesheet" href="${contextRoot}/css/style4.css">
+</head>
 
-					<body>
-						<!-- partial:index.partial.html -->
-						<ul class="chat-thread" style="position: relative;">
-						</ul>
-						<form class="chat-window" onsubmit="return false;" style="position: relative;" >
-							<input class="chat-window-message" name="chat-window-message" type="text" autocomplete="off"
-								autofocus />
-							<button type="button" onclick="sendMessage()" style="position: relative; right:-100%; bottom: 30px;">發送</button>
-						</form>
+<body>
+	<!-- partial:index.partial.html -->
+	<ul class="chat-thread" style="position: relative;">
+	</ul>
+	<form class="chat-window" onsubmit="return false;"
+		style="position: relative;">
+		<input class="chat-window-message" name="chat-window-message"
+			type="text" autocomplete="off" autofocus />
+		<button type="button" onclick="sendMessage()"
+			style="position: relative; right: -100%; bottom: 30px;">發送</button>
+	</form>
 
-						<!-- partial -->
-						<script src='${contextRoot}/js/jquery.min.js'></script>
-						<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-						<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<!-- partial -->
+	<script src='${contextRoot}/js/jquery.min.js'></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-						<jsp:include page="../layout/footerbar.jsp"></jsp:include>
+	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 
-						<script>
+	<script>
 
 							// 使用 memberNumber 變量來操作 JavaBean 屬性的值
 							var member = '${memberbean.m_number}';
@@ -148,6 +153,6 @@
 							}
 						</script>
 
-					</body>
+</body>
 
-					</html>
+</html>
