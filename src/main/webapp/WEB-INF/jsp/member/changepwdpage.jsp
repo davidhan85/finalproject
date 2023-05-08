@@ -106,13 +106,11 @@
         submitForm();
     })
 
-
 </script>
-
   <!-- Bootstrap 4 JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-7JL8vHYcE7B9gBC9QV7bW8QvXEqtPTcNJw+L6ZkBKTWG8sNOc+JlwI1G9lTnA6UdJ6UaDnRrctLTKZjKOMLrjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js" integrity="sha512-RK8BZ4ur20dc/JtAvKjJc+uOXzX9ftJk/qdSv2jK5x3qEUPKZmiYXMl2FJfbHI3q3C9rFTex+DyP6oECxYoNrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-lzT9QI9l1MZjHvOGUf91JnZcLDKbdCMYwfyQryGzO3vpHTD7Ft1QJ3q3vUb+v+jO+TAVTJ+yHfXQuhT/nEiLCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 </body>
 </html>
