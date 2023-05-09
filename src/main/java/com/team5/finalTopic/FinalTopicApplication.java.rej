@@ -1,0 +1,9 @@
+diff a/src/main/java/com/team5/finalTopic/FinalTopicApplication.java b/src/main/java/com/team5/finalTopic/FinalTopicApplication.java	(rejected hunks)
+@@ -6,7 +6,6 @@
+ 
+ 
+ @SpringBootApplication
+-//@ComponentScan(basePackages = "com.team5.finalTopic")
+ public class FinalTopicApplication {
+ 
+ 	public static void main(String[] args) {SpringApplication.run(FinalTopicApplication.class, args);

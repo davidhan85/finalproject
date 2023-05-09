@@ -99,6 +99,6 @@
                     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js" integrity="sha384-EAuwFkLWgGKfQWoiv49tuzf3qdQiqq3eBStDD5XKMF5vHkCG//20Tk5hxFw0JGKj" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha384-2o3h3nJu3z5FYnOzKAtn0IlRyUITLfkt2w5veLGMoNs/72CvaptU8I6UweJXMEhl" crossorigin="anonymous"></script>
+ <jsp:include page="../layout/footerbar.jsp"></jsp:include>
             </body>
-
             </html>
