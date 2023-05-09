@@ -6,13 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.team5.finalTopic.model.cs.ApplyComplaints;
 import com.team5.finalTopic.model.cs.CustomerComplaints;
 import com.team5.finalTopic.service.cs.CustomerComplaintsService;
 
@@ -21,6 +22,9 @@ public class CustomerComplaintsController {
 
 	@Autowired
 	CustomerComplaintsService CSS;
+	
+	
+	
 
 	@GetMapping("/CustomerComplaints")
 	public String CustomerComplaints(Model model) {
@@ -76,12 +80,14 @@ public class CustomerComplaintsController {
 		return "cs/ApplyComplaints";
 	}
 
-	// 回覆表單問題
+	// 回覆表單問題&寄信
 	@GetMapping("/ApplyComplaints")
 	public String addApplyComplaints(@RequestParam Integer id, @RequestParam String content, Model model) {
 
+		
 		CustomerComplaints CC = CSS.GetComplaintsByID(id).get();
-
+		
+		CSS.sendToEmail(CC, content);
 		CSS.addApplyComplaints(CC, content);
 
 		return "CMS/ShowAllCompliants";
