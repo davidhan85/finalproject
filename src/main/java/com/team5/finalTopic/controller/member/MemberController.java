@@ -189,8 +189,6 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 	@ResponseBody
 	public ResponseEntity<?> existsAccount(@RequestBody @RequestParam("account") String account ){
 		Boolean existsaccount=memberService.existsByM_account(account);
-		System.out.println(account);
-		System.out.println(existsaccount);
 		if(existsaccount) {
 			return ResponseEntity.status(HttpStatus.OK).body("此帳號已有人使用");
 		}else {
