@@ -90,13 +90,14 @@ public class MemberController {
 			String Token= UUID.randomUUID().toString();
 			member.setM_verify(Token);
 			System.out.println(Token);
+			Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
+
+			memberService.save(member1);
 			//發送驗證信件
 			String confirmationUrl="http://localhost:8079/finalTopic_5/confirm?email="+member.getM_email()+"&token="+Token;
 			emailService.sendRegistrationConfirmationEmail(member,confirmationUrl);
 
-			Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
-
-			memberService.save(member1);
+			
 		}
 
 		return new RedirectView("/finalTopic_5/Login");

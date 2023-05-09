@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Service
 public class EmailService {
 
+	@Autowired
     private JavaMailSender javaMailSender;
 
-    @Autowired
-    public EmailService(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
+//    @Autowired
+//    public EmailService(JavaMailSender javaMailSender) {
+//        this.javaMailSender = javaMailSender;
+//    }
 
-    @ResponseBody
     public  void sendRegistrationConfirmationEmail(Member member , String confirmationUrl){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(member.getM_email());

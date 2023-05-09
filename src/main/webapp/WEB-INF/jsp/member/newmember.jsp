@@ -249,7 +249,7 @@
                       // 發送驗證電子郵件失敗的操作
                       console.log("發送成功")
                       alert("驗證信發送成功")
-                      window.location.href("http://localhost:8079/finalTopic_5/Login")
+                  
                     }
                   })
                   .catch(error => {
