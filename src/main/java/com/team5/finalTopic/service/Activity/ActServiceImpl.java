@@ -49,8 +49,8 @@ public class ActServiceImpl implements ActService{
 		 }
 		
 	
-	public Activity findActivityById(Integer id) {
-		Optional<Activity> option = actRepository.findById(id);
+	public Activity findActivityByActivity_id(Integer activity_id) {
+		Optional<Activity> option = actRepository.findById(activity_id);
 		
 		if(option.isEmpty()) {
 			return null;
@@ -62,7 +62,7 @@ public class ActServiceImpl implements ActService{
 
 
 	public Page<Activity> findByPage(Integer pageNumber){
-		Pageable pgb = PageRequest.of(pageNumber-1, 3, Sort.Direction.DESC, "activity_date");
+		Pageable pgb = PageRequest.of(pageNumber-1, 3, Sort.Direction.DESC, "principle");
 		Page<Activity> page = actRepository.findAll(pgb);
 		return page;
 	}

@@ -41,11 +41,11 @@ public class BackActivityController {
 	@Autowired
 	private MultiService multiService;
 	
-//	@GetMapping("/activity")
-//	public String Home(Model model) {
-//	   
-//	    return "Activity/HomePage";
-//	}
+	@GetMapping("/backcontrol")
+	public String Home(Model model) {
+	   
+	    return "Activity/HomePage";
+	}
 	@PostMapping("/HomePage")
 	public String BackToHomePage(){
 		return "Activity/HomePage";
@@ -61,7 +61,8 @@ public class BackActivityController {
 	public String addActivity( @RequestParam("activity_id") Integer activity_id,
 							   @RequestParam("principle") String principle,
 	                           @RequestParam("activity_name") String activity_name,
-	                           @RequestParam("activity_date") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm") Date activity_date,	                           @RequestParam("activity_image") MultipartFile activity_image,
+	                           @RequestParam("activity_date") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm") Date activity_date,	                           
+	                           @RequestParam("activity_image") MultipartFile activity_image,
 	                           @RequestParam("attendance") int attendance,
 	                           @RequestParam("activity_cost") int activity_cost,
 	                           @RequestParam("activityDescription") String activityDescription) throws SQLException {
@@ -142,8 +143,14 @@ public class BackActivityController {
 		return "Activity/DeleteSuccess";
 		
 	}
-	
-	
+//	@GetMapping("/ButtonUpdate")
+//	public String ButtonUpdateById(@RequestParam("activity_id")Integer activity_id, Model model) {
+//		Activity msg = actService.findActivityByActivity_id(activity_id);
+//		model.addAttribute("messages",msg);
+//		return "Activity/editPage";
+//		
+//	}
+
 	@PostMapping("/CheckMultis")
 	public String Next(Model model) {
 	    model.addAttribute("multiList", multiService.findAll());
