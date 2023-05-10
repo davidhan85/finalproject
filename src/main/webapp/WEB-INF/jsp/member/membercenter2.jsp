@@ -49,7 +49,7 @@
         <a class="nav-link" href="#">個人資料</a>
       </li>
       <li class="nav-item text-center">
-        <a class="nav-link" href="#">修改密碼</a>
+        <a class="nav-link" href="${contextRoot}/changePwdPage">修改密碼</a>
       </li>
       <li class="nav-item text-center">
         <a class="nav-link" href="#">訂單紀錄</a>
@@ -121,6 +121,7 @@
     </div>
   </div>
 </div>
+<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi4jq7Y"
         crossorigin="anonymous"></script>

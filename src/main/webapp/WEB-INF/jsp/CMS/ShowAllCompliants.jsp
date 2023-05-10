@@ -9,7 +9,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>所有表單</title>
 <jsp:include page="../layout/sidebar.jsp"></jsp:include>
 </head>
 
@@ -78,7 +78,7 @@
 
 				<!-- DataTales Example -->
 				<div class="card shadow mb-4"
-					style="left: 10%; width: 90%; margin-top: 0%; position: absolute;">
+					style="left: 10%; width: 90%; margin-top: 0%; position: relative;">
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTable" width="100%"

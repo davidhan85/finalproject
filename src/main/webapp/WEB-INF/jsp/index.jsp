@@ -9,6 +9,7 @@
 <body>
 <jsp:include page="layout/navebar.jsp"></jsp:include>
  <h1></h1>
+ <jsp:include page="layout/footerbar.jsp"></jsp:include>
 </body>
-${memberbean.m_account}
+
 </html>

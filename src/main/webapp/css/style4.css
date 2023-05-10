@@ -1,0 +1,275 @@
+@import 'https://fonts.googleapis.com/css?family=Noto+Sans';
+
+body {
+	padding: 0;
+	margin: 0;
+	background: -moz-linear-gradient(-45deg, #183850 0, #183850 25%, #192C46 50%,
+			#22254C 75%, #22254C 100%);
+	background: -webkit-linear-gradient(-45deg, #183850 0, #183850 25%, #192C46 50%,
+			#22254C 75%, #22254C 100%);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: rgba(25, 147, 147, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgba(25, 147, 147, 0.2);
+}
+
+.chat-thread {
+	margin: 0px auto 0 auto;
+	padding: 0px 0px  0px  0px;
+	list-style: none;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scroll-behavior: smooth; /* 設定捲動行為為平滑 */
+}
+
+.chat-thread li {
+	position: relative;
+	clear: both;
+	display: inline-block;
+	padding: 16px 40px 16px 20px;
+	margin: 0 0 20px 0;
+	font: 16px/20px "Noto Sans", sans-serif;
+	border-radius: 10px;
+	background-color: rgba(25, 147, 147, 0.2);
+}
+
+/* Chat - Avatar */
+.chat-thread li:before {
+	position: absolute;
+	top: 0;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	content: "";
+}
+
+/* Chat - Speech Bubble Arrow */
+.chat-thread li:after {
+	position: absolute;
+	top: 15px;
+	content: "";
+	width: 0;
+	height: 0;
+	border-top: 15px solid rgba(25, 147, 147, 0.2);
+}
+
+.chat-myself {
+	animation: show-chat-even 0.15s 1 ease-in;
+	-moz-animation: show-chat-even 0.15s 1 ease-in;
+	-webkit-animation: show-chat-even 0.15s 1 ease-in;
+	float: right;
+	position: relative;
+	right: 70px;
+	color: #0EC879;
+}
+/* .chat-thread li:before {
+    position: absolute;
+    top: -20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    content: attr(data-username);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+} */
+
+.chat-thread li.chat-myself:before {
+	right: -150px;
+	 content: attr(data-username);
+	top: -20px;
+	width: 200px;
+	height: 50px;
+	position: absolute;
+	border-radius: 50%; 
+    white-space: nowrap;
+}
+
+.chat-thread li.chat-myself:after {
+	border-right: 15px solid transparent;
+	right: -15px;
+}
+
+.chat-other {
+	width: 40%;
+	animation: show-chat-odd 0.15s 1 ease-in;
+	-moz-animation: show-chat-odd 0.15s 1 ease-in;
+	-webkit-animation: show-chat-odd 0.15s 1 ease-in;
+	float: left;
+	position: relative;
+	/* 新增 position 屬性 */
+	left: 70px;
+	/* 使用 left 屬性調整與對話框的距離 */
+	color: #0AD5C1;
+	margin-top: 25px;
+	/* 調整聊天內容與下一則訊息的距離 */
+}
+
+.chat-thread li.chat-other:before {
+	content: attr(data-username);
+	left: 0px;
+	top: -20px;
+	width: 200px;
+	height: 50px;
+	position: absolute;
+	border-radius: 50%;
+}
+.profile-pic-right{
+	width: 45px;
+	height: 45px;
+	bottom: 10px;
+	border-radius: 50%;
+	object-fit: cover;
+	position: absolute;
+	right: -65px;
+}
+
+.profile-pic-left{
+	top: 0;
+	width: 45px;
+	height: 45px;
+	bottom: 10px;
+	border-radius: 50%;
+	object-fit: cover;
+	position: absolute;
+	left: -65px;
+}
+
+.chat-thread li.chat-other:after {
+	border-left: 15px solid transparent;
+	left: -14px;
+}
+
+.chat-window {
+	margin-top: 0;
+	position: fixed;
+	bottom: 15px;
+}
+
+.chat-window-message {
+	width: 100%;
+	height: 48px;
+	font: 32px/48px "Noto Sans", sans-serif;
+	background: none;
+	color: #0AD5C1;
+	border: 0;
+	border-bottom: 1px solid rgba(25, 147, 147, 0.2);
+	outline: none;
+}
+
+/* Small screens */
+@media all and (max-width: 767px) {
+	.chat-thread {
+		width: 90%;
+		height: 350px;
+	}
+
+	.chat-window {
+		left: 5%;
+		width: 90%;
+	}
+}
+
+/* Medium and large screens */
+@media all and (min-width: 768px) {
+	.chat-thread {
+		width: 40%;
+		height: 700px;
+	}
+
+	.chat-window {
+		left: 30%;
+		width: 40%;
+		bottom: 5px;
+	}
+}
+
+/* @
+keyframes show-chat-even { 0% {
+	margin-left: -480px;
+}
+
+100
+%
+{
+margin-left
+:
+0;
+}
+}
+@
+-moz-keyframes show-chat-even { 0% {
+	margin-left: -480px;
+}
+
+100
+%
+{
+margin-left
+:
+0;
+}
+}
+@
+-webkit-keyframes show-chat-even { 0% {
+	margin-left: -480px;
+}
+
+100
+%
+{
+margin-left
+:
+0;
+}
+}
+@
+keyframes show-chat-odd { 0% {
+	margin-right: -480px;
+}
+
+100
+%
+{
+margin-right
+:
+0;
+}
+}
+@
+-moz-keyframes show-chat-odd { 0% {
+	margin-right: -480px;
+}
+
+100
+%
+{
+margin-right
+:
+0;
+}
+}
+@
+-webkit-keyframes show-chat-odd { 0% {
+	margin-right: -480px;
+}
+100
+%
+{
+margin-right
+:
+0;
+}
+} */
