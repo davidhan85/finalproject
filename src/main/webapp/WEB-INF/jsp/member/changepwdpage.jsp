@@ -70,7 +70,7 @@
 </div>
 </div>
   </div>
-
+<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 <script>
 
     var pwd1=document.getElementById("newPassword");

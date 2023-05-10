@@ -136,7 +136,11 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 		return "redirect:/memberlist";
 	}
 
-
+	@GetMapping("/forgetpwdpage")
+	public String forgetpwdpage() {
+		
+		return "member/forgetpwdpage";	
+	}
 	@GetMapping(value = "/updatememberform/{m_number}")
 	public String showUpdateMemberForm(@PathVariable("m_number") Integer m_number,Model model) {
 		Optional<Member> byId = memberRepository.findById(m_number);

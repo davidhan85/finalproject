@@ -74,6 +74,7 @@
       <input type="password" id="password" placeholder="Enter password" name="password">
     </div>
     <button type="submit">登入</button>
+     <p>如果您忘記了密碼，請<a href="${contextRoot}/forgetpwdpage">點擊這裡</a>以重設密碼。</p>
     <c:if test="${not empty error}">
       <div class="alert-danger">
         <strong>錯誤:</strong>
