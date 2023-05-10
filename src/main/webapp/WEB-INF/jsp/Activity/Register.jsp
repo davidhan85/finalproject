@@ -13,20 +13,27 @@
 <jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <title>Insert title here</title>
-
+<script>
+    function showConfirmation() {
+        // 使用 confirm 函式顯示確認對話框
+        if (confirm("確定資訊正確嗎？要確定捏")) {
+            // 提交表單
+            document.getElementById("myForm").submit();
+        }
+    }
+</script>
 </head>
 
 <body>
-	<%-- 	<jsp:include page="../layout/navebar.jsp"></jsp:include> --%>
-	<section class="book_section layout_padding">
-		<div class="container">
-			<div class="heading_container" style="text-align: center;">
-				<h2>活動報名</h2>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form_container">
-						<form:form modelAttribute="111" action="${contextRoot}/store" method="post">
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="heading_container" style="text-align: center;">
+                <h2>活動報名</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form_container">
+                        <form:form id="myForm" modelAttribute="111" action="${contextRoot}/store" method="post" >
 
 							<%-- 							<form:input type="hidden" path="m_number.m_number" value="${memberss.} " /> --%>
 							<%-- 							<form:input type="number" path="id" readonly="true" value="${id}" /> --%>
@@ -59,7 +66,7 @@
 										style="text-align:center;" />
 								</div>
 								<div>
-									<input type="submit" value="儲存" style="float: left;" />
+									<input type="submit" value="儲存" style="float: left;" onclick="showConfirmation();"/>
 								</div>
 						</form:form>
 						<%-- 						<form:form modelAttribute="multiMember" --%>

@@ -28,17 +28,7 @@
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-<!-- 		<div class="collapse navbar-collapse" id="collapsibleNavbar"> -->
-<!-- 			<ul class="navbar-nav"> -->
-<%-- 				<li class="nav-item active"><form:form class="form-inline" --%>
-<%-- 						action="${contextRoot}/searching" method="get"> --%>
-<!-- 						<input class="form-control mr-sm-2" type="text" -->
-<!-- 							placeholder="輸入關鍵字" name="keyword" id="keyword" -->
-<%-- 							value="${keyword}" required> --%>
-<!-- 						<button class="btn btn-success" type="submit">搜尋</button> -->
-<%-- 					</form:form></li> --%>
-<!-- 			</ul> -->
-<!-- 		</div> -->
+
 	</nav>
 	<br>
 	<div class="container">

@@ -65,7 +65,7 @@
 			<hr class="sidebar-divider my-0"></li>
 
 		<!-- Nav Item - Utilities Collapse Menu -->
-		<li class="nav-item"><a class="nav-link collapsed" href="#"
+		<li class="nav-item"><a class="nav-link collapsed" href="${contextRoot}/backcontrol"
 			data-target="#collapseUtilities" aria-expanded="true"
 			aria-controls="collapseUtilities"> <i class="fas fa-fw fa-wrench"></i>
 				<span>活動系統</span>

@@ -1,18 +1,27 @@
 package com.team5.finalTopic.service.Activity;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.format.Printer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.team5.finalTopic.model.Activity.SignUp;
 import com.team5.finalTopic.model.Activity.SignupRepository;
@@ -77,24 +86,32 @@ public class SignupService {
 			
 			
 			
-//			public String ecpayCheckout() {
-//				
-//				String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
-//				
-//				AllInOne all = new AllInOne("");
-//				
-//				AioCheckOutALL obj = new AioCheckOutALL();
-//				obj.setMerchantTradeNo(uuId);
-//				obj.setMerchantTradeDate("2017/01/01 08:05:23");
-//				obj.setTotalAmount("50");
-//				obj.setTradeDesc("test Description");
-//				obj.setItemName("TestItem");
-//				obj.setReturnURL("http://211.23.128.214:5000");
-//				obj.setNeedExtraPaidInfo("N");
-//				String form = all.aioCheckOut(obj, null);
-//				
-//				return form;
-//			}
+//			public void ecpayCheckout(Model model , HttpServletRequest request , HttpServletResponse response , HttpSession session) throws IOException {
+//			
+//			String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
+//			SignUp ss = (SignUp) request.getAttribute("signup");
+//			
+//			
+//			AllInOne all = new AllInOne("");
+//			AioCheckOutDevide obj = new AioCheckOutDevide();
+//
+//			obj.setMerchantID("1");
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//			sdf.setLenient(false);
+////			obj.setMerchantTradeNo("1");// 設定交易編號
+//			obj.setMerchantTradeDate(sdf.format(new Date()));// 設定交易日期時間
+//			obj.setTotalAmount(ss.getAmounts().toString());// 設定交易金額
+//			obj.setTradeDesc("test Description");// 設定交易描述
+//			obj.setItemName("1001");// 設定商品名稱
+//			obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
+//			obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
+//			String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
+//			
+//			PrintWriter out = response.getWriter();
+//			response.setContentType("text/html");
+//			out.print(all.aioCheckOut(obj, null));
+//			
+//		}
 			
 
 			
@@ -102,21 +119,25 @@ public class SignupService {
 				
 				String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
 				
+				SignUp ss = new SignUp();
+				
 				AllInOne all = new AllInOne("");
 				
-				AioCheckOutALL obj = new AioCheckOutALL();
+				AioCheckOutDevide obj = new AioCheckOutDevide();
 				obj.setMerchantTradeNo(uuId);// 設定交易編號
 				obj.setMerchantTradeDate("2017/01/01 08:05:23");// 設定交易日期時間
-				obj.setTotalAmount("50");// 設定交易金額
+				obj.setTotalAmount("100");// 設定交易金額
 				obj.setTradeDesc("test Description");// 設定交易描述
-				obj.setItemName("TestItem");// 設定商品名稱
-				obj.setReturnURL("http://localhost:8079/finalTopic_5/");// 設定付款完成後返回的網址
+				obj.setItemName("1001");// 設定商品名稱
+				obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
 				obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
 				String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
 
 				
 				return form;
 			}
+			
+			
 			// 建立 AllInOne 物件
 //			AllInOne all = new AllInOne("");
 //

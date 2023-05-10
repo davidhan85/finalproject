@@ -1,6 +1,15 @@
 package com.team5.finalTopic.controller.Activity;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,12 +25,16 @@ import com.team5.finalTopic.model.Activity.ActRepository;
 import com.team5.finalTopic.model.Activity.Activity;
 import com.team5.finalTopic.model.Activity.MultiMember;
 import com.team5.finalTopic.model.Activity.MultiMemberRepository;
+import com.team5.finalTopic.model.Activity.SignUp;
 import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.model.member.MemberRepository;
 import com.team5.finalTopic.service.Activity.ActServiceImpl;
 import com.team5.finalTopic.service.Activity.MultiService;
 import com.team5.finalTopic.service.Activity.SignupService;
 import com.team5.finalTopic.service.member.MemberService;
+
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutDevide;
 
 @Controller
 public class FrontActivityController {
@@ -60,17 +73,7 @@ public class FrontActivityController {
 		return "Activity/search";		
 	}
 	
-//	//回傳前3筆資料
-//		@ResponseBody
-//		@PostMapping("/api/messages/post")
-//		public Page<Messages> postMessageApi(@RequestBody Messages msg){
-//			//	@RequestBody是將Java物件轉成JSON
-//			mService.addMessage(msg);//新增
-//			
-//			Page<Messages> page = mService.findByPage(1);//第1頁，回傳前3筆資料
-//			
-//			return page;
-//		}
+
 
 	// 關鍵字查詢
 	@GetMapping("/searching")
@@ -120,35 +123,76 @@ public class FrontActivityController {
 
 
 //	@GetMapping("/ButtonUpdate")
-//	public String ButtonUpdateById(@RequestParam("activity_id")Integer activity_id,Model model) {
+//	public String ButtonUpdateById(@RequestParam("id") Integer id,Model model) {
 //		Activity msg = actService.findActivityByActivity_id(activity_id);
-//		
+//		List<MultiMember> multiMember = multiRepository.findDataByMemberNumber(id);
+
 //		model.addAttribute("messages",msg);
 //		return "Activity/editPage";
 //		
 //	}
 	
+
 	
+
 	
-	
-	
-	
-	
-	
-	
-	
-	
+//	public void ecpayCheckout(Model model , HttpServletRequest request , HttpServletResponse response , HttpSession session) throws IOException {
+//		
+//		String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
+//		SignUp ss = (SignUp) request.getAttribute("signup");
+//		
+//		
+//		AllInOne all = new AllInOne("");
+//		AioCheckOutDevide obj = new AioCheckOutDevide();
+//
+//		obj.setMerchantID("1");
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		sdf.setLenient(false);
+////		obj.setMerchantTradeNo("1");// 設定交易編號
+//		obj.setMerchantTradeDate(sdf.format(new Date()));// 設定交易日期時間
+//		obj.setTotalAmount(ss.getAmounts().toString());// 設定交易金額
+//		obj.setTradeDesc("test Description");// 設定交易描述
+//		obj.setItemName("1001");// 設定商品名稱
+//		obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
+//		obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
+//		String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
+//		
+//		PrintWriter out = response.getWriter();
+//		response.setContentType("text/html");
+//		out.print(all.aioCheckOut(obj, null));
+//		
 	
 	@ResponseBody
 	@PostMapping("/ecpayCheckout")
 	public String ecpayCheckout() {
+		
 		String aioCheckOutALLForm = signService.ecpayCheckout();
 		
 		return aioCheckOutALLForm;
 	}
 	
 	
+	@PostMapping("/ReturnURL")
+	public void returnURL(@RequestParam("MerchantTradeNo") String MerchantTradeNo , @RequestParam("RtnCode") int RtnCode , @RequestParam("TradeAmt") int TradeAmt, HttpServletRequest request) {
+		System.out.println("123");
+		if((request.getRemoteAddr().equalsIgnoreCase("175.99.72.1")
+				|| request.getRemoteAddr().equalsIgnoreCase("175.99.72.11")
+				||  request.getRemoteAddr().equalsIgnoreCase("175.99.72.24")
+				|| request.getRemoteAddr().equalsIgnoreCase("175.99.72.28")
+				||  request.getRemoteAddr().equalsIgnoreCase("175.99.72.32")) && RtnCode ==1) {
+			String IdStr = MerchantTradeNo.substring(13);
+			int ssId = Integer.parseInt(IdStr);
+			SignUp ss = signService.findSignUpById(ssId);   
+			ss.setPaystatus("已繳款");
+		}
+		
+		
+	}
 	
+	
+//	@PostMapping("returnURL")
+//	public void returnURL(@RequestParam(""))
+//	
 
 	public FrontActivityController() {
 	}

@@ -40,7 +40,7 @@
 					</form:form>
 					</li>
 					<div class="ml-auto">
-						<form action="${contextRoot}/registration" method="get">
+						<form action="${contextRoot}/registration" method="post">
 <!-- 							<input type="hidden" name="activity_id" -->
 <%-- 								value="${activity.activity_id}"> --%>
 							<button type="submit" class="btn btn-primary">我要報名</button>
