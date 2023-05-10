@@ -6,10 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page import="com.team5.finalTopic.model.member.Member" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <html lang="zh-TW">
 <head>
@@ -70,43 +70,39 @@
         <%-- 顯示會員頭像 --%>
         <img class="avatar" src="<c:url value='/memberlist/${memberbean.m_number}' />" alt="member image" />
         <%-- 顯示會員帳號 --%>
-        <h2 class="mt-3"><%= member.getM_account() %></h2>
+        <h2 class="mt-3">${memberbean.m_account}</h2>
       </div>
     </div>
     <div class="col-md-8">
       <table class="table table-hover">
         <tbody>
         <tr>
-          <td class="font-weight-bold">編號</td>
-          <td><%= member.getM_number() %></td>
-        </tr>
-        <tr>
           <td class="font-weight-bold">帳號</td>
-          <td><%= member.getM_account() %></td>
+          <td>${memberbean.m_account}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">姓名</td>
-          <td><%= member.getM_name() %></td>
+          <td>${memberbean.m_name}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">手機</td>
-          <td><%= member.getM_phone() %></td>
+          <td>${memberbean.m_phone}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">地址</td>
-          <td><%= member.getM_address() %></td>
+          <td>${memberbean.m_address}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">信箱</td>
-          <td><%= member.getM_email() %></td>
+          <td>${memberbean.m_email}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">生日</td>
-          <td><%= member.getM_birth() %></td>
+          <td><fmt:formatDate value="${memberbean.m_birth}"  pattern="yyyy-MM-dd"/></td>
         </tr>
         <tr>
           <td class="font-weight-bold">身分證</td>
-          <td><%= member.getM_id() %></td>
+          <td>${memberbean.m_id}</td>
         </tr>
         <tr>
           <td></td> <!-- 空的 td 元素，用來將更新按鈕置中 -->

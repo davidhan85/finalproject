@@ -30,7 +30,7 @@
         <div class="form-group row">
             <label for="m_password" class="col-sm-2 col-form-label">密碼：</label>
             <div class="col-sm-10">
-                <form:input path="m_password" required="true" readonly="true" class="form-control" />
+                <form:input path="m_password" required="true" readonly="true" class="form-control" type=password />
             </div>
         </div>
 

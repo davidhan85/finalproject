@@ -18,7 +18,6 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
-    @ResponseBody
     public  void sendRegistrationConfirmationEmail(Member member , String confirmationUrl){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(member.getM_email());
@@ -28,4 +27,15 @@ public class EmailService {
         javaMailSender.send(message);
 
     }
+
+	public void sendForgotPasswordEmail(Member member, String resetUrl) {
+		 SimpleMailMessage message = new SimpleMailMessage();
+	        message.setTo(member.getM_email());
+	        System.out.println(message);
+	        message.setSubject("這裡是書贏遊你來決定的重設密碼驗證信");
+	        message.setText("親愛的"+member.getM_account()+",\n\n"+"這是您的重設密碼的驗證信!請點擊以下連結進行認證:\n\n"+resetUrl+"\n\n"+"Best regards,\n");
+	        javaMailSender.send(message);
+		
+	}
+    
 }

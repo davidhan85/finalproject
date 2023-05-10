@@ -40,7 +40,7 @@
           </form>
           <hr>
           <div class="text-center">
-            <a href="#">忘記密碼</a>
+            <a href="${contextRoot}/forgetpwdpage">忘記密碼</a>
           </div>
         </div>
       </div>

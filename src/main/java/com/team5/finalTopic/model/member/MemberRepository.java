@@ -18,5 +18,8 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
         @Query("from Member  where m_email=:m_email" )
 		Member findByM_email(@Param(value = "m_email") String m_email);
         
+        @Query("from Member  where m_verify=:m_verify")
+        Member findByM_verify(@Param(value = "m_verify") String m_verify);
+        
       
 }
