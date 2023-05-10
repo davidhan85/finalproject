@@ -147,7 +147,13 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 		model.addAttribute("member", byId);
 		return "member/updatemember";
 	}
-
+	
+	@GetMapping("/forgetpwdpage")
+	public String forgetpwdpage() {
+		
+		return "member/forgetpwdpage";	
+	}
+	
 	@PutMapping (value = "/updatemember/{m_number}")
 	public String updateMember(@PathVariable Integer m_number , Member member){
 		boolean isInsert = (member.getM_number() != null); //判斷是否為insert
