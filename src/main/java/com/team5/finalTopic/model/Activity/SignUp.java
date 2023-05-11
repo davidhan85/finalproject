@@ -5,11 +5,13 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -72,7 +74,9 @@ public class SignUp {
 	@ManyToOne(cascade = CascadeType.ALL) 
 	@JoinColumn(name = "member_number")
 	private Member member;
-
+	
+	
+	
 
 	public Member getMember() {
 		return member;
@@ -119,6 +123,19 @@ public class SignUp {
 
 	public void setPaystatus(String paystatus) {
 		this.paystatus = paystatus;
+	}
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="ordernumber")//這個ordernumber就是做MultiMember跟SignUp的外來鍵，這樣子ordernumber就會自動建立在Signup裡面
+	private MultiMember memberSign;
+	
+	
+	public MultiMember getMemberSign() {
+		return memberSign;
+	}
+
+
+	public void setMemberSign(MultiMember memberSign) {
+		this.memberSign = memberSign;
 	}
 
 

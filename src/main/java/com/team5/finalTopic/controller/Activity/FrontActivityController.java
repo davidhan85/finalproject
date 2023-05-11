@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import com.team5.finalTopic.model.Activity.Activity;
 import com.team5.finalTopic.model.Activity.MultiMember;
 import com.team5.finalTopic.model.Activity.MultiMemberRepository;
 import com.team5.finalTopic.model.Activity.SignUp;
+import com.team5.finalTopic.model.Activity.SignupRepository;
 import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.model.member.MemberRepository;
 import com.team5.finalTopic.service.Activity.ActServiceImpl;
@@ -52,6 +54,8 @@ public class FrontActivityController {
 
 	@Autowired
 	private MultiMemberRepository multiRepository;
+	@Autowired
+	private SignupRepository signRepository;
 
 	@Autowired
 	private MultiService multiService;
@@ -135,41 +139,75 @@ public class FrontActivityController {
 
 	
 
-	
-//	public void ecpayCheckout(Model model , HttpServletRequest request , HttpServletResponse response , HttpSession session) throws IOException {
-//		
-//		String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
-//		SignUp ss = (SignUp) request.getAttribute("signup");
-//		
-//		
-//		AllInOne all = new AllInOne("");
-//		AioCheckOutDevide obj = new AioCheckOutDevide();
-//
-//		obj.setMerchantID("1");
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//		sdf.setLenient(false);
-////		obj.setMerchantTradeNo("1");// 設定交易編號
-//		obj.setMerchantTradeDate(sdf.format(new Date()));// 設定交易日期時間
-//		obj.setTotalAmount(ss.getAmounts().toString());// 設定交易金額
-//		obj.setTradeDesc("test Description");// 設定交易描述
-//		obj.setItemName("1001");// 設定商品名稱
-//		obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
-//		obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
-//		String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
-//		
-//		PrintWriter out = response.getWriter();
-//		response.setContentType("text/html");
-//		out.print(all.aioCheckOut(obj, null));
-//		
-	
 	@ResponseBody
 	@PostMapping("/ecpayCheckout")
-	public String ecpayCheckout() {
+	public String ecpayCheckout (SignUp signup,@RequestParam(name="member_number") Integer membernumber,@RequestParam(name="activity_id") Integer activity_id,@RequestParam(name="id") Integer id)  {
 		
-		String aioCheckOutALLForm = signService.ecpayCheckout();
+		String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
 		
-		return aioCheckOutALLForm;
+		
+		AllInOne all = new AllInOne("");
+		AioCheckOutDevide obj = new AioCheckOutDevide();
+
+		obj.setMerchantID("1");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		sdf.setLenient(false);
+		obj.setMerchantTradeNo(uuId);// 設定交易編號
+		obj.setMerchantTradeDate(sdf.format(new Date()));// 設定交易日期時間
+		obj.setTotalAmount("100");// 設定交易金額
+		obj.setTradeDesc("test Description");// 設定交易描述
+		obj.setItemName("1001");// 設定商品名稱
+		obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
+		System.out.println("123");
+		Member member_number = MR.findById(membernumber).get();	
+		System.out.println("123");
+		Activity activityId = actRepository.findById(activity_id).get();
+		MultiMember signid = multiRepository.findById(id).get();
+		System.out.println("1111");
+		signup.setMember(member_number);
+		signup.setSignactivity(activityId);
+		signup.setMemberSign(signid);
+		signup.setAmounts(100);
+		signup.setPaystatus("已繳款");
+		signup.setSignup_date(new Date());
+//		signup.setSignactivity(activityId);
+		signService.addSignup(signup);
+		System.out.println("11111");
+		
+		System.out.println("11111");
+		obj.setOrderResultURL("http://localhost:8079/finalTopic_5/paid?id="+membernumber);
+		obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
+		String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
+		return form;
+
+		}
+		
+	@PostMapping("/paid")
+	public String Paid(@RequestParam("id") Integer id,Model model) {
+//		@ModelAttribute("multiMember")
+		System.out.println(id);
+//		SignUp sign = new SignUp();
+		System.out.println("123");
+//		Activity activityId = actRepository.findById(sign.getSignactivity().getActivity_id()).orElse(null);
+//		sign.setSignactivity(activityId);
+//		sign.setAmounts(100);
+//		sign.setPaystatus("已繳款");
+//		signService.addSignup(sign);
+		List<SignUp> signMember = signRepository.findSignupByMemberNumber(id);
+		
+		
+		model.addAttribute("sign",signMember);
+		return "Activity/signList";
 	}
+	
+//	@ResponseBody
+//	@PostMapping("/ecpayCheckout")
+//	public String ecpayCheckout() {
+//		
+//		String aioCheckOutALLForm = signService.ecpayCheckout();
+//		
+//		return aioCheckOutALLForm;
+//	}
 	
 	
 	@PostMapping("/ReturnURL")

@@ -86,10 +86,9 @@ public class SignupService {
 			
 			
 			
-//			public void ecpayCheckout(Model model , HttpServletRequest request , HttpServletResponse response , HttpSession session) throws IOException {
+//			public void ecpayCheckout(Model model ,SignUp sign, Integer amounts) throws IOException {
 //			
 //			String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
-//			SignUp ss = (SignUp) request.getAttribute("signup");
 //			
 //			
 //			AllInOne all = new AllInOne("");
@@ -100,42 +99,45 @@ public class SignupService {
 //			sdf.setLenient(false);
 ////			obj.setMerchantTradeNo("1");// 設定交易編號
 //			obj.setMerchantTradeDate(sdf.format(new Date()));// 設定交易日期時間
-//			obj.setTotalAmount(ss.getAmounts().toString());// 設定交易金額
+//			obj.setTotalAmount(sign.getAmounts().toString());// 設定交易金額
 //			obj.setTradeDesc("test Description");// 設定交易描述
 //			obj.setItemName("1001");// 設定商品名稱
-//			obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
+////			obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
+//			obj.setOrderResultURL("http://localhost:8079/finalTopic_5/next?id=");
 //			obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
 //			String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
-//			
-//			PrintWriter out = response.getWriter();
-//			response.setContentType("text/html");
-//			out.print(all.aioCheckOut(obj, null));
+//			return form;
+////			PrintWriter out = response.getWriter();
+////			response.setContentType("text/html");
+////			out.print(all.aioCheckOut(obj, null));
 //			
 //		}
 			
 
 			
-			public String ecpayCheckout() {
-				
-				String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
-				
-				SignUp ss = new SignUp();
-				
-				AllInOne all = new AllInOne("");
-				
-				AioCheckOutDevide obj = new AioCheckOutDevide();
-				obj.setMerchantTradeNo(uuId);// 設定交易編號
-				obj.setMerchantTradeDate("2017/01/01 08:05:23");// 設定交易日期時間
-				obj.setTotalAmount("100");// 設定交易金額
-				obj.setTradeDesc("test Description");// 設定交易描述
-				obj.setItemName("1001");// 設定商品名稱
-				obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
-				obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
-				String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
-
-				
-				return form;
-			}
+//			public String ecpayCheckout() {
+//				
+//				String uuId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
+//				
+//				SignUp ss = new SignUp();
+//				
+//				AllInOne all = new AllInOne("");
+//				
+//				AioCheckOutDevide obj = new AioCheckOutDevide();
+//				obj.setMerchantTradeNo(uuId);// 設定交易編號
+//				obj.setMerchantTradeDate("2017/01/01 08:05:23");// 設定交易日期時間
+//				obj.setTotalAmount("100");// 設定交易金額
+//				obj.setTradeDesc("test Description");// 設定交易描述
+//				obj.setItemName("1001");// 設定商品名稱
+////				obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
+//				obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
+////				sign.get
+//				obj.setOrderResultURL("http://localhost:8079/finalTopic_5/next?id=");
+//				String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
+//
+//				
+//				return form;
+//			}
 			
 			
 			// 建立 AllInOne 物件

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.team5.finalTopic.model.member.Member;
@@ -78,6 +79,17 @@ public class MultiMember {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@OneToOne(mappedBy = "memberSign")
+	private SignUp sign;
+	
+	public SignUp getSign() {
+		return sign;
+	}
+
+	public void setSign(SignUp sign) {
+		this.sign = sign;
 	}
 
 	public MultiMember() {

@@ -37,36 +37,33 @@
 				<tr>
 					<th>會員編號</th>
 					<th>活動編號</th>
-					<th>報名者</th>
-					<th>報名者郵件</th>
-					<th>報名ID</th>
+					<th>報名者ID</th>					
+					<th>報名日期</th>
+					<th>報名金額</th>
 					<th>付款狀態</th>
 
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${multis}" var="multiLists">
+				<c:forEach items="${sign}" var="signs">
 					<tr>
 <%-- 						<td>${multiLists.memberss.m_number}</td> --%>
-						<td>${multiLists.memberss.m_number}</td>
-						<td>${multiLists.activity.activity_id}</td>
-						<td>${multiLists.name}</td>
-						<td>${multiLists.email}</td>
-						<td>${multiLists.id}</td>
-						<td>
-<%-- 							<form action="${contextRoot}/ecpayCheckout" method="get"> --%>
-							<form action="${contextRoot}/ecpayCheckout" method="post">
-								<input type="hidden" name="member_number"
-									value="${multiLists.memberss.m_number}">
-								<input type="hidden" name="activity_id"
-									value="${multiLists.activity.activity_id}">
-								<input type="hidden" name="id"
-									value="${multiLists.id}">
-									
-									 <input type="submit"
-									value="未付款" class="btn btn-primary">
-							</form>
-						</td>
+						<td>${signs.member.m_number}</td>
+						<td>${signs.signactivity.activity_id}</td>
+						<td>${signs.memberSign.id}</td>
+<%-- 						<td>${signs.name}</td> --%>
+<%-- 						<td>${signs.email}</td> --%>
+						<td>${signs.signup_date}</td>
+						<td>${signs.amounts}</td>
+						<td>${signs.paystatus}</td>
+<!-- 						<td> -->
+<%-- <%-- 							<form action="${contextRoot}/ecpayCheckout" method="get"> --%> 
+<%-- 							<form action="${contextRoot}/ecpayCheckout" method="post"> --%>
+<!-- 								<input type="hidden" name="member_number" -->
+<%-- 									value="${multiLists.memberss.m_number}"> <input type="submit" --%>
+<!-- 									value="已付款" class="btn btn-primary"> -->
+<%-- 							</form> --%>
+<!-- 						</td> -->
 
 						<!-- 						<td> -->
 						<%-- 							<form action="${contextRoot}/registration" method="get"> --%>
@@ -76,7 +73,7 @@
 						<!-- 								<input type="submit" value="我要報名" class="btn btn-primary"> -->
 						<%-- 							</form> --%>
 						<!-- 						</td> -->
-					</tr>
+					</tr>	
 				</c:forEach>
 			</tbody>
 		</table>
