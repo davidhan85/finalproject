@@ -43,13 +43,22 @@
                 </div>
               </div>
             </div>
-          </div>
-          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmIxFfdJPyB6UksJXn3Z"></script>
-          <jsp:include page="../layout/footerbar.jsp"></jsp:include>
+            <div class="form-group">
+              <label for="password">密碼:</label>
+              <input type="password" class="form-control" id="password" placeholder="請輸入您的密碼" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">登入</button>
+            </form>
+            <hr>
+            <div class="text-center">
+              <a href="${contextRoot}/forgetpwdpage">忘記密碼</a>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+              integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+              crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+              integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmIxFfdJPyB6UksJXn3Z"></script>
+            <jsp:include page="../layout/footerbar.jsp"></jsp:include>
         </body>
 
         </html>

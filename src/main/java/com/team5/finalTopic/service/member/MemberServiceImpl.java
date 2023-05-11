@@ -72,6 +72,7 @@ public class MemberServiceImpl  implements MemberService {
         return memberRepository.findByM_account(m_account);
     }
     
+    
     //把抓出來的account轉成Boolen傳回去
     @Override
     @ResponseBody
@@ -82,8 +83,6 @@ public class MemberServiceImpl  implements MemberService {
     	else
     		return false;
     }
-
-
 
     @Override
     public Member savePictureInDB(Member member, Boolean isInsert) {
@@ -126,7 +125,15 @@ public class MemberServiceImpl  implements MemberService {
         }else {
             return null;
         }
-
-
     }
+
+	@Override
+	public Member findByM_email(String m_email) {
+		return memberRepository.findByM_email(m_email);	
+	}
+
+	@Override
+	public Member findByM_verify(String m_verify) {
+		return memberRepository.findByM_verify(m_verify);
+	}
 }
