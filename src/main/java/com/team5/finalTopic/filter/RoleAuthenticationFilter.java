@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.team5.finalTopic.model.member.Member;
+
 @Component
 public class RoleAuthenticationFilter extends OncePerRequestFilter  {
        
@@ -20,28 +22,18 @@ public class RoleAuthenticationFilter extends OncePerRequestFilter  {
 	@Override
 	public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		String role=request.getParameter("m_Role");
+		Member member=(Member) request.getSession().getAttribute("memberbean");
+		String role= member.getM_Role();
 		System.out.println(role);
 		String path=request.getRequestURI();
 		System.out.println("啟動");	
 		System.out.println("現在的path是"+path);
-		if(role==null) {
-			filterChain.doFilter(request, response);
-			return;
-		}else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-		}
-		if(role.equals(ADMIN_ROLE)) {
-			filterChain.doFilter(request, response);
-		}else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-		}
-		
-		if(path.equals("finalTopic_5/CMS")&&role!="admin") {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			return;
-		}
-		
-		
+		 if (role != null && role.equals(ADMIN_ROLE)) {
+	            // 只有角色為"admin"的使用者才可以進入CMS
+	            filterChain.doFilter(request, response);
+	        } else {
+	            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+	        }
+	 		
 	}
 }

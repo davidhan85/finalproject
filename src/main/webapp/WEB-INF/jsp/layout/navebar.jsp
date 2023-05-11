@@ -86,8 +86,10 @@
 													<li class="nav-item"><a class="nav-link"
 															href="${contextRoot}/checkout">登出</a></li>
 												</c:if>
+												<c:if test="${not empty memberbean}">
 												<li class="nav-item"><a class="nav-link" href="${contextRoot}/CMS">後台系統
 													</a></li>
+													</c:if>
 											</ul>
 
 
