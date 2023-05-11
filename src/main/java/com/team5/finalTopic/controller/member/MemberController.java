@@ -176,8 +176,8 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 		boolean isInsert = (member.getM_number() != null); //判斷是否為insert
 		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
 		member1.setM_number(m_number);
-		memberService.save(member1);
-		return "redirect:/memberlist";
+		memberService.updateNoEncoding(member1);
+		return "redirect:/membercenter";
 	}
 
 	@GetMapping(value = "/changePwdPage")
@@ -223,6 +223,20 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 			return ResponseEntity.status(HttpStatus.OK).body("此帳號已有人使用");
 		}else {
 			return ResponseEntity.status(HttpStatus.OK).body("此帳號可以使用");
+		}
+
+	}
+	
+	@GetMapping("/existsEmail")
+	@ResponseBody
+	public ResponseEntity<?> existsEmail(@RequestBody @RequestParam("email") String email ){
+		Boolean existsemail=memberService.existsByM_email(email);
+		System.out.println(email);
+		System.out.println(existsemail);
+		if(existsemail) {
+			return ResponseEntity.status(HttpStatus.OK).body("此信箱已有人使用");
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body("此信箱可以使用");
 		}
 
 	}
