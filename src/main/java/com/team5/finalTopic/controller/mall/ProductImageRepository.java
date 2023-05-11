@@ -8,7 +8,7 @@ import com.team5.finalTopic.model.mall.ProductImage;
 
 public interface ProductImageRepository extends JpaRepository<ProductImage,Integer> {
 	
-@Query("select pi from ProductImage pi where pi.listedProducts.ProductId=:id")
+@Query("select pi from ProductImage pi where pi.listedProducts.productId=:id")
 ProductImage findImage (@Param("id") Integer id);
 	
 	

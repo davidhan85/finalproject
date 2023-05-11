@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -31,6 +32,7 @@ public class ProductImage {
 
 		
 	    @OneToOne(mappedBy = "productImage",cascade = CascadeType.ALL) //ProductImageId參考
+		@JsonIgnoreProperties("productImage")
 	    private ListedProduct listedProducts;
 	    
 	    		

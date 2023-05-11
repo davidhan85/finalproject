@@ -55,7 +55,7 @@
 					<div class="form-group">
 						<label for="productCategory">產品分類:</label>
 						<form:select class="form-control"
-							path="ProductCategorynumber.ProductCategorynumber"
+							path="productCategoryNumber.productCategoryNumber"
 							id="productCategory" name="productCategory">
 							<option value="1">遊戲軟體</option>
 							<option value="2">周邊</option>

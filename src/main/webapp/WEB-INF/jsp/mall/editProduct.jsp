@@ -63,7 +63,7 @@
 						<tr>
 							<td><label for="productCategory">產品分類:</label></td>
 							<td><form:select class="form-control" id="productCategory"
-								name="productCategory" path="ProductCategorynumber">
+								name="productCategory" path="productCategoryNumber">
 									<option value="1">遊戲軟體</option>
 									<option value="2">周邊</option>
 									<option value="3">書籍</option>
@@ -101,7 +101,7 @@
 						</tr>
 
 						<tr>
-							<td><label for="ProductImage">上傳圖片:</label></td>
+							<td><label for="productImage">上傳圖片:</label></td>
 							<td><form:input class="form-control" type="file"
 								path="imgFile"/></td>
 						</tr>
