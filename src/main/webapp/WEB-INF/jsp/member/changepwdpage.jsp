@@ -16,10 +16,23 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
             integrity="sha512-JBO3qQ0M5rMfRUzRdjst9X+5ScdQu0vGeiG3OWly/m3HTqImlHmdFAvzCZ6OTxg9XOj6YH/C6l09Ug2+yhh6Kw=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <style>
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              position: relative;
+            }
+
+            .content {
+              min-height: 50%;
+              padding-bottom: 50px; /* 頁面底部footer的高度 */
+            }
+          </style>
         </head>
         </head>
 
-        <body>
+        <body style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2128&amp;q=80')">
           <jsp:include page="../layout/navebar.jsp"></jsp:include>
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="${contextRoot}/membercenter">會員中心</a>
@@ -41,6 +54,7 @@
               </ul>
             </div>
           </nav>
+          <div class="content">
           <div class="container mt-4">
             <div class="row justify-content-center">
               <div class="col-md-6">
@@ -71,7 +85,7 @@
               </div>
             </div>
           </div>
-
+          </div>
           <script>
 
             var pwd1 = document.getElementById("newPassword");

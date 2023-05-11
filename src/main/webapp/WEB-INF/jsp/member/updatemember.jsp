@@ -26,7 +26,7 @@
                 </style>
             </head>
 
-            <body>
+            <body style="background-image: url('https://images.unsplash.com/photo-1528460033278-a6ba57020470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3870&q=80')">
                 <jsp:include page="../layout/navebar.jsp"></jsp:include>
                 <%--<jsp:include page="../layout/navebar.jsp"></jsp:include>--%>
                     <div class="container my-5">
