@@ -86,6 +86,7 @@
                         <div class="col-md-6">
                           <form:input path="m_email" type="email" required="true" id="email" class="form-control" />
                           <span id="emailError" ></span>
+                           <label id="emailMessage"></label>
                         </div>
                       </div>
 
@@ -192,6 +193,19 @@
                 } else {
                   document.getElementById("emailError").innerHTML = "";
                 }
+                
+                fetch('${contextRoot}/existsEmail?email=' + email)
+                .then(response => response.text())
+                .then(data => {
+                  if (data === "此信箱已有人使用") {
+                    document.getElementById("emailError").innerHTML = "此信箱已被註冊"
+                  } else {
+                    document.getElementById("emailMessage").innerHTML = "此信箱可以使用"                  
+                  }
+                })
+                .catch(error => {
+                  console.error("發生錯誤", error)
+                })
 
                 if (!idRegex.test(id)) {
                   document.getElementById("idError").innerHTML = "身分證字號格式不正確";

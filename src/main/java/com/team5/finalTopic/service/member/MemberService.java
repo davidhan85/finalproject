@@ -27,11 +27,13 @@ public interface MemberService {
     public Member findByM_email(String m_email);
 
     //檢查資料庫內是否已經有此帳號
-    public Boolean existsByM_account(String m_account);
+    public Boolean existsByM_email(String m_email);
 
     public Member findByM_account(String m_account);
     
     public Member findByM_verify(String m_verify);
+    
+    public Boolean existsByM_account(String m_account);
 
     //把大頭貼存進資料庫
     public Member savePictureInDB(Member member,Boolean isInsert);
