@@ -35,7 +35,9 @@
 				<!-- end of col -->
 				<div class="col-lg-6" style="position: absolute; left: 35%;">
 					<div class="button-container">
-						<a class="btn-solid-lg page-scroll"
+						<a class="btn-solid-lg page-scroll" href="${contextRoot}/miniGame"
+							style="background-color:blue;">小遊戲</a> <a
+							class="btn-solid-lg page-scroll"
 							href="${contextRoot}/CustomerComplaints"
 							style="background-color: red;">聯絡表單</a> <a
 							class="btn-solid-lg page-scroll" href="chat">真人客服</a> <a
