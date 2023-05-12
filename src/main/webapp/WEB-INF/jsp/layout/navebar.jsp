@@ -86,7 +86,7 @@
 													<li class="nav-item"><a class="nav-link"
 															href="${contextRoot}/checkout">登出</a></li>
 												</c:if>
-												<c:if test="${not empty memberbean}">
+												<c:if test="${sessionScope.memberbean.m_Role eq'adaim'}">
 												<li class="nav-item"><a class="nav-link" href="${contextRoot}/CMS">後台系統
 													</a></li>
 													</c:if>
@@ -104,7 +104,7 @@
 															class="fa fa-user" aria-hidden="true"></i>
 													</a>
 												</c:if>
-												</a> <a class="cart_link" href="${contextRoot}/shoppingcart"> <svg
+												 <a class="cart_link" href="${contextRoot}/shoppingcart"> <svg
 														version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
 														xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 														viewBox="0 0 456.029 456.029"

@@ -15,6 +15,7 @@ public class PageController {
 	@Autowired
 	public MemberService memberService;
 
+	
 	@GetMapping("/")
 	public String home(HttpSession session) {
 		Member member=(Member) session.getAttribute("memberbean");

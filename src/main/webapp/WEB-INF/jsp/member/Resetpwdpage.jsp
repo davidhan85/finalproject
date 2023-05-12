@@ -6,18 +6,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="UTF-8">
 <title>重設密碼</title>
+ <!-- 引入 Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style >
+  html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+.content {
+	min-height: 53%;
+	padding-bottom: 50px; /* 頁面底部footer的高度 */
+}
+label{
+font-size: 24px;
+font-color:black;
+}
+  </style>
 </head>
-<body>
+<body style="background-image: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80')">
 <jsp:include page="../layout/navebar.jsp"></jsp:include>
-	<form:form method="Get" action="${contextRoot}/resetpwd">
-	<input type="hidden" name="id" value="${member.m_number}">
-	<label for="password">新密碼:</label>
-	<input type="password" name="password" id="password">
-	<span id="passwordError" ></span>
-	<button type="submit" id="submit">送出</button>				
-	</form:form>
+			<div class="content">
+	 <div class="container mt-4">
+    <form method="GET" action="${contextRoot}/resetpwd">
+      <input type="hidden" name="id" value="${member.m_number}">
+      <div class="form-group">
+        <label for="password">新密碼：</label>
+        <input type="password" class="form-control" name="password" id="password">     
+        <small class="text-danger" id="passwordError"></small>
+      </div>
+      <button type="submit" class="btn btn-primary">送出</button>
+    </form>
+  </div>
+</div>
 	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 	<script>
 	function submitForm() {
@@ -34,7 +60,8 @@
 	 document.querySelector('#password').addEventListener('blur', function (event
      ) {
        submitForm();
-     })
+     })      
 	</script>
+	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
