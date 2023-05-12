@@ -254,9 +254,9 @@
                                 } else if (cpuScore > 21) {
                                     message = 'CPU爆了！';
                                 } else if (playerScore > cpuScore) {
-                                    message += '恭喜！';
+                                    message += '你贏了！';
                                 } else if (playerScore < cpuScore) {
-                                    message += '可惜！';
+                                    message += '你輸了！';
                                 } else {
                                     message += '平手！';
                                 }
@@ -324,9 +324,11 @@
 
                                     const score = getScore(playerCards);
                                     //牌爆掉後回傳結果
-                                    if (score > 21) {
-                                            endGame(false);                                   
-                                    }
+                                    setTimeout(() => {
+                                        if (score > 21) {
+                                            endGame(false);
+                                        }
+                                    }, 1800);
                                 }
                             }
 
@@ -338,8 +340,8 @@
                                     const cpuPoker = document.querySelector('.cpu_poker');
                                     const numCardsToShow = 4; // the number of cards to show
                                     let cardIndex = 0;
-                                   
-                                    // const intervalId = setInterval(() => {
+
+                                    const intervalId = setInterval(() => {
                                         if (cardIndex < numCardsToShow && getScore(cpuCards) < 17) {
                                             const cardImage = document.createElement('img');
                                             const card = drawCard();
@@ -348,17 +350,17 @@
                                             cardImage.style.visibility = 'hidden';
                                             cpuPoker.appendChild(cardImage);
                                             move(cardImage);
-                                            
+
                                             setTimeout(() => {
                                                 cardImage.style.visibility = 'visible';
                                             }, 1000);
 
                                             cardIndex++;
                                         } else {
-                                            // clearInterval(intervalId);
+                                            clearInterval(intervalId);
                                             endGame(getScore(playerCards) > getScore(cpuCards));
                                         }
-                                    // }, 1500);
+                                    }, 1500);
                                 }
                             }
 
