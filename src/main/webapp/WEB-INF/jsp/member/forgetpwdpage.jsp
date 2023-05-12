@@ -19,7 +19,7 @@
                     }
 
                     .content {
-                        min-height: 50%;
+                        min-height: 53%;
                         padding-bottom: 50px; /* 頁面底部footer的高度 */
                         text-align: center
 

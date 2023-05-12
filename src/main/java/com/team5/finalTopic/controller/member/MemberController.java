@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.team5.finalTopic.annotation.MemberLogin;
 import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.model.member.MemberRepository;
 import com.team5.finalTopic.service.member.EmailService;
@@ -170,7 +171,7 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 		return "redirect:/Login";
 		 
 	 }
-	 	 		
+	@MemberLogin	
 	@PutMapping (value = "/updatemember/{m_number}")
 	public String updateMember(@PathVariable Integer m_number , Member member){
 		boolean isInsert = (member.getM_number() != null); //判斷是否為insert
@@ -192,6 +193,7 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 	}
 
 	//重設密碼專用
+	@MemberLogin
 	@PostMapping(value = "/frontSave")
 	public String frontSave(HttpServletRequest request,
 							@RequestParam("newPassword") String newpwd,
