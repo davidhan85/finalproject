@@ -14,7 +14,7 @@ public class MyApplicationConfig {
 	public FilterRegistrationBean<RoleAuthenticationFilter> roleAuthenticationBean(){
 		FilterRegistrationBean<RoleAuthenticationFilter> registration=new FilterRegistrationBean<>();
 		registration.setFilter(new RoleAuthenticationFilter());
-		registration.addUrlPatterns("/finalTopic_5/*");
+		registration.addUrlPatterns("/CMS");
 		registration.setOrder(Ordered.LOWEST_PRECEDENCE);
 		return registration;		
 	}

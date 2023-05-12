@@ -2,7 +2,9 @@ package com.team5.finalTopic.controller.mall;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,7 +36,7 @@ public class ListedProductController {
 	public String addListedProduct(@ModelAttribute("listedProduct") ListedProduct product) {
 		System.out.println(product);
 		System.out.println("enter addListedProduct");
-		System.out.println(product.getProductCategorynumber());
+		System.out.println(product.getProductCategoryNumber());
 		try {
 			service.saveListedProduct(product);
 		} catch (IOException e) {
@@ -60,18 +62,6 @@ public class ListedProductController {
 		return "/mall/ShowAllProduct";
 	}
 
-
-
-
-	@GetMapping("/AllProduct")   //取得所有全部商品頁面
-	public String getAllProducts(Model model, @RequestParam(name = "p",defaultValue = "1") int page) {
-		System.out.println("pageNum"+page);
-		Pageable pageable = PageRequest.of(page-1, 3, Sort.Direction.ASC, "listedTime"); // 每頁顯示 筆資料
-		Page<ListedProduct> pPage = service.pageGetAll(pageable);
-		model.addAttribute("pPage", pPage);
-
-		return "/mall/ShowAllProductFront";
-	}
 
 
 
@@ -113,4 +103,49 @@ public class ListedProductController {
 		return "redirect:/listedProducts";
 	}
 
+//	@GetMapping("/CategoryProduct")
+//	public ResponseEntity<Page<ListedProduct>> filterProducts(@RequestParam(name = "ProductCategorynumber",required = false) Integer categoryNum,Pageable pgb) {
+//		System.out.println("categoryNum:"+categoryNum);
+//		Page<ListedProduct> filteredProducts = service.getProductsByCategory(categoryNum,pgb);
+//		return ResponseEntity.ok(filteredProducts);
+//	}
+	@GetMapping("/AllProduct")   //取得所有全部商品頁面
+	public String getAllProducts(Model model, @RequestParam(name = "p",defaultValue = "1") int page) {
+		System.out.println("pageNum"+page);
+		Pageable pageable = PageRequest.of(page-1, 6, Sort.Direction.ASC, "listedTime"); // 每頁顯示 筆資料
+		Page<ListedProduct> pPage = service.pageGetAll(pageable);
+		model.addAttribute("pPage", pPage);
+
+		return "/mall/ShowAllProductFront";
+	}
+
+	@ResponseBody
+	@GetMapping("/front/product/list")//商品列表多條件搜尋
+	public Map<String, Object> searchProductNameApi(@RequestParam(name = "keyword", required = false, defaultValue = "") String keyword,
+													@RequestParam(name = "page", defaultValue = "1") Integer pageNum,
+//													@RequestParam(name = "sort", defaultValue = "productId_asc") String sort,
+													@RequestParam(name = "category") Integer category) {
+        System.out.println("categoryjsp"+category);
+		Page<ListedProduct> products;
+		Map<String, Object> response = new HashMap<>();
+		products = service.findByCriteria(pageNum, keyword, category);
+//		response.put("categoryList", service.findAllCategories());
+		response.put("pageNum", pageNum);
+		response.put("keyword", keyword);
+		response.put("products", products);
+
+		return response;
+	}
+
+
+
+	@GetMapping(value = "/ProductDetail/{ProductId}")  //
+	public String showProductNum(@PathVariable("ProductId") Integer id, Model model) {
+		ListedProduct productbyId = service.getListedProductById(id);
+		model.addAttribute("listedProduct", productbyId);
+		return "mall/productDetail";
+	}
+
+
 }
+

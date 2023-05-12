@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.team5.finalTopic.model.member.Member;
@@ -46,7 +50,21 @@ public class SignUp {
 	@Column(columnDefinition = "NVARCHAR(50) not null",name="paystatus")
 	private String paystatus; 
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+	@Column(name="amounts")
+	private Integer amounts;
+	
+	public Integer getAmounts() {
+		return amounts;
+	}
+
+
+	public void setAmounts(Integer amounts) {
+		this.amounts = amounts;
+	}
+
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(columnDefinition = "Date",name="signup_date")
 	private   Date signup_date; 
 	

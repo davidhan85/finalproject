@@ -29,7 +29,7 @@
           </style>
         </head>
 
-        <body>
+        <body style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2128&amp;q=80')">
           <jsp:include page="../layout/navebar.jsp"></jsp:include>
           <div class="container my-5">
             <div class="row justify-content-center">
@@ -86,6 +86,7 @@
                         <div class="col-md-6">
                           <form:input path="m_email" type="email" required="true" id="email" class="form-control" />
                           <span id="emailError" ></span>
+                           <label id="emailMessage"></label>
                         </div>
                       </div>
 
@@ -192,6 +193,19 @@
                 } else {
                   document.getElementById("emailError").innerHTML = "";
                 }
+                
+                fetch('${contextRoot}/existsEmail?email=' + email)
+                .then(response => response.text())
+                .then(data => {
+                  if (data === "此信箱已有人使用") {
+                    document.getElementById("emailError").innerHTML = "此信箱已被註冊"
+                  } else {
+                    document.getElementById("emailMessage").innerHTML = "此信箱可以使用"                  
+                  }
+                })
+                .catch(error => {
+                  console.error("發生錯誤", error)
+                })
 
                 if (!idRegex.test(id)) {
                   document.getElementById("idError").innerHTML = "身分證字號格式不正確";

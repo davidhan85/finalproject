@@ -2,25 +2,24 @@ package com.team5.finalTopic.service.mall;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.Transient;
+import javax.persistence.criteria.Predicate;
 
-import org.hibernate.Hibernate;
+import com.team5.finalTopic.model.mall.productCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.team5.finalTopic.controller.mall.ListedProductRepository;
 import com.team5.finalTopic.controller.mall.ProductCategoryRepository;
 import com.team5.finalTopic.controller.mall.ProductImageRepository;
 import com.team5.finalTopic.model.mall.ListedProduct;
-import com.team5.finalTopic.model.mall.ProductCategory;
 import com.team5.finalTopic.model.mall.ProductImage;
 import com.team5.finalTopic.model.member.MemberRepository;
 
@@ -104,7 +103,7 @@ public class ListedProductService {
 			product.setUnitPrice(updatedProduct.getUnitPrice());
 			product.setProductQuantity(updatedProduct.getProductQuantity());
 			product.setProductUploadStatus(updatedProduct.getProductUploadStatus());
-			product.setProductCategorynumber(updatedProduct.getProductCategorynumber());
+			product.setProductCategoryNumber(updatedProduct.getProductCategoryNumber());
 			ProductImage image = imageRepository.findImage(id);
 			if (image != null) {
 				System.out.println("image.getProductImageId:"+image.getProductImageId());
@@ -121,4 +120,52 @@ public class ListedProductService {
 		return null;
 	}
 
+	public Page<ListedProduct> getProductsByCategory(Integer categoryNum,Pageable pgb) {
+
+		return repository.findListedProductByCategory(categoryNum,pgb);
+	}
+
+
+	public Page<ListedProduct> findByCriteria(Integer pageNumber, String keyword,Integer categoryId) {
+		// 判定搜尋方向
+//		String sortBy[] = sort.split("_");
+//		String orderBy = sortBy[0]; //依甚麼排序
+//		Sort.Direction direction;
+
+		//排序方式
+//		if (sortBy[1].equals("asc")) {
+//			direction = Sort.Direction.ASC;
+//		} else {
+//			direction = Sort.Direction.DESC;
+//		}
+
+		Specification<ListedProduct> spec = (root, query, criteriaBuilder) -> {
+			List<Predicate> predicates = new ArrayList<>();
+			Predicate p;
+			// 判定輸入值是否為空
+			if (categoryId!=0) {
+				Optional<productCategory> optional = productCategoryRepository.findById(categoryId);
+				if (optional.isPresent()){
+					productCategory category = optional.get();
+					p = criteriaBuilder.equal(root.get("productCategoryNumber"), category);
+					predicates.add(p);
+				}
+				// 查詢相對應種類
+
+			}
+			if (!keyword.equals("")) {
+				p = criteriaBuilder.like(root.get("categoryName"), "%" + keyword + "%");
+				predicates.add(p);
+			}
+
+			// 將搜尋條件從 list 複製到一空 array
+			return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+		};
+
+
+		// 建立 Pageable 物件帶入傳遞參數
+		Pageable pgb = PageRequest.of(pageNumber - 1, 9, Sort.Direction.ASC, "ProductCategoryNumber");
+
+		return repository.findAll(spec, pgb);
+	}
 }

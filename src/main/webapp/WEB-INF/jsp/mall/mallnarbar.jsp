@@ -21,7 +21,7 @@
 <jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <!-- bootstrap core css -->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${contextRoot}/css/bootstrap.css" />
 
 <!--owl slider stylesheet -->
 <link rel="stylesheet" type="text/css"
@@ -32,18 +32,18 @@
 	integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
 	crossorigin="anonymous" />
 <!-- font awesome style -->
-<link href="css/font-awesome.min.css" rel="stylesheet" />
+<link href="${contextRoot}/css/font-awesome.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="css/style.css" rel="stylesheet" />
+<link href="${contextRoot}/css/style.css" rel="stylesheet" />
 <!-- responsive style -->
-<link href="css/responsive.css" rel="stylesheet" />
+<link href="${contextRoot}/css/responsive.css" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
 	<div class="hero_area">
 		<div class="bg-box">
-			<img src="images/hero-bg.jpg" alt="">
+			<img src="${contextRoot}/images/hero-bg.jpg" alt="">
 		</div>
 		<!-- header section strats -->
 		<header class="header_section">

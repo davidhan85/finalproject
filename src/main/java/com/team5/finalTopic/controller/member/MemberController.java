@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.team5.finalTopic.model.member.Member;
@@ -66,8 +67,6 @@ public class MemberController {
 //		return byId;
 //
 //	}
-
-
 	@GetMapping(value = "/newmember")
 	public String showNewMemberForm(Model model) {
 		model.addAttribute("member", new Member());
@@ -103,19 +102,6 @@ public class MemberController {
 		return new RedirectView("/finalTopic_5/Login");
 	}
 
-//	@PostMapping("/sendmail")
-//	@ResponseBody
-//	public String sendVerificationEmail(@RequestBody Member member){
-//		//產生token
-//		String Token= UUID.randomUUID().toString();
-//		member.setM_verify(Token);
-//		System.out.println(Token);
-//		//發送驗證信件
-//		String confirmationUrl="http://localhost:8079/finalTopic_5/confirm?email="+member.getM_email()+"&token="+Token;
-//		emailService.sendRegistrationConfirmationEmail(member,confirmationUrl);
-//
-//		return "發送成功";
-//	}
 //驗證 註冊驗證信的email和token是否一致
 @GetMapping("/confirm")
 public String confirmRegistration(@RequestParam("email") String email, @RequestParam("token") String token) {
@@ -136,21 +122,62 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 		return "redirect:/memberlist";
 	}
 
-
 	@GetMapping(value = "/updatememberform/{m_number}")
 	public String showUpdateMemberForm(@PathVariable("m_number") Integer m_number,Model model) {
 		Optional<Member> byId = memberRepository.findById(m_number);
 		model.addAttribute("member", byId);
 		return "member/updatemember";
 	}
-
+	
+	@GetMapping("/forgetpwdpage")
+	public String forgetpwdpage(Model model) {
+		model.addAttribute("forgotPasswordForm", new Object());
+		return "member/forgetpwdpage";	
+	}
+	
+	 @GetMapping("/forgotPassword")
+	    public String processForgotPasswordForm(@RequestParam("email")  String email,	                                           
+	                                            RedirectAttributes redirectAttributes) {
+		      
+	        Member member = memberService.findByM_email(email);
+	        if (member == null) {
+	            return "forgotPasswordForm";
+	        }
+	        String Token= UUID.randomUUID().toString();
+			member.setM_verify(Token);
+			memberService.save(member);			
+	        String resetUrl = "http://localhost:8079/finalTopic_5/resetpassword?email="+member.getM_email()+"&token="+Token;
+	        emailService.sendForgotPasswordEmail(member, resetUrl);
+	        redirectAttributes.addFlashAttribute("successMessage", "已寄送密碼重設信至您的信箱，請查收並重設密碼");
+	        return "redirect:/Login";
+	    }
+	
+	 @GetMapping("/resetpassword")
+	 public String resetPassword(@RequestParam("email") String email,@RequestParam("token") String token,Model model) {
+		 Member	member =memberService.findByM_email(email);
+	if(member!=null&&member.getM_verify().equals(token)) {
+		model.addAttribute("member", member);
+		return "member/Resetpwdpage";		
+	}		 
+		return null;		 
+	 }
+	 
+	 @GetMapping("/resetpwd")
+	 public String resetPWD(@RequestParam("id") Integer number,@RequestParam("password") String pwd) {
+		 Member	member=memberService.findById(number);
+		 member.setM_password(pwd);
+		 memberService.save(member);		 
+		return "redirect:/Login";
+		 
+	 }
+	 	 		
 	@PutMapping (value = "/updatemember/{m_number}")
 	public String updateMember(@PathVariable Integer m_number , Member member){
 		boolean isInsert = (member.getM_number() != null); //判斷是否為insert
 		Member member1 = memberService.savePictureInDB(member, isInsert);// 取得MultipartFile，把圖片以byte[]型態塞進DB
 		member1.setM_number(m_number);
-		memberService.save(member1);
-		return "redirect:/memberlist";
+		memberService.updateNoEncoding(member1);
+		return "redirect:/membercenter";
 	}
 
 	@GetMapping(value = "/changePwdPage")
@@ -168,7 +195,8 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 	@PostMapping(value = "/frontSave")
 	public String frontSave(HttpServletRequest request,
 							@RequestParam("newPassword") String newpwd,
-							@RequestParam("password") String pwd){
+							@RequestParam("password") String pwd
+							){
 		System.out.println("修改密碼");
 		HttpSession session = request.getSession();
 		Member memberbean = (Member) session.getAttribute("memberbean");
@@ -182,7 +210,8 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 			System.out.println("修改成功");
 			memberbean.setM_password(newpwd);
 			memberService.frontSave(memberbean,newpwd);
-			return "redirect:/membercenter";
+			session.removeAttribute("memberbean");
+			return "redirect:/";
 		}
 	}
 
@@ -194,6 +223,20 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 			return ResponseEntity.status(HttpStatus.OK).body("此帳號已有人使用");
 		}else {
 			return ResponseEntity.status(HttpStatus.OK).body("此帳號可以使用");
+		}
+
+	}
+	
+	@GetMapping("/existsEmail")
+	@ResponseBody
+	public ResponseEntity<?> existsEmail(@RequestBody @RequestParam("email") String email ){
+		Boolean existsemail=memberService.existsByM_email(email);
+		System.out.println(email);
+		System.out.println(existsemail);
+		if(existsemail) {
+			return ResponseEntity.status(HttpStatus.OK).body("此信箱已有人使用");
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body("此信箱可以使用");
 		}
 
 	}

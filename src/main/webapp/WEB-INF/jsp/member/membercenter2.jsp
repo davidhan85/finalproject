@@ -6,10 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page import="com.team5.finalTopic.model.member.Member" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <html lang="zh-TW">
 <head>
@@ -33,9 +33,20 @@
       border-radius: 50%;
       object-fit: cover;
     }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .content {
+      min-height: 50%;
+      padding-bottom: 50px; /* 頁面底部footer的高度 */
+    }
   </style>
 </head>
-<body>
+<body style="background-image: url('https://images.unsplash.com/photo-1528460033278-a6ba57020470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3870&q=80')">
 <jsp:include page="../layout/navebar.jsp"></jsp:include>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">會員中心</a>
@@ -57,62 +68,57 @@
     </ul>
   </div>
 </nav>
-
+<%-- 取得會員資訊 --%>
+<%
+  Member member = (Member) session.getAttribute("memberbean");
+%>
+<div class="content" >
 <div class="container mt-4">
-  <%-- 取得會員資訊 --%>
-    <%
-        Member member = (Member) session.getAttribute("memberbean");
-    %>
-
   <div class="row">
     <div class="col-md-4">
       <div class="avatar-container">
         <%-- 顯示會員頭像 --%>
         <img class="avatar" src="<c:url value='/memberlist/${memberbean.m_number}' />" alt="member image" />
         <%-- 顯示會員帳號 --%>
-        <h2 class="mt-3"><%= member.getM_account() %></h2>
+        <h2 class="mt-3">${memberbean.m_account}</h2>
       </div>
     </div>
     <div class="col-md-8">
       <table class="table table-hover">
         <tbody>
         <tr>
-          <td class="font-weight-bold">編號</td>
-          <td><%= member.getM_number() %></td>
-        </tr>
-        <tr>
           <td class="font-weight-bold">帳號</td>
-          <td><%= member.getM_account() %></td>
+          <td>${memberbean.m_account}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">姓名</td>
-          <td><%= member.getM_name() %></td>
+          <td>${memberbean.m_name}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">手機</td>
-          <td><%= member.getM_phone() %></td>
+          <td>${memberbean.m_phone}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">地址</td>
-          <td><%= member.getM_address() %></td>
+          <td>${memberbean.m_address}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">信箱</td>
-          <td><%= member.getM_email() %></td>
+          <td>${memberbean.m_email}</td>
         </tr>
         <tr>
           <td class="font-weight-bold">生日</td>
-          <td><%= member.getM_birth() %></td>
+          <td><fmt:formatDate value="${memberbean.m_birth}"  pattern="yyyy-MM-dd"/></td>
         </tr>
         <tr>
           <td class="font-weight-bold">身分證</td>
-          <td><%= member.getM_id() %></td>
+          <td>${memberbean.m_id}</td>
         </tr>
         <tr>
           <td></td> <!-- 空的 td 元素，用來將更新按鈕置中 -->
           <td style="text-align: center;">
             <form:form method="get" action="${contextRoot}/updatememberform/${memberbean.m_number}">
-              <input type="submit" class="btn btn-primary" value="更新" />
+              <input type="submit" class="btn btn-primary"  value="更新" />
             </form:form>
           </td>
         </tr>
@@ -120,6 +126,7 @@
       </table>
     </div>
   </div>
+</div>
 </div>
 <jsp:include page="../layout/footerbar.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -131,6 +138,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 </body>
 </html>
 </body>

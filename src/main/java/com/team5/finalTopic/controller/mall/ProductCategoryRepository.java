@@ -1,9 +1,8 @@
 package com.team5.finalTopic.controller.mall;
 
+import com.team5.finalTopic.model.mall.productCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.team5.finalTopic.model.mall.ProductCategory;
-
-public interface ProductCategoryRepository extends JpaRepository<ProductCategory,Integer> {
+public interface ProductCategoryRepository extends JpaRepository<productCategory,Integer> {
 
 }

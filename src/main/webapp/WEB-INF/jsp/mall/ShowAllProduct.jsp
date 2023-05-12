@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>All Listed Products</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <style>
 .product-row:hover {
 	background-color: #f2f2f2;
@@ -44,6 +45,7 @@
 </style>
 </head>
 <body>
+
 	<div class="container py-5">
 		<h1 class="text-center mb-4">All Listed Products</h1>
 		<div class="table-responsive">
@@ -66,7 +68,7 @@
 						<tr class="product-row">
 							<td>${product.productId}</td>
 							<td>${product.productName}</td>
-							<td>${product.productCategorynumber.categoryName}</td>
+							<td>${product.productCategoryNumber.categoryName}</td>
 							<td>${product.productDescription}</td>
 							<td>${product.unitPrice}</td>
 							<td>${product.productQuantity}</td>
@@ -106,6 +108,10 @@
 			</table>
 		</div>
 	</div>
+
+
+
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"
 		integrity="sha512-w5+5kkCJ5q0ByG13+vqp2B6UcBzWyR1hzU0+vSP2QusflZgRswv17/8Zw1hVfSWpNcN9o7c3H+PthlakGieY/A=="

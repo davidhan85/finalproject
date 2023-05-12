@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,7 +35,7 @@ public class ListedProduct {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	@Column(name = "ProductId",nullable = false) // 產品編號
-	private Integer ProductId;
+	private Integer productId;
 
 	@Temporal(TemporalType.TIMESTAMP) // 上架日子時間
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
@@ -45,8 +46,8 @@ public class ListedProduct {
 	private String productName;
 
 	@ManyToOne
-	@JoinColumn(name = "ProductCategorynumber", referencedColumnName = "ProductCategorynumber",nullable = false) // 產品分類
-	private ProductCategory ProductCategorynumber;
+	@JoinColumn(name = "productCategoryNumber", referencedColumnName = "productCategoryNumber",nullable = false) // 產品分類
+	private productCategory productCategoryNumber;
 
 	@Column(name = "ProductDescription", columnDefinition = "nvarchar(Max)", nullable = false) // 產品描述
 	private String productDescription;
@@ -62,6 +63,7 @@ public class ListedProduct {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ProductImageId") // 產品圖片
+	@JsonIgnoreProperties("listedProducts")
 	private ProductImage productImage;
 
 	 @Transient
@@ -83,11 +85,11 @@ public class ListedProduct {
 	}
 
 	public Integer getProductId() {
-		return ProductId;
+		return productId;
 	}
 
 	public void setProductId(Integer productId) {
-		ProductId = productId;
+		this.productId = productId;
 	}
 
 	public Member getM_number() {
@@ -102,12 +104,21 @@ public class ListedProduct {
 		return listedTime;
 	}
 
-	public ProductCategory getProductCategorynumber() {
-		return ProductCategorynumber;
+//	public ProductCategory getProductCategorynumber() {
+//		return ProductCategorynumber;
+//	}
+//
+//	public void setProductCategorynumber(ProductCategory productCategorynumber) {
+//		ProductCategorynumber = productCategorynumber;
+//	}
+
+
+	public productCategory getProductCategoryNumber() {
+		return productCategoryNumber;
 	}
 
-	public void setProductCategorynumber(ProductCategory productCategorynumber) {
-		ProductCategorynumber = productCategorynumber;
+	public void setProductCategoryNumber(productCategory productCategorynumber) {
+		this.productCategoryNumber = productCategorynumber;
 	}
 
 	public void setListedTime(Date listedTime) {
@@ -166,8 +177,8 @@ public class ListedProduct {
 
 	@Override
 	public String toString() {
-		return "ListedProduct [member=" + m_number + ", ProductId=" + ProductId + ", listedTime=" + listedTime
-				+ ", productName=" + productName + ", ProductCategorynumber=" + ProductCategorynumber + ", productDescription="
+		return "ListedProduct [member=" + m_number + ", ProductId=" + productId + ", listedTime=" + listedTime
+				+ ", productName=" + productName + ", ProductCategorynumber=" + productCategoryNumber + ", productDescription="
 				+ productDescription + ", unitPrice=" + unitPrice + ", productQuantity=" + productQuantity
 				+ ", productUploadStatus=" + productUploadStatus + ", ProductImage=" + productImage + "]";
 	}

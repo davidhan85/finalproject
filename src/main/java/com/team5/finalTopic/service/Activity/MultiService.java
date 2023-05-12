@@ -1,11 +1,9 @@
 package com.team5.finalTopic.service.Activity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.TypedQuery;
-
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +42,18 @@ public class MultiService {
 //		
 //		return option.get();
 //	}
+	
+	public List<MultiMember> findById(Integer id){
+		 Optional<MultiMember> option = multiRepository.findById(id);
+		 List<MultiMember> multiMembers = new ArrayList<>();
+		 if(option.isPresent()) {
+			 MultiMember multiMember = option.get();
+			 multiMembers.add(multiMember);
+		 }
+		return multiMembers;   
+	}
+	
+	
 	
 	
 	public void addForm(MultiMember members) {
