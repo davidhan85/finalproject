@@ -36,6 +36,12 @@ html, body {
 	/* 其他footer的樣式 */
 }
 </style>
+<script type="text/javascript">
+ function Membernull() {
+	 alert("<c:out value='${msg}'/>")
+	
+}
+</script>
 </head>
 
 <body
@@ -66,12 +72,12 @@ html, body {
 							<c:if test="${not empty error}">
 								<div class="alert alert-danger">
 									<strong>错误:</strong>
-									<c:forEach var="entry" items="${error}">
+									<c:forEach var="entry" items="${error}">									
                           ${entry.value}<br />
 									</c:forEach>
 								</div>
 							</c:if>
-							<hr>
+							<hr>							
 							<div class="text-center">
 								<a href="${contextRoot}/forgetpwdpage">忘記密碼</a>
 							</div>
@@ -81,6 +87,11 @@ html, body {
 			</div>
 		</div>
 	</div>
+	<c:if test="${not empty msg}">
+	<script>
+	Membernull();
+    </script>	
+	</c:if>
 	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

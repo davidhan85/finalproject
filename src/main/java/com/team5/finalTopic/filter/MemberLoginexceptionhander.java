@@ -12,7 +12,7 @@ public class MemberLoginexceptionhander {
 	@ExceptionHandler(MembernullException.class)
 	public String MemberLoginhander(RedirectAttributes redirectAttributes) {
 		
-		redirectAttributes.addFlashAttribute("msg","請先登入");
+		redirectAttributes.addFlashAttribute("msg","您還沒登入,請先登入");
 		return "redirect:/Login";
 		
 	}

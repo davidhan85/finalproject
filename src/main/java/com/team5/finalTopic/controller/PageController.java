@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.team5.finalTopic.annotation.MemberLogin;
 import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.service.member.MemberService;
 
