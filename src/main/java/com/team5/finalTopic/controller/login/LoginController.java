@@ -38,7 +38,7 @@ public class LoginController {
         return "Login/Loginpage";
     }
     @PostMapping(value = "/checkLogin")
-    public String checkLogin(@RequestParam("username")String username,@RequestParam("password") String pwd, Model model,
+    public String checkLogin(@RequestParam("username")String username,@RequestParam("pwd") String pwd, Model model,
     		HttpSession session,HttpServletRequest request) {
         Map<String,String>error=new HashMap<String,String>();
         model.addAttribute("error",error);

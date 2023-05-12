@@ -63,9 +63,9 @@ html, body {
 										name="username">
 								</div>
 								<div class="form-group">
-									<label for="password">密碼:</label> <input type="password"
-										class="form-control" id="password" placeholder="請輸入您的密碼"
-										name="password">
+									<label for="pwd">密碼:</label> <input type="password"
+										class="form-control" id="pwd" placeholder="請輸入您的密碼"
+										name="pwd">
 								</div>
 								<button type="submit" class="btn btn-warning btn-block">登入</button>
 							</form>

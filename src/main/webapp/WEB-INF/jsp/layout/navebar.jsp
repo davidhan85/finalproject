@@ -61,8 +61,6 @@
 								<div class="collapse navbar-collapse" id="navbarSupportedContent">
 									<ul class="navbar-nav  mx-auto ">
 
-										<div class="collapse navbar-collapse" id="navbarSupportedContent">
-											<ul class="navbar-nav  mx-auto ">
 
 												<li class="nav-item"><a class="nav-link" href="${contextRoot}/mall">商城
 													</a></li>
@@ -100,8 +98,8 @@
 													</a>
 												</c:if>
 												<c:if test="${empty memberbean}">
-													<a href="${contextRoot}/Login" class="user_link"> <i
-															class="fa fa-user" aria-hidden="true"></i>
+													<a href="${contextRoot}/Login" class="user_link" data-toggle="modal" data-target="#myModal"> <i
+															class="fa fa-user" aria-hidden="true" ></i>
 													</a>
 												</c:if>
 												 <a class="cart_link" href="${contextRoot}/shoppingcart"> <svg
@@ -296,6 +294,50 @@
 			<!-- 					</div> -->
 			<!-- 				</div> -->
 			<!-- 			</footer>   -->
+			<!-- 彈窗框 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+
+						<div class="modal-header" style="background-color: #ffc107;" >
+							<h4 class="modal-title" id="myModalLabel">登入</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<!-- 登錄表单 -->
+							<form action="${contextRoot}/checkLogin" method="post">
+								<div class="form-group">
+									<label for="username">帳號:</label>
+									<input type="text" class="form-control" id="username" placeholder="請輸入您的帳號" name="username">
+								</div>
+								<div class="form-group">
+									<label for="pwd">密碼:</label>
+									<input type="password" class="form-control" id="pwd" placeholder="請輸入您的密碼" name="pwd">
+								</div>
+								<button type="submit" class="btn btn-warning btn-block">登入</button>
+							</form>
+							<c:if test="${not empty error}">
+								<div class="alert alert-danger">
+									<strong>错误:</strong>
+									<c:forEach var="entry" items="${error}">
+										${entry.value}<br />
+									</c:forEach>
+								</div>
+							</c:if>
+							<hr>
+							<div class="text-center">
+								<a href="${contextRoot}/forgetpwdpage">忘記密碼</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 			</body>
 
 			</html>

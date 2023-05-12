@@ -51,7 +51,6 @@
 
                       <div class="form-group row">
                         <label for="password" class="col-md-4 col-form-label text-md-right">密碼</label>
-
                         <div class="col-md-6">
                           <form:input path="m_password" required="true" id="password" class="form-control" />
                           <span id="passwordError" ></span>
@@ -68,7 +67,6 @@
 
                       <div class="form-group row">
                         <label for="phone" class="col-md-4 col-form-label text-md-right">手機</label>
-
                         <div class="col-md-6">
                           <form:input path="m_phone" required="true" id="phone" class="form-control" />
                           <span id="phoneError" ></span>
@@ -99,8 +97,7 @@
                       </div>
 
                       <div class="form-group row">
-                        <label for="role" class="col-md-4 col-form-label text-md-right">身分</label>
-
+                        <label for="m_Role" class="col-md-4 col-form-label text-md-right">身分</label>
                         <div class="col-md-6">
                           <form:select path="m_Role" class="form-control">
                             <form:option value="adaim" label="管理員" />
