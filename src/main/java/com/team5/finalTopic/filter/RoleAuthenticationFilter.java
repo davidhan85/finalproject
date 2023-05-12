@@ -16,7 +16,7 @@ import com.team5.finalTopic.model.member.Member;
 @Component
 public class RoleAuthenticationFilter extends OncePerRequestFilter  {
        
-	private static final String ADMIN_ROLE ="admin";
+	private static final String ADMIN_ROLE ="adaim";
 	private static final String User_RoLE="user";
 	
 	@Override
@@ -28,12 +28,15 @@ public class RoleAuthenticationFilter extends OncePerRequestFilter  {
 		String path=request.getRequestURI();
 		System.out.println("啟動");	
 		System.out.println("現在的path是"+path);
-		 if (role != null && role.equals(ADMIN_ROLE)) {
+		 if (role != null) {
 	            // 只有角色為"admin"的使用者才可以進入CMS
 	            filterChain.doFilter(request, response);
-	        } else {
+		 }else {
 	            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 	        }
+		
+		
 	 		
-	}
+		 }
 }
+
