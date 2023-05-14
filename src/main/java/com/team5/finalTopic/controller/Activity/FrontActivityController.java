@@ -3,6 +3,7 @@ package com.team5.finalTopic.controller.Activity;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -92,50 +93,66 @@ public class FrontActivityController {
 	}
 
 
-	@PostMapping("/registration")//1.當使用者按下我要報名的按鈕，會給一個空白的表單讓使用者輸入，使用者會自己手動輸入
+	@PostMapping("/registration")//1.當使用者按下我要報名的按鈕，會給一個空白的表單讓使用者輸入，使用者會自己手動輸入，demo先用post
 	public String MultiMember(Model model) {
 		model.addAttribute("111", new MultiMember());
 		return "Activity/Register";
 	}
+	
+	
+//	@GetMapping("/registration")//1.當使用者按下我要報名的按鈕，會給一個空白的表單讓使用者輸入，使用者會自己手動輸入
+//	public String MultiMember(Model model,@RequestParam(name="activity_id")Integer activity_id) {
+//	    MultiMember multiMember = new MultiMember();
+//		Activity activityId = actRepository.findById(activity_id).get();
+//	    multiMember.setActivity(activityId); // 将接收到的activity_id设置到MultiMember对象中	    
+//	    model.addAttribute("act", activityId);
+//		model.addAttribute("111", multiMember);
+//		return "Activity/Register111";
+//	}
 
 
 	
 	@PostMapping("/store")//2.使用者按下再新增的按鈕，會跑到另外一個畫面問使用者是否需要再新增一個活動報名資訊，是的話進入registration給新的表單，按下不用新增，下一步會跑到繳交畫面
 	public String addMultiMember(  
 			@ModelAttribute("111") MultiMember memberss, Model model)  {
+//		@RequestParam(name="activity_id")Integer activity_id
 		System.out.println("活動編號為"+memberss.getName());
-		
 		multiService.addForm(memberss);
+//	提升使用者測試	Activity activityId = actRepository.findById(activity_id).get();
+//		memberss.setActivity(activityId); 
+//		multiRepository.save(memberss);
 		return "Activity/Choices";
-//		return "redirect:/registration";
 	}
 	
 
 	
-	@GetMapping("/next")
+	@GetMapping("/next") 
 	public String Next(@RequestParam("id") Integer id,Model model) {
 //		@ModelAttribute("multiMember")
 		System.out.println(id);
 		List<MultiMember> multiMember = multiRepository.findDataByMemberNumber(id);
 //		 Member member = mberService.findById(id);
 //		 MultiMember multiMember=new MultiMember();
-//		 multiMember.setMemberss(member);
+//		 multiMember.setMemberss(member);	
 		
 		model.addAttribute("multis",multiMember);
 		return "Activity/multiList";
 	}
-
-
-//	@GetMapping("/ButtonUpdate")
-//	public String ButtonUpdateById(@RequestParam("id") Integer id,Model model) {
-//		Activity msg = actService.findActivityByActivity_id(activity_id);
+//	@GetMapping("/next") 
+//	public String Next(@RequestParam("id") Integer id,Model model) {
+////		@ModelAttribute("multiMember")
+//		System.out.println(id);
 //		List<MultiMember> multiMember = multiRepository.findDataByMemberNumber(id);
-
-//		model.addAttribute("messages",msg);
-//		return "Activity/editPage";
+////		 Member member = mberService.findById(id);
+////		 MultiMember multiMember=new MultiMember();
+////		 multiMember.setMemberss(member);	
+//		List<SignUp> signs = signRepository.findByPaystatus("已繳款");
+//		model.addAttribute("multis",multiMember);
+//		model.addAttribute("sign",signs);
 //		
+//		return "Activity/multiList";
 //	}
-	
+
 
 	
 
@@ -156,7 +173,7 @@ public class FrontActivityController {
 		obj.setMerchantTradeDate(sdf.format(new Date()));// 設定交易日期時間
 		obj.setTotalAmount("100");// 設定交易金額
 		obj.setTradeDesc("test Description");// 設定交易描述
-		obj.setItemName("1001");// 設定商品名稱
+		obj.setItemName("活動結帳");// 設定商品名稱
 		obj.setReturnURL("http://localhost:8079/finalTopic_5/ReturnURL");// 設定付款完成後返回的網址
 		System.out.println("123");
 		Member member_number = MR.findById(membernumber).get();	
@@ -173,8 +190,6 @@ public class FrontActivityController {
 //		signup.setSignactivity(activityId);
 		signService.addSignup(signup);
 		System.out.println("11111");
-		
-		System.out.println("11111");
 		obj.setOrderResultURL("http://localhost:8079/finalTopic_5/paid?id="+membernumber);
 		obj.setNeedExtraPaidInfo("N");// 設定是否需要額外付款資訊
 		String form = all.aioCheckOut(obj, null);// 透過 all.aioCheckOut() 方法獲得表單
@@ -188,11 +203,7 @@ public class FrontActivityController {
 		System.out.println(id);
 //		SignUp sign = new SignUp();
 		System.out.println("123");
-//		Activity activityId = actRepository.findById(sign.getSignactivity().getActivity_id()).orElse(null);
-//		sign.setSignactivity(activityId);
-//		sign.setAmounts(100);
-//		sign.setPaystatus("已繳款");
-//		signService.addSignup(sign);
+
 		List<SignUp> signMember = signRepository.findSignupByMemberNumber(id);
 		
 		
@@ -200,37 +211,6 @@ public class FrontActivityController {
 		return "Activity/signList";
 	}
 	
-//	@ResponseBody
-//	@PostMapping("/ecpayCheckout")
-//	public String ecpayCheckout() {
-//		
-//		String aioCheckOutALLForm = signService.ecpayCheckout();
-//		
-//		return aioCheckOutALLForm;
-//	}
-	
-	
-	@PostMapping("/ReturnURL")
-	public void returnURL(@RequestParam("MerchantTradeNo") String MerchantTradeNo , @RequestParam("RtnCode") int RtnCode , @RequestParam("TradeAmt") int TradeAmt, HttpServletRequest request) {
-		System.out.println("123");
-		if((request.getRemoteAddr().equalsIgnoreCase("175.99.72.1")
-				|| request.getRemoteAddr().equalsIgnoreCase("175.99.72.11")
-				||  request.getRemoteAddr().equalsIgnoreCase("175.99.72.24")
-				|| request.getRemoteAddr().equalsIgnoreCase("175.99.72.28")
-				||  request.getRemoteAddr().equalsIgnoreCase("175.99.72.32")) && RtnCode ==1) {
-			String IdStr = MerchantTradeNo.substring(13);
-			int ssId = Integer.parseInt(IdStr);
-			SignUp ss = signService.findSignUpById(ssId);   
-			ss.setPaystatus("已繳款");
-		}
-		
-		
-	}
-	
-	
-//	@PostMapping("returnURL")
-//	public void returnURL(@RequestParam(""))
-//	
 
 	public FrontActivityController() {
 	}

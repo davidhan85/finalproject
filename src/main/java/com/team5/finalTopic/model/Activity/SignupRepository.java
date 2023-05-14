@@ -13,7 +13,8 @@ public interface SignupRepository extends  JpaRepository<SignUp, Integer>{
 	 @Query(value="select * from SignUp where member_number = :member_number", nativeQuery = true)
 	 List<SignUp> findSignupByMemberNumber(Integer member_number);
 
-
+	 @Query(value="select * from SignUp where paystatus = :paystatus", nativeQuery = true)
+	List<SignUp> findByPaystatus(String paystatus);
 	
 
 }

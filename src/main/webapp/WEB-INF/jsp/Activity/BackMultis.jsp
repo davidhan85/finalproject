@@ -20,6 +20,17 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+	alert("活動結帳成功！");
+
+    setTimeout(function() {
+        if(confirm("結帳成功，是否繼續結帳？")) {
+            window.location = "http://localhost:8079/finalTopic_5/next?id=1"; // 跳轉到 multiList.jsp
+        } else {
+        	 window.location = "http://localhost:8079/finalTopic_5/";
+        }
+    }, 5000); // 設定5秒後觸發計時器
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -40,36 +51,21 @@
 					<th>報名者</th>
 					<th>報名者郵件</th>
 					<th>報名ID</th>
-					<th>付款狀態</th>
 
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${multis}" var="multiLists">
-    <tr>
-        <td>${multiLists.memberss.m_number}</td>
-        <td>${multiLists.activity.activity_id}</td>
-        <td>${multiLists.name}</td>
-        <td>${multiLists.email}</td>
-        <td>${multiLists.id}</td>
-        <td>
-            <form action="${contextRoot}/ecpayCheckout" method="post">
-                <input type="hidden" name="member_number" value="${multiLists.memberss.m_number}">
-                <input type="hidden" name="activity_id" value="${multiLists.activity.activity_id}">
-                <input type="hidden" name="id" value="${multiLists.id}">
-                <c:choose>
-                    <c:when test="${multiLists.sign.paystatus eq '已繳款'}">
-                        <input type="submit" value="已付款" class="btn btn-success" disabled>
-                    </c:when>
-                    <c:otherwise>
-                        <input type="submit" value="未付款" class="btn btn-primary">
-                    </c:otherwise>
-                </c:choose>
-            </form>
-        </td>
-    </tr>
-</c:forEach>
+					<tr>
+						<td>${multiLists.memberss.m_number}</td>
+						<td>${multiLists.activity.activity_id}</td>
+						<td>${multiLists.name}</td>
+						<td>${multiLists.email}</td>
+						<td>${multiLists.id}</td>
 
+						<td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

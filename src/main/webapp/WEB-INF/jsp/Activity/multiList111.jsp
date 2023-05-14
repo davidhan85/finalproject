@@ -22,23 +22,14 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../layout/navebar.jsp"></jsp:include>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="#">Activity List</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<!-- 		<div class="collapse navbar-collapse" id="collapsibleNavbar"> -->
-		<!-- 			<ul class="navbar-nav"> -->
-		<%-- 				<li class="nav-item active"><form:form class="form-inline" --%>
-		<%-- 						action="${contextRoot}/searching" method="get"> --%>
-		<!-- 						<input class="form-control mr-sm-2" type="text" -->
-		<!-- 							placeholder="輸入關鍵字" name="keyword" id="keyword" -->
-		<%-- 							value="${keyword}" required> --%>
-		<!-- 						<button class="btn btn-success" type="submit">搜尋</button> -->
-		<%-- 					</form:form></li> --%>
-		<!-- 			</ul> -->
-		<!-- 		</div> -->
+
 	</nav>
 	<br>
 	<div class="container">
@@ -55,21 +46,27 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${member}" var="multiMember">
+				<c:forEach items="${multis}" var="multiLists">
 					<tr>
-						<div>
-							<h3>您已成功報名以下活動：</h3>
-							<ul>
-								<li>活動編號：${multiMember.activity.activity_id}</li>
-								<li>會員編號：${multiMember.memberss.m_number}</li>
-								<li>姓名：${multiMember.name}</li>
-								<li>電子郵件：${multiMember.email}</li>
-							</ul>
-						</div>
-						<form action="${contextRoot}/payment" method="get">
-							<input type="hidden" name="id" value="${multiLists.id}">
-							<input type="submit" value="未付款" class="btn btn-primary">
-						</form>
+<%-- 						<td>${multiLists.memberss.m_number}</td> --%>
+						<td>${multiLists.memberss.m_number}</td>
+						<td>${multiLists.activity.activity_id}</td>
+						<td>${multiLists.name}</td>
+						<td>${multiLists.email}</td>
+						<td>${multiLists.id}</td>
+						<td>
+<%-- 							<form action="${contextRoot}/ecpayCheckout" method="get"> --%>
+							<form action="${contextRoot}/ecpayCheckout" method="post">
+								<input type="hidden" name="member_number"
+									value="${multiLists.memberss.m_number}">
+								<input type="hidden" name="activity_id"
+									value="${multiLists.activity.activity_id}">
+								<input type="hidden" name="id"
+									value="${multiLists.id}">
+									
+									 <input type="submit"
+									value="未付款" class="btn btn-primary">
+							</form>
 						</td>
 
 						<!-- 						<td> -->
