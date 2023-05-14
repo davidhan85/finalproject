@@ -340,6 +340,10 @@
                                     const cpuPoker = document.querySelector('.cpu_poker');
                                     const numCardsToShow = 4; // the number of cards to show
                                     let cardIndex = 0;
+                                   
+                                    //觸發以後先讓按鍵失效，以免重複觸發
+                                    const standButton = document.querySelector('.stand');
+                                    standButton.disabled = true;
 
                                     const intervalId = setInterval(() => {
                                         if (cardIndex < numCardsToShow && getScore(cpuCards) < 17) {
