@@ -14,8 +14,9 @@
 <link href="${contextRoot}/css/bootstrap.css" rel="stylesheet">
 <title>新增文章</title>
 <script type="text/javascript"
-	src="${contextRoot}/js/ckeditor/ckeditor.js"></script>
-
+	src="${contextRoot}/js/ckeditor5-build-classic/ckeditor.js"></script>
+<script src="${contextRoot}/js/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 
@@ -32,7 +33,7 @@
 						<form:form class="form-select" modelAttribute="MainArticles"
 							action="${contextRoot}/board/addMA">
 							<form:input path="title" class="form-control" value="標題"></form:input>
-							<form:input path="author_idforMA" class="form-control" value="作者"></form:input>
+							<form:input path="authoridforMA" class="form-control" value="作者"></form:input>
 							<form:select path="category" class="form-control" name="category"
 								id="">
 								<option value="版主公告">版主公告</option>
@@ -71,20 +72,72 @@
 
 
 
+<script>
+ClassicEditor
+.create(document.querySelector('#editorDemo'), {
+    extraPlugins: [CustomUploadAdapterPlugin],
+
+    
+    customUploadAdapter: {
+        uploadUrl: 'http://localhost:8078/finalTopic_5/upload/image'
+    }
+})
+.then(editor => {
+    console.log(editor);
+})
+.catch(error => {
+    console.error(error);
+});
+
+function CustomUploadAdapterPlugin(editor) {
+editor.plugins.get('FileRepository').createUploadAdapter = loader => {
+    return new CustomUploadAdapter(loader, editor.config.get('customUploadAdapter.uploadUrl'));
+};
+}
 
 
 
-	<script>
-		CKEDITOR.replace('editorDemo')
-
-		filebrowserUploadUrl: '${contextRoot}/upload/image';
-	</script>
 
 
+class CustomUploadAdapter {
+    constructor(loader, uploadUrl) {
+        this.loader = loader;
+        this.uploadUrl = uploadUrl;
+    }
+
+    upload() {
+        return this.loader.file
+            .then(file => new Promise((resolve, reject) => {
+                this._uploadFile(file).then(response => {
+                    if (response.url) {
+                        resolve({ default: response.url });
+                    } else {
+                        reject(`Upload failed: ${response.message}`);
+                    }
+                });
+            }));
+    }
+
+    _uploadFile(file) {
+        const data = new FormData();
+        data.append('file', file);
+
+        return fetch(this.uploadUrl, {
+            method: 'POST',
+            body: data
+        })
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Upload error:', error);
+                throw error;
+            });
+    }
+}
+</script>
 
 
-	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-	<script src="${contextRoot}/js/jquery-3.6.4.min.js"></script>
+
+
 </body>
 
 </html>

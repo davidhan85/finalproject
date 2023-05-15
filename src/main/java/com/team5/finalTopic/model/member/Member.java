@@ -25,6 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.team5.finalTopic.model.board.MainArticleLikes;
 import com.team5.finalTopic.model.board.MainArticleMessageLikes;
 import com.team5.finalTopic.model.board.MainArticleMessages;
@@ -236,16 +237,20 @@ public class Member {
 		this.point_id = point_id;
 	}
 
-	@OneToMany(mappedBy = "author_idforMA")
+	@OneToMany(mappedBy = "authoridforMA")
+	@JsonIgnoreProperties("authoridforMA")
 	Set<MainArticles> memberMainArticles = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforSA")
+	@OneToMany(mappedBy = "authoridforSA")
+	@JsonIgnoreProperties("authoridforSA")
 	Set<SubArticles> memberSubArticles = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforMAL")
+	@OneToMany(mappedBy = "authoridforMAL")
+	@JsonIgnoreProperties("authoridforMAL")
 	Set<MainArticleLikes> memberMainArticleLikes = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforMAM")
+	@OneToMany(mappedBy = "authoridforMAM")
+	@JsonIgnoreProperties("authoridforMAM")
 	Set<MainArticleMessages> memberMainArticleMessages = new LinkedHashSet<>();
 
 	
@@ -314,16 +319,20 @@ public class Member {
 		this.memberSubArticleMessageLikes = memberSubArticleMessageLikes;
 	}
 
-	@OneToMany(mappedBy = "author_idforMAML")
+	@OneToMany(mappedBy = "authoridforMAML")
+	@JsonIgnoreProperties("authoridforMAML")
 	Set<MainArticleMessageLikes> memberMainArticleMessageLikes = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforSAL")
+	@OneToMany(mappedBy = "authoridforSAL")
+	@JsonIgnoreProperties("authoridforSAL")
 	Set<SubArticleLikes> memberSubArticleLikes = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforSAM")
+	@OneToMany(mappedBy = "authoridforSAM")
+	@JsonIgnoreProperties("authoridforSAM")
 	Set<SubArticleMessages> memberSubArticleMessages = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforSAML")
+	@OneToMany(mappedBy = "authoridforSAML")
+	@JsonIgnoreProperties("authoridforSAML")
 	Set<SubArticleMessageLikes> memberSubArticleMessageLikes = new LinkedHashSet<>();
 
 	public Member() {

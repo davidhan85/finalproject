@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.team5.finalTopic.model.member.Member;
 
 @Entity
@@ -31,7 +32,7 @@ public class MainArticles {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "main_id")
-	private Integer main_id;
+	private Integer mainid;
 
 	@Column(name = "category", columnDefinition = "nvarchar(MAX)", nullable = false)
 	private String category;
@@ -54,12 +55,12 @@ public class MainArticles {
 	@Column(name = "updatedatetime", columnDefinition = "datetime")
 	private Date updatedatetime;
 
-	public Integer getMain_id() {
-		return main_id;
+	public Integer getMainid() {
+		return mainid;
 	}
 
-	public void setMain_id(Integer main_id) {
-		this.main_id = main_id;
+	public void setMainid(Integer mainid) {
+		this.mainid = mainid;
 	}
 
 	public String getCategory() {
@@ -134,12 +135,12 @@ public class MainArticles {
 		this.mainarticlelikes = mainarticlelikes;
 	}
 
-	public Member getAuthor_idforMA() {
-		return author_idforMA;
+	public Member getAuthoridforMA() {
+		return authoridforMA;
 	}
 
-	public void setAuthor_idforMA(Member author_idforMA) {
-		this.author_idforMA = author_idforMA;
+	public void setAuthoridforMA(Member authoridforMA) {
+		this.authoridforMA = authoridforMA;
 	}
 
 	@PrePersist
@@ -162,16 +163,20 @@ public class MainArticles {
 	private Date createdatetime;
 
 	@OneToMany(mappedBy = "mainarticlesforsa", cascade = CascadeType.ALL) // 副文章關聯
+	@JsonIgnoreProperties("mainarticlesforsa")
 	Set<SubArticles> subarticles = new LinkedHashSet<>();
 
 	@OneToMany(mappedBy = "mainarticlesformam", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("mainarticlesformam")
 	Set<MainArticleMessages> mainarticlemessages = new LinkedHashSet<>(); // 主文章留言關聯
 
 	@OneToMany(mappedBy = "mainarticlesformalk", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("mainarticlesformalk")
 	Set<MainArticleLikes> mainarticlelikes = new LinkedHashSet<>(); // 主文章讚關聯
 
 	@ManyToOne
 	@JoinColumn(name = "author_id", nullable = false)
-	private Member author_idforMA;
+	@JsonIgnoreProperties("memberMainArticles")
+	private Member authoridforMA;
 
 }

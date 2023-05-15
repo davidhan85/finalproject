@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,7 +31,7 @@ import com.team5.finalTopic.model.member.Member;
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="samessage_id")
-		private Integer samessage_id;
+		private Integer samessageid;
 		
 		
 //		@Column(name="author_id", nullable = false)
@@ -48,12 +49,75 @@ import com.team5.finalTopic.model.member.Member;
 		private Date updatedatetime;	
 		@PrePersist
 		public void onCreate() {
-			if(updatedatetime == null) {
-			 	updatedatetime = new Date();
-			}
+			if (updatedatetime == null && createdatetime == null) {
+				createdatetime = new Date();
+			} 
+			updatedatetime = createdatetime;
 		}
 		
+		 @PreUpdate
+		    public void onUpdate() {
+		        updatedatetime = new Date();
+		    }
 		
+		
+		public Integer getSamessageid() {
+			return samessageid;
+		}
+
+		public void setSamessageid(Integer samessageid) {
+			this.samessageid = samessageid;
+		}
+
+		public String getContent() {
+			return content;
+		}
+
+		public void setContent(String content) {
+			this.content = content;
+		}
+
+		public Date getUpdatedatetime() {
+			return updatedatetime;
+		}
+
+		public void setUpdatedatetime(Date updatedatetime) {
+			this.updatedatetime = updatedatetime;
+		}
+
+		public Date getCreatedatetime() {
+			return createdatetime;
+		}
+
+		public void setCreatedatetime(Date createdatetime) {
+			this.createdatetime = createdatetime;
+		}
+
+		public SubArticles getSubarticlesforsam() {
+			return subarticlesforsam;
+		}
+
+		public void setSubarticlesforsam(SubArticles subarticlesforsam) {
+			this.subarticlesforsam = subarticlesforsam;
+		}
+
+		public Set<SubArticleMessageLikes> getSubarticlemessagelikes() {
+			return subarticlemessagelikes;
+		}
+
+		public void setSubarticlemessagelikes(Set<SubArticleMessageLikes> subarticlemessagelikes) {
+			this.subarticlemessagelikes = subarticlemessagelikes;
+		}
+
+		public Member getAuthoridforSAM() {
+			return authoridforSAM;
+		}
+
+		public void setAuthoridforSAM(Member authoridforSAM) {
+			this.authoridforSAM = authoridforSAM;
+		}
+
+
 		@Temporal(TemporalType.TIMESTAMP)
 		@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 		@Column(name = "createdatetime", columnDefinition = "datetime")
@@ -69,5 +133,5 @@ import com.team5.finalTopic.model.member.Member;
 		
 		@ManyToOne
 		@JoinColumn(name="author_id", nullable = false)  
-		private Member author_idforSAM;
+		private Member authoridforSAM;
 }

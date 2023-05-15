@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,6 +23,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.team5.finalTopic.model.member.Member;
 
 @Entity
@@ -30,7 +33,7 @@ public class MainArticleMessages {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="mamessage_id")
-	private Integer mamessage_id;
+	private Integer mamessageid;
 	
 	
 //	@Column(name="author_id", nullable = false)
@@ -46,20 +49,26 @@ public class MainArticleMessages {
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "updatedatetime", columnDefinition = "datetime")
 	private Date updatedatetime;	
+	
 	@PrePersist
 	public void onCreate() {
-		if(updatedatetime == null) {
-		 	updatedatetime = new Date();
-		}
+		if (updatedatetime == null && createdatetime == null) {
+			createdatetime = new Date();
+		} 
+		updatedatetime = createdatetime;
 	}
 	
+	 @PreUpdate
+	    public void onUpdate() {
+	        updatedatetime = new Date();
+	    }
 	
-	public Integer getMamessage_id() {
-		return mamessage_id;
+	public Integer getMamessageid() {
+		return mamessageid;
 	}
 
-	public void setMamessage_id(Integer mamessage_id) {
-		this.mamessage_id = mamessage_id;
+	public void setMamessageid(Integer mamessageid) {
+		this.mamessageid = mamessageid;
 	}
 
 	public String getContent() {
@@ -102,12 +111,12 @@ public class MainArticleMessages {
 		this.mainarticlemessagelikes = mainarticlemessagelikes;
 	}
 
-	public Member getAuthor_idforMAM() {
-		return author_idforMAM;
+	public Member getAuthoridforMAM() {
+		return authoridforMAM;
 	}
 
-	public void setAuthor_idforMAM(Member author_idforMAM) {
-		this.author_idforMAM = author_idforMAM;
+	public void setAuthoridforMAM(Member authoridforMAM) {
+		this.authoridforMAM = authoridforMAM;
 	}
 
 
@@ -116,15 +125,18 @@ public class MainArticleMessages {
 	@Column(name = "createdatetime", columnDefinition = "datetime")
 	private Date createdatetime;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_MAM_MA_Id", nullable = false)
+	@JsonIgnoreProperties("mainarticlemessages")
 	private MainArticles mainarticlesformam;
 	
 	
 	@OneToMany(mappedBy = "mainarticlemessagesformamelk", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("mainarticlemessagesformamelk")
 	Set<MainArticleMessageLikes> mainarticlemessagelikes = new LinkedHashSet<>();
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
 	@JoinColumn(name="author_id", nullable = false)
-	private Member author_idforMAM;
+	@JsonIgnoreProperties("memberMainArticleMessages")
+	private Member authoridforMAM;
 }

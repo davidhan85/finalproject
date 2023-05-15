@@ -79,7 +79,7 @@ public class ShowMainArticleController {
 //=======================================修改主業=======================================
 	
 	@GetMapping("/board/editMainArticle")
-	public String editMainArticle(@RequestParam("ma_id") Integer id,Model model) {
+	public String editMainArticle(@RequestParam("maid") Integer id,Model model) {
 		MainArticles msg = maService.findMainArticlesById(id);
 		
 		model.addAttribute("mainarticles", msg);
@@ -91,21 +91,21 @@ public class ShowMainArticleController {
 	
 	@PutMapping("/board/editMainArticle")
 	public String putEditedMainArticle(@ModelAttribute("mainarticles") MainArticles ma , Model model) {
-		maService.updateMainById(ma.getMain_id(), ma.getContent(),ma.getTitle(),ma.getCategory(),ma.getAccess());
+		maService.updateMainById(ma.getMainid(), ma.getContent(),ma.getTitle(),ma.getCategory(),ma.getAccess());
 		model.addAttribute("message", "修改成功");
 		return "redirect:/board";
 	}
 	
 //=====================================刪除主頁=============================================
 	
-//	@Transactional
-//	@GetMapping("/board/deleteMainArticle")
-//	public String deleteMainArticle(@RequestParam("ma_id") Integer id, Model model) {
-//	    maService.deleteMainArticleById(id);
-//	    
-//	    model.addAttribute("message", "刪除成功");
-//	    return "redirect:/board";
-//	}
+	@Transactional
+	@GetMapping("/board/deleteMainArticle")
+	public String deleteMainArticle(@RequestParam("maid") Integer id, Model model) {
+	    maService.deleteMainArticleById(id);
+	    
+	    model.addAttribute("message", "刪除成功");
+	    return "redirect:/board";
+	}
 //	@Transactional
 //	@GetMapping("/board/deleteMainArticle")
 //	@ResponseBody
@@ -119,10 +119,10 @@ public class ShowMainArticleController {
 	@Transactional
 	@ResponseBody
 	@DeleteMapping("/board/deleteMainArticle")
-	public ResponseEntity<Object> deleteMainArticle(@RequestParam("main_id") int ma_id) {
+	public ResponseEntity<Object> deleteMainArticle(@RequestParam("mainid") int maid) {
 		System.out.println("enter deleteMainArticle");
-		maService.deleteMainArticleById(ma_id);
-		return ResponseEntity.ok().body("Main article with ID " + ma_id + " has been deleted.");
+		maService.deleteMainArticleById(maid);
+		return ResponseEntity.ok().body("Main article with ID " + maid + " has been deleted.");
 	}
 
 

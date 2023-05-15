@@ -1,10 +1,8 @@
 package com.team5.finalTopic.service.board;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.team5.finalTopic.model.board.MainArticleMessages;
@@ -20,9 +18,12 @@ public class MainArticleMessageService {
 		mamRepository.save(ma);
 	}
 	
-	public Page<MainArticleMessages> findByPage(Integer pageNumber){
-		Pageable pgb = PageRequest.of(pageNumber-1, 5, Sort.Direction.DESC, "createdatetime");
-		Page<MainArticleMessages> page = mamRepository.findAll(pgb);
-		return page;
+	public List<MainArticleMessages> findMainArticleMessages(Integer mainid ){
+		
+		List<MainArticleMessages> mam = mamRepository.findAllByMainarticlesformam_mainid(mainid);
+		
+		return mam;
 	}
+	
+	
 }

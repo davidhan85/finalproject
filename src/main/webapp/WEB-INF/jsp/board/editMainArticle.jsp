@@ -31,9 +31,9 @@
 					<div class="card-body">
 						<form:form class="form-select" modelAttribute="mainarticles"
 							action="${contextRoot}/board/editMainArticle" method="put">
-							<form:input path="main_id" class="form-control" value="${mainarticles.main_id}"></form:input>
+							<form:input path="mainid" class="form-control" value="${mainarticles.mainid}"></form:input>
 							<form:input path="title" class="form-control" value="${mainarticles.title}"></form:input>
-							<form:input path="author_idforMA" class="form-control" value="${mainarticles.author_idforMA.m_number}"></form:input>
+							<form:input path="authoridforMA" class="form-control" value="${mainarticles.authoridforMA.m_number}"></form:input>
 							<form:select path="category" class="form-control" name="category"
 								id="">
 								<option value="${mainarticles.category}">${mainarticles.category}</option>
