@@ -54,7 +54,7 @@
 			<div class="container">
 				<nav class="navbar navbar-expand-lg custom_nav-container ">
 					<a class="navbar-brand" href="${contextRoot}/"> <span>
-							首頁 </span>
+							<img src="${contextRoot}/images/bookGaming.png" style="width: 150px; height: 150px;"> </span>
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
@@ -63,8 +63,8 @@
 						<span class=""> </span>
 					</button>
 
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav  mx-auto ">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent" >
+						<ul class="navbar-nav  mx-auto " style="font-size: 22px; text-align: center; ">
 
 
 							<li class="nav-item"><a class="nav-link"
@@ -137,7 +137,7 @@
 							</a>
 							<c:if test="${not empty memberbean}">
 							
-								<a href="${contextRoot}/membercenter" class="order_online">會員中心</a>
+								<a href="${contextRoot}/membercenter" class="order_online" style="width: 100px; height: 80px; font-size: 20px;">會員中心</a>
 							</c:if>
 							<c:if test="${empty memberbean}">
 								<a href="${contextRoot}/newmember" class="order_online">加入會員</a>
@@ -173,7 +173,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<!-- 登錄表单 -->
+					<!-- 登入表單 -->
 					<form action="${contextRoot}/checkLogin" method="post">
 						<div class="form-group">
 							<label for="username">帳號:</label> <input type="text"
