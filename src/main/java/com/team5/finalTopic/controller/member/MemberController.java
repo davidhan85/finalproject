@@ -50,7 +50,6 @@ public class MemberController {
 	@Autowired
 	private EmailService emailService;
 
-
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}

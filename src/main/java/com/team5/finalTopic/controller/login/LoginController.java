@@ -4,6 +4,7 @@ import com.team5.finalTopic.model.login.LoginRepository;
 import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.model.member.MemberRepository;
 import com.team5.finalTopic.service.login.LoginServiceImpl;
+import com.team5.finalTopic.service.member.MemberService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,6 +32,9 @@ public class LoginController {
     
     @Autowired
     private MemberRepository memberRepository;
+    
+    @Autowired
+    private MemberService memberService;
 
     @GetMapping(value = "/Login")
     public String goLoginPage(HttpServletRequest request){
@@ -87,5 +92,15 @@ public class LoginController {
 
         return "member/membercenter2";
     }
-
+    @GetMapping(value = "/membercenter/{m_number}")
+    public String VisitMemberCenter(@PathVariable("m_number") Integer m_number,Model model){
+    	Member member = memberService.findById(m_number);
+    	if(member!=null) {  		
+                // 將找到的會員資料放入 Model 物件中
+    			model.addAttribute("member",member);               
+                // 返回 JSP 檔案的路徑
+    			return "member/membercenter3";   	
+    }    
+    	return null;
+}
 }
