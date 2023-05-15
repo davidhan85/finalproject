@@ -63,8 +63,8 @@
 						<span class=""> </span>
 					</button>
 
-					<div class="collapse navbar-collapse" id="navbarSupportedContent" >
-						<ul class="navbar-nav  mx-auto " style="font-size: 22px; text-align: center; ">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav  mx-auto ">
 
 
 							<li class="nav-item"><a class="nav-link"

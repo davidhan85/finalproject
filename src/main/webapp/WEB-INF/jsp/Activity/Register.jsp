@@ -12,39 +12,64 @@
 <meta charset="UTF-8">
 <jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
-<title>Insert title here</title>
-<script>
-    function showConfirmation() {
-        // 使用 confirm 函式顯示確認對話框
-        if (confirm("確定資訊正確嗎？要確定捏")) {
-            // 提交表單
-            document.getElementById("myForm").submit();
-        }
-    }
-</script>
+<title>報名</title>
+
+<!-- CSS 相關設定 -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZEK6pX6rWI7WQXkEIQ6Iw"
+	crossorigin="anonymous">
+<style>
+.book_section {
+	background: #f6f6f6;
+	padding: 80px 0;
+}
+
+.form_container {
+	background: #fff;
+	border-radius: 10px;
+	padding: 40px 20px;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.heading_container {
+	margin-bottom: 30px;
+}
+</style>
+</head>
+
 </head>
 
 <body>
-    <section class="book_section layout_padding">
-        <div class="container">
-            <div class="heading_container" style="text-align: center;">
-                <h2>活動報名</h2>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form_container">
-                        <form:form id="myForm" modelAttribute="111" action="${contextRoot}/store" method="post" >
+<%-- 		<jsp:include page="../layout/navebar.jsp"></jsp:include> --%>
 
-							<%-- 							<form:input type="hidden" path="m_number.m_number" value="${memberss.} " /> --%>
+	<section class="book_section layout_padding">
+		<div class="container">
+			<div class="heading_container" style="text-align: center;">
+				<h2>活動報名</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form_container">
+						<form:form id="myForm" modelAttribute="111"
+							action="${contextRoot}/store" method="post">
+
+							<%-- 		demo					<form:input type="hidden" path="m_number.m_number" value="${memberss.} " /> --%>
 							<%-- 							<form:input type="number" path="id" readonly="true" value="${id}" /> --%>
 							<!-- value="3" -->
 
+							<!-- 							<div style="text-align: center;"> -->
+							<!-- 								<h4 style="text-align: center;">活動編號</h4> -->
+							<%-- 								<form:input type="text" class="form-control" id="activity_id" --%>
+							<%-- 									name="activity_id" placeholder="活動編號" --%>
+							<%-- 									path="activity.activity_id" style="text-align:center;" --%>
+							<%-- 									value="${activity.activity_id}" /> --%>
 							<div style="text-align: center;">
 								<h4 style="text-align: center;">活動編號</h4>
 								<form:input type="text" class="form-control" id="activity_id"
 									name="activity_id" placeholder="活動編號"
 									path="activity.activity_id" style="text-align:center;"
-									value="${activity.activity_id}" />
+									value="${act.activity_id}" />
 								<!-- 有寫path，就會自動找到相對應的欄位並將我輸入的值注入進去，苦是如果次外來件，則必須要透過Service裡面的企業邏輯去將外外艦給save進去							</div> -->
 								<div style="text-align: center;">
 									<h4 style="text-align: center;">會員編號</h4>
@@ -60,39 +85,39 @@
 											name="name" placeholder="(請輸入姓名)" path="name"
 											style="text-align:center;" />
 									</div>
-									<h4 style="text-align: center;">電子郵件</h4>
-									<form:input type="date-location" class="form-control"
-										id="email" name="email" placeholder="(請輸入電子郵件)" path="email"
-										style="text-align:center;" />
-								</div>
-								<div>
-									<input type="submit" value="儲存" style="float: left;" onclick="showConfirmation();"/>
-								</div>
+									<h4>電子信箱</h4>
+									<input type="email" class="form-control" id="email"
+										name="email" placeholder="(請輸入電子信箱)"
+										style="text-align: center;" required />
+									<div id="email_error" style="color: red;"></div>
+									<div>
+										<input type="submit" value="報名" style="float: left;"
+											onclick="showConfirmation();" id="submit_button" />
+									</div>
 						</form:form>
-						<%-- 						<form:form modelAttribute="multiMember" --%>
-						<%-- 							action="${contextRoot}/next" method="post"> --%>
-						<!-- 							<input type="hidden" name="memberss.m_number" -->
-						<%-- 								value="${multiMember.memberss.m_number}" /> --%>
-						<!-- 							<input type="submit" value="下一步" -->
-						<!-- 								style="float: right; margin-right: 10px;" /> -->
-						<%-- 						</form:form> --%>
+						<script>
+							function showConfirmation() {
+								if (confirm("確定資訊正確嗎？要確定捏")) {
+									document.getElementById("myForm").submit();
+									alert("報名成功！");
+								}
+							}
 
-						<%-- 						<form:form modelAttribute="multiMember" --%>
-						<%-- 							action="${contextRoot}/next" method="post"> --%>
-						<!-- 							<input type="hidden" name="memberss.m_number" -->
-						<%-- 								value="${multiMember.memberss.m_number}" /> --%>
-						<!-- 							<input type="submit" value="下一步" -->
-						<!-- 								style="float: right; margin-right: 10px;" /> -->
-						<%-- 						</form:form> --%>
-<%-- 						<form:form modelAttribute="multiMember" --%>
-<%-- 							action="${contextRoot}/next" method="post"> --%>
-<%-- 							<form:input type="hidden" path="memberss.m_number" --%>
-<%-- 								value="${memberbean.m_number}" /> --%>
-<!-- 														<input type="submit" value="下一步" -->
-<!-- 															style="float: right; margin-right: 10px;" /> -->
-<!-- 							<button type="submit" style="float: right; margin-right: 10px;">下一步</button> -->
-<%-- 						</form:form> --%>
+							var email_input = document.getElementById("email");
+							var email_error = document
+									.getElementById("email_error");
 
+							email_input.addEventListener("input", function(
+									event) {
+								if (email_input.validity.valid) {
+									email_error.innerHTML = "";
+									email_error.className = "error";
+								} else {
+									email_error.innerHTML = "請輸入正確的電子郵件格式";
+									email_error.className = "error active";
+								}
+							});
+						</script>
 					</div>
 				</div>
 				<div class="col-md-6">

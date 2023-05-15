@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +18,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.team5.finalTopic.model.member.Member;
 
 @Entity
@@ -25,8 +27,8 @@ public class SubArticleLikes {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="mainarticleLikes_id")
-	private Integer salike_id;
+	@Column(name="subarticleLikes_id")
+	private Integer salikeid;
 	
 	
 //	@Column(name="author_id", nullable = false)
@@ -40,12 +42,57 @@ public class SubArticleLikes {
 	private Date updatedatetime;	
 	@PrePersist
 	public void onCreate() {
-		if(updatedatetime == null) {
-		 	updatedatetime = new Date();
-		}
+		if (updatedatetime == null && createdatetime == null) {
+			createdatetime = new Date();
+		} 
+		updatedatetime = createdatetime;
 	}
 	
+	 @PreUpdate
+	    public void onUpdate() {
+	        updatedatetime = new Date();
+	    }
 	
+	public Integer getSalikeid() {
+		return salikeid;
+	}
+
+	public void setSalikeid(Integer salikeid) {
+		this.salikeid = salikeid;
+	}
+
+	public Date getUpdatedatetime() {
+		return updatedatetime;
+	}
+
+	public void setUpdatedatetime(Date updatedatetime) {
+		this.updatedatetime = updatedatetime;
+	}
+
+	public Date getCreatedatetime() {
+		return createdatetime;
+	}
+
+	public void setCreatedatetime(Date createdatetime) {
+		this.createdatetime = createdatetime;
+	}
+
+	public SubArticles getSubarticlesforsalk() {
+		return subarticlesforsalk;
+	}
+
+	public void setSubarticlesforsalk(SubArticles subarticlesforsalk) {
+		this.subarticlesforsalk = subarticlesforsalk;
+	}
+
+	public Member getAuthoridforSAL() {
+		return authoridforSAL;
+	}
+
+	public void setAuthoridforSAL(Member authoridforSAL) {
+		this.authoridforSAL = authoridforSAL;
+	}
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "createdatetime", columnDefinition = "datetime")
@@ -53,10 +100,11 @@ public class SubArticleLikes {
 	
 	@ManyToOne
 	@JoinColumn(name="fk_SALK_SA_Id", nullable = false)
-	private MainArticles subarticlesforsalk;
+	private SubArticles subarticlesforsalk;
 	
 	@ManyToOne
 	@JoinColumn(name="author_id", nullable = false)
-	private Member author_idforSAL;
+	@JsonIgnoreProperties("memberSubArticleLikes")
+	private Member authoridforSAL;
 
 }
