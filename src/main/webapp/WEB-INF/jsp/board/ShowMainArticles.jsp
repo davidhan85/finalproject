@@ -43,13 +43,18 @@
 										.aa {
 											background-color: red;
 										}
+
+										.data-id.rowarticle:hover {
+											box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+											transform: translateY(-2px);
+										}
 									</style>
 
 
 								</head>
 
 
-								<jsp:include page="../layout/navebar.jsp"></jsp:include>
+
 
 								<head>
 									<meta charset="utf-8">
@@ -90,11 +95,11 @@
 
 
 
-									<div class="container mt-4 border border-success ">
+									<div class="container mt-5">
 
 
 										<div
-											class="row border-bottom font-weight-bold border-0 bg-success p-2 text-dark bg-opacity-10">
+											class="row border-bottom font-weight-bold border-0 bg-success  text-dark bg-opacity-10">
 											<div class="col-sm-2">分類</div>
 											<div class="col-sm-1">權限</div>
 											<div class="col-sm-4">標題</div>
@@ -105,7 +110,7 @@
 
 
 										<jstl:forEach var="MainArticles" items="${page.content}">
-											<div class="row border-bottom border-0">
+											<div class="row border-bottom border-0" data-id="rowarticle">
 												<div class="col-sm-2">${MainArticles.category}</div>
 												<div class="col-sm-1">${MainArticles.access}</div>
 												<div class="col-sm-4">
@@ -197,5 +202,6 @@
 										<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 										<script src="${contextRoot}/js/jquery-3.6.4.min.js"></script>
 								</body>
+								<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 
 							</html>

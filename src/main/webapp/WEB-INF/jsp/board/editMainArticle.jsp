@@ -21,7 +21,7 @@
 
 <body>
 
-	<jsp:include page="boardnarbar.jsp"></jsp:include>
+	<jsp:include page="../layout/navebar.jsp"></jsp:include>
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-8">
@@ -111,8 +111,8 @@
 	
 
 
-	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-	<script src="${contextRoot}/js/jquery-3.6.4.min.js"></script>
+	
+	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 </body>
 
 </html>

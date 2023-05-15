@@ -42,26 +42,38 @@
 								}
 
 								.container {
-									border-radius: 1000px;
+									border-radius: 1px;
+
+								}
+
+								.card {
+									background-color: transparent;
+									border: 1px solid #ccc;
+								}
+
+								.card-body {
+									background-color: white;
 								}
 							</style>
 						</head>
 
-						<body>
-							<input type="text" class="form-control" placeholder="Author Name" id="maid">
+						<body style="background-image: url('./back.jpg')">
 
-							<div class="container">
+
+							<div class="container" style="padding-top:10px">
 								<div class="row justify-content-center">
 									<div class="col-8">
 										<div class="card border-info border-5 mb-3" style="max-width: 100rem;">
 											<div>
 												<div class="card-header bg-success p-2 text-dark bg-opacity-10">
-													<span class="title" id="main_id">${MainArticles.mainid}</span> <span
+													<span class="title" id="main_id"
+														style="display:none">${MainArticles.mainid}</span> <span
 														class="title">【${MainArticles.category}】</span> <span
 														class="title">${MainArticles.title}</span>
+													<span class="title">${MainArticles.authoridforMA.m_account}</span>
 												</div>
 											</div>
-											<div class="card-body text-secondary" style="background-color: aliceblue;">
+											<div class="card-body text-secondary">
 
 												<p class="card-text">${MainArticles.content}</p>
 											</div>
@@ -79,21 +91,23 @@
 															id="likeCount">${MainArticles.mainarticlelikes.size()}</span>
 													</div>
 													<!-- //之後會刪掉改成當前登入的人id -->
-													<div id="mainlikeid">3</div>
+													<div id="mainlikeid" style="display:none">${memberbean.m_number}
+													</div>
 												</div>
 											</div>
 											<div class="row">
-												<div class="col-md-3">
-													<input type="text" class="form-control" placeholder="Author Name"
-														id="author">
+												<div class="col-md-0">
+													<input type="text" class="form-control" style="display:none"
+														value="${memberbean.m_number}" id="author">
+
 												</div>
-												<div class="col-md-8">
+												<div class="col-md-12">
 													<input type="text" class="form-control" id="message"
 														placeholder="我要留言">
 												</div>
-												<div class="col-md-1">
+												<div class="col-md-0">
 													<input type="text" class="form-control" id="mainid"
-														placeholder="${MainArticles.mainid}"
+														placeholder="${MainArticles.mainid}" style="display:none"
 														value="${MainArticles.mainid}">
 												</div>
 											</div>
@@ -112,7 +126,7 @@
 														<jstl:forEach var="MainArticleMessage"
 															items="${MainArticleMessages}">
 															<tr>
-																<td>${MainArticleMessage.authoridforMAM.m_number }</td>
+																<td>${MainArticleMessage.authoridforMAM.m_account }</td>
 																<td>${MainArticleMessage.content }</td>
 																<td>${MainArticleMessage.updatedatetime }</td>
 																<td><a
@@ -148,18 +162,18 @@
 											<div class="card border-primary mb-3" style="max-width: 100rem;">
 												<div>
 													<div class="card-header bg-primary p-2 text-dark bg-opacity-10">
-														<span class="subidforsam"
-															data-id="subid">${subArticles.subid}</span>
+														<span class="subidforsam" data-id="subid"
+															style="display:none">${subArticles.subid}</span>
 														<span class="author"
-															id="authorid">${subArticles.authoridforSA.m_number}</span>
+															id="authorid">${subArticles.authoridforSA.m_account}</span>
 													</div>
 												</div>
-												<div class="card-body text-secondary" style="background-color: aliceblue;">
+												<div class="card-body text-secondary">
 
 													<p class="card-text">${subArticles.content}</p>
 												</div>
 
-												<div class="card-header" style="background-color: aliceblue;">
+												<div class="card-header">
 													<div class="row">
 														<div class="col-11 text-right">
 															<button type="button" class="btn btn-outline-primary btn-sm"
@@ -172,26 +186,27 @@
 																data-id="SublikeCount">${subArticles.subarticlelikes.size()}</span>
 														</div>
 														<!-- //之後會刪掉改成當前登入的人id -->
-														<div id="sublikeid">3</div>
+														<div id="sublikeid" style="display:none">${memberbean.m_number}
+														</div>
 													</div>
 												</div>
 
 												<!-- 	=====================================回文留言=================================================================					 -->
-												<form class="subform" style="background-color: aliceblue;">
-													<div class="row" style="background-color: aliceblue;">
-														<div class="col-md-2">
+												<form class="subform">
+													<div class="row">
+														<div class="col-md-0">
 															<input type="text" class="form-control"
-																placeholder="${subArticles.authoridforSA.m_number}"
+																value="${memberbean.m_number }" style="display:none"
 																data-id="subauthor">
 														</div>
-														<div class="col-md-8">
+														<div class="col-md-12">
 															<input type="text" class="form-control" data-id="submessage"
 																placeholder="我要留言">
 														</div>
 														<div class="col-md-2">
-															<input type="text" class="form-control"
-																data-id="submessageid"
-																placeholder="${subArticles.subid}">
+															<input type="text" class="form-control" style="display:none"
+																data-id="submessageid" style="display:none"
+																value="${subArticles.subid}">
 														</div>
 													</div>
 
@@ -200,7 +215,7 @@
 
 												<div>
 													<table class="table table-striped" data-subid="${subArticles.subid}"
-														data-id="list_subtable_json" style="background-color: aliceblue;">
+														data-id="list_subtable_json">
 														<thead>
 															<tr>
 																<th class="col-2">留言作者</th>
@@ -213,7 +228,7 @@
 															<c:forEach items="${subArticles.subarticlemessages}"
 																var="sam">
 																<tr>
-																	<td>${sam.authoridforSAM.m_number}</td>
+																	<td>${sam.authoridforSAM.m_account}</td>
 																	<td>${sam.content}</td>
 																	<td>${sam.updatedatetime}</td>
 																	<td><button
@@ -242,13 +257,14 @@
 								<div class="row justify-content-center">
 									<div class="col-8">
 										<div class="card border-secondary mb-3" style="max-width: 100rem;">
+											<h2>我要回文</h2>
 											<form:form class="form-select" modelAttribute="SubArticles"
 												action="${contextRoot}/board/addSA/${MainArticles.mainid}/${page.totalPages}">
 
 												<form:input path="mainarticlesforsa.mainid" class="form-control"
-													value="${MainArticles.mainid}"></form:input>
+													value="${MainArticles.mainid}" style="display:none"></form:input>
 												<form:input path="authoridforSA.m_number" class="form-control"
-													value="作者"></form:input>
+													value="${memberbean.m_number }" style="display:none"></form:input>
 												<form:textarea path="content" class="form-control" id="editorDemo"
 													cols="30"></form:textarea>
 												<button type="submit" class="btn btn-primary">送出</button>
@@ -338,6 +354,9 @@
 															err) {
 															console
 																.log(err)
+															if (err.status === 500) {
+																alert("請先登入");
+															}
 														}
 													})
 
@@ -406,6 +425,9 @@
 												},
 												error: function (err) {
 													console.log(err);
+													if (err.status === 500) {
+														alert("請先登入");
+													}
 												}
 											});
 										}
@@ -426,6 +448,7 @@
 									$("#malike").click(function () {
 										let mainid = parseInt($("#main_id").text());
 										let auid = parseInt($("#mainlikeid").text());
+
 										console.log(mainid);
 										let dtoObject = {
 											"mainid": mainid,
@@ -451,6 +474,9 @@
 												err) {
 												console
 													.log(err)
+												if (err.status === 500) {
+													alert("請先登入");
+												}
 											}
 										})
 									});
@@ -485,7 +511,7 @@
 												const auidList = result.auidlist;
 												let links = ""; // 這裡是要放在 tooltip 內的超連結的 HTML 字串
 												for (let i = 0; i < auidList.length; i++) {
-													links += "<a href='https://example.com/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
+													links += "<a href='http://localhost:8078/finalTopic_5/board/membercenter/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
 												}
 
 												console.log(auidList);
@@ -513,6 +539,9 @@
 												err) {
 												console
 													.log(err)
+												if (err.status === 500) {
+													alert("請先登入");
+												}
 											}
 										})
 
@@ -558,6 +587,9 @@
 												},
 												error: function (err) {
 													console.log(err)
+													if (err.status === 500) {
+														alert("請先登入");
+													}
 												}
 											})
 										});
@@ -591,7 +623,7 @@
 														const auidList = result.auidlist;
 														let links = "";
 														for (let i = 0; i < auidList.length; i++) {
-															links += "<a href='https://example.com/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
+															links += "<a href='http://localhost:8078/finalTopic_5/board/membercenter/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
 														}
 														subtooltip = $container.data('subtooltip');
 														if (!subtooltip && !$container.data('subtooltip')) {
@@ -614,6 +646,9 @@
 													},
 													error: function (err) {
 														console.log(err)
+														if (err.status === 500) {
+															alert("請先登入");
+														}
 													}
 												});
 											}, 500); // 設定延遲時間
@@ -763,7 +798,7 @@
 									}
 								}
 							</script>
-
+							<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 						</body>
 
 						</html>
