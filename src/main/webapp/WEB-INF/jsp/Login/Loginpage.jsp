@@ -71,7 +71,7 @@ html, body {
 							</form>
 							<c:if test="${not empty error}">
 								<div class="alert alert-danger">
-									<strong>错误:</strong>
+									<strong>錯誤:</strong>
 									<c:forEach var="entry" items="${error}">									
                           ${entry.value}<br />
 									</c:forEach>

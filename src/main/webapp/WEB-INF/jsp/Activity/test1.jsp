@@ -7,12 +7,13 @@
   <meta charset="UTF-8">
   <title>新增活動</title>
   <!-- 引入 Bootstrap CSS 檔案 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
   <!-- 引入 Bootstrap JavaScript 檔案 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <div class="container">
+  <jsp:include page="../layout/sidebar.jsp"></jsp:include>
+  <div class="container" style="transform:scale(1.1); position: absolute; top: 7%; left: 20%;">
     <h2>新增活動</h2>
     <form id="addActivityForm" method="post" enctype="multipart/form-data" action="<c:url value='/addActivity' />">
       <div class="form-group">

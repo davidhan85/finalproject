@@ -68,7 +68,6 @@ public class FrontActivityController {
 	@GetMapping("/activity") //要使用分頁，命名entity的時候，不要用底線命名，會出現問題。再搭配	<c:forEach items="${activities.content}" var="activity">
 	public String getAllActivities(@RequestParam(name="p",defaultValue = "1") Integer pageNumber,Model model) {
 		Page<Activity> page = actService.findByPage(pageNumber);
-		
 		model.addAttribute("page", page);
 		return "Activity/search";		
 	}

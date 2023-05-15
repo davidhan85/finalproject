@@ -11,6 +11,7 @@
 <title>修改頁面</title>
 </head>
 <body>
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-8">

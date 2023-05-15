@@ -102,6 +102,7 @@
 			
 			</jstl:forEach>
 			</tbody>
+			
 		</table>
 	</div>
 </body>

@@ -22,14 +22,15 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
+	<!-- <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="#">Activity List</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-	</nav>
+	</nav> -->
 	<br>
 	<div class="container">
 		<table class="table table-striped">

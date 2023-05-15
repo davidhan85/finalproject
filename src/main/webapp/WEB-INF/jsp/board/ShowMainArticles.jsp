@@ -37,8 +37,9 @@
 
       </head>
 
-      <body>
-        <jsp:include page="boardnarbar.jsp"></jsp:include>
+<!--       <body> -->
+<%--         <jsp:include page="boardnarbar.jsp"></jsp:include> --%>
+	<jsp:include page="../layout/navebar.jsp"></jsp:include>
 
         <head>
           <meta charset="utf-8">

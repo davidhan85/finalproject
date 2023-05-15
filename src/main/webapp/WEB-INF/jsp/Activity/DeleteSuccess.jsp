@@ -17,6 +17,7 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+    <jsp:include page="../layout/sidebar.jsp"></jsp:include>
 <div class="container">
     <div class="jumbotron">
         <h1>刪除成功！</h1>

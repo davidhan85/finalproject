@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>首頁</title>
 </head>
 <body>
 <jsp:include page="layout/navebar.jsp"></jsp:include>
- <h1></h1>
+ <h1>你好</h1>
  <jsp:include page="layout/footerbar.jsp"></jsp:include>
 </body>
 
