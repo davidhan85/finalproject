@@ -1,22 +1,47 @@
 package com.team5.finalTopic.model.member;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.team5.finalTopic.model.board.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.team5.finalTopic.model.board.MainArticleLikes;
+import com.team5.finalTopic.model.board.MainArticleMessageLikes;
+import com.team5.finalTopic.model.board.MainArticleMessages;
+import com.team5.finalTopic.model.board.MainArticles;
+import com.team5.finalTopic.model.board.SubArticleLikes;
+import com.team5.finalTopic.model.board.SubArticleMessageLikes;
+import com.team5.finalTopic.model.board.SubArticleMessages;
+import com.team5.finalTopic.model.board.SubArticles;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "memberdata", uniqueConstraints = { @UniqueConstraint(columnNames = "member_number") })
@@ -249,29 +274,36 @@ public class Member {
 	}
 
 
-	@OneToMany(mappedBy = "author_idforMA")
-
+	@OneToMany(mappedBy = "authoridforMA")
+	@JsonIgnoreProperties("authoridforMA")
 	Set<MainArticles> memberMainArticles = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforSA")
+	@OneToMany(mappedBy = "authoridforSA")
+	@JsonIgnoreProperties("authoridforSA")
 	Set<SubArticles> memberSubArticles = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforMAL")
+	@OneToMany(mappedBy = "authoridforMAL")
+	@JsonIgnoreProperties("authoridforMAL")
 	Set<MainArticleLikes> memberMainArticleLikes = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforMAM")
+	@OneToMany(mappedBy = "authoridforMAM")
+	@JsonIgnoreProperties("authoridforMAM")
 	Set<MainArticleMessages> memberMainArticleMessages = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforMAML")
+	@OneToMany(mappedBy = "authoridforMAML")
+	@JsonIgnoreProperties("authoridforMAML")
 	Set<MainArticleMessageLikes> memberMainArticleMessageLikes = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforSAL")
+	@OneToMany(mappedBy = "authoridforSAL")
+	@JsonIgnoreProperties("authoridforSAL")
 	Set<SubArticleLikes> memberSubArticleLikes = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforSAM")
+	@OneToMany(mappedBy = "authoridforSAM")
+	@JsonIgnoreProperties("authoridforSAM")
 	Set<SubArticleMessages> memberSubArticleMessages = new LinkedHashSet<>();
 
-	@OneToMany(mappedBy = "author_idforSAML")
+	@OneToMany(mappedBy = "authoridforSAML")
+	@JsonIgnoreProperties("authoridforSAML")
 	Set<SubArticleMessageLikes> memberSubArticleMessageLikes = new LinkedHashSet<>();
 
 	public Member() {

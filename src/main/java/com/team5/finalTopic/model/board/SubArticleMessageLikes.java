@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +27,7 @@ public class SubArticleMessageLikes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="samessagelike_id")
-	private Integer samessagelike_id;
+	private Integer samessagelikeid;
 	
 	
 //	@Column(name="author_id", nullable = false)
@@ -40,12 +41,59 @@ public class SubArticleMessageLikes {
 	private Date updatedatetime;	
 	@PrePersist
 	public void onCreate() {
-		if(updatedatetime == null) {
-		 	updatedatetime = new Date();
-		}
+		if (updatedatetime == null && createdatetime == null) {
+			createdatetime = new Date();
+		} 
+		updatedatetime = createdatetime;
 	}
 	
+	 @PreUpdate
+	    public void onUpdate() {
+	        updatedatetime = new Date();
+	    }
 	
+	
+	public Integer getSamessagelikeid() {
+		return samessagelikeid;
+	}
+
+	public void setSamessagelikeid(Integer samessagelikeid) {
+		this.samessagelikeid = samessagelikeid;
+	}
+
+	public Date getUpdatedatetime() {
+		return updatedatetime;
+	}
+
+	public void setUpdatedatetime(Date updatedatetime) {
+		this.updatedatetime = updatedatetime;
+	}
+
+	public Date getCreatedatetime() {
+		return createdatetime;
+	}
+
+	public void setCreatedatetime(Date createdatetime) {
+		this.createdatetime = createdatetime;
+	}
+
+	public SubArticleMessages getSubarticlemessagesforsamelk() {
+		return subarticlemessagesforsamelk;
+	}
+
+	public void setSubarticlemessagesforsamelk(SubArticleMessages subarticlemessagesforsamelk) {
+		this.subarticlemessagesforsamelk = subarticlemessagesforsamelk;
+	}
+
+	public Member getAuthoridforSAML() {
+		return authoridforSAML;
+	}
+
+	public void setAuthoridforSAML(Member authoridforSAML) {
+		this.authoridforSAML = authoridforSAML;
+	}
+
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "createdatetime", columnDefinition = "datetime")
@@ -57,7 +105,7 @@ public class SubArticleMessageLikes {
 	
 	@ManyToOne
 	@JoinColumn(name="author_id", nullable = false)
-	private Member author_idforSAML;
+	private Member authoridforSAML;
 
 	
 }
