@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.team5.finalTopic.model.Activity.Activity;
+import com.team5.finalTopic.model.Activity.MultiMember;
+import com.team5.finalTopic.model.Activity.SignUp;
 import com.team5.finalTopic.service.Activity.ActService;
 import com.team5.finalTopic.service.Activity.ActServiceImpl;
 import com.team5.finalTopic.service.Activity.MultiService;
@@ -152,10 +154,11 @@ public class BackActivityController {
 //	}
 
 	@PostMapping("/CheckMultis")
-	public String Next(Model model) {
-	    model.addAttribute("multiList", multiService.findAll());
-		return "Activity/multiList";
-		
+	public String Next(Model model,SignUp signup , MultiMember miltis) {
+	    model.addAttribute("multis", multiService.findAll());
+	    System.out.println(signup.getMemberSign());
+	    
+		return "Activity/BackMultis";
 	}
 
 	

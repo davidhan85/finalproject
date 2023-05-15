@@ -10,13 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.team5.finalTopic.model.member.Member;
 
 @Entity
@@ -65,14 +65,16 @@ public class SignUp {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-	@Column(columnDefinition = "Date",name="signup_date")
+	@Column(columnDefinition = "DateTime",name="signup_date")
 	private   Date signup_date; 
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL) 
 	@JoinColumn(name = "member_number")
 	private Member member;
-
+	
+	
+	
 
 	public Member getMember() {
 		return member;
@@ -119,6 +121,19 @@ public class SignUp {
 
 	public void setPaystatus(String paystatus) {
 		this.paystatus = paystatus;
+	}
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="ordernumber")//這個ordernumber就是做MultiMember跟SignUp的外來鍵，這樣子ordernumber就會自動建立在Signup裡面
+	private MultiMember memberSign;
+	
+	
+	public MultiMember getMemberSign() {
+		return memberSign;
+	}
+
+
+	public void setMemberSign(MultiMember memberSign) {
+		this.memberSign = memberSign;
 	}
 
 

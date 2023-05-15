@@ -10,42 +10,38 @@
 <head>
 <meta charset="UTF-8">
 <jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Activity List</title>
+<title>活動列表</title>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	href="https://cdn.bootcss.com/bootstrap/5.3.1/css/bootstrap.min.css">
+<script src="https://cdn.bootcss.com/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/2.10.2/umd/popper.min.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	src="https://cdn.bootcss.com/bootstrap/5.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../layout/navebar.jsp"></jsp:include>
+
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="#">Activity List</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#collapsibleNavbar">
+		<a class="navbar-brand" href="#">活動列表</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><form:form class="form-inline"
 						action="${contextRoot}/searching" method="get">
-						<input class="form-control mr-sm-2" type="text"
-							placeholder="輸入關鍵字" name="keyword" id="keyword"
-							value="${keyword}" required>
+						<input class="form-control me-2" type="text" placeholder="輸入關鍵字"
+							name="keyword" id="keyword" value="${keyword}" required>
 						<button class="btn btn-success" type="submit">搜尋</button>
-					</form:form>
-					</li>
-					<div class="ml-auto">
-						<form action="${contextRoot}/registration" method="post">
-							<input type="hidden" name="activity_id"
-								>
-							<button type="submit" class="btn btn-primary">我要報名</button>
-						</form>
-					</div>
+					</form:form></li>
+				<div class="ms-auto">
+					<form action="${contextRoot}/registration" method="post">
+						<input type="hidden" name="activity_id">
+						<button type="submit" class="btn btn-primary">我要報名</button>
+					</form>
+				</div>
 			</ul>
 		</div>
 	</nav>
@@ -62,6 +58,9 @@
 					<th>活動人數</th>
 					<th>活動費用</th>
 					<th>活動描述</th>
+					<th>活動按鈕</th>
+
+
 				</tr>
 			</thead>
 			<tbody>
@@ -79,31 +78,30 @@
 						<td>${activity.attendance}</td>
 						<td>${activity.activity_cost}</td>
 						<td>${activity.activity_discription}</td>
-<!-- 												<td> -->
-<%-- 													<form action="${contextRoot}/registration" method="get">  --%>
-<%-- 														<input type="hidden" name="activity_id" value="${activity.activity_id}">  --%>
-
-
-<!-- 														<input type="submit" value="我要報名" class="btn btn-primary">  -->
-<%-- 													</form>  --%>
-
-<!-- 												</td> -->
+						<td>
+						<form action="${contextRoot}/registration" method="get">
+							<input type="hidden" name="activity_id"
+								value="${activity.activity_id}"> <input type="submit"
+								value="我要報名" class="btn btn-primary">
+								</form>
+								</td>
+							
 					</tr>
 				</c:forEach>
-				
-							<jstl:forEach var="pageNumber" begin="1" end="${page.totalPages}">
-<!-- 			這裡的var="pageNumber"想像成是int i =1 ，page.number一開始是從0開始，pageNumber一開始是從1開始，所以前者+1或+1 -->
-			     <jstl:choose>
-			     <jstl:when test="${page.number != pageNumber-1 }">
-			          <a href="${contextRoot}/activity?p=${pageNumber}">${pageNumber}</a>
-			     </jstl:when>
-			     <jstl:otherwise>
+
+				<jstl:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+					<!-- 			這裡的var="pageNumber"想像成是int i =1 ，page.number一開始是從0開始，pageNumber一開始是從1開始，所以前者+1或+1 -->
+					<jstl:choose>
+						<jstl:when test="${page.number != pageNumber-1 }">
+							<a href="${contextRoot}/activity?p=${pageNumber}">${pageNumber}</a>
+						</jstl:when>
+						<jstl:otherwise>
 			            ${pageNumber}
 			     </jstl:otherwise>
-			  
-			  </jstl:choose>
-			
-			</jstl:forEach>
+
+					</jstl:choose>
+
+				</jstl:forEach>
 			</tbody>
 		</table>
 	</div>
