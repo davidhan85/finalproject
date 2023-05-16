@@ -81,7 +81,7 @@
 </head>
 <body>
 
-<jsp:include page="mallnarbar.jsp"></jsp:include>
+	<jsp:include page="../layout/navebar.jsp"></jsp:include>
 
 <div>&nbsp;</div>
 <div>&#8203;</div>

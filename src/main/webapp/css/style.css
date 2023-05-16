@@ -1023,6 +1023,10 @@ a:focus {
   background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
   box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
+.btn-hover.color-4 {
+  background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+  box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+}
 
 .btn-hover {
   width: 200px;

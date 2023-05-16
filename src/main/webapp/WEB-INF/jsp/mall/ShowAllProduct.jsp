@@ -45,7 +45,7 @@
 </style>
 </head>
 <body>
-
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
 	<div class="container py-5">
 		<h1 class="text-center mb-4">All Listed Products</h1>
 		<div class="table-responsive">

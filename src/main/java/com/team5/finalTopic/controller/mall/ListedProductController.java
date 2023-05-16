@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.team5.finalTopic.annotation.MemberLogin;
+import com.team5.finalTopic.model.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +25,8 @@ import com.team5.finalTopic.model.mall.ListedProduct;
 import com.team5.finalTopic.service.mall.ListedProductService;
 import com.team5.finalTopic.service.mall.ProductCategoryService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class ListedProductController {
 
@@ -32,13 +36,19 @@ public class ListedProductController {
 	@Autowired
 	private ProductCategoryService productCategoryService;
 
+
 	@PostMapping("/Insertproduct")  //新增
-	public String addListedProduct(@ModelAttribute("listedProduct") ListedProduct product) {
+	@MemberLogin
+	public String addListedProduct(@ModelAttribute("listedProduct") ListedProduct product , HttpSession session) {
 		System.out.println(product);
 		System.out.println("enter addListedProduct");
 		System.out.println(product.getProductCategoryNumber());
-		try {
-			service.saveListedProduct(product);
+
+		Member member= (Member) session.getAttribute("memberbean");
+		Integer memberId=member.getM_number();
+		System.out.println("memberId:"+memberId);
+	try {
+			service.saveListedProduct(product,member);
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -123,12 +133,18 @@ public class ListedProductController {
 	@GetMapping("/AllProductIndex")   //取得所有全部商品頁面
 	public String getAllIndex(Model model,@RequestParam(name = "p",defaultValue = "1") int page) {
 		System.out.println("pageNum"+page);
-		Pageable pageable = PageRequest.of(page-1, 6, Sort.Direction.ASC, "listedTime"); // 每頁顯示 筆資料
+		Pageable pageable = PageRequest.of(page-1, 6, Sort.Direction.DESC, "unitPrice");
+		Pageable pageableNew = PageRequest.of(page-1, 4, Sort.Direction.DESC, "listedTime");// 每頁顯示 筆資料
 		Page<ListedProduct> pPage = service.pageGetAll(pageable);
+		Page<ListedProduct> pPageNew = service.pageGetAll(pageableNew);
 		model.addAttribute("pPage", pPage);
-
+		model.addAttribute("pPageNew", pPageNew);
 		return "/mall/mall";
 	}
+
+
+
+
 
 	@ResponseBody
 	@GetMapping("/front/product/list")//商品列表多條件搜尋

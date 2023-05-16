@@ -24,32 +24,7 @@
   <!-- custom js -->
   <script src="${contextRoot}/js/custom.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            // 綁定 .filter 點擊事件
-            $('.filter').on('click', function() {
-                // 取得點擊的分類類別編號
-                const category = $(this).data('category');
-                console.log(category);
-                // 呼叫 AJAX 請求
-                $.ajax({
-                    url: "${contextRoot}/CategoryProduct",
-                    type: "GET",
-                    data: {ProductCategorynumber: category,
 
-                    },
-                    success: function(data) {
-                        console.log(data)
-                        // 更新商品列表
-                        $('.grid').html(data);
-                    },
-                    error: function(xhr) {
-                        console.log(xhr);
-                    }
-                });
-            });
-        });
-    </script>
 
 
 <jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
@@ -57,7 +32,31 @@
 <link href="${contextRoot}/css/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
- 
+
+	<style>
+		/* 自定义滚动条的外观 */
+		.card::-webkit-scrollbar {
+			width: 8px; /* 滚动条宽度 */
+		}
+
+		/* 滚动条轨道 */
+		.card::-webkit-scrollbar-track {
+			background-color: #f1f1f1; /* 滚动条轨道背景色 */
+		}
+
+		/* 滚动条滑块 */
+		.card::-webkit-scrollbar-thumb {
+			background-color: #888; /* 滚动条滑块颜色 */
+			border-radius: 4px; /* 滚动条滑块圆角 */
+		}
+
+		/* 鼠标悬停在滚动条上方时的滑块样式 */
+		.card::-webkit-scrollbar-thumb:hover {
+			background-color: #555; /* 悬停时的滚动条滑块颜色 */
+		}
+	</style>
+
+
 <title>書贏由你來決定</title>
 </head>
 <body>
@@ -145,20 +144,20 @@
             所有商品
           </h2>
         </div>
-        <ul class="filters_menu">
-          <li class="active filter" data-category="0" data-filter="*">所有</li>
-          <li class="filter" data-category="1" data-filter=".game">遊戲軟體</li>
-          <li class="filter" data-category="2" data-filter=".peripheral">周邊</li>
-          <li class="filter" data-category="3" data-filter=".book">書籍</li>
-          <li class="filter" data-category="4" data-filter=".others">其他</li>
-        </ul>
-        <div class="filters-content">
+<%--        <ul class="filters_menu">--%>
+<%--          <li class="active filter" data-category="0" data-filter="*">所有</li>--%>
+<%--          <li class="filter" data-category="1" data-filter=".game">遊戲軟體</li>--%>
+<%--          <li class="filter" data-category="2" data-filter=".peripheral">周邊</li>--%>
+<%--          <li class="filter" data-category="3" data-filter=".book">書籍</li>--%>
+<%--          <li class="filter" data-category="4" data-filter=".others">其他</li>--%>
+<%--        </ul>--%>
+        <div class="filters-content" style="height: 1350px">
           <div class="row grid" id="products-container" >
             				<jstl:forEach var="product" items="${pPage.content}">
-            				<div class="col-sm-6 col-lg-4 all">
-            					<div class="box">
+            				<div class="col-sm-6 col-lg-4 all" style="margin-top: 2%" >
+            					<div class="box" style="height: 100%; width: 100%;">
             						<div>
-            							<div class="img-box">
+            							<div class="img-box" >
 
             								<img src="<jstl:url value='/ProductImage/${product.productImage.productImageId}'/>" alt="" width="315" height="315" class="product-img" onclick="window.location.href='${contextRoot}/ProductDetail/${product.productId}'">
 
@@ -171,10 +170,10 @@
             										${product.productDescription}
             								</p>
             								<div class="options">
-            									<h6>
-            											${product.unitPrice}
+            									<h6 style="position: absolute; left: 5%; bottom:3%">
+            											$${product.unitPrice}
             									</h6>
-            									<a href="">
+            									<a href="" style="position: absolute;right: 5%;bottom: 3%">
             										<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                   <g>
             						  <g>
@@ -206,30 +205,26 @@
             				</div>
 
 
-<%--                                <div>&nbsp;</div>--%>
-<%--                                <div>&#8203;</div>--%>
+
 
                             </jstl:forEach>
-                                <div class="btn-box">
-                                    <a href="${contextRoot}/AllProduct">
-                                        View More
-                                    </a>
-                                </div>
+								<div class="d-flex justify-content-center" style="position: relative; left: 40%; margin-top: 3%">
+
+									<button type="button" class="btn-hover color-4 btn-lg " onclick="location.href='${contextRoot}/AllProduct';"> View More</button>
+
+								</div>
+
+<%--								--%>
+<%--                                <div class="btn-box" style="position: relative; left:50%" >--%>
+<%--                                    <a href="${contextRoot}/AllProduct">--%>
+<%--                                        View More--%>
+<%--                                    </a>--%>
+<%--                                </div>--%>
     </section>
 
     </div>
 
 <%--<h5 class="float-right"><a href="${contextRoot}/AllProduct" class="text-muted small"> View More > </a></h5>--%>
-
-
-
-
-
-    <!-- end food section -->
-
-
-
-
 <!-- end food section -->
 
 
@@ -252,42 +247,58 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
-                <div class="card mb-3">
-                  <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="產品1">
-                  <div class="card-body">
-                    <h5 class="card-title custom-color">產品1</h5>
-                    <p class="card-text custom-color">這裡是產品1的描述文字。</p>
+              <jstl:forEach var="product" items="${pPageNew.content}">
+                  <div class="col-md-3"  >
+                      <div class="card mb-3" style="height: 450px;width: 250px;  overflow: auto;">
+                          <img class="card-img-top" src="<jstl:url value='/ProductImage/${product.productImage.productImageId}'/>" alt="產品1">
+                          <div class="card-body">
+                              <h5 class="card-title custom-color">${product.productName}</h5>
+                              <p class="card-text custom-color">${product.productDescription}</p>
+                          </div>
+                      </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card mb-3">
-                  <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="產品2">
-                  <div class="card-body">
-                    <h5 class="card-title custom-color">產品2</h5>
-                    <p class="card-text custom-color">這裡是產品2的描述文字。</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card mb-3">
-                  <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="產品3">
-                  <div class="card-body">
-                    <h5 class="card-title custom-color">產品3</h5>
-                    <p class="card-text custom-color">這裡是產品3的描述文字。</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card mb-3">
-                  <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="產品4">
-                  <div class="card-body">
-                    <h5 class="card-title custom-color">產品4</h5>
-                    <p class="card-text custom-color">這裡是產品4的描述文字。</p>
-                  </div>
-                </div>
-              </div>
+
+
+
+
+
+              </jstl:forEach>
+<%--                <div class="col-md-3">--%>
+<%--                <div class="card mb-3">--%>
+<%--                  <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="產品1">--%>
+<%--                  <div class="card-body">--%>
+<%--                    <h5 class="card-title custom-color">產品1</h5>--%>
+<%--                    <p class="card-text custom-color">這裡是產品1的描述文字。</p>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--              <div class="col-md-3">--%>
+<%--                <div class="card mb-3">--%>
+<%--                  <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="產品2">--%>
+<%--                  <div class="card-body">--%>
+<%--                    <h5 class="card-title custom-color">產品2</h5>--%>
+<%--                    <p class="card-text custom-color">這裡是產品2的描述文字。</p>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--              <div class="col-md-3">--%>
+<%--                <div class="card mb-3">--%>
+<%--                  <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="產品3">--%>
+<%--                  <div class="card-body">--%>
+<%--                    <h5 class="card-title custom-color">產品3</h5>--%>
+<%--                    <p class="card-text custom-color">這裡是產品3的描述文字。</p>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--              <div class="col-md-3">--%>
+<%--                <div class="card mb-3">--%>
+<%--                  <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="產品4">--%>
+<%--                  <div class="card-body">--%>
+<%--                    <h5 class="card-title custom-color">產品4</h5>--%>
+<%--                    <p class="card-text custom-color">這裡是產品4的描述文字。</p>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </div>--%>
             </div>
           </div>
             <h5 class="float-right"><a href="${contextRoot}/AllProduct" class="text-muted small"> View More > </a></h5>
@@ -318,6 +329,31 @@
 <%-- <jsp:include page="mallfooter.jsp"></jsp:include> --%>
 	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 
+<%--<script>--%>
+<%--    $(document).ready(function() {--%>
+<%--        // 綁定 .filter 點擊事件--%>
+<%--        $('.filter').on('click', function() {--%>
+<%--            // 取得點擊的分類類別編號--%>
+<%--            const category = $(this).data('category');--%>
+<%--            console.log(category);--%>
+<%--            // 呼叫 AJAX 請求--%>
+<%--            $.ajax({--%>
+<%--                url: "${contextRoot}/CategoryProduct",--%>
+<%--                type: "GET",--%>
+<%--                data: {ProductCategorynumber: category,--%>
 
+<%--                },--%>
+<%--                success: function(data) {--%>
+<%--                    console.log(data)--%>
+<%--                    // 更新商品列表--%>
+<%--                    $('.grid').html(data);--%>
+<%--                },--%>
+<%--                error: function(xhr) {--%>
+<%--                    console.log(xhr);--%>
+<%--                }--%>
+<%--            });--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 </html>
