@@ -103,20 +103,31 @@ public class ListedProductController {
 		return "redirect:/listedProducts";
 	}
 
-//	@GetMapping("/CategoryProduct")
-//	public ResponseEntity<Page<ListedProduct>> filterProducts(@RequestParam(name = "ProductCategorynumber",required = false) Integer categoryNum,Pageable pgb) {
-//		System.out.println("categoryNum:"+categoryNum);
-//		Page<ListedProduct> filteredProducts = service.getProductsByCategory(categoryNum,pgb);
-//		return ResponseEntity.ok(filteredProducts);
-//	}
+	@GetMapping("/CategoryProduct")
+	public ResponseEntity<Page<ListedProduct>> filterProducts(@RequestParam(name = "ProductCategorynumber",required = false) Integer categoryNum,Pageable pgb) {
+		System.out.println("categoryNum:"+categoryNum);
+		Page<ListedProduct> filteredProducts = service.getProductsByCategory(categoryNum,pgb);
+		return ResponseEntity.ok(filteredProducts);
+	}
 	@GetMapping("/AllProduct")   //取得所有全部商品頁面
-	public String getAllProducts(Model model, @RequestParam(name = "p",defaultValue = "1") int page) {
+	public String getAllProducts(Model model,@RequestParam(name = "p",defaultValue = "1") int page) {
+//		System.out.println("pageNum"+page);
+//		Pageable pageable = PageRequest.of(page-1, 6, Sort.Direction.ASC, "listedTime"); // 每頁顯示 筆資料
+//		Page<ListedProduct> pPage = service.pageGetAll(pageable);
+//		model.addAttribute("pPage", pPage);
+
+		return "/mall/ShowAllProductFront";
+	}
+
+
+	@GetMapping("/AllProductIndex")   //取得所有全部商品頁面
+	public String getAllIndex(Model model,@RequestParam(name = "p",defaultValue = "1") int page) {
 		System.out.println("pageNum"+page);
 		Pageable pageable = PageRequest.of(page-1, 6, Sort.Direction.ASC, "listedTime"); // 每頁顯示 筆資料
 		Page<ListedProduct> pPage = service.pageGetAll(pageable);
 		model.addAttribute("pPage", pPage);
 
-		return "/mall/ShowAllProductFront";
+		return "/mall/mall";
 	}
 
 	@ResponseBody
@@ -130,6 +141,7 @@ public class ListedProductController {
 		Map<String, Object> response = new HashMap<>();
 		products = service.findByCriteria(pageNum, keyword, category);
 //		response.put("categoryList", service.findAllCategories());
+		response.put("category",category);
 		response.put("pageNum", pageNum);
 		response.put("keyword", keyword);
 		response.put("products", products);

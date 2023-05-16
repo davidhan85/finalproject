@@ -22,9 +22,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
 	<!-- custom js -->
 	<script src="js/custom.js"></script>
-
-
-
 	<script>
 		<%--$(document).ready(function() {--%>
 		<%--	// 綁定 .filter 點擊事件--%>
@@ -76,30 +73,11 @@
 		padding: 0;
 	}
 
-	.page-item {
-		display: flex;
-	}
-
-	.page-link {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 5px 10px;
-		margin: 0 5px;
-		border: 1px solid black;
-		border-radius: 4px;
-		color: black;
-		text-decoration: none;
-
-	}
-
-	.page-link:hover {
-		background-color: black;
-	}
 
 
 </style>
 	<title>書贏由你來決定</title>
+
 </head>
 <body>
 
@@ -117,6 +95,13 @@
 				所有商品
 			</h2>
 		</div>
+		<div class="search_container">
+
+				<input id="keyword" type="text" name="search" placeholder="輸入關鍵字搜尋產品">
+			<button id="submitbutton" onclick="searchProducts()">搜尋</button>
+
+
+		</div>
 
 		<ul class="filters_menu">
 			<li class="active filter" data-category="0" data-filter="*">所有</li>
@@ -127,7 +112,7 @@
 		</ul>
 
 		<div class="filters-content">
-			<div class="row grid" id="products-container">
+			<div class="row grid" id="products-container" >
 <%--				<jstl:forEach var="product" items="${pPage.content}">--%>
 <%--				<div class="col-sm-6 col-lg-4 all">--%>
 <%--					<div class="box">--%>
@@ -184,26 +169,19 @@
 </div>
 
 	<div class="wrapper">
-		<ul class="pagination">
-			<jstl:forEach var="pageNumber" begin="1" end="${pPage.totalPages}">
-				<jstl:choose>
-					<jstl:when test="${pPage.number != pageNumber - 1}">
-						<li class="page-item"><a class="page-link" style="color: black"  href="${contextRoot}/AllProduct?p=${pageNumber}">${pageNumber}</a></li>
-					</jstl:when>
-					<jstl:otherwise>
-						<li class="page-item active"><a class="page-link" style="background-color: #222831;border: 1px solid black;"   href="#">${pageNumber}</a></li>
-					</jstl:otherwise>
-				</jstl:choose>
-			</jstl:forEach>
+		<ul class="pagination" id="pagination">
+<%--			<jstl:forEach var="pageNumber" begin="1" end="${pPage.totalPages}">--%>
+<%--				<jstl:choose>--%>
+<%--					<jstl:when test="${pPage.number != pageNumber - 1}">--%>
+<%--						<li class="page-item"><a class="page-link" style="color: black"  href="${contextRoot}/AllProduct?p=${pageNumber}">${pageNumber}</a></li>--%>
+<%--					</jstl:when>--%>
+<%--					<jstl:otherwise>--%>
+<%--						<li class="page-item active"><a class="page-link" style="background-color: #222831;border: 1px solid black;"   href="#">${pageNumber}</a></li>--%>
+<%--					</jstl:otherwise>--%>
+<%--				</jstl:choose>--%>
+<%--			</jstl:forEach>--%>
 		</ul>
 	</div>
-
-
-
-
-
-
-
 
 <!-- end food section -->
 
@@ -212,28 +190,44 @@
 <div>&nbsp;</div>
 <div>&#8203;</div>
 
-<%--<jsp:include page="mallfooter.jsp"></jsp:include>--%>
+
+	<jsp:include page="mallfooter.jsp"></jsp:include>
 
 
 <script>
+
+
 	const filtersList = document.querySelectorAll('.filters_menu li');
 	filtersList.forEach(function(filter) {
 		filter.addEventListener('click', function() {
-			loadProducts(1, '', filter.getAttribute('data-category'));
+			const category = filter.getAttribute('data-category');
+			const keyword = getKeyword();
+			loadProducts(1, keyword, category);
 		});
 	});
 
 
 
+	function getKeyword(){
+		const keyword = document.getElementById("keyword").value
+		return keyword;
+	}
+
+	function searchProducts() {
+		const keyword = getKeyword();
+		const category = document.querySelector('.filters_menu li.active').getAttribute('data-category');
+		loadProducts(1,keyword,category)
+	}
 
 	async function loadProducts(page, keyword,category) {
 		try {
 			const response = await axios.get('${contextRoot}/front/product/list', {
 				params: {page, keyword, category}
 			});
-			console.log(response)
-			console.log(response.data.products.content)
+			// console.log(response)
+			// console.log(response.data.products.content)
 			renderProducts(response.data.products.content);
+			setupPagination(response.data);
 			// displayProducts(response.data.products.content);
 			// setupPagination(response.data);
 		} catch (error) {
@@ -252,6 +246,11 @@
 	};
 
 	function createProductElement(product) {
+
+		if (product.productUploadStatus == "下架") {
+			col.style.display = "none"; // 将该商品所在的列隐藏
+		}
+
 		const col = document.createElement("div");
 		col.classList.add("col-sm-6", "col-lg-4", "all");
 
@@ -310,8 +309,29 @@
 		return col;
 	}
 
+	async function loadProducts(page, keyword, category) {
+		try {
+			const response = await axios.get('${contextRoot}/front/product/list', {
+				params: { page, keyword, category }
+			});
+
+			const filteredProducts = response.data.products.content.filter(product => {
+				return product.productUploadStatus === "上架";
+			});
+
+			renderProducts(filteredProducts);
+			setupPagination(response.data);
+		} catch (error) {
+			console.error('Error loading products:', error);
+		}
+	}
+
+
+
+
 	function renderProducts(products) {
 		const container = document.getElementById("products-container"); // 假設有一個id為products-container的div元素
+		container.style.height = "100%";
 		container.innerHTML='';
 		products.forEach((product) => {
 			const productElement = createProductElement(product);
@@ -320,7 +340,6 @@
 	}
 
 	// 執行渲染
-
 
 	function createSvgElement() {
 		const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -358,7 +377,26 @@
 		svg.appendChild(g5);
 		return svg;
 	}
+
+	function setupPagination(pageData) {
+		const paginationDiv = document.getElementById('pagination');
+		paginationDiv.innerHTML = '';
+		for (let i = 1; i <= pageData.products.totalPages; i++) {
+			const pageButton = document.createElement('button');
+			pageButton.className = "btn btn-secondary mx-1"
+			if (i == pageData.pageNum) {
+				pageButton.disabled = true;
+				pageButton.className += " active";
+			}
+			pageButton.innerText = i;
+			pageButton.onclick = () => loadProducts(i, pageData.keyword,pageData.category);
+			paginationDiv.appendChild(pageButton);
+		}
+	}
+
+
 </script>
+
 
 </body>
 </html>

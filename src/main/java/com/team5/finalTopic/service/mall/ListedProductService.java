@@ -154,7 +154,7 @@ public class ListedProductService {
 
 			}
 			if (!keyword.equals("")) {
-				p = criteriaBuilder.like(root.get("categoryName"), "%" + keyword + "%");
+				p = criteriaBuilder.like(root.get("productName"), "%" + keyword + "%");
 				predicates.add(p);
 			}
 
@@ -164,7 +164,7 @@ public class ListedProductService {
 
 
 		// 建立 Pageable 物件帶入傳遞參數
-		Pageable pgb = PageRequest.of(pageNumber - 1, 9, Sort.Direction.ASC, "ProductCategoryNumber");
+		Pageable pgb = PageRequest.of(pageNumber - 1, 6, Sort.Direction.ASC, "ProductCategoryNumber");
 
 		return repository.findAll(spec, pgb);
 	}
