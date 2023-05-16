@@ -23,7 +23,6 @@ public class PageControllerOrder {
 //		
 //		return"OrderMainPage";
 //	}
-
 	@GetMapping("/AddOrderPage")
 	public String AddOrderPage(){
 		

@@ -74,24 +74,60 @@
 									<ul class="navbar-nav  mx-auto " style=" transform: scale(1.3);">
 
 
-								<div class="user_option">
-									<c:if test="${not empty memberbean}">
-										<a href="${contextRoot}/membercenter" class="user_link"> <i
-											class="fa fa-user" aria-hidden="true"></i>
-										</a>
-									</c:if>
-									<c:if test="${empty memberbean}">
-										<a href="${contextRoot}/Login" class="user_link"> <i
-											class="fa fa-user" aria-hidden="true"></i>
-										</a>
-									</c:if>
-<%-- 									console.log(${memeberbean.m_number}); --%>
-									</a> <a class="cart_link" href="${contextRoot}/cart/find/${memberbean.m_number}"> <svg
-											version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-											xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-											viewBox="0 0 456.029 456.029"
-											style="enable-background: new 0 0 456.029 456.029;"
-											xml:space="preserve">
+										<li class="nav-item"><a class="nav-link" href="${contextRoot}/mall">商城 </a></li>
+
+										<li class="nav-item"><a class="nav-link" href="${contextRoot}/board">論壇</a></li>
+										<li class="nav-item active"><a class="nav-link"
+												href="${contextRoot}/activity">活動 <span class="sr-only">(current)</span>
+											</a></li>
+										<li class="nav-item">
+											<c:if test="${not empty memberbean}">
+												<a class="nav-link" href="${contextRoot}/customerService">客服</a>
+											</c:if>
+											<c:if test="${empty memberbean}">
+												<a class="nav-link" href="${contextRoot}/Login">客服</a>
+											</c:if>
+										</li>
+
+										<c:if test="${not empty memberbean}">
+											<li class="nav-item"><a class="nav-link"
+													href="${contextRoot}/checkout">登出</a></li>
+										</c:if>
+										<c:if test="${sessionScope.memberbean.m_Role eq'adaim'}">
+											<li class="nav-item"><a class="nav-link" href="${contextRoot}/CMS">後台系統 </a>
+											</li>
+										</c:if>
+									</ul>
+
+
+									<div class="user_option">
+										<c:if test="${not empty memberbean}">
+											<a href="${contextRoot}/membercenter" class="user_link"
+												style="position: absolute; right: -10%; transform: scale(1.3);"> <i
+													class="fa fa-user" aria-hidden="true"></i>
+											</a>
+										</c:if>
+										<c:if test="${empty memberbean}">
+											<a href="${contextRoot}/Login" class="user_link" data-toggle="modal"
+												data-target="#myModal"
+												style="position: absolute; right: -10%; transform: scale(1.3);"> <i
+													class="fa fa-user" aria-hidden="true"></i>
+											</a>
+										</c:if>
+
+										<c:if test="${not empty memberbean}">
+
+											<a href="${contextRoot}/membercenter" class="order_online"
+												style="width: 100px; height: 80px; font-size: 20px; right: -30%; position: absolute;">會員中心</a>
+											<a class="cart_link" href="${contextRoot}/cart/find/${memberbean.m_number}"
+												style="position: absolute; right: -14%;transform: scale(1.3); "> <svg
+													version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+													xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+													viewBox="0 0 456.029 456.029"
+													style="enable-background: new 0 0 456.029 456.029;"
+													xml:space="preserve">
+
+													<g>
 														<g>
 															<path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
                    c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
@@ -119,7 +155,7 @@
 											<a href="${contextRoot}/newmember" class="order_online"
 												style="width: 100px; height: 80px; font-size: 20px; right: -30%; position: absolute;">加入會員</a>
 											
-												<a class="cart_link" href="${contextRoot}/shoppingcart"
+												<a class="cart_link" href="${contextRoot}/Login"
 												style="position: absolute; right: -14%;transform: scale(1.3); "> <svg
 													version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
 													xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
