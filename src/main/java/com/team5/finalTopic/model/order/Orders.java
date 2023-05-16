@@ -1,7 +1,9 @@
-package com.team5.finalTopic.model.order;
+	package com.team5.finalTopic.model.order;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,144 +16,154 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.team5.finalTopic.model.mall.ListedProduct;
+import com.team5.finalTopic.model.member.Member;
 
 @Entity
-@Table(name="Orders")
+@Table(name = "Orders")
 public class Orders {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "OrderID")
-	private Integer OrderID;
+	@Column(name = "orderID")
+	private Integer orderID;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "CreatedTime",columnDefinition="datetime",nullable = false)
-	private Date CreatedTime;		
-	
-	@Column(name = "Member_number",columnDefinition="int",nullable = false)
-	private Integer Member_number;
-	
-	@Column(name = "BuyerID",columnDefinition="NVARCHAR(30)",nullable = false)
-	private String BuyerID;
-	
-	@Column(name = "PaymentMethod",columnDefinition="NVARCHAR(30)",nullable = false)
-	private String PaymentMethod;
-	
-	@Column(name = "ShippingMethod",columnDefinition="NVARCHAR(30)",nullable = false)
-	private String ShippingMethod;
-	
-	@Column(name = "Coupon_id",columnDefinition="NVARCHAR(30)",nullable = false)
-	private String Coupon_id;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="Orders")
-	private Set<OrderDetail> orderDetail = new LinkedHashSet<>();
-//	@ManyToOne
-//    @JoinColumn(name = "member_number ")
-//    private Member member;
-	
-//	@OneToMany(cascade=CascadeType.ALL, mappedBy="OrderID")
-//    private Set<MemberCoupon> memberCoupon = new LinkedHashSet<>();
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="Orders")
-	private Set<MemberCoupon> memberCoupon = new LinkedHashSet<>();
-	
-	public Set<MemberCoupon> getMemberCoupon() {
-		return memberCoupon;
+	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrdersDetail> orderDetails = new ArrayList<>();
+	  
+	public List<OrdersDetail> getOrderDetails() {
+		return orderDetails;
 	}
 
-	public void setMemberCoupon(Set<MemberCoupon> memberCoupon) {
-		this.memberCoupon = memberCoupon;
+	public void setOrderDetails(List<OrdersDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+	//	@JsonProperty("OrderNo")
+	@Column(name = "orderNo",columnDefinition="NVARCHAR(20)")
+	private String orderNo;
+	
+//	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd HH:mm:ss")
+	@DateTimeFormat(pattern="yyyy/MM/dd HH:mm:ss")
+	@Column(name = "createdTime",columnDefinition="datetime")
+	private Date createdTime;
+
+	@Column(name = "member_num",columnDefinition="int")
+	private Integer member_num;
+
+	@Column(name = "buyerID",columnDefinition="NVARCHAR(30)")
+	private String buyerID;
+	
+	@Column(name = "paymentMethod",columnDefinition="NVARCHAR(20)")
+	private String paymentMethoderNo;
+	
+	@Column(name = "shippingMethod",columnDefinition="NVARCHAR(20)")
+	private String shippingMethod;
+	
+	@Column(name = "address",columnDefinition="NVARCHAR(80)")
+	private String address;
+	
+	@Column(name = "paymentStatus ",columnDefinition="NVARCHAR(80)")
+	private String paymentStatus ;
+	
+
+
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	@Column(name = "coupon_id",columnDefinition="NVARCHAR(20)")
+	private String coupon_id;
+
+//	@OneToMany(cascade=CascadeType.ALL, mappedBy="")
+//    private Set<MemberCoupon> set = new HashSet<>();
+	
+	
+	@Override
+	public String toString() {
+		return "Orders [orderID=" + orderID + ", orderNo=" + orderNo + ", createdTime=" + createdTime + ", member_num="
+				+ member_num + ", buyerID=" + buyerID + ", paymentMethoderNo=" + paymentMethoderNo + ", shippingMethod="
+				+ shippingMethod + ", coupon_id=" + coupon_id + "]";
 	}
 
 	public Orders(){		
 		
 	}
-	
-	@Override
-	public String toString() {
-	    return "Order{" +
-	            "OrderID=" + OrderID +
-	            ", CreatedTime='" + CreatedTime + '\'' +
-	            ", Member_number='" + Member_number + '\'' +
-	            ", BuyerID='" + BuyerID + '\'' +
-	            ", PaymentMethod='" + PaymentMethod + '\'' +
-	            ", ShippingMethod='" + ShippingMethod + '\'' +
-	            ", Coupon_id=" + Coupon_id +
-	            '}';
-	}
-
-
-
-	public Set<OrderDetail> getOrderDetail() {
-		return orderDetail;
-	}
-
-	public void setOrderDetail(Set<OrderDetail> orderDetail) {
-		this.orderDetail = orderDetail;
-	}
-
+	@PrePersist
+    public void onCreate() {
+        if(createdTime == null) {
+        	createdTime = new Date();
+        }
+    }
 	public Integer getOrderID() {
-		return OrderID;
+		return orderID;
 	}
-
 	public void setOrderID(Integer orderID) {
-		OrderID = orderID;
+		this.orderID = orderID;
 	}
-
+	public String getOrderNo() {
+		return orderNo;
+	}
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
 	public Date getCreatedTime() {
-		return CreatedTime;
+		return createdTime;
 	}
-
 	public void setCreatedTime(Date createdTime) {
-		CreatedTime = createdTime;
+		this.createdTime = createdTime;
 	}
-
-
-
-	public Integer getMember_number() {
-		return Member_number;
+	public Integer getMember_num() {
+		return member_num;
 	}
-
-	public void setMember_number(Integer member_number) {
-		Member_number = member_number;
+	public void setMember_num(Integer member_num) {
+		this.member_num = member_num;
 	}
-
 	public String getBuyerID() {
-		return BuyerID;
+		return buyerID;
 	}
-
 	public void setBuyerID(String buyerID) {
-		BuyerID = buyerID;
+		this.buyerID = buyerID;
 	}
-
-	public String getPaymentMethod() {
-		return PaymentMethod;
+	public String getPaymentMethoderNo() {
+		return paymentMethoderNo;
 	}
-
-	public void setPaymentMethod(String paymentMethod) {
-		PaymentMethod = paymentMethod;
+	public void setPaymentMethoderNo(String paymentMethoderNo) {
+		this.paymentMethoderNo = paymentMethoderNo;
 	}
-
 	public String getShippingMethod() {
-		return ShippingMethod;
+		return shippingMethod;
 	}
-
 	public void setShippingMethod(String shippingMethod) {
-		ShippingMethod = shippingMethod;
+		this.shippingMethod = shippingMethod;
 	}
-
 	public String getCoupon_id() {
-		return Coupon_id;
+		return coupon_id;
 	}
-
 	public void setCoupon_id(String coupon_id) {
-		Coupon_id = coupon_id;
+		this.coupon_id = coupon_id;
 	}
-	
 
+	
 	
 }
+
+

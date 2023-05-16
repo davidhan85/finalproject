@@ -58,9 +58,10 @@
 
 
 		<!-- Nav Item - Pages Collapse Menu -->
-		<li class="nav-item"><a class="nav-link collapsed" href="#"
+		<li class="nav-item"><a class="nav-link collapsed" href="${contextRoot}/orders"
 			data-target="#collapseTwo" aria-expanded="true"
-			aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>訂單系統</span>
+			aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog" data-toggle="collapse" data-target="#collapseTwo"
+		></i> <span>訂單系統</span>
 		</a>
 			<hr class="sidebar-divider my-0"></li>
 

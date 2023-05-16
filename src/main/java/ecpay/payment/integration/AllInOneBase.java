@@ -37,8 +37,9 @@ public class AllInOneBase {
 //			String configPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
 //			doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
-//			String paymentConfPath = "./src/main/resources/payment_conf.xml";
-			String paymentConfPath = "C:/finalproject-2/src/main/resources/payment_conf.xml";
+			String paymentConfPath = "./src/main/resources/payment_conf.xml";
+//			String paymentConfPath = "C:/finalproject-2/src/main/resources/payment_conf.xml";
+//			String paymentConfPath = "C:/projectall6/finalproject6/src/main/resources/payment_conf.xml";
 			
 			doc = EcpayFunction.xmlParser(paymentConfPath);
 			
