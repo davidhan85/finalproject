@@ -71,10 +71,6 @@
 										margin-bottom: 0;
 										/* 移除底部边框的下方外边距 */
 									}
-
-									.sub_page ::after {
-										background-image: url(./back.jpg);
-									}
 								</style>
 
 
@@ -113,18 +109,17 @@
 
 
 								<div style="margin-left: 200px;margin-right: 200px">
-									<form action="${contextRoot}/board/findMainArticle" method="GET">
+									<form action="${contextRoot}/board/search" method="GET">
 										<div class="form-group">
 											<label for="search-input">搜尋文章標題或內容</label> <input type="text" name="search"
 												class="form-control" id="search-input" placeholder="請輸入關鍵字...">
-											<button type="submit" class="btn btn-primary">搜尋</button>
+										<button type="submit" class="btn btn-primary">搜尋</button>
 										</div>
 									</form>
 								</div>
-								<br>
+<br>
 								<div style="padding-left: 200px;">
-									<a id="addmabut" class="btn btn-secondary"
-										href="${contextRoot}/board/AddMainArticle">新增文章</a>
+									<a class="btn btn-secondary" href="${contextRoot}/board/AddMainArticle">新增文章</a>
 								</div>
 
 
@@ -138,64 +133,31 @@
 										class="row border-bottom font-weight-bold border-0 bg-success  text-dark bg-opacity-10">
 										<div class="col-sm-2">分類</div>
 										<div class="col-sm-1">權限</div>
-										<div class="col-sm-3">標題</div>
-										<div class="col-sm-2">作者</div>
+										<div class="col-sm-4">標題</div>
+										<div class="col-sm-1">作者</div>
 										<div class="col-sm-3">日期</div>
 										<div class="col-sm-1">人氣</div>
 									</div>
 
 
-									<jstl:forEach var="MainArticles" items="${page.content}">
+									<jstl:forEach var="results" items="${Results}">
 										<div class="row border-bottom border-0" data-id="rowarticle">
-											<div class="col-sm-2">${MainArticles.category}</div>
-											<div class="col-sm-1">${MainArticles.access}</div>
-											<div class="col-sm-3">
+											<div class="col-sm-2">${results.category}</div>
+											<div class="col-sm-1">${results.access}</div>
+											<div class="col-sm-4">
 												<a
-													href="${contextRoot}/board/MainArticle?maid=${MainArticles.mainid}">${MainArticles.title}</a>
+													href="${contextRoot}/board/MainArticle?maid=${results.mainid}">${results.title}</a>
 												<!-- 					 //文章連結 -->
 											</div>
-											<div class="col-sm-2">${MainArticles.authoridforMA.m_account}</div>
-											<div class="col-sm-3">${MainArticles.createdatetime }</div>
-											<div class="col-sm-1">${MainArticles.mainarticlelikes.size()}</div>
-											<c:if test="${memberbean.m_Role eq'adaim'}">
-												<a
-													href="${contextRoot}/board/editMainArticle?maid=${MainArticles.mainid}"><button
-														type="submit">修改</button></a>
-												<a
-													href="${contextRoot}/board/deleteMainArticle?maid=${MainArticles.mainid}"><button
-														type="submit">刪除</button></a>
-											</c:if>
-											<!-- 				<div> -->
-											<%-- <button id="deleteBtn" data-id="${MainArticles.mainid}">刪除</button>
-												--%>
-												<!-- 				</div> -->
+											<div class="col-sm-1">${results.authoridforMA.m_number}</div>
+											<div class="col-sm-3">${results.createdatetime }</div>
+											<div class="col-sm-1">${results.mainarticlelikes.size()}</div>			
 										</div>
 
 									</jstl:forEach>
 								</div>
 
-								<nav aria-label="Page navigation example">
-									<ul class="pagination">
-
-										<jstl:forEach var="pageNumber" begin="1" end="${page.totalPages}">
-											<jstl:choose>
-												<jstl:when test="${((page.number)+1) != pageNumber }">
-
-													<li class="page-item"><a class="page-link"
-															href="${contextRoot}/board?p=${pageNumber}">${pageNumber}</a>
-													</li>
-
-												</jstl:when>
-
-												<jstl:otherwise>
-													<li class="page-item"><a class="page-link">${pageNumber}</a>
-													</li>
-												</jstl:otherwise>
-											</jstl:choose>
-										</jstl:forEach>
-
-									</ul>
-								</nav>
+								
 
 
 								<div class="alert-success" style="display: none;"></div>
@@ -231,6 +193,8 @@
 									<!-- //   }); -->
 									<!-- // }); -->
 									<!-- </script> -->
+
+
 
 
 

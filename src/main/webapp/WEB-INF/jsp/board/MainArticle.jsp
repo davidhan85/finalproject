@@ -14,6 +14,12 @@
 							<meta charset="UTF-8">
 							<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
+
+
+
+
+
+
 							<link href="${contextRoot}/css/bootstrap.css" rel="stylesheet">
 							<title>Insert title here</title>
 							<script type="text/javascript"
@@ -21,8 +27,27 @@
 							<script src="${contextRoot}/js/jquery-3.4.1.min.js"></script>
 							<link rel="stylesheet"
 								href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
+
+
 							<jsp:include page="../layout/navebar.jsp"></jsp:include>
+
+
+
+
+
+
+
+
+
+
 							<style type="text/css">
+							
+							.body{
+							padding-top: 200px
+							}
 								.title {
 									padding-right: 10px;
 									font-size: larger;
@@ -43,6 +68,7 @@
 
 								.container {
 									border-radius: 1px;
+									
 
 								}
 
@@ -119,7 +145,11 @@
 															<th class="col-2">留言作者</th>
 															<th class="col-7">留言內容</th>
 															<th class="col-2">留言時間</th>
-															<th class="col-1">刪除留言</th>
+															<th class="col-1">
+
+																刪除留言
+
+															</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -129,9 +159,14 @@
 																<td>${MainArticleMessage.authoridforMAM.m_account }</td>
 																<td>${MainArticleMessage.content }</td>
 																<td>${MainArticleMessage.updatedatetime }</td>
-																<td><a
-																		href="${contextRoot}/board/deleteMAM?mamid=${MainArticleMessage.mamessageid}"><button
-																			type="submit">刪除</button></a></td>
+																<td>
+																	<c:if
+																		test="${memberbean.m_number eq MainArticleMessage.authoridforMAM.m_number }">
+																		<a
+																			href="${contextRoot}/board/deleteMAM?mamid=${MainArticleMessage.mamessageid}"><button
+																				type="submit">刪除</button></a>
+																	</c:if>
+																</td>
 															</tr>
 
 														</jstl:forEach>
@@ -328,7 +363,7 @@
 
 												$
 													.ajax({
-														url: 'http://localhost:8078/finalTopic_5/board/mainArticleMessages',
+														url: 'http://localhost:8079/finalTopic_5/board/mainArticleMessages',
 														contentType: "application/json;charset=UTF-8",
 														dataType: 'json',
 														method: 'post',
@@ -338,9 +373,10 @@
 															msg_data = '<tbody>';
 															$.each(result, function (index, value) {
 																msg_data += '<tr>'
-																msg_data += '<td>' + value.auid + '</td>'
+																msg_data += '<td>' + value.auaccount + '</td>'
 																msg_data += '<td>' + value.content + '</td>'
 																msg_data += '<td>' + value.updatedatetime + '</td>'
+																msg_data += '<td>' + '</td>'
 																msg_data += '</tr>'
 															})
 															msg_data += '</tbody>';
@@ -356,6 +392,7 @@
 																.log(err)
 															if (err.status === 500) {
 																alert("請先登入");
+																 window.location.href = "http://localhost:8079/finalTopic_5/Login";
 															}
 														}
 													})
@@ -391,7 +428,7 @@
 											console.log(dtoJsonString);
 
 											$.ajax({
-												url: 'http://localhost:8078/finalTopic_5/board/subArticleMessages',
+												url: 'http://localhost:8079/finalTopic_5/board/subArticleMessages',
 												contentType: "application/json;charset=UTF-8",
 												dataType: 'json',
 												method: 'post',
@@ -427,6 +464,7 @@
 													console.log(err);
 													if (err.status === 500) {
 														alert("請先登入");
+														window.location.href = "http://localhost:8079/finalTopic_5/Login";
 													}
 												}
 											});
@@ -460,7 +498,7 @@
 										// let likeCount = parseInt($("#likeCount").text());
 										// $("#likeCount").text(likeCount + 1);
 										$.ajax({
-											url: 'http://localhost:8078/finalTopic_5/board/addMainArticleLike',
+											url: 'http://localhost:8079/finalTopic_5/board/addMainArticleLike',
 											contentType: "application/json;charset=UTF-8",
 											dataType: 'json',
 											method: 'post',
@@ -476,6 +514,7 @@
 													.log(err)
 												if (err.status === 500) {
 													alert("請先登入");
+													window.location.href = "http://localhost:8079/finalTopic_5/Login";
 												}
 											}
 										})
@@ -501,7 +540,7 @@
 
 									requestTimer = setTimeout(() => {
 										$.ajax({
-											url: 'http://localhost:8078/finalTopic_5/board/showMainArticleLikeAuthors',
+											url: 'http://localhost:8079/finalTopic_5/board/showMainArticleLikeAuthors',
 											contentType: "application/json;charset=UTF-8",
 											dataType: 'json',
 											method: 'post',
@@ -511,7 +550,7 @@
 												const auidList = result.auidlist;
 												let links = ""; // 這裡是要放在 tooltip 內的超連結的 HTML 字串
 												for (let i = 0; i < auidList.length; i++) {
-													links += "<a href='http://localhost:8078/finalTopic_5/board/membercenter/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
+													links += "<a href='http://localhost:8079/finalTopic_5/membercenter/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
 												}
 
 												console.log(auidList);
@@ -541,6 +580,7 @@
 													.log(err)
 												if (err.status === 500) {
 													alert("請先登入");
+													window.location.href = "http://localhost:8079/finalTopic_5/Login";
 												}
 											}
 										})
@@ -577,7 +617,7 @@
 											};
 											let dtoJsonString = JSON.stringify(dtoObject);
 											$.ajax({
-												url: 'http://localhost:8078/finalTopic_5/board/addSubArticleLike',
+												url: 'http://localhost:8079/finalTopic_5/board/addSubArticleLike',
 												contentType: "application/json;charset=UTF-8",
 												dataType: 'json',
 												method: 'post',
@@ -589,6 +629,7 @@
 													console.log(err)
 													if (err.status === 500) {
 														alert("請先登入");
+														window.location.href = "http://localhost:8079/finalTopic_5/Login";
 													}
 												}
 											})
@@ -614,7 +655,7 @@
 											}
 											timer = setTimeout(function () {
 												$.ajax({
-													url: 'http://localhost:8078/finalTopic_5/board/showSubArticleLikeAuthors',
+													url: 'http://localhost:8079/finalTopic_5/board/showSubArticleLikeAuthors',
 													contentType: "application/json;charset=UTF-8",
 													dataType: 'json',
 													method: 'post',
@@ -623,7 +664,7 @@
 														const auidList = result.auidlist;
 														let links = "";
 														for (let i = 0; i < auidList.length; i++) {
-															links += "<a href='http://localhost:8078/finalTopic_5/board/membercenter/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
+															links += "<a href='http://localhost:8079/finalTopic_5/membercenter/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
 														}
 														subtooltip = $container.data('subtooltip');
 														if (!subtooltip && !$container.data('subtooltip')) {
@@ -648,6 +689,7 @@
 														console.log(err)
 														if (err.status === 500) {
 															alert("請先登入");
+															window.location.href = "http://localhost:8079/finalTopic_5/Login";
 														}
 													}
 												});
@@ -743,7 +785,7 @@
 
 
 										customUploadAdapter: {
-											uploadUrl: 'http://localhost:8078/finalTopic_5/upload/image'
+											uploadUrl: 'http://localhost:8079/finalTopic_5/upload/image'
 										}
 									})
 									.then(editor => {

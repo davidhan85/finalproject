@@ -3,6 +3,8 @@ package com.team5.finalTopic.model.board;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class SubArticleMessageDTO {
 	private List<Integer> subArticleIds;
 	
@@ -22,6 +24,7 @@ public class SubArticleMessageDTO {
 	}
 	private Integer auid;
 	private String content;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss''")
 	private Date updatedatetime;
 	
 	

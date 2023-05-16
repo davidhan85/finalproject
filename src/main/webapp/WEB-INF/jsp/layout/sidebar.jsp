@@ -92,7 +92,7 @@
 		<hr class="sidebar-divider">
 
 
-		<li class="nav-item"><a class="nav-link" href="#"> <i
+		<li class="nav-item"><a class="nav-link" href="${contextRoot}/board"> <i
 				class="fas fa-fw fa-table"></i> <span>論壇系統</span></a></li>
 				
 

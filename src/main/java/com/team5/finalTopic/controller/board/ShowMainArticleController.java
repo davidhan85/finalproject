@@ -1,5 +1,7 @@
 package com.team5.finalTopic.controller.board;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team5.finalTopic.annotation.MemberLogin;
 import com.team5.finalTopic.model.board.MainArticles;
 import com.team5.finalTopic.service.board.MainArticleService;
 
@@ -58,6 +61,7 @@ public class ShowMainArticleController {
 
 	
 	//=====================================新增主業=====================================
+	@MemberLogin
 	@GetMapping("/board/AddMainArticle")
 	public String addMainArticle(Model model) {
 		
@@ -124,6 +128,15 @@ public class ShowMainArticleController {
 		maService.deleteMainArticleById(maid);
 		return ResponseEntity.ok().body("Main article with ID " + maid + " has been deleted.");
 	}
+
+	
+	@GetMapping("/board/findMainArticle")
+	public String findMainArticlesbyTitle(@RequestParam("search") String keyword, Model model) {
+		List<MainArticles> mas = maService.findMainArticlesByString(keyword);
+		model.addAttribute("Results" , mas);
+		return "/board/SearchResult";
+	}
+	
 
 
 }

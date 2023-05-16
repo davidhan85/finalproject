@@ -96,7 +96,7 @@ public class MainArticleController {
 			MainArticlePics Map = MaPicRepository.save(image);
 
 			// 回傳圖片的 URL
-			String imageUrl = "http://localhost:8078/finalTopic_5/upload/image/" + Map.getId();
+			String imageUrl = "http://localhost:8079/finalTopic_5/upload/image/" + Map.getId();
 
 			Map<String, String> response = new HashMap<>();
 			response.put("url", imageUrl);
