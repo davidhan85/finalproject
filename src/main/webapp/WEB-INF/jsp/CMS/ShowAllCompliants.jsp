@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+‵<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
@@ -23,10 +23,10 @@
 			<!-- Topbar -->
 			<nav
 				class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
-				style="width: 90%; left: 10%; margin-bottom: 0%;">
+				style="width: 90%; left: 12%; margin-bottom: 0%;">
 
 				<!-- Sidebar Toggle (Topbar) -->
-				<form class="form-inline">
+				<form class="form-inline" >
 					<button id="sidebarToggleTop"
 						class="btn btn-link d-md-none rounded-circle mr-3">
 						<i class="fa fa-bars"></i>
@@ -34,42 +34,31 @@
 				</form>
 
 				<!-- Topbar Search -->
-				<div class="ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-					抱怨序號 :<br> <input type="text" id="complaintid" />
-					<button id="ButtonID">確定</button>
-				</div>
+					<div  style="max-width: 80%;"> 
+						<div class="ml-md-3 my-2 my-md-0 mw-100 navbar-search" style="display: inline-block;">
+							抱怨序號 :<br> <input type="text" id="complaintid" />
+							<button id="ButtonID">確定</button>
+						</div>
 
-				<div class="ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-					姓名 :<br> <input type="text" id="complaintname" />
-					<button id="ButtonName">確定</button>
-				</div>
+						<div class="ml-md-3 my-2 my-md-0 mw-100 navbar-search" style="display: inline-block;">
+							姓名 :<br> <input type="text" id="complaintname" />
+							<button id="ButtonName">確定</button>
+						</div>
 
-				<div
-					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-					提問類型 : <br> <select id="complaint_type">
-						<option value="member">帳戶問題</option>
-						<option value="purchase">購買問題</option>
-						<option value="order">訂單問題</option>
-						<option value="service">服務問題</option>
-						<option value="dispute">消費爭議</option>
-						<option value="forum">論壇問題</option>
-						<option value="other">其他</option>
-					</select>
-					<button id="ButtonType">確定</button>
-				</div>
-
-				<li class="nav-item dropdown no-arrow mx-1"><a
-					class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-
-				</a>
-
-
-					<div class="topbar-divider d-none d-sm-block"></div>
-
-
-					</ul>
+						<div
+							class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" style="display: inline-block;">
+							提問類型 : <br> <select id="complaint_type">
+								<option value="member">帳戶問題</option>
+								<option value="purchase">購買問題</option>
+								<option value="order">訂單問題</option>
+								<option value="service">服務問題</option>
+								<option value="dispute">消費爭議</option>
+								<option value="forum">論壇問題</option>
+								<option value="other">其他</option>
+							</select>
+							<button id="ButtonType">確定</button>
+						</div>
+					</div>
 			</nav>
 			<!-- End of Topbar -->
 
@@ -78,7 +67,7 @@
 
 				<!-- DataTales Example -->
 				<div class="card shadow mb-4"
-					style="left: 10%; width: 90%; margin-top: 0%; position: relative;">
+					style="left: 10%; width: 90%; top: 3px; position: relative;">
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTable" width="100%"

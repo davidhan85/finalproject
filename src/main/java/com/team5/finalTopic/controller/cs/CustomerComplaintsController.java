@@ -22,9 +22,6 @@ public class CustomerComplaintsController {
 
 	@Autowired
 	CustomerComplaintsService CSS;
-	
-	
-	
 
 	@GetMapping("/CustomerComplaints")
 	public String CustomerComplaints(Model model) {
@@ -33,29 +30,36 @@ public class CustomerComplaintsController {
 		return "cs/ComplaintsForm";
 	}
 
-	//客服聊天室
+	// 客服聊天室
 	@GetMapping("/chat")
 	public String showChatPage(Model model) {
 		return "cs/ChatRoom";
 	}
-	
-	//智慧客服聊天室
+
+	// 智慧客服聊天室
 	@GetMapping("/GptChat")
 	public String showGptChatPage(Model model) {
 		return "cs/GptChatRoom";
 	}
 
-	//跳轉到客服表單選擇頁面
+	// 跳轉到客服表單選擇頁面
 	@GetMapping("/customerService")
 	public String customerService(Model model) {
 		return "cs/CustomerServiceSelection";
 	}
+
 	@GetMapping("/ViewComplient")
 	public String viewComplient(@RequestParam Integer id, Model model) {
 
 		CustomerComplaints customerComplaint = CSS.GetComplaintsByID(id).get();
 		model.addAttribute("Complaint", customerComplaint);
 		return "CMS/ViewComplient";
+	}
+
+	// 跳轉到小遊戲頁面
+	@GetMapping("/miniGame")
+	public String miniGame(Model model) {
+		return "cs/miniGame";
 	}
 
 	// 填寫客服表單
@@ -84,9 +88,8 @@ public class CustomerComplaintsController {
 	@GetMapping("/ApplyComplaints")
 	public String addApplyComplaints(@RequestParam Integer id, @RequestParam String content, Model model) {
 
-		
 		CustomerComplaints CC = CSS.GetComplaintsByID(id).get();
-		
+
 		CSS.sendToEmail(CC, content);
 		CSS.addApplyComplaints(CC, content);
 

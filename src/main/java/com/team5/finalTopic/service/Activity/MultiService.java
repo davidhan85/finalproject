@@ -62,15 +62,15 @@ public class MultiService {
     
 		Member member_number = MR.findById(members.getMemberss().getM_number()).orElse(null);	
 		//第一個.getMemberss是Bean，也就是政佑的Entity我在我自己的MultiMember的ManytoOne裡那一行輸入我如何取名政佑的Entity的名字我選擇的是private Member member ，所以透過呼叫他的Member Entity 我再取他的成員變數裡的m_number
-		
+
 		Activity activity = act.findById(members.getActivity().getActivity_id()).orElse(null);
 		System.out.println("123:"+members.getActivity().getActivity_id());
 //		System.out.println("1:"+members.getActivity_id());
 //		if(activity==null) {
 //			System.out.println("activity_id==null");
 //		}
-		System.out.println(activity.getActivity_id());
-		System.out.println(member_number.getM_number());
+//		System.out.println(activity.getActivity_id());
+//		System.out.println(member_number.getM_number());
 		System.out.println(member_number.getM_id());
 		members.setActivity(activity);
 		members.setMemberss(member_number);

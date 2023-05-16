@@ -22,6 +22,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
 	<br>
 	<div class="container">
 		<table class="table table-striped">

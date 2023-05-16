@@ -59,6 +59,8 @@
 					<th>活動人數</th>
 					<th>活動費用</th>
 					<th>活動描述</th>
+					
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -102,6 +104,7 @@
 			
 			</jstl:forEach>
 			</tbody>
+			
 		</table>
 	</div>
 </body>

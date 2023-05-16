@@ -3,9 +3,7 @@
 		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
 			<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 				<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-					<!DOCTYPE html>
 					<html>
-
 					<head>
 						<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 						<title>智慧客服聊天室</title>

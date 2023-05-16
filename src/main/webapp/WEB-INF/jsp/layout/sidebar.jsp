@@ -32,7 +32,7 @@
 <body>
 	<ul
 		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-		id="accordionSidebar" style="width: 10%; position: absolute;">
+		id="accordionSidebar" style="width: 10%; position: absolute;top: 3px;">
 
 		<!-- Sidebar - Brand -->
 		<a

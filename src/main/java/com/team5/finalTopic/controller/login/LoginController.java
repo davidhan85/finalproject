@@ -4,16 +4,20 @@ import com.team5.finalTopic.model.login.LoginRepository;
 import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.model.member.MemberRepository;
 import com.team5.finalTopic.service.login.LoginServiceImpl;
+import com.team5.finalTopic.service.member.MemberService;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,13 +32,19 @@ public class LoginController {
     
     @Autowired
     private MemberRepository memberRepository;
+    
+    @Autowired
+    private MemberService memberService;
 
     @GetMapping(value = "/Login")
-    public String goLoginPage(){
+    public String goLoginPage(HttpServletRequest request){
+    	String referer=request.getHeader("Referer");
+    	request.getSession().setAttribute("url", referer);
         return "Login/Loginpage";
     }
     @PostMapping(value = "/checkLogin")
-    public String checkLogin(@RequestParam("username")String username,@RequestParam("password") String pwd, Model model,HttpSession session) {
+    public String checkLogin(@RequestParam("username")String username,@RequestParam("pwd") String pwd, Model model,
+    		HttpSession session,HttpServletRequest request) {
         Map<String,String>error=new HashMap<String,String>();
         model.addAttribute("error",error);
         System.out.println(username);
@@ -45,10 +55,7 @@ public class LoginController {
         if (pwd==null||pwd.length()==0){
             error.put("pwd","密碼不能為空");
         }
-//        if (error!=null){
-//            System.out.println("錯誤");
-//            return "Login/Loginpage";
-//        }
+
         Member memberexisted = loginService.findByM_accountAndM_password(username, pwd);
         if (memberexisted!=null){
         	if(memberexisted.getM_status().equals("success")) {
@@ -56,6 +63,11 @@ public class LoginController {
                  session.setAttribute("memberbean", memberexisted);
                  model.addAttribute("account",username);
                  model.addAttribute("pwd",pwd);
+                String url =(String) request.getSession().getAttribute("url");
+                if(url!=null) {
+                	session.removeAttribute("url");
+                	return "redirect:"+url;
+                }
                  return "redirect:/home";
         	}
         	error.put("msgg", "尚未註冊請先註冊");
@@ -80,5 +92,15 @@ public class LoginController {
 
         return "member/membercenter2";
     }
-
+    @GetMapping(value = "/membercenter/{m_number}")
+    public String VisitMemberCenter(@PathVariable("m_number") Integer m_number,Model model){
+    	Member member = memberService.findById(m_number);
+    	if(member!=null) {  		
+                // 將找到的會員資料放入 Model 物件中
+    			model.addAttribute("member",member);               
+                // 返回 JSP 檔案的路徑
+    			return "member/membercenter3";   	
+    }    
+    	return null;
+}
 }

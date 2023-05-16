@@ -17,6 +17,7 @@
 	type="text/css" />
 </head>
 <body>
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
 	<div class="container">
 		<h1 class="text-center my-4">Hello, 歡迎來到活動詳細資訊</h1>
 		<hr>

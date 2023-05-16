@@ -22,14 +22,15 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
+	<!-- <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="#">Activity List</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-	</nav>
+	</nav> -->
 	<br>
 	<div class="container">
 		<table class="table table-striped">
@@ -46,32 +47,30 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${multis}" var="multiLists">
-					<tr>
-<%-- 						<td>${multiLists.memberss.m_number}</td> --%>
-						<td>${multiLists.memberss.m_number}</td>
-						<td>${multiLists.activity.activity_id}</td>
-						<td>${multiLists.name}</td>
-						<td>${multiLists.email}</td>
-						<td>${multiLists.id}</td>
-						<td>
-<%-- 							<form action="${contextRoot}/ecpayCheckout" method="get"> --%>
-							<form action="${contextRoot}/ecpayCheckout" method="post">
-								<input type="hidden" name="id"
-									value="${multiLists.id}"> <input type="submit"
-									value="未付款" class="btn btn-primary">
-							</form>
-						</td>
+    <tr>
+        <td>${multiLists.memberss.m_number}</td>
+        <td>${multiLists.activity.activity_id}</td>
+        <td>${multiLists.name}</td>
+        <td>${multiLists.email}</td>
+        <td>${multiLists.id}</td>
+        <td>
+            <form action="${contextRoot}/ecpayCheckout" method="post">
+                <input type="hidden" name="member_number" value="${multiLists.memberss.m_number}">
+                <input type="hidden" name="activity_id" value="${multiLists.activity.activity_id}">
+                <input type="hidden" name="id" value="${multiLists.id}">
+                <c:choose>
+                    <c:when test="${multiLists.sign.paystatus eq '已繳款'}">
+                        <input type="submit" value="已付款" class="btn btn-success" disabled>
+                    </c:when>
+                    <c:otherwise>
+                        <input type="submit" value="未付款" class="btn btn-primary">
+                    </c:otherwise>
+                </c:choose>
+            </form>
+        </td>
+    </tr>
+</c:forEach>
 
-						<!-- 						<td> -->
-						<%-- 							<form action="${contextRoot}/registration" method="get"> --%>
-						<%-- 								<input type="hidden" name="activity_id" value="${activity.activity_id}"> --%>
-
-
-						<!-- 								<input type="submit" value="我要報名" class="btn btn-primary"> -->
-						<%-- 							</form> --%>
-						<!-- 						</td> -->
-					</tr>
-				</c:forEach>
 			</tbody>
 		</table>
 	</div>

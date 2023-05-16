@@ -36,7 +36,7 @@
 
                 <body>
                     <jsp:include page="../layout/sidebar.jsp"></jsp:include>
-                    <div class="container-fluid">
+                    <div class="container-fluid" style="right: -2%; position: relative;">
                         <h1 class="mb-5">會員列表</h1>
                         <table class="table">
                             <thead class="thead-dark">

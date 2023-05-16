@@ -1,144 +1,168 @@
 <%-- Created by IntelliJ IDEA. User: admin Date: 2023/4/22 Time: 下午 11:53 To change this template use File | Settings |
   File Templates. --%>
-  <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-      <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-        <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-        <html>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<html>
 
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <title>註冊</title>
-          <!-- Bootstrap CSS -->
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-          <style>
-        
-            span{
-            font-size: 16px;
-            color: red;
-            }
-            label{
-             font-size: 16px;
-            }
-          </style>
-        </head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>註冊</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<style>
+span {
+	font-size: 16px;
+	color: red;
+}
 
-        <body>
-          <jsp:include page="../layout/navebar.jsp"></jsp:include>
-          <div class="container my-5">
-            <div class="row justify-content-center">
-              <div class="col-md-8">
-                <div class="card">
+label {
+	font-size: 16px;
+}
+</style>
+</head>
 
-                  <div class="card-header bg-primary text-white">註冊</div>
-                  <div class="card-body">
-                    <form:form method="post" action="${contextRoot}/messages/newmember" enctype="multipart/form-data"
-                      modelAttribute="member" id="newmemberform" onsubmit="return submitForm();">
-                      <div class="form-group row">
-                        <label for="account" class="col-md-4 col-form-label text-md-right">帳號</label>
-                        <div class="col-md-6">
-                          <form:input path="m_account" required="true" id="account" class="form-control" />
-                          <span id="accountError" ></span>
-                          <label id="accountMessage"></label>
-                        </div>
-                      </div>
+<body
+	style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2128&amp;q=80')">
+	<jsp:include page="../layout/navebar.jsp"></jsp:include>
+	<div class="container my-5">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card">
 
-                      <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">密碼</label>
+					<div class="card-header bg-primary text-white">註冊</div>
+					<div class="card-body">
+						<form:form method="post"
+							action="${contextRoot}/messages/newmember"
+							enctype="multipart/form-data" modelAttribute="member"
+							id="newmemberform" onsubmit="return submitForm();">
+							<div class="form-group row">
+								<label for="account"
+									class="col-md-4 col-form-label text-md-right">帳號</label>
+								<div class="col-md-6">
+									<form:input path="m_account" required="true" id="account"
+										class="form-control" />
+									<span id="accountError"></span> <label id="accountMessage"></label>
+								</div>
+							</div>
 
-                        <div class="col-md-6">
-                          <form:input path="m_password" required="true" id="password" class="form-control" />
-                          <span id="passwordError" ></span>
-                        </div>
-                      </div>
+							<div class="form-group row">
+								<label for="password"
+									class="col-md-4 col-form-label text-md-right">密碼</label>
+								<div class="col-md-6">
+									<form:input path="m_password" required="true" id="password"
+										class="form-control" />
+									<span id="passwordError"></span>
+								</div>
+							</div>
 
-                      <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">姓名</label>
+							<div class="form-group row">
+								<label for="name" class="col-md-4 col-form-label text-md-right">姓名</label>
 
-                        <div class="col-md-6">
-                          <form:input path="m_name" required="true" id="name" class="form-control" />
-                        </div>
-                      </div>
+								<div class="col-md-6">
+									<form:input path="m_name" required="true" id="name"
+										class="form-control" />
+								</div>
+							</div>
 
-                      <div class="form-group row">
-                        <label for="phone" class="col-md-4 col-form-label text-md-right">手機</label>
+							<div class="form-group row">
+								<label for="phone" class="col-md-4 col-form-label text-md-right">手機</label>
+								<div class="col-md-6">
+									<form:input path="m_phone" required="true" id="phone"
+										class="form-control" />
+									<span id="phoneError"></span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="address"
+									class="col-md-4 col-form-label text-md-right">地址</label>
+								<div class="col-md-6">
+									<form:input path="m_address" required="true" id="address"
+										class="form-control" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="email" class="col-md-4 col-form-label text-md-right">信箱</label>
 
-                        <div class="col-md-6">
-                          <form:input path="m_phone" required="true" id="phone" class="form-control" />
-                          <span id="phoneError" ></span>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="address" class="col-md-4 col-form-label text-md-right">地址</label>
-                        <div class="col-md-6">
-                          <form:input path="m_address" required="true" id="address" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">信箱</label>
+								<div class="col-md-6">
+									<form:input path="m_email" type="email" required="true"
+										id="email" class="form-control" />
+									<span id="emailError"></span> <label id="emailMessage"></label>
+								</div>
+							</div>
 
-                        <div class="col-md-6">
-                          <form:input path="m_email" type="email" required="true" id="email" class="form-control" />
-                          <span id="emailError" ></span>
-                        </div>
-                      </div>
+							<div class="form-group row">
+								<label for="birth" class="col-md-4 col-form-label text-md-right">生日</label>
 
-                      <div class="form-group row">
-                        <label for="birth" class="col-md-4 col-form-label text-md-right">生日</label>
+								<div class="col-md-6">
+									<form:input path="m_birth" type="date" required="true"
+										id="birth" class="form-control" />
+								</div>
+							</div>
 
-                        <div class="col-md-6">
-                          <form:input path="m_birth" type="date" required="true" id="birth" class="form-control" />
-                        </div>
-                      </div>
+							<div class="form-group row">
+								<label for="m_Role"
+									class="col-md-4 col-form-label text-md-right">身分</label>
+								<div class="col-md-6">
+									<form:select path="m_Role" class="form-control">
+										<form:option value="adaim" label="管理員" />
+										<form:option value="user" label="一般使用者" />
+									</form:select>
+								</div>
+							</div>
 
-                      <div class="form-group row">
-                        <label for="role" class="col-md-4 col-form-label text-md-right">身分</label>
+							<div class="form-group row">
+								<label for="id" class="col-md-4 col-form-label text-md-right">身分證</label>
 
-                        <div class="col-md-6">
-                          <form:select path="m_Role" class="form-control">
-                            <form:option value="adaim" label="管理員" />
-                            <form:option value="user" label="一般使用者" />
-                          </form:select>
-                        </div>
-                      </div>
+								<div class="col-md-6">
+									<form:input path="m_id" required="true" id="id"
+										class="form-control" />
+									<span id="idError"></span>
+								</div>
+							</div>
 
-                      <div class="form-group row">
-                        <label for="id" class="col-md-4 col-form-label text-md-right">身分證</label>
+							<div class="form-group row">
+								<label for="image" class="col-md-4 col-form-label text-md-right">大頭貼</label>
 
-                        <div class="col-md-6">
-                          <form:input path="m_id" required="true" id="id" class="form-control" />
-                          <span id="idError" ></span>
-                        </div>
-                      </div>
+								<div class="col-md-6">
+									<form:input path="productImage" type="file" required="true"
+										id="image" class="form-control-file" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 offset-md-4">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="true"
+											id="privacyPolicy" required> <label
+											class="form-check-label" for="privacyPolicy">
+											我已閱讀並同意隱私權政策 </label>
+									</div>
+								</div>
+							</div>
 
-                      <div class="form-group row">
-                        <label for="image" class="col-md-4 col-form-label text-md-right">大頭貼</label>
+							<div class="form-group row mb-0">
+								<div class="col-md-6 offset-md-4">
+									<button type="submit" class="btn btn-primary"
+										onclick="sendVerificationEmail()">註冊</button>
+								</div>
+							</div>
+						</form:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                        <div class="col-md-6">
-                          <form:input path="productImage" type="file" required="true" id="image"
-                            class="form-control-file" />
-                        </div>
-                      </div>
-
-                      <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                          <button type="submit" class="btn btn-primary" onclick="sendVerificationEmail()">註冊</button>
-                        </div>
-                      </div>
-                    </form:form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-            <script>
+	<script>
               function submitForm() {
                 var useraccount = document.getElementById("account").value;
                 var pwd = document.getElementById("password").value;
@@ -192,6 +216,19 @@
                 } else {
                   document.getElementById("emailError").innerHTML = "";
                 }
+                
+                fetch('${contextRoot}/existsEmail?email=' + email)
+                .then(response => response.text())
+                .then(data => {
+                  if (data === "此信箱已有人使用") {
+                    document.getElementById("emailError").innerHTML = "此信箱已被註冊"
+                  } else {
+                    document.getElementById("emailMessage").innerHTML = "此信箱可以使用"                  
+                  }
+                })
+                .catch(error => {
+                  console.error("發生錯誤", error)
+                })
 
                 if (!idRegex.test(id)) {
                   document.getElementById("idError").innerHTML = "身分證字號格式不正確";
@@ -258,17 +295,21 @@
 
               }
             </script>
-            <!-- Bootstrap JS -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-              integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-              crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-              integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-              crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-              integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-              crossorigin="anonymous"></script>
-              <jsp:include page="../layout/footerbar.jsp"></jsp:include>
-        </body>
+	<!-- Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 
-        </html>
+	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
+
+</body>
+
+</html>

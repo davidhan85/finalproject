@@ -9,11 +9,11 @@
 <meta charset="UTF-8">
 <title>刪除活動</title>
 <!-- 引入 Bootstrap 的 CSS 檔案 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
+<jsp:include page="../layout/sidebar.jsp"></jsp:include>
 <body>
-	<div class="container">
+	<div class="container" style="position: absolute; transform: scale(1.5); left: 25%; top: 10%;">
 		<form action="<c:url value='/deleteActivity11' />" method="POST">
 			<div class="form-group">
 				<label for="activity_id">請輸入想刪除的活動編號:</label> <input type="text"

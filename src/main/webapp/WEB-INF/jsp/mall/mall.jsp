@@ -17,7 +17,8 @@
 </head>
 <body>
 
-	<jsp:include page="mallnarbar.jsp"></jsp:include>
+<%-- 	<jsp:include page="mallnarbar.jsp"></jsp:include> --%>
+		<jsp:include page="../layout/navebar.jsp"></jsp:include>
   
 <%--  <!-- 導覽列 -->--%>
 <%--  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">--%>
@@ -56,7 +57,7 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img class="d-block w-100" src="https://via.placeholder.com/800x300" alt="First slide">
+					<img class="d-block w-100" src="${contextRoot}/images/activity.jpg" alt="First slide">
 				</div>
 				<div class="carousel-item">
 					<img class="d-block w-100" src="https://via.placeholder.com/800x300" alt="Second slide">
@@ -663,7 +664,8 @@
 <div>&nbsp;</div>
 <div>&#8203;</div>
 
-<jsp:include page="mallfooter.jsp"></jsp:include>
+<%-- <jsp:include page="mallfooter.jsp"></jsp:include> --%>
+	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 
       <!-- Bootstrap JS, because We Fucking Need It -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
