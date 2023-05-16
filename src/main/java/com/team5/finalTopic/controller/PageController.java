@@ -23,7 +23,7 @@ public class PageController {
 			Member updatedMember=memberService.findById(member.getM_number());
 			session.setAttribute("memberbean", updatedMember);
 		}
-		return "index";
+		return "mall/mall";
 
 	}
 	@GetMapping("/home")
