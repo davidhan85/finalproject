@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.persistence.criteria.Predicate;
 
 import com.team5.finalTopic.model.mall.productCategory;
+import com.team5.finalTopic.model.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,19 +39,23 @@ public class ListedProductService {
 	@Autowired
 	private ProductCategoryRepository productCategoryRepository;
 
-	public ListedProduct saveListedProduct(ListedProduct product) throws IOException {
+	public ListedProduct saveListedProduct(ListedProduct product, Member member) throws IOException {
 		System.out.println("enter saveListedProduct");
 		System.out.println("Time" + product.getListedTime());
 		if (product.getImgFile() != null) {
 			ProductImage img = new ProductImage();
 			img.setM_image(product.getImgFile().getBytes());
+			System.out.println("會員id為:"+member.getM_name());
+			product.setM_number(member);
 			img.setListedProducts(product);
 			imageRepository.save(img);
 			product.setProductImage(img);
+
 		}
-		if (!memberRepository.existsById(product.getM_number().getM_number())) {
-			memberRepository.save(product.getM_number());
-		}
+//		if (!memberRepository.existsById(product.getM_number().getM_number())) {
+//			memberRepository.save(product.getM_number());
+//		}
+
 		System.out.println("save");
 		return repository.save(product);
 	}
@@ -154,7 +159,7 @@ public class ListedProductService {
 
 			}
 			if (!keyword.equals("")) {
-				p = criteriaBuilder.like(root.get("categoryName"), "%" + keyword + "%");
+				p = criteriaBuilder.like(root.get("productName"), "%" + keyword + "%");
 				predicates.add(p);
 			}
 
@@ -164,7 +169,7 @@ public class ListedProductService {
 
 
 		// 建立 Pageable 物件帶入傳遞參數
-		Pageable pgb = PageRequest.of(pageNumber - 1, 9, Sort.Direction.ASC, "ProductCategoryNumber");
+		Pageable pgb = PageRequest.of(pageNumber - 1, 6, Sort.Direction.ASC, "ProductCategoryNumber");
 
 		return repository.findAll(spec, pgb);
 	}

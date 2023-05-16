@@ -1,12 +1,13 @@
 package com.team5.finalTopic.controller.mall;
 
+import com.team5.finalTopic.model.member.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.team5.finalTopic.model.mall.ListedProduct;
 
-
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -16,8 +17,11 @@ public class Pagecontroller {
 		return "/mall/mall";
 	}
 	@GetMapping("/Insertproduct")
-	public String showInsertProductForm(Model model) {
+	public String showInsertProductForm(Model model, HttpSession session) {
 		model.addAttribute("listedProduct", new ListedProduct());
+//		Member member= (Member) session.getAttribute("memberbean");
+//		Integer memberId=member.getM_number();
+//		System.out.println("memberId:"+memberId);
 	    return "/mall/Insertproduct";
 	}
 	@GetMapping("/ShowAllProduct")
