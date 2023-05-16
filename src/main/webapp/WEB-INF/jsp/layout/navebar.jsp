@@ -116,7 +116,7 @@
 											</a>
 										</c:if>
 
-										<c:if test="${not empty memberbean}">
+									
 
 											<<<<<<< HEAD <li class="nav-item"><a class="nav-link"
 													href="${contextRoot}/mall">商城 </a></li>
