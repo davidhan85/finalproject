@@ -31,6 +31,7 @@ import com.team5.finalTopic.model.board.SubArticleMessageDTO;
 import com.team5.finalTopic.model.board.SubArticleMessages;
 import com.team5.finalTopic.model.board.SubArticles;
 import com.team5.finalTopic.model.member.Member;
+import com.team5.finalTopic.service.board.MainArticleMessageService;
 import com.team5.finalTopic.service.board.MainArticleService;
 import com.team5.finalTopic.service.board.SubArticleMessageService;
 import com.team5.finalTopic.service.board.SubArticleService;
@@ -42,8 +43,8 @@ public class MainArticleController {
 	private MainArticleService maService;
 	@Autowired
 	private SubArticleService saService;
-//	@Autowired
-//	private MainArticleMessageService mamService;
+	@Autowired
+	private MainArticleMessageService mamService;
 	
 	@Autowired
 	private SubArticleMessageService samService; 
@@ -66,6 +67,7 @@ public class MainArticleController {
 		MainArticles MA = maService.findMainArticlesById(id);
 		// 在這裡加入回文葉面
 		Page<SubArticles> page = maService.findSubByPage(id, pageNumber);
+		
 		List<MainArticleMessages> mams = maService.findMainArticleMessagesByMainarticlesformam_mainid(id);
 //		List<SubArticleMessages> sams = saService.findSubArticleMessagesBySubarticlesforsam_subid(subid);
 		model.addAttribute("page", page);
@@ -94,7 +96,7 @@ public class MainArticleController {
 			MainArticlePics Map = MaPicRepository.save(image);
 
 			// 回傳圖片的 URL
-			String imageUrl = "http://localhost:8078/finalTopic_5/upload/image/" + Map.getId();
+			String imageUrl = "http://localhost:8079/finalTopic_5/upload/image/" + Map.getId();
 
 			Map<String, String> response = new HashMap<>();
 			response.put("url", imageUrl);
@@ -132,22 +134,37 @@ public class MainArticleController {
 	
 	@GetMapping("/board/deleteMAM")
 	public String deleteMainArticleMessages(@RequestParam("mamid") Integer id) {
-		 maService.deleteMainArticleMessages(id);
+		String newContent = "此留言已被刪除";
+		 mamService.updateMainMessageById(id, newContent);
+		
 		 return "redirect:/board";
 	}
 
 // =========================回文上傳與顯示====================================
 	
-	
 	@PostMapping("/board/addSA/{mainid}/{pagenumber}")
-	public String addSubArticle(@ModelAttribute("SubArticles") SubArticles sa,@PathVariable(name="mainid")Integer mainid,@PathVariable(name="pagenumber", required = false)Integer p,Model model) {
+	public String addSubArticle(@ModelAttribute("SubArticles") SubArticles sa, @PathVariable(name="mainid") Integer mainid,
+			@PathVariable(name="pagenumber", required = false) Integer p, Model model) {
 		maService.addSubArticle(sa);
 		model.addAttribute("SubArticles" , new SubArticles());
 		model.addAttribute("message", "新增成功");
-		
-		return "redirect:/board/MainArticle?p={pagenumber}&maid={mainid}";
 
+		if(p == null) {
+			return "redirect:/board/MainArticle?maid=" + mainid;
+		} else {
+			return "redirect:/board/MainArticle?p=" + p + "&maid=" + mainid;
+		}
 	}
+
+	
+
+
+
+
+
+
+
+
 // =========================回文留言上傳與顯示====================================
 	
 	@ResponseBody

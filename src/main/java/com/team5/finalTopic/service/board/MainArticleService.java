@@ -128,6 +128,12 @@ public class MainArticleService {
 	public void deleteMainArticleMessages(Integer mamid) {
 		mamRepository.deleteById(mamid);
 	}
+
+	public List<MainArticles> findMainArticlesByString(String keyword) {
+		
+		List<MainArticles> results = maRepository.findByTitleContaining(keyword);
+		return results;
+	}
 	
 	
 }

@@ -49,6 +49,7 @@ public class MainArticleMessageController {
 			        MainArticleMessageDTO mamDTO = new MainArticleMessageDTO();
 			        mamDTO.setUpdatedatetime(mam.getUpdatedatetime());
 			        mamDTO.setAuid(mam.getAuthoridforMAM().getM_number());
+			        mamDTO.setAuaccount(mam.getAuthoridforMAM().getM_account());
 			        mamDTO.setContent(mam.getContent());
 			        return mamDTO;
 			    })

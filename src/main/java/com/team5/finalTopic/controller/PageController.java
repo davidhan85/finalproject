@@ -23,14 +23,14 @@ public class PageController {
 			Member updatedMember=memberService.findById(member.getM_number());
 			session.setAttribute("memberbean", updatedMember);
 		}
-		return "index";
+		return "mall/mall";
 
 	}
 	@GetMapping("/home")
 	public String index(HttpSession session) {
 		Member attribute = (Member) session.getAttribute("memberbean");
 		if(attribute!=null) {
-			return "/index";
+			return "mall/mall";
 		}else {
 			return "redirect:/Login";
 		}

@@ -8,8 +8,18 @@ public class MainArticleMessageDTO {
 
 	private Integer mainid;
 	private Integer auid;
+	private String auaccount;
+	public String getAuaccount() {
+		return auaccount;
+	}
+
+
+
+	public void setAuaccount(String auaccount) {
+		this.auaccount = auaccount;
+	}
 	private String content;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd HH:mm:ss''")
 	private Date updatedatetime;
 	public Date getUpdatedatetime() {
 		return updatedatetime;

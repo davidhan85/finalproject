@@ -45,7 +45,7 @@
 </style>
 </head>
 <body>
-
+	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
 	<div class="container py-5">
 		<h1 class="text-center mb-4">All Listed Products</h1>
 		<div class="table-responsive">
@@ -72,31 +72,18 @@
 							<td>${product.productDescription}</td>
 							<td>${product.unitPrice}</td>
 							<td>${product.productQuantity}</td>
-							<td>${product.productUploadStatus }</td>
+							<td class="product-status">${product.productUploadStatus}</td>
 							<td><img
 								src="<c:url value='/ProductImage/${product.productImage.productImageId}'/>"
 								width="100" height="100" class="product-img"></td>
 							<td>
 								<div class="btn-group" role="group">
-									
-<%-- 									<form --%>
-<%-- 										action="${pageContext.request.contextPath}/editListedProducts"> --%>
-<!-- 										<input type="hidden" name="ProductId" -->
-<%-- 											value="${product.productId}" /> --%>
-<!-- 										<button type="submit" class="btn btn-primary">Edit</button> -->
-<%-- 									</form> --%>
-
-									<form:form method="get"
-										action="${pageContext.request.contextPath}/editListedProducts/${product.productId}">
-										<input type="submit" value="更新" />
+									<form:form method="get" action="${pageContext.request.contextPath}/editListedProducts/${product.productId}">
+										<button type="submit" class="btn btn-primary">Edit</button>
 									</form:form>
 
-
-									<form
-										action="${pageContext.request.contextPath}/listedProducts/${product.productId}"
-										method="post" onsubmit="return confirm('您確定要刪除嗎?')">
-										<input type="hidden" name="_method" value="delete" />
-
+									<form action="${pageContext.request.contextPath}/listedProducts/${product.productId}" method="post" onsubmit="return confirm('您確定要刪除嗎?')">
+										<input type="hidden" name="_method" value="delete">
 										<button type="submit" class="btn btn-danger">Delete</button>
 									</form>
 

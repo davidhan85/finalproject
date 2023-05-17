@@ -62,9 +62,11 @@
       <li class="nav-item text-center">
         <a class="nav-link" href="${contextRoot}/changePwdPage">修改密碼</a>
       </li>
+<!--  ordermanage -------------------------------------------------------------->
       <li class="nav-item text-center">
         <a class="nav-link" href="#">訂單紀錄</a>
       </li>
+<!--  ordermanage -------------------------------------------------------------->     
     </ul>
   </div>
 </nav>

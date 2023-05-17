@@ -58,9 +58,10 @@
 
 
 		<!-- Nav Item - Pages Collapse Menu -->
-		<li class="nav-item"><a class="nav-link collapsed" href="#"
+		<li class="nav-item"><a class="nav-link collapsed" href="${contextRoot}/orders"
 			data-target="#collapseTwo" aria-expanded="true"
-			aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>訂單系統</span>
+			aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog" data-toggle="collapse" data-target="#collapseTwo"
+		></i> <span>訂單系統</span>
 		</a>
 			<hr class="sidebar-divider my-0"></li>
 
@@ -78,7 +79,7 @@
 
 
 		<!-- Nav Item - Pages Collapse Menu -->
-		<li class="nav-item"><a class="nav-link collapsed" href="#"
+		<li class="nav-item"><a class="nav-link collapsed" href="${contextRoot}/listedProducts"
 			data-target="#collapsePages" aria-expanded="true"
 			aria-controls="collapsePages"> <i class="fas fa-fw fa-folder"></i>
 				<span>購物系統</span>
@@ -91,7 +92,7 @@
 		<hr class="sidebar-divider">
 
 
-		<li class="nav-item"><a class="nav-link" href="#"> <i
+		<li class="nav-item"><a class="nav-link" href="${contextRoot}/board"> <i
 				class="fas fa-fw fa-table"></i> <span>論壇系統</span></a></li>
 				
 
