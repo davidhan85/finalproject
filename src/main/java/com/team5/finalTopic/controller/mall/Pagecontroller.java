@@ -1,5 +1,6 @@
 package com.team5.finalTopic.controller.mall;
 
+import com.team5.finalTopic.annotation.MemberLogin;
 import com.team5.finalTopic.model.member.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ public class Pagecontroller {
 		return "/mall/mall";
 	}
 	@GetMapping("/Insertproduct")
+	@MemberLogin
 	public String showInsertProductForm(Model model, HttpSession session) {
 		model.addAttribute("listedProduct", new ListedProduct());
 //		Member member= (Member) session.getAttribute("memberbean");
