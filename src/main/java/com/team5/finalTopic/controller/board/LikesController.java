@@ -58,9 +58,13 @@ public class LikesController {
 		for (MainArticleLikes mal : mals) {
 		    auidList.add(mal.getAuthoridforMAL().getM_account());
 		}
+		List<Integer> auids  = new ArrayList<>();
+		for (MainArticleLikes mal : mals) {
+		    auids.add(mal.getAuthoridforMAL().getM_number());
+		}
 		LikesDTO likesdto = new LikesDTO();
 		likesdto.setAuidlist(auidList);
-		
+		likesdto.setAuids(auids);
 		return likesdto;
 	}
 	
@@ -94,9 +98,13 @@ public class LikesController {
 		for (SubArticleLikes sal : sals) {
 		    auidList.add(sal.getAuthoridforSAL().getM_account());
 		}
+		List<Integer> auids  = new ArrayList<>();
+		for (SubArticleLikes sal : sals) {
+		    auids.add(sal.getAuthoridforSAL().getM_number());
+		}
 		LikesDTO likesdto = new LikesDTO();
 		likesdto.setAuidlist(auidList);
-		
+		likesdto.setAuids(auids);
 		return likesdto;
 	}
 }
