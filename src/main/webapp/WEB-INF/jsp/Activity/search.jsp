@@ -71,7 +71,7 @@
 						<td>${activity.activity_name}</td>
 						<td>${activity.activity_date}</td>
 
-						<td><img
+						<td ><img
 							src="data:image/jpg;base64,${Base64.getEncoder().encodeToString(activity.activity_image)}"
 							alt="Activity Image" style="width: 80%; height: 80%;" /></td>
 
