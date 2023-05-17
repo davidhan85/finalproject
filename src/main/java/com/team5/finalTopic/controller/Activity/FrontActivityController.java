@@ -74,7 +74,7 @@ public class FrontActivityController {
 	public String getAllActivities(@RequestParam(name="p",defaultValue = "1") Integer pageNumber,Model model) {
 		Page<Activity> page = actService.findByPage(pageNumber);
 		model.addAttribute("page", page);
-		return "Activity/search111";		
+		return "Activity/search111";
 	}
 	
 

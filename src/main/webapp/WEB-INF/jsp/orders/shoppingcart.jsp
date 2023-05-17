@@ -174,7 +174,7 @@ button:hover {
       <tfoot>
         <tr>
           <td colspan="3" style="font-size: 40px; font-weight: bold; padding: 15px; text-align: center; color:red">總計</td>
-          <td id="total">300.00</td>
+          <td id="total">0.00</td>
           <td><a href="${contextRoot}/orders/addShoppingcartcommit"><button class="x">商品確認</button></a></td>
         </tr>
       </tfoot>

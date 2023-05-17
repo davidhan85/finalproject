@@ -274,39 +274,39 @@ public class Member {
 	}
 
 
-	@OneToMany(mappedBy = "authoridforMA")
-	@JsonIgnoreProperties("authoridforMA")
-	Set<MainArticles> memberMainArticles = new LinkedHashSet<>();
-
-	@OneToMany(mappedBy = "authoridforSA")
-	@JsonIgnoreProperties("authoridforSA")
-	Set<SubArticles> memberSubArticles = new LinkedHashSet<>();
-
-	@OneToMany(mappedBy = "authoridforMAL")
-	@JsonIgnoreProperties("authoridforMAL")
-	Set<MainArticleLikes> memberMainArticleLikes = new LinkedHashSet<>();
-
-	@OneToMany(mappedBy = "authoridforMAM")
-	@JsonIgnoreProperties("authoridforMAM")
-	Set<MainArticleMessages> memberMainArticleMessages = new LinkedHashSet<>();
-
-	@OneToMany(mappedBy = "authoridforMAML")
-	@JsonIgnoreProperties("authoridforMAML")
-	Set<MainArticleMessageLikes> memberMainArticleMessageLikes = new LinkedHashSet<>();
-
-	@OneToMany(mappedBy = "authoridforSAL")
-	@JsonIgnoreProperties("authoridforSAL")
-	Set<SubArticleLikes> memberSubArticleLikes = new LinkedHashSet<>();
-
-	@OneToMany(mappedBy = "authoridforSAM")
-	@JsonIgnoreProperties("authoridforSAM")
-	Set<SubArticleMessages> memberSubArticleMessages = new LinkedHashSet<>();
-
-	@OneToMany(mappedBy = "authoridforSAML")
-	@JsonIgnoreProperties("authoridforSAML")
-	Set<SubArticleMessageLikes> memberSubArticleMessageLikes = new LinkedHashSet<>();
-
-	public Member() {
-	}
+//	@OneToMany(mappedBy = "authoridforMA")
+//	@JsonIgnoreProperties("authoridforMA")
+//	Set<MainArticles> memberMainArticles = new LinkedHashSet<>();
+//
+//	@OneToMany(mappedBy = "authoridforSA")
+//	@JsonIgnoreProperties("authoridforSA")
+//	Set<SubArticles> memberSubArticles = new LinkedHashSet<>();
+//
+//	@OneToMany(mappedBy = "authoridforMAL")
+//	@JsonIgnoreProperties("authoridforMAL")
+//	Set<MainArticleLikes> memberMainArticleLikes = new LinkedHashSet<>();
+//
+//	@OneToMany(mappedBy = "authoridforMAM")
+//	@JsonIgnoreProperties("authoridforMAM")
+//	Set<MainArticleMessages> memberMainArticleMessages = new LinkedHashSet<>();
+//
+//	@OneToMany(mappedBy = "authoridforMAML")
+//	@JsonIgnoreProperties("authoridforMAML")
+//	Set<MainArticleMessageLikes> memberMainArticleMessageLikes = new LinkedHashSet<>();
+//
+//	@OneToMany(mappedBy = "authoridforSAL")
+//	@JsonIgnoreProperties("authoridforSAL")
+//	Set<SubArticleLikes> memberSubArticleLikes = new LinkedHashSet<>();
+//
+//	@OneToMany(mappedBy = "authoridforSAM")
+//	@JsonIgnoreProperties("authoridforSAM")
+//	Set<SubArticleMessages> memberSubArticleMessages = new LinkedHashSet<>();
+//
+//	@OneToMany(mappedBy = "authoridforSAML")
+//	@JsonIgnoreProperties("authoridforSAML")
+//	Set<SubArticleMessageLikes> memberSubArticleMessageLikes = new LinkedHashSet<>();
+//
+//	public Member() {
+//	}
 
 }

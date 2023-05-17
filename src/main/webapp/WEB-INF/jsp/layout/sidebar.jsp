@@ -96,7 +96,7 @@
 				class="fas fa-fw fa-table"></i> <span>論壇系統</span></a></li>
 				
 
-		<li class="nav-item"><a class="nav-link" href="${contextRoot}/"> <i
+		<li class="nav-item"><a class="nav-link" href="${contextRoot}/AllProductIndex"> <i
 				class="fas fa-fw fa-table"></i> <span>回首頁</span></a></li>
 
 		<!-- Divider -->

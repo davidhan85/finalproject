@@ -307,13 +307,8 @@
 		col.appendChild(box);
 		svg.addEventListener('click', function (event) {
             var member = '${memberbean.m_number}'; 
-             alert("第三個" + member)
-         //             try {
-         //                 event.preventDefault();
-         //                 window.location.href = '${contextRoot}/cart/create?m_number='+member+'&productId='+product.productId;
-         //             } catch(err) {
-         //                 console.error('Failed to redirect to cart creation page:', err);
-         //             }
+             alert("已加入購物車")
+
          fetch('${contextRoot}/cart/create/' + member + '/' + product.productId + '/1', {
              method: 'POST',
              headers: {

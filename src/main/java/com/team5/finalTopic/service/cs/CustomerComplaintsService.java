@@ -96,7 +96,7 @@ public class CustomerComplaintsService {
 		message.setTo(CC.getEmail());
 		message.setFrom("a5438520a80@gmail.com");
 		message.setSubject(CC.getTitle());
-		message.setText("你好，關於您的問題，以下是客服的回答:" + content);
+			message.setText("你好，關於您的問題，以下是客服的回答:\n\n" + content);
 		System.out.println(message);
 		javaMailSender.send(message);
 	}

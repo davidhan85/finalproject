@@ -100,11 +100,15 @@
 				<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
 			<div class="carousel-inner">
+				<a href="${contextRoot}/activity">
 				<div class="carousel-item active">
 					<img class="d-block w-100" src="${contextRoot}/images/activity.jpg" alt="First slide">
+				</a>
 				</div>
 				<div class="carousel-item">
+					<a href="${contextRoot}/newmember">
 					<img class="d-block w-100" src="${contextRoot}/images/vip.jpg" alt="Second slide">
+					</a>
 				</div>
 				<div class="carousel-item">
 					<a href="${contextRoot}/miniGame">

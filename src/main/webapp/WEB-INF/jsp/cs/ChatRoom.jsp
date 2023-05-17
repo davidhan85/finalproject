@@ -185,10 +185,10 @@
 							// 捲動至最底部
 							chatThread.scrollTop = chatThread.scrollHeight;
 							// 使用 setTimeout 函數等待內容高度計算完成後再捲動到最底部		
-							setTimeout(function () {
-								li.scrollIntoView();
-								chatThread.scrollTop = chatThread.scrollHeight;
-							}, 1);
+							// setTimeout(function () {
+							// 	li.scrollIntoView();
+							// 	chatThread.scrollTop = chatThread.scrollHeight;
+							// }, 1);
 						}
 					</script>
 

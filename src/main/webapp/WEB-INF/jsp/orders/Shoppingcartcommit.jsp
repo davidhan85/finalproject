@@ -130,7 +130,7 @@ body{
 					<td>${item.listedProduct.productName}</td>
 					<td>${item.listedProduct.productQuantity}</td>
 					<td>${item.listedProduct.unitPrice}</td>
-					<td>${item.quantity}</td>
+					<td>${item.listedProduct.productQuantity*item.listedProduct.unitPrice}</td>
 				</tr>
 </c:forEach>
 </tbody>

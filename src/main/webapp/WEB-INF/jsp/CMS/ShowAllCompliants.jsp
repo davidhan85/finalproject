@@ -100,31 +100,31 @@
 </head>
 <script>
 
-							document.addEventListener("DOMContentLoaded", function () {
-								fetch('http://localhost:8079/finalTopic_5/showAllComplaints')
-									.then(response => response.json())
-									.then(data => {
+	document.addEventListener("DOMContentLoaded", function () {
+		fetch('http://localhost:8079/finalTopic_5/showAllComplaints')
+				.then(response => response.json())
+				.then(data => {
 
-										let tableBody = document.getElementById('complaintsTableBody');
-										let tableData = '';
-										data.forEach(complaint => {
-											console.log(complaint.customerName)
-											tableData += '<tr>';
-											tableData += '<td>' + complaint.CreateDate + '</td>';
-											tableData += '<td>' + complaint.customerName + '</td>';
-											tableData += '<td>' + complaint.m_emailemail + '</td>';
-											tableData += '<td>' + complaint.complaintType.complaintName + '</td>';
-											tableData += '<td>' + complaint.title + '</td>';
-											tableData += '<td>' + complaint.content + '</td>';
-											tableData += '<td>' + "<a href=/finalTopic_5/ViewComplient?id="+ complaint.customerComplaintsID +">查看</a></td>";
-											tableData += '<td>' + '<a href=/finalTopic_5/ApplyComplaintsPage?id=' + complaint.customerComplaintsID + ">回信</a></td>";
-											tableData += '</tr>';
-										});
-										tableBody.innerHTML = '';
-										tableBody.innerHTML = tableData;
-									})
-									.catch(error => console.error(error));
-							})
+					let tableBody = document.getElementById('complaintsTableBody');
+					let tableData = '';
+					data.forEach(complaint => {
+						console.log(complaint.customerName)
+						tableData += '<tr>';
+						tableData += '<td>' + complaint.CreateDate + '</td>';
+						tableData += '<td>' + complaint.customerName + '</td>';
+						tableData += '<td>' + complaint.email + '</td>';
+						tableData += '<td>' + complaint.complaintType.complaintName + '</td>';
+						tableData += '<td>' + complaint.title + '</td>';
+						tableData += '<td>' + complaint.content + '</td>';
+						tableData += '<td>' + "<a href=/finalTopic_5/ViewComplient?id="+ complaint.customerComplaintsID +">查看</a></td>";
+						tableData += '<td>' + '<a href=/finalTopic_5/ApplyComplaintsPage?id=' + complaint.customerComplaintsID + ">回信</a></td>";
+						tableData += '</tr>';
+					});
+					tableBody.innerHTML = '';
+					tableBody.innerHTML = tableData;
+				})
+				.catch(error => console.error(error));
+	})
 
 							$("#ButtonID").click(function () {
 								let complaintid = document.getElementById('complaintid').value;

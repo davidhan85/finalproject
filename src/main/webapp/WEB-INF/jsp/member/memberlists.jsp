@@ -46,12 +46,12 @@
                 <div class="sidebar">
                     <jsp:include page="../layout/sidebar.jsp"></jsp:include>
                 </div>
-                    <div class="container-fluid" style="right: 4%; position: absolute;">
+                    <div class="container-fluid" style="right: 2%; position: absolute;">
                         <h1 class="mb-5">會員列表</h1>
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col" >會員編號</th>
+                                    <th scope="col">會員編號</th>
                                     <th scope="col" >會員姓名</th>
                                     <th scope="col">會員手機</th>
                                     <th scope="col">會員地址</th>
