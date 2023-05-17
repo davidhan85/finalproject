@@ -104,10 +104,10 @@
 					<img class="d-block w-100" src="${contextRoot}/images/activity.jpg" alt="First slide">
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" src="https://via.placeholder.com/800x300" alt="Second slide">
+					<img class="d-block w-100" src="${contextRoot}/images/vip.jpg" alt="Second slide">
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" src="https://via.placeholder.com/800x300" alt="Third slide">
+					<img class="d-block w-100" src="${contextRoot}/images/sale.jpg" alt="Third slide">
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -303,6 +303,7 @@
           </div>
 <%--            <h5 class="float-right"><a href="${contextRoot}/AllProduct" class="text-muted small"> View More > </a></h5>--%>
           
+      </div>
       </div>
     </div>
 
