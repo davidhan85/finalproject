@@ -136,6 +136,7 @@ public class SubArticles {
 	
 	@ManyToOne
 	@JoinColumn(name="fk_SA_MA_Id", nullable = false)    //對主文章關聯
+	@JsonIgnoreProperties("subarticles")
 	private MainArticles mainarticlesforsa;
 	
 	@OneToMany(mappedBy = "subarticlesforsalk" , cascade = CascadeType.ALL)

@@ -100,6 +100,7 @@ public class SubArticleLikes {
 	
 	@ManyToOne
 	@JoinColumn(name="fk_SALK_SA_Id", nullable = false)
+	@JsonIgnoreProperties("subarticlelikes")
 	private SubArticles subarticlesforsalk;
 	
 	@ManyToOne

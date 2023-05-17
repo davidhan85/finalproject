@@ -112,7 +112,7 @@
 											tableData += '<tr>';
 											tableData += '<td>' + complaint.CreateDate + '</td>';
 											tableData += '<td>' + complaint.customerName + '</td>';
-											tableData += '<td>' + complaint.email + '</td>';
+											tableData += '<td>' + complaint.m_emailemail + '</td>';
 											tableData += '<td>' + complaint.complaintType.complaintName + '</td>';
 											tableData += '<td>' + complaint.title + '</td>';
 											tableData += '<td>' + complaint.content + '</td>';

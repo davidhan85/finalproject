@@ -41,11 +41,24 @@
 		max-width: 50%;
 		margin: 0 auto;
 	}
+
+	.sidebar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh; /* 设置sidebar的高度占满整个屏幕 */
+		width: 200px; /* 设置sidebar的宽度 */
+		padding: 20px; /* 设置sidebar内容的内边距 */
+		z-index: 1; /* 确保sidebar在其他内容之上 */
+	}
 }
 </style>
 </head>
 <body>
+<div>
 	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
+</div>
+
 	<div class="container py-5">
 		<h1 class="text-center mb-4">All Listed Products</h1>
 		<div class="table-responsive">

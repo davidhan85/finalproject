@@ -224,7 +224,7 @@
 			const response = await axios.get('${contextRoot}/front/product/list', {
 				params: {page, keyword, category}
 			});
-			// console.log(response)
+			console.log(response)
 			// console.log(response.data.products.content)
 			renderProducts(response.data.products.content);
 			setupPagination(response.data);
