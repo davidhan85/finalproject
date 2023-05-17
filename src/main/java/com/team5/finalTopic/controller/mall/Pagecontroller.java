@@ -17,6 +17,7 @@ public class Pagecontroller {
 	public String mall() {
 		return "/mall/mall";
 	}
+
 	@GetMapping("/Insertproduct")
 	@MemberLogin
 	public String showInsertProductForm(Model model, HttpSession session) {

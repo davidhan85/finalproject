@@ -34,6 +34,17 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 	<style>
+
+		@font-face {
+			font-family: 'CustomFont';
+			src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+			format('truetype');
+		}
+		* {
+			font-family: 'CustomFont', Arial, sans-serif;
+		}
+
+
 		/* 自定义滚动条的外观 */
 		.card::-webkit-scrollbar {
 			width: 8px; /* 滚动条宽度 */
@@ -100,11 +111,12 @@
 				<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
 			<div class="carousel-inner">
-				<a href="${contextRoot}/activity">
 				<div class="carousel-item active">
+				<a href="${contextRoot}/activity">
 					<img class="d-block w-100" src="${contextRoot}/images/activity.jpg" alt="First slide">
 				</a>
 				</div>
+
 				<div class="carousel-item">
 					<a href="${contextRoot}/newmember">
 					<img class="d-block w-100" src="${contextRoot}/images/vip.jpg" alt="Second slide">
@@ -146,7 +158,7 @@
     <section class="food_section">
       <div class="container">
         <div class="heading_container heading_center">
-          <h2>
+          <h2 style="font-family: 'CustomFont', Arial, sans-serif;">
             所有商品
           </h2>
         </div>
@@ -160,6 +172,7 @@
         <div class="filters-content" style="height: 1350px">
           <div class="row grid" id="products-container" >
             				<jstl:forEach var="product" items="${pPage.content}">
+
             				<div class="col-sm-6 col-lg-4 all" style="margin-top: 2%" >
             					<div class="box" style="height: 100%; width: 100%;">
             						<div>
@@ -213,7 +226,7 @@
 
 
 
-                            </jstl:forEach>
+								</jstl:forEach>
 								<div class="d-flex justify-content-center" style="position: relative; left: 40%; margin-top: 3%">
 
 									<button type="button" class="btn-hover color-4 btn-lg " onclick="location.href='${contextRoot}/AllProduct';"> View More</button>
@@ -248,7 +261,7 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12 mb-3">
-                <h1 class="float-left">最新產品</h1>
+                <h1 class="float-left" style="font-family:'CustomFont', Arial, sans-serif">最新產品</h1>
 
               </div>
             </div>

@@ -9,6 +9,19 @@
 <head>
 <meta charset="UTF-8">
 <title>客服表單</title>
+<style>
+	@font-face {
+		font-family: 'CustomFont';
+		src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+		format('truetype');
+	}
+	* {
+		font-family: 'CustomFont', Arial, sans-serif;
+
+	}
+
+</style>
+
 
 </head>
 
@@ -17,7 +30,7 @@
 	<section class="book_section layout_padding" >
 		<div class="container" style="position:relative;" >
 			<div class="heading_container" >
-				<h2>我要提問</h2>
+				<h2 style="font-family: 'CustomFont', Arial, sans-serif;">我要提問</h2>
 			</div>
 			<div class="row">
 				<div class="col-md-6">

@@ -17,12 +17,28 @@
 <script src="https://cdn.bootcss.com/popper.js/2.10.2/umd/popper.min.js"></script>
 <script
 	src="https://cdn.bootcss.com/bootstrap/5.3.1/js/bootstrap.min.js"></script>
+<style>
+	@font-face {
+		font-family: 'CustomFont';
+		src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+		format('truetype');
+	}
+
+
+	* {
+		font-family: 'CustomFont', Arial, sans-serif;
+	}
+
+
+</style>
+
+
 </head>
 <body>
 	<jsp:include page="../layout/navebar.jsp"></jsp:include>
 
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="#">活動列表</a>
+		<a class="navbar-brand" style="font-family: 'CustomFont', Arial, sans-serif;" href="#">活動列表</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>

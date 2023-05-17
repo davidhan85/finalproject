@@ -28,6 +28,19 @@
 <!-- Custom styles for this page -->
 <link href="vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
+	<style>
+		@font-face {
+			font-family: 'CustomFont';
+			src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+			format('truetype');
+		}
+		* {
+			font-family: 'CustomFont', Arial, sans-serif;
+		}
+
+
+
+	</style>
 </head>
 <body>
 	<footer class="footer_section">

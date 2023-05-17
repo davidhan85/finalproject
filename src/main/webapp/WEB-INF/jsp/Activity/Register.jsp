@@ -17,6 +17,14 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <style>
+	@font-face {
+		font-family: 'CustomFont';
+		src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf') format('truetype');
+	}
+
+	* {
+		font-family: 'CustomFont', Arial, sans-serif;
+	}
 .book_section {
 	background: #f6f6f6;
 	padding: 80px 0;
@@ -47,7 +55,7 @@
 				<h2>活動報名</h2>
 			</div>
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-10">
 					<div class="form_container" style="margin-left:230px;">
 						<form:form id="myForm" modelAttribute="111"
 							action="${contextRoot}/store" method="post">

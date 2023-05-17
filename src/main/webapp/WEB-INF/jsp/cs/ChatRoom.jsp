@@ -12,6 +12,17 @@
 					<jsp:include page="../layout/navebar.jsp"></jsp:include>
 					<link rel="stylesheet" href="${contextRoot}/css/main.css" />
 					<link rel="stylesheet" href="${contextRoot}/css/style4.css">
+					<style>
+						@font-face {
+							font-family: 'CustomFont';
+							src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+							format('truetype');
+						}
+						* {
+							font-family: 'CustomFont', Arial, sans-serif;
+
+						}
+					</style>
 				</head>
 
 				<body>
@@ -46,6 +57,7 @@
 									console.log(role)
 									var chatThread = document.querySelector('.chat-thread');
 									var li = document.createElement('li');
+									li.style=`font-family: 'CustomFont', Arial, sans-serif`;
 									const username = message.customer.m_name;
 									const content = message.content;
 									const imageNumber = message.customer.m_number;//顯示大頭貼號碼

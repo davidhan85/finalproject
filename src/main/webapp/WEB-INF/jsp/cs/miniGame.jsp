@@ -24,6 +24,15 @@
                         <link rel="icon" href="${contextRoot}/images/favicon.png">
 
                         <style>
+                            @font-face {
+                                font-family: 'CustomFont';
+                                src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+                                format('truetype');
+                            }
+                            * {
+                                font-family: 'CustomFont', Arial, sans-serif;
+                            }
+
                             .player_poker img {
                                 height: 210px;
                                 width: 150px;
@@ -119,6 +128,8 @@
                                         <!-- end of row -->
                                     </div>
                                     <!-- end of container -->
+                                </div>
+                            </div>
                         </header>
                         <!-- end of header -->
                         <!-- end of header -->

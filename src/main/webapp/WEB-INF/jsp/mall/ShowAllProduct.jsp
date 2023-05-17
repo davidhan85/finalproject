@@ -11,6 +11,19 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <style>
+
+	<%--@font-face {--%>
+	<%--	font-family: 'CustomFont';--%>
+	<%--	src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')--%>
+	<%--	format('truetype');--%>
+	<%--}--%>
+
+
+	<%--* {--%>
+	<%--	font-family: 'CustomFont', Arial, sans-serif;--%>
+	<%--}--%>
+
+
 .product-row:hover {
 	background-color: #f2f2f2;
 }
@@ -94,12 +107,12 @@
 							<td>
 								<div class="btn-group" role="group">
 									<form:form method="get" action="${pageContext.request.contextPath}/editListedProducts/${product.productId}">
-										<button type="submit" class="btn btn-primary">Edit</button>
+										<button type="submit" class="btn btn-primary">更新</button>
 									</form:form>
 
 									<form action="${pageContext.request.contextPath}/listedProducts/${product.productId}" method="post" onsubmit="return confirm('您確定要刪除嗎?')">
 										<input type="hidden" name="_method" value="delete">
-										<button type="submit" class="btn btn-danger">Delete</button>
+										<button type="submit" class="btn btn-danger">刪除</button>
 									</form>
 
 								</div>

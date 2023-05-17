@@ -16,6 +16,20 @@
 <script src="https://cdn.bootcss.com/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/2.10.2/umd/popper.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/5.3.1/js/bootstrap.min.js"></script>
+<style>
+	@font-face {
+		font-family: 'CustomFont';
+		src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+		format('truetype');
+	}
+
+
+	* {
+		font-family: 'CustomFont', Arial, sans-serif;
+	}
+
+</style>
+
 </head>
 <body>
 <jsp:include page="../layout/navebar.jsp"></jsp:include>

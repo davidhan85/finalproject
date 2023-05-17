@@ -13,7 +13,15 @@
                     <!-- Bootstrap CSS -->
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
                     <style>
+
+
+                        @font-face {
+                            font-family: 'CustomFont';
+                            src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+                            format('truetype');
+                        }
                         * {
+                            font-family: 'CustomFont', Arial, sans-serif;
                             margin: 0;
                             padding: 0;
                         }
@@ -143,7 +151,7 @@
                                 </aside>
                                 <main class="col-lg-6">
                                     <div class="ps-lg-3">
-                                        <h1 class="title text-dark">
+                                        <h1 class="title text-dark"  style="font-family: 'CustomFont', Arial, sans-serif;">
                                             ${listedProduct.productName} <br />
 
                                         </h1>

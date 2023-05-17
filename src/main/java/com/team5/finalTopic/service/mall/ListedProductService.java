@@ -94,7 +94,7 @@ public class ListedProductService {
 	}
 
 	public Page<ListedProduct> pageGetAll(Pageable pageable) {
-		Page<ListedProduct> page=repository.findAll(pageable);
+		Page<ListedProduct> page=repository. findListedProductUploadStatus("上架",pageable);
 		return page;
 	}
 

@@ -61,6 +61,17 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <style>
+
+	@font-face {
+		font-family: 'CustomFont';
+		src: url('${contextRoot}/fonts/jf-openhuninn-2.0.ttf')
+		format('truetype');
+	}
+	* {
+		font-family: 'CustomFont', Arial, sans-serif;
+	}
+
+
 .wrapper {
 	display: flex;
 	justify-content: center;
@@ -93,7 +104,7 @@
 	<section class="food_section">
 		<div class="container">
 			<div class="heading_container heading_center">
-				<h2>所有商品</h2>
+				<h2 style="font-family: 'CustomFont', Arial, sans-serif;">所有商品</h2>
 			</div>
 			<div class="search_container">
 
