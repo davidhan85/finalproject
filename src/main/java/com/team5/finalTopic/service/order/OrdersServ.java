@@ -1,6 +1,7 @@
 package com.team5.finalTopic.service.order;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.team5.finalTopic.model.order.Orders;
 
@@ -21,4 +22,6 @@ public interface OrdersServ{
 	public Orders getLatest();
 
 	Orders updateOrders(Orders orders);
+	
+	public Page<Orders> findByMemberId(Integer m_number, Integer pageNumber);
 }

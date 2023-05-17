@@ -54,9 +54,6 @@ public class Orders {
 	@Column(name = "createdTime",columnDefinition="datetime")
 	private Date createdTime;
 
-	@Column(name = "member_num",columnDefinition="int")
-	private Integer member_num;
-
 	@Column(name = "buyerID",columnDefinition="NVARCHAR(30)")
 	private String buyerID;
 	
@@ -72,7 +69,9 @@ public class Orders {
 	@Column(name = "paymentStatus ",columnDefinition="NVARCHAR(80)")
 	private String paymentStatus ;
 	
-
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "member_number", columnDefinition="int", nullable = false) 
+	private Member member;
 
 	public String getPaymentStatus() {
 		return paymentStatus;
@@ -100,7 +99,7 @@ public class Orders {
 	@Override
 	public String toString() {
 		return "Orders [orderID=" + orderID + ", orderNo=" + orderNo + ", createdTime=" + createdTime + ", member_num="
-				+ member_num + ", buyerID=" + buyerID + ", paymentMethoderNo=" + paymentMethoderNo + ", shippingMethod="
+				+ ", buyerID=" + buyerID + ", paymentMethoderNo=" + paymentMethoderNo + ", shippingMethod="
 				+ shippingMethod + ", coupon_id=" + coupon_id + "]";
 	}
 
@@ -131,15 +130,18 @@ public class Orders {
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
-	public Integer getMember_num() {
-		return member_num;
-	}
-	public void setMember_num(Integer member_num) {
-		this.member_num = member_num;
-	}
+
 	public String getBuyerID() {
 		return buyerID;
 	}
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 	public void setBuyerID(String buyerID) {
 		this.buyerID = buyerID;
 	}

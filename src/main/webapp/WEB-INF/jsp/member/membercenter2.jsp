@@ -64,7 +64,7 @@
       </li>
 <!--  ordermanage -------------------------------------------------------------->
       <li class="nav-item text-center">
-        <a class="nav-link" href="#">訂單紀錄</a>
+        <a class="nav-link" href="${contextRoot}/order/findmember/${memberbean.m_number}">訂單紀錄</a>
       </li>
 <!--  ordermanage -------------------------------------------------------------->     
     </ul>

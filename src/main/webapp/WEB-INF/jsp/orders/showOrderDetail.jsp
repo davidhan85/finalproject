@@ -34,7 +34,8 @@
 </head>
 <body>
 
-<jsp:include page="navbarorder.jsp"></jsp:include>
+  <jsp:include page="../layout/sidebar.jsp"></jsp:include>
+  <jsp:include page="navbarorder.jsp"></jsp:include>
 <div class="main-panel">
 	<div class="content-wrapper">
 <div class="container">
@@ -42,9 +43,9 @@
 			<!-- <div class="col-8"> -->
 			<div class="col-md-12">
               <div class="card">
-				<div class="table-responsive pt-3">
+				<div class="">
               <h1>訂單列表</h1>
-              <table  class="table table-striped project-orders-table">
+              <table  class="">
 				<thead>
 				  <tr>
 					<th>訂單詳情編號</th>

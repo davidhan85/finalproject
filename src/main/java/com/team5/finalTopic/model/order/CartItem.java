@@ -38,6 +38,7 @@ public class CartItem {
 	@JoinColumn(name = "ProductId", columnDefinition="int", nullable = false) // 產品id
 	private ListedProduct listedProduct;
 
+
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "member_number",nullable = false)
 	private Member member;

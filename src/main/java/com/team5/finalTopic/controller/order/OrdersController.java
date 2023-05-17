@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -100,11 +101,36 @@ public class OrdersController {
 	public String goShowOrders(@RequestParam(name="p",defaultValue = "1") Integer pageNumber,Model model) {
 		
 		Page<Orders> page = oService.findByPage(pageNumber);
+		List<Orders> content = page.getContent();
+		for (Orders orders : content) {
+			System.out.println(orders.getMember().getM_id());
+		};
 		
 		model.addAttribute("page", page);
 		
 		return "orders/showOrders";
 	}
+	
+	
+	@GetMapping("/order/findmember/{m_number}")
+	public String goShowOrdersmember(@RequestParam(name="p",defaultValue = "1") Integer pageNumber,Model model,@PathVariable("m_number")Integer m_number,HttpSession session) {
+		Member member = (Member) session.getAttribute("memberbean");
+	    if (member == null || !member.getM_number().equals(m_number)) {
+	
+	        return "index";
+	    }
+//	    Integer memberId = member.getM_number();
+//		Page<Orders> page = oService.findByPage(pageNumber);
+		
+		 Page<Orders> page = oService.findByMemberId(member.getM_number(), pageNumber);
+		    
+		
+		model.addAttribute("pagemember", page);
+		
+		return "orders/memberorderlist";
+	}
+	
+	
 	
 	@GetMapping("/orders/edit")
 	public String editPage(@RequestParam("id") Integer id,Model model) {
@@ -114,6 +140,7 @@ public class OrdersController {
 		
 		return "orders/editOrdersPage";
 	}
+	
 	
 	@PutMapping("/orders/edit")
 	public String putEditedOrders(@ModelAttribute("orders") Orders ord) {

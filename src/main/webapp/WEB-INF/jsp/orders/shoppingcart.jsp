@@ -136,106 +136,79 @@ button:hover {
   <div class="container">
     <div class="row mb-5">
       <div class="col-md-12">
-        <c:choose>
-          <c:when test="${empty cartItem}">
-            <p>Your shopping cart is empty.</p>
-          </c:when>
-          <c:otherwise>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>商品名稱</th>
-                  <th>數量</th>
-                  <th>單價</th>
-                  <th>小計</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <c:if test="${not empty cartItem}">
-                  <c:forEach var="item" items="${cartItem}">
-                    <tr>
-                      <td>${item.listedProduct.productName}</td>
-                      <td>
-                        <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(this)">
-                      </td>
-                      <td>${item.listedProduct.unitPrice}</td>
-                      <td>${item.quantity}*${item.listedProduct.unitPrice}</td>
-                      <td>
-                        <form method="post" action="${contextRoot}/cart/delete/${item.cartItemID}">
-                          <input type="hidden" name="_method" value="delete">
-                          <button type="submit">刪除項目</button>
-                        </form>
-                      </td>
-                    </tr>
-                  </c:forEach>
-                </c:if>
-              </tbody>
-              <tfoot>
-                <tr>
+<c:choose>
+  <c:when test="${empty cartItem}">
+    <p>Your shopping cart is empty.</p>
+  </c:when>
+  <c:otherwise>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品名稱</th>
+          <th>數量</th>
+          <th>單價</th>
+          <th>小計</th>
+          <th>刪除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:if test="${not empty cartItem}">
+          <c:forEach var="item" items="${cartItem}">
+            <tr>
+              <td>${item.listedProduct.productName}</td>
+              <td>
+                <input type="number" value="${item.quantity}" min="1" onchange="calculateSubtotal(this)">
+              </td>
+              <td>${item.listedProduct.unitPrice}</td>
+              <td>${item.listedProduct.unitPrice * item.quantity}</td>
+              <td>
+                <form method="post" action="${contextRoot}/cart/delete/${item.cartItemID}">
+                  <input type="hidden" name="_method" value="delete">
+                  <button type="submit">刪除項目</button>
+                </form>
+              </td>
+            </tr>
+          </c:forEach>
+        </c:if>
+      </tbody>
+      <tfoot>
+        <tr>
           <td colspan="3" style="font-size: 40px; font-weight: bold; padding: 15px; text-align: center; color:red">總計</td>
-                  <td id="total">00.00</td>
-                  <td><a href="${contextRoot}/orders/addShoppingcartcommit"><button class="x">商品確認</button></a></td>
-                </tr>
-              </tfoot>
-            </table>
-          </c:otherwise>
-        </c:choose>
-      </div>
-    </div>
-  </div>
-</div>
- 
-        <!-- MAIN------------------------------------------------------- -->  
-	<div>
-		<c:if test="${empty cartItem}">
-			<h3>你的購物車沒有商品</h3>
-		</c:if>
-	</div>
-		<script type="text/javascript">
-    function updateTotal() {
-        var total = 0;
-        var rows = document.getElementsByTagName("tr");
-        for (var i = 1; i < rows.length - 1; i++) {
-            var row = rows[i];
-            var quantity = parseInt(row.cells[3].textContent.trim());
-            var unitPrice = parseFloat(row.cells[2].textContent.trim());
-            var subtotal = quantity * unitPrice;
-            row.cells[4].textContent = subtotal.toFixed(2);
-            total += subtotal;
-        }
-        document.getElementById("total").textContent = total.toFixed(2);
-    }
+          <td id="total">300.00</td>
+          <td><a href="${contextRoot}/orders/addShoppingcartcommit"><button class="x">商品確認</button></a></td>
+        </tr>
+      </tfoot>
+    </table>
+  </c:otherwise>
+</c:choose>
 
-	function updateQuantity(input) {
-		var row = input.parentNode.parentNode; // 取得表格列元素
-		var quantity = parseInt(input.value); // 取得使用者輸入的新數量
-		var entity = row.dataset.entity; // 取得該列產品的實體資料
+<!-- JavaScript 計算小計和總計 -->
+<script type="text/javascript">
+  // 當數量改變時計算小計
+  function calculateSubtotal(input) {
+    var row = input.parentElement.parentElement;
+    var unitPrice = parseFloat(row.querySelector('td:nth-child(3)').textContent);
+    var quantity = parseInt(input.value);
+    var subtotal = unitPrice * quantity;
+    row.querySelector('td:nth-child(4)').textContent = subtotal.toFixed(2);
+    calculateTotal();
+  }
 
-		// 將新數量寫回到entity對應的欄位或屬性
-		if (entity instanceof Object) { // 假設entity是JavaScript物件
-			entity.quantity = quantity; // 將數量寫回到quantity屬性
-		} else if (entity instanceof HTMLTableRowElement) { // 假設entity是表格列元素
-			entity.cells[1].textContent = quantity; // 將數量寫回到表格列的第二欄
-		}
+  // 計算總計
+  function calculateTotal() {
+    var total = 0;
+    var rows = document.querySelectorAll('tbody tr');
+    rows.forEach(function(row) {
+      var subtotal = parseFloat(row.querySelector('td:nth-child(4)').textContent);
+      total += subtotal;
+    });
+    document.getElementById('total').textContent = total.toFixed(2);
+  }
+</script>
 
-		// 更新總價格
-		updateTotal();
-	}
-// 	$(document).ready(function() {
-// 	    $('#deleteForm button').click(function(event) {
-// 	        event.preventDefault();
-// 	        var cartItemID = cartItemID;
-// 	        $.ajax({
-// 	            url: '${contextRoot}/cart/delete/' + cartItemID,
-// 	            type: 'DELETE',
-// 	            success: function(response) {
-// 	                window.location.href = '/orders/shoppingcart';
-// 	            }
-// 	        });
-// 	    });
-// 	});
-</script> 	
+		
+
+	
 <script src="${contextRoot}/js/jquery-3.3.1.min.js"></script>
   <script src="${contextRoot}/js/jquery-ui.js"></script>
   <script src="${contextRoot}/js/popper.min.js"></script>

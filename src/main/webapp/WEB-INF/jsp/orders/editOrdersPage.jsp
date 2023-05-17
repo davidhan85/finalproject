@@ -54,7 +54,7 @@ fon-size:30px;
 
             <div class="form-group">
               <label for="member_num">會員號碼</label>
-              <form:input path="member_num" class="form-control" id="member_num" readonly="true" />
+              <form:input path="member" class="form-control" id="member_num" readonly="true" />
             </div>
 
             <div class="form-group">

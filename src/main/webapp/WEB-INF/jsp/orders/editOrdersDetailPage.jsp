@@ -11,7 +11,7 @@
 <title>修改頁面</title>
 </head>
 <body>
-<jsp:include page="${contextRoot}/layout/navbar.jsp"></jsp:include>
+  <jsp:include page="../layout/sidebar.jsp"></jsp:include>
 <jsp:include page="navbarorder.jsp"></jsp:include>
 	<div class="container">
 		<div class="row justify-content-center">
