@@ -49,12 +49,14 @@ public class PageControllerOrder {
 	}
 	
 	
-	@GetMapping("/index/cart")
-	public String indexcart(){
+	@GetMapping("/orders/membercenter")
+	public String member(){
 		
-		return"/index";		
+		return"member/membercenter2";		
 	}
 	
+	
+
 }
 
 
