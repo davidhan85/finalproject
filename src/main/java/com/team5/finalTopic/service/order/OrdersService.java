@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.team5.finalTopic.model.member.Member;
 import com.team5.finalTopic.model.order.Orders;
 import com.team5.finalTopic.model.order.OrdersRepository;
 
@@ -34,6 +35,7 @@ public class OrdersService implements OrdersServ{
 		
 		return option.get();
 	}
+	
 	@Override
 	public void deleteOrdersById(Integer id) {
 		ordRepository.deleteById(id);
@@ -67,7 +69,13 @@ public class OrdersService implements OrdersServ{
 	    if (optionalOrders.isPresent()) {
 	        Orders ord = optionalOrders.get();
 	        ord.setOrderNo(orders.getOrderNo());
-	        ord.setMember_num(orders.getMember_num());
+	        
+	        Member member = orders.getMember();
+	        int memberNumber = member.getM_number();
+	        
+	        Member updatedMember = new Member();
+	        updatedMember.setM_number(memberNumber);
+	        ord.setMember(updatedMember);
 	        ord.setBuyerID(orders.getBuyerID());
 	        ord.setPaymentMethoderNo(orders.getPaymentMethoderNo());
 	        ord.setShippingMethod(orders.getShippingMethod());
@@ -76,4 +84,17 @@ public class OrdersService implements OrdersServ{
 	    }
 	    return null;
 	}
+
+	public Page<Orders> findByMemberId(Integer m_number, Integer pageNumber) {
+		
+		
+		Pageable pgb = PageRequest.of(pageNumber-1, 5, Sort.Direction.DESC, "orderID");
+		
+		return ordRepository.findByMemberM_number(m_number, pgb);		
+			
+	}
+	
+
+	
+	
 }

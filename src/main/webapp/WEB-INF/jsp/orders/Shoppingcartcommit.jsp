@@ -184,7 +184,7 @@ body{
           </div>
           <div class="col-md-6">
             <label for="member_num" class="text-black">會員號碼 <span class="text-danger">*</span></label>
-            <form:input path="member_num" class="form-control" id="member_num" placeholder="輸入會員號碼"></form:input>
+            <form:input path="member" class="form-control" id="member_num" placeholder="輸入會員號碼"></form:input>
           </div>
         </div>
         <div class="form-group row">

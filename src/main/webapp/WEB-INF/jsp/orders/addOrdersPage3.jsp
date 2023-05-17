@@ -113,7 +113,7 @@ style="text-align: center;
       <br>
       <div class="form-group">
         <label for="title">會員號碼</label>
-        <form:input path="member_num" class="form-control" id="title" placeholder="輸入會員號碼"></form:input>
+        <form:input path="member" class="form-control" id="title" placeholder="輸入會員號碼"></form:input>
       </div>
       <br>
       <div class="form-group">

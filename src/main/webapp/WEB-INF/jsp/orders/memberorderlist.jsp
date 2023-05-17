@@ -217,9 +217,6 @@ font-size:15px;
 </head>
 <body>
 
-<div id="sidebar">
-  <jsp:include page="../layout/sidebar.jsp"></jsp:include>
-</div>
   <div class="content-container">
 
 	  <div class="wrapper">
@@ -275,7 +272,7 @@ font-size:15px;
 				  </tr>
 				</thead>
 				<tbody>
-				  <c:forEach var="Orders" items="${page.content}">
+				  <c:forEach var="Orders" items="${pagemember.content}">
 					<tr>
 					  <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE" value="${Orders.createdTime}"/></td>
 					  <td>${Orders.orderID}</td>
@@ -289,7 +286,7 @@ font-size:15px;
 					  <form action="${contextRoot}/OrdersDetail/${Orders.orderID}">
 <%-- 						  <input type="hidden" name="id" value="${OrdersDetail.ID}" /> --%>
 <%--   						  <input type="text" name="id" value="${Orders.orderDetails}" /> --%>
-						  <input type="submit" class="btn btn-outline-info btn-sm" value="查看訂單詳情" />
+							  <input type="submit" class="btn btn-outline-info btn-sm" value="查看訂單詳情" />
 						</form>
 					  </td>
 					  <td>
