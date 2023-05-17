@@ -171,6 +171,6 @@
 
 
 				</body>
-				<jsp:include page="../layout/footerbar.jsp"></jsp:include>
+
 
 				</html>

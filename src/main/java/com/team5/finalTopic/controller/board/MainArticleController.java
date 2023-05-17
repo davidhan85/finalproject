@@ -149,7 +149,7 @@ public class MainArticleController {
 		model.addAttribute("SubArticles" , new SubArticles());
 		model.addAttribute("message", "新增成功");
 
-		if(p == null) {
+		if(p == 0) {
 			return "redirect:/board/MainArticle?maid=" + mainid;
 		} else {
 			return "redirect:/board/MainArticle?p=" + p + "&maid=" + mainid;

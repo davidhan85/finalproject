@@ -107,7 +107,9 @@
 					<img class="d-block w-100" src="${contextRoot}/images/vip.jpg" alt="Second slide">
 				</div>
 				<div class="carousel-item">
+					<a href="${contextRoot}/miniGame">
 					<img class="d-block w-100" src="${contextRoot}/images/sale.jpg" alt="Third slide">
+					</a>
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

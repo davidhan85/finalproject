@@ -66,6 +66,68 @@
 
 
 
+	<script>
+		ClassicEditor
+				.create(document.querySelector('#editorDemo'), {
+					extraPlugins: [CustomUploadAdapterPlugin],
+
+
+					customUploadAdapter: {
+						uploadUrl: 'http://localhost:8079/finalTopic_5/upload/image'
+					}
+				})
+				.then(editor => {
+					console.log(editor);
+				})
+				.catch(error => {
+					console.error(error);
+				});
+
+		function CustomUploadAdapterPlugin(editor) {
+			editor.plugins.get('FileRepository').createUploadAdapter = loader => {
+				return new CustomUploadAdapter(loader, editor.config.get('customUploadAdapter.uploadUrl'));
+			};
+		}
+
+
+
+
+
+		class CustomUploadAdapter {
+			constructor(loader, uploadUrl) {
+				this.loader = loader;
+				this.uploadUrl = uploadUrl;
+			}
+
+			upload() {
+				return this.loader.file
+						.then(file => new Promise((resolve, reject) => {
+							this._uploadFile(file).then(response => {
+								if (response.url) {
+									resolve({ default: response.url });
+								} else {
+									reject(`Upload failed: ${response.message}`);
+								}
+							});
+						}));
+			}
+
+			_uploadFile(file) {
+				const data = new FormData();
+				data.append('file', file);
+
+				return fetch(this.uploadUrl, {
+					method: 'POST',
+					body: data
+				})
+						.then(response => response.json())
+						.catch(error => {
+							console.error('Upload error:', error);
+							throw error;
+						});
+			}
+		}
+	</script>
 
 
 
@@ -74,45 +136,14 @@
 
 
 
-<!-- <script> -->
-//     ClassicEditor.create( document.querySelector( '#editorDemo' ), {
-//     	console.log("ok");
-//         simpleUpload: {
-//             // 設定上傳的 URL
-//             uploadUrl: '/upload/image'
-//         },
-//         // 設定載入的套件
-//         plugins: [
-//             SimpleUploadAdapter,
-//             // 其他套件
-//         ]
-//     } )
-//     .then( editorDemo => {
-//         console.log( editorDemo );
-//     } )
-//     .catch( error => {
-//         console.error( error );
-//     } );
-<!-- </script> -->
 
 
-
-
-<!-- 	<script> -->
-// 		var editor = CKEDITOR.replace('editorDemo');
-
-// 		$('#alertContent').click(function() {
-// 			// CKEDITOR.instances.editorDemo.updateElement();
-// 			console.log($('form:textarea[id=editorDemo]').val());
-// 			console.log(CKEDITOR.instances.editorDemo.getData());
-// 		});
-<!-- 	</script> -->
 	
 	
 
 
 	
-	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
+
 </body>
 
 </html>

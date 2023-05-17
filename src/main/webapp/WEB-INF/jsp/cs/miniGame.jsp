@@ -83,8 +83,8 @@
                         <jsp:include page="../layout/navebar.jsp"></jsp:include>
 
                         <!-- Header -->
-                        <header id="header" class="header" style="height: 90%;">
-                            <div class="container">
+                        <header id="header" class="header" style="height: 110%;">
+                            <div class="container" >
                                 <div class="row">
                                     <!-- end of col -->
                                     <div class="game">
@@ -109,7 +109,7 @@
                             <img src="../../../images/poker/10_of_clubs.png">
                             <img src="../../../images/poker/10_of_clubs.png"> -->
                                             </div>
-                                            <div class="buttons d-flex justify-content-center align-items-center mt-4">
+                                            <div class="buttons d-flex justify-content-center align-items-center mt-4" style="bottom: -200px; position: absolute">
                                                 <button class="btn btn-success me-2 hit">加牌</button>
                                                 <button class="btn btn-danger me-2 stand">停牌</button>
                                                 <button class="btn btn-secondary restart">重新開始</button>

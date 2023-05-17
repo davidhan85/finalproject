@@ -840,7 +840,7 @@
 									}
 								}
 							</script>
-							<jsp:include page="../layout/footerbar.jsp"></jsp:include>
+
 						</body>
 
 						</html>

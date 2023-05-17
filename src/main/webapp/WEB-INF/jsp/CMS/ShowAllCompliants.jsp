@@ -67,11 +67,10 @@
 
 				<!-- DataTales Example -->
 				<div class="card shadow mb-4"
-					style="left: 10%; width: 90%; top: 3px; position: relative;">
+					style="left: 11%; width: 90%; top: 3px; position: relative;">
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
-								cellspacing="0">
+							<table class="table table-bordered" id="dataTable" >
 
 								<thead>
 									<tr>
@@ -105,10 +104,11 @@
 								fetch('http://localhost:8079/finalTopic_5/showAllComplaints')
 									.then(response => response.json())
 									.then(data => {
-										// console.log(data)
+
 										let tableBody = document.getElementById('complaintsTableBody');
 										let tableData = '';
 										data.forEach(complaint => {
+											console.log(complaint.customerName)
 											tableData += '<tr>';
 											tableData += '<td>' + complaint.CreateDate + '</td>';
 											tableData += '<td>' + complaint.customerName + '</td>';
