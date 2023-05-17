@@ -111,7 +111,7 @@ public String confirmRegistration(@RequestParam("email") String email, @RequestP
 		memberRepository.save(member);
 		return "redirect:/Login";
 	} else {
-		return "/index";
+		return "redirect:/home";
 	}
 //		return  null;
 }
