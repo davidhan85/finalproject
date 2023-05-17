@@ -5,7 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-
 <html>
 <head>
 <meta charset="UTF-8">
@@ -32,78 +31,62 @@
 			<ul class="navbar-nav">
 				<li class="nav-item active"><form:form class="form-inline"
 						action="${contextRoot}/searching" method="get">
-						<input class="form-control me-2" type="text" placeholder="輸入關鍵字"
+						<input class="form-control me-2" type="text" placeholder="請輸入活動名稱"
 							name="keyword" id="keyword" value="${keyword}" required>
 						<button class="btn btn-success" type="submit">搜尋</button>
 					</form:form></li>
-				<div class="ms-auto">
+				<li class="nav-item ms-auto">
 					<form action="${contextRoot}/registration" method="post">
 						<input type="hidden" name="activity_id">
 						<button type="submit" class="btn btn-primary">我要報名</button>
 					</form>
-				</div>
+				</li>
 			</ul>
 		</div>
 	</nav>
 	<br>
 	<div class="container">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>活動編號</th>
-					<th>活動負責人</th>
-					<th>活動名稱</th>
-					<th>活動日期</th>
-					<th>活動圖片</th>
-					<th>活動人數</th>
-					<th>活動費用</th>
-					<th>活動描述</th>
-					<th>活動按鈕</th>
+		<div class="row justify-content-around">
+			<c:forEach items="${page.content}" var="activity">
+				<div class="col-4 mb-3 aalBox"
+					style="background-color: #4d3d3fa6;color:aliceblue; height: 550px; width: 40%; border: 6px solid rgb(192, 185, 185);">
 
-
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${page.content}" var="activity">
-					<tr>
-						<td>${activity.activity_id}</td>
-						<td>${activity.principle}</td>
-						<td>${activity.activity_name}</td>
-						<td>${activity.activity_date}</td>
-
-						<td><img
+					<div class="col-md-12 mt-2">活動編號：${activity.activity_id}</div>
+					<div class="col-md-12">活動負責人：${activity.principle}</div>
+					<div class="col-md-12">活動名稱：</div>
+					<div class="col-md-12">${activity.activity_name}</div>
+					<div class="col-md-12">活動日期：${activity.activity_date}</div>
+					<div class="col-md-12">
+						活動圖片：<img
 							src="data:image/jpg;base64,${Base64.getEncoder().encodeToString(activity.activity_image)}"
-							alt="Activity Image" style="width: 80%; height: 80%;" /></td>
+							alt="Activity Image" style="width: 100%; height: 50%;" />
+					</div>
+					<div class="col-md-9">活動人數：${activity.attendance}</div>
+					<div class="col-md-9">活動費用：${activity.activity_cost}</div>
+					<div class="col-md-9">活動描述：${activity.activity_discription}</div>
+				</div>
+			</c:forEach>
+		</div>
 
-						<td>${activity.attendance}</td>
-						<td>${activity.activity_cost}</td>
-						<td>${activity.activity_discription}</td>
-						<td>
-						<form action="${contextRoot}/registration" method="get">
-							<input type="hidden" name="activity_id"
-								value="${activity.activity_id}"> <input type="submit"
-								value="我要報名" class="btn btn-primary">
-								</form>
-								</td>
-							
-					</tr>
-				</c:forEach>
 
-				<jstl:forEach var="pageNumber" begin="1" end="${page.totalPages}">
-					<!-- 			這裡的var="pageNumber"想像成是int i =1 ，page.number一開始是從0開始，pageNumber一開始是從1開始，所以前者+1或+1 -->
-					<jstl:choose>
-						<jstl:when test="${page.number != pageNumber-1 }">
-							<a href="${contextRoot}/activity?p=${pageNumber}">${pageNumber}</a>
-						</jstl:when>
-						<jstl:otherwise>
-			            ${pageNumber}
-			     </jstl:otherwise>
-
-					</jstl:choose>
-
-				</jstl:forEach>
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<td colspan="8" class="text-center"><jstl:forEach
+							var="pageNumber" begin="1" end="${page.totalPages}">
+							<jstl:choose>
+								<jstl:when test="${page.number != pageNumber-1}">
+									<a href="${contextRoot}/activity?p=${pageNumber}">${pageNumber}</a>
+								</jstl:when>
+								<jstl:otherwise>
+                                ${pageNumber}
+                            </jstl:otherwise>
+							</jstl:choose>
+						</jstl:forEach></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
 </body>
 </html>
+

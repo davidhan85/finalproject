@@ -75,7 +75,7 @@ public class FrontActivityController {
 		Page<Activity> page = actService.findByPage(pageNumber);
 		
 		model.addAttribute("page", page);
-		return "Activity/search";		
+		return "Activity/search111";		
 	}
 	
 
