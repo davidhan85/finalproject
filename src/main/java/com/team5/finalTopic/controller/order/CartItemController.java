@@ -39,7 +39,16 @@ public class CartItemController {
 		return "redirect:/mall/ShowAllProduct";
 	}
 	
+	@GetMapping("/cart/create/{m_number}/{productId}/{quantity}")
+    public String CreatecartBy(@PathVariable("m_number") Integer m_number,@PathVariable("productId") Integer ProductId,@PathVariable("quantity") Integer quantity ) {
 
+        System.out.println( "會員名字"+m_number);
+        System.out.println( "產品"+ProductId);
+        System.out.println( "數量"+quantity);
+        cartItemService.CreateCart(m_number,ProductId,quantity);
+         return "redirect:/AllProductIndex";
+    }
+	
 	@GetMapping("/cart/find/{m_number}")	
 	public String findCart(@PathVariable("m_number")Integer m_number,Model model,HttpSession session) {
 
