@@ -84,7 +84,7 @@ public class LoginController {
     @GetMapping(value = "/checkout")
     public String Loginout(HttpSession session) {
     	session.removeAttribute("memberbean");
-		return "index";
+		return "redirect:/home";
     	
     }
     @GetMapping(value = "/membercenter")

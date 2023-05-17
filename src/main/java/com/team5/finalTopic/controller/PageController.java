@@ -30,7 +30,7 @@ public class PageController {
 	public String index(HttpSession session) {
 		Member attribute = (Member) session.getAttribute("memberbean");
 		if(attribute!=null) {
-			return "mall/mall";
+			return "redirect:/AllProductIndex";
 		}else {
 			return "redirect:/Login";
 		}
