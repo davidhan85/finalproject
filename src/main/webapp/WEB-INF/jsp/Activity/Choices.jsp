@@ -19,7 +19,8 @@
 	<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
 </head>
 <body>
-	<jsp:include page="../layout/sidebar.jsp"></jsp:include>
+<%-- 	<jsp:include page="../layout/sidebar.jsp"></jsp:include> --%>
+<jsp:include page="../layout/navebar.jsp"></jsp:include>
 	<div class="container">
 		<h1 class="text-center">新增資訊嗎？是的話請選擇「新增」，否則請點選「下一步」。</h1>
 		<br>
