@@ -447,7 +447,7 @@
 
 														console.log(subtable);
 
-														msg_data += '<td>' + value.auid + '</td>';
+														msg_data += '<td>' + value.auaccount + '</td>';
 														msg_data += '<td>' + value.content + '</td>';
 														msg_data += '<td>' + value.updatedatetime + '</td>';
 														msg_data += '<td><button class="btn btn-danger btn-sm">刪除</button></td>'

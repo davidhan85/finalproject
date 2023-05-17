@@ -54,9 +54,9 @@ public class LikesController {
 	public LikesDTO showMainArticleLikeAuthors(@RequestBody LikesDTO likedto) {
 		
 		List<MainArticleLikes> mals = lkService.findAllLikesByMainid(likedto.getMainid());
-		List<Integer> auidList = new ArrayList<>();
+		List<String> auidList = new ArrayList<>();
 		for (MainArticleLikes mal : mals) {
-		    auidList.add(mal.getAuthoridforMAL().getM_number());
+		    auidList.add(mal.getAuthoridforMAL().getM_account());
 		}
 		LikesDTO likesdto = new LikesDTO();
 		likesdto.setAuidlist(auidList);
@@ -90,9 +90,9 @@ public class LikesController {
 	public LikesDTO showSubArticleLikeAuthors(@RequestBody LikesDTO likedto) {
 		
 		List<SubArticleLikes> sals = lkService.findAllLikesBySubid(likedto.getSubid());
-		List<Integer> auidList = new ArrayList<>();
+		List<String> auidList = new ArrayList<>();
 		for (SubArticleLikes sal : sals) {
-		    auidList.add(sal.getAuthoridforSAL().getM_number());
+		    auidList.add(sal.getAuthoridforSAL().getM_account());
 		}
 		LikesDTO likesdto = new LikesDTO();
 		likesdto.setAuidlist(auidList);

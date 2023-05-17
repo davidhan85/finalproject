@@ -258,7 +258,7 @@ li {
 				</nav>
 			</div>
 
-			</nav>
+			</header>
 	</div>
 	</header>
 	<!-- end header section -->

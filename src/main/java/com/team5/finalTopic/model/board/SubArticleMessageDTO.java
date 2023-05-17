@@ -7,8 +7,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class SubArticleMessageDTO {
 	private List<Integer> subArticleIds;
+	private String auaccount;
 	
-	
+	public String getAuaccount() {
+		return auaccount;
+	}
+	public void setAuaccount(String auaccount) {
+		this.auaccount = auaccount;
+	}
 	public List<Integer> getSubArticleIds() {
 		return subArticleIds;
 	}

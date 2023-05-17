@@ -2,7 +2,7 @@
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
 			<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 				<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
 				<!DOCTYPE html>
 				<html>
@@ -65,15 +65,19 @@
 											<form:input path="authoridforMA" class="form-control"
 												value="${memberbean.m_number}" style="display:none"></form:input>
 											<form:select path="category" class="form-control" name="category" id="">
+											<c:if test="${memberbean.m_Role eq'adaim'}">
 												<option value="版主公告">版主公告</option>
+												</c:if>
 												<option value="電玩遊戲">電玩遊戲</option>
 												<option value="動漫相關">動漫相關</option>
 												<option value="輕改小說">輕改小說</option>
 												<option value="輕鬆閒聊">輕鬆閒聊</option>
 											</form:select>
 											<form:select path="access" class="form-control" name="access" id="">
+											<c:if test="${memberbean.m_Role eq'adaim'}">
 												<option value="置頂文">置頂文</option>
 												<option value="限制">限制</option>
+												</c:if>
 												<option value="一般">一般</option>
 											</form:select>
 											<br>

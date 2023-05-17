@@ -162,7 +162,8 @@ public class ListedProductService {
 				p = criteriaBuilder.like(root.get("productName"), "%" + keyword + "%");
 				predicates.add(p);
 			}
-
+			p=criteriaBuilder.equal(root.get("productUploadStatus"), "上架");
+			predicates.add(p);
 			// 將搜尋條件從 list 複製到一空 array
 			return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
 		};

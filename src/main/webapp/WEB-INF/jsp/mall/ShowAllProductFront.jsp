@@ -247,9 +247,9 @@
 
 	function createProductElement(product) {
 
-		if (product.productUploadStatus == "下架") {
-			col.style.display = "none"; // 将该商品所在的列隐藏
-		}
+		// if (product.productUploadStatus == "下架") {
+		// 	col.style.display = "none"; // 将该商品所在的列隐藏
+		// }
 
 		const col = document.createElement("div");
 		col.classList.add("col-sm-6", "col-lg-4", "all");
@@ -339,22 +339,23 @@
 		return col;
 	}
 
-	async function loadProducts(page, keyword, category) {
-		try {
-			const response = await axios.get('${contextRoot}/front/product/list', {
-				params: { page, keyword, category }
-			});
+	<%--async function loadProducts(page, keyword, category) {--%>
+	<%--	try {--%>
+	<%--		const response = await axios.get('${contextRoot}/front/product/list', {--%>
+	<%--			params: { page, keyword, category }--%>
+	<%--		});--%>
 
-			const filteredProducts = response.data.products.content.filter(product => {
-				return product.productUploadStatus === "上架";
-			});
+	<%--		// const filteredProducts = response.data.products.content.filter(product => {--%>
+	<%--		// 	return product.productUploadStatus === "上架";--%>
+	<%--		// });--%>
 
-			renderProducts(filteredProducts);
-			setupPagination(response.data);
-		} catch (error) {
-			console.error('Error loading products:', error);
-		}
-	}
+	<%--		// renderProducts(filteredProducts);--%>
+	<%--		--%>
+	<%--		setupPagination(response.data);--%>
+	<%--	} catch (error) {--%>
+	<%--		console.error('Error loading products:', error);--%>
+	<%--	}--%>
+	<%--}--%>
 
 
 
