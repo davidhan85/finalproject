@@ -189,6 +189,7 @@ public class MainArticleController {
 			        SubArticleMessageDTO samDTO = new SubArticleMessageDTO();
 			        samDTO.setUpdatedatetime(sam.getUpdatedatetime());
 			        samDTO.setAuid(sam.getAuthoridforSAM().getM_number());
+			        samDTO.setAuaccount(sam.getAuthoridforSAM().getM_account());
 			        samDTO.setContent(sam.getContent());
 			        samDTO.setSubid(samdto.getSubid());
 			        return samDTO;

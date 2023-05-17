@@ -6,7 +6,7 @@ public class LikesDTO {
 	private Integer mainid;
 	private Integer auid;
 	private Integer LikeCount;
-	private List<Integer> auidlist;
+	private List<String> auidlist;
 	
 	private Integer subid;
 
@@ -18,11 +18,11 @@ public class LikesDTO {
 		this.subid = subid;
 	}
 
-	public List<Integer> getAuidlist() {
+	public List<String> getAuidlist() {
 		return auidlist;
 	}
 
-	public void setAuidlist(List<Integer> auidlist) {
+	public void setAuidlist(List<String> auidlist) {
 		this.auidlist = auidlist;
 	}
 
