@@ -38,7 +38,7 @@ public class ListedProductController {
 
 
 	@PostMapping("/Insertproduct")  //新增
-	@MemberLogin
+
 	public String addListedProduct(@ModelAttribute("listedProduct") ListedProduct product , HttpSession session) {
 		System.out.println(product);
 		System.out.println("enter addListedProduct");

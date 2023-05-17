@@ -22,6 +22,4 @@ public interface ListedProductRepository extends JpaRepository<ListedProduct, In
     @Query("select p from ListedProduct p where p.productCategoryNumber.productCategoryNumber =:categoryNum")
     Page<ListedProduct> findListedProductByCategory(@Param("categoryNum")Integer categoryNum, Pageable pgb);
 
-//    List<ListedProduct> findByProductCategorynumber(String category);
-
 }
