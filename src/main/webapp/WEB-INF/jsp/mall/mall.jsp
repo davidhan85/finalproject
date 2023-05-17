@@ -301,7 +301,7 @@
 <%--              </div>--%>
             </div>
           </div>
-            <h5 class="float-right"><a href="${contextRoot}/AllProduct" class="text-muted small"> View More > </a></h5>
+<%--            <h5 class="float-right"><a href="${contextRoot}/AllProduct" class="text-muted small"> View More > </a></h5>--%>
           
       </div>
     </div>

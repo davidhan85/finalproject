@@ -65,7 +65,7 @@ li {
 		<header class="header_section">
 			<div class="container">
 				<nav class="navbar navbar-expand-lg custom_nav-container ">
-					<a class="navbar-brand" href="${contextRoot}/"> <span> <img
+					<a class="navbar-brand" href="${contextRoot}/AllProductIndex"> <span> <img
 							src="${contextRoot}/images/bookGaming.png"
 							style="width: 150px; height: 150px;">
 					</span>
