@@ -548,9 +548,10 @@
 											success: function (result) {
 
 												const auidList = result.auidlist;
+												const auids = result.auids;
 												let links = ""; // 這裡是要放在 tooltip 內的超連結的 HTML 字串
 												for (let i = 0; i < auidList.length; i++) {
-													links += "<a href='http://localhost:8079/finalTopic_5/membercenter/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
+													links += "<a href='http://localhost:8079/finalTopic_5/membercenter/" + auids[i] + "'>" + auidList[i] + "</a><br>";
 												}
 
 												console.log(auidList);
@@ -662,9 +663,10 @@
 													data: dtoJsonString,
 													success: function (result) {
 														const auidList = result.auidlist;
+														const auids = result.auids;
 														let links = "";
 														for (let i = 0; i < auidList.length; i++) {
-															links += "<a href='http://localhost:8079/finalTopic_5/membercenter/" + auidList[i] + "'>" + auidList[i] + "</a><br>";
+															links += "<a href='http://localhost:8079/finalTopic_5/membercenter/" + auids[i] + "'>" + auidList[i] + "</a><br>";
 														}
 														subtooltip = $container.data('subtooltip');
 														if (!subtooltip && !$container.data('subtooltip')) {
@@ -840,7 +842,7 @@
 									}
 								}
 							</script>
-							<jsp:include page="../layout/footerbar.jsp"></jsp:include>
+
 						</body>
 
 						</html>

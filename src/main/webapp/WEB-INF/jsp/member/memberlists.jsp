@@ -25,24 +25,34 @@
                         td {
                             text-align: center;
                             vertical-align: middle;
-
                         }
 
                         .container-fluid {
                             max-width: 84%;
                         }
+                        .sidebar {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            height: 100vh; /* 设置sidebar的高度占满整个屏幕 */
+                            width: 200px; /* 设置sidebar的宽度 */
+                            padding: 20px; /* 设置sidebar内容的内边距 */
+                            z-index: 1; /* 确保sidebar在其他内容之上 */
+                        }
                     </style>
                 </head>
 
                 <body>
+                <div class="sidebar">
                     <jsp:include page="../layout/sidebar.jsp"></jsp:include>
-                    <div class="container-fluid" style="right: -2%; position: relative;">
+                </div>
+                    <div class="container-fluid" style="right: 4%; position: absolute;">
                         <h1 class="mb-5">會員列表</h1>
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">會員編號</th>
-                                    <th scope="col">會員姓名</th>
+                                    <th scope="col" >會員編號</th>
+                                    <th scope="col" >會員姓名</th>
                                     <th scope="col">會員手機</th>
                                     <th scope="col">會員地址</th>
                                     <th scope="col">會員生日</th>
