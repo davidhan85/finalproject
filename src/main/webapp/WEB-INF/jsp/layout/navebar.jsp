@@ -254,10 +254,7 @@ li {
 
 						</div>
 					</div>
-					<c:if test="${not empty memberbean}">
-						<a href="${contextRoot}/membercenter" class="mx-2"> <span
-							class="fa fa-user"> ${memberbean.m_name},你好</span></a>
-					</c:if>
+					
 				</nav>
 			</div>
 
