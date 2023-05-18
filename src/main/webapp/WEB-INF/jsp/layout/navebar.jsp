@@ -289,6 +289,7 @@ li {
 								class="form-control" id="pwd" placeholder="請輸入您的密碼" name="pwd">
 						</div>
 						<button type="submit" class="btn btn-warning btn-block">登入</button>
+						<button  class="btn btn-warning btn-block" onclick="register()" >管理者登入</button>
 					</form>
 					<c:if test="${not empty error}">
 						<div class="alert alert-danger">
@@ -312,6 +313,15 @@ li {
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+	function register() {
+		var account=document.getElementById("username");
+		var pwd=document.getElementById("pwd");
+		account.value="a5438520a"
+		pwd.value="qwert85288"
+	}
+	
+</script>
 
 
 </body>
