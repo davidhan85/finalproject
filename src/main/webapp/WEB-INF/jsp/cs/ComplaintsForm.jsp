@@ -40,12 +40,12 @@
 							<form:input type="hidden" path="Customer.m_number" value="${memberbean.m_number}" />
 							<div>
 								<h4>聯絡人</h4>
-								<form:input type="text" class="form-control"
+								<form:input type="text" class="form-control" id="customer"
 									placeholder="(請輸入聯絡人)" path="CustomerName" />
 							</div>
 							<div>
 								<h4>電子郵件</h4>
-								<form:input type="text" class="form-control"
+								<form:input type="text" class="form-control" id="email"
 									placeholder="(請輸入電子郵件)" path="Email" />
 							</div>
 							<div>
@@ -65,20 +65,20 @@
 							</div>
 							<div>
 								<h4>標題</h4>
-								<form:input type="text" class="form-control"
+								<form:input type="text" class="form-control" id="title"
 									placeholder="(請輸入標題)" path="Title" />
 							</div>
 
 							<div>
 								<h4>問題說明</h4>
-								<form:textarea style="height: 150px;" class="form-control"
+								<form:textarea style="height: 150px;" class="form-control" id="content"
 									path="Content" />
 							</div>
-							<div class="btn_box">
+							<div class="btn_box" id="success">
 								<button>確定</button>
 							</div>
 						</form:form>
-								
+
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -86,10 +86,26 @@
 						<div id="googleMap"></div>
 					</div>
 				</div>
+
 			</div>
 		</div>
+		<button id="default">預存</button>
 	</section>
 		<jsp:include page="../layout/footerbar.jsp"></jsp:include>
+
+<script>
+	$('#default').click(function () {
+		$('#customer').val("邱泓儒")
+		$('#email').val("joanne45644@gmail.com")
+		$('#title').val("書腳瑕疵")
+		$('#content').val("前幾天買的書有幾頁缺頁，該怎麼處理這問題")
+	})
+	$('#success').click(function () {
+		alert("送信成功")
+	})
+
+
+</script>
 </body>
 
 </html>

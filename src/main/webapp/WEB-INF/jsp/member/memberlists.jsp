@@ -4,6 +4,7 @@
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
             <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
                 <html>
 
                 <head>
@@ -48,21 +49,21 @@
                 </div>
                     <div class="container-fluid" style="right: 2%; position: absolute;">
                         <h1 class="mb-5">會員列表</h1>
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
+                        <table class="table" >
+                            <thead class="thead-dark" style="margin-top: 0%">
+                                <tr >
                                     <th scope="col">會員編號</th>
-                                    <th scope="col" >會員姓名</th>
-                                    <th scope="col">會員手機</th>
-                                    <th scope="col">會員地址</th>
-                                    <th scope="col">會員生日</th>
-                                    <th scope="col">會員信箱</th>
-                                    <th scope="col">會員身分證</th>
-                                    <th scope="col">會員腳色</th>
-                                    <th scope="col">認證狀態</th>
-                                    <th scope="col">會員點數</th>
+                                    <th scope="col" >會員<br>姓名</th>
+                                    <th scope="col">會員<br>手機</th>
+                                    <th scope="col">會員<br>地址</th>
+                                    <th scope="col">會員<br>生日</th>
+                                    <th scope="col">會員<br>信箱</th>
+                                    <th scope="col">會員<br>身分證</th>
+                                    <th scope="col">會員<br>腳色</th>
+                                    <th scope="col">認證<br>狀態</th>
+                                    <th scope="col">會員<br>點數</th>
                                     <th scope="col">會員創建日期</th>
-                                    <th scope="col">會員圖片</th>
+                                    <th scope="col">會員<br>圖片</th>
                                     <th scope="col">操作</th>
                                 </tr>
                             </thead>
@@ -73,7 +74,7 @@
                                         <td>${member.m_name}</td>
                                         <td>${member.m_phone}</td>
                                         <td>${member.m_address}</td>
-                                        <td>${member.m_birth}</td>
+                                        <td><fmt:formatDate value="${member.m_birth}"  pattern="yyyy-MM-dd"/></td>
                                         <td>${member.m_email}</td>
                                         <td>${member.m_id}</td>
                                         <td>${member.m_Role}</td>

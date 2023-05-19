@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.team5.finalTopic.annotation.MemberLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,7 @@ public class CartItemController {
 		cartItemService.CreateCart(m_number,ProductId,quantity);
 		return "redirect:/mall/ShowAllProduct";
 	}
-	
+
 	@GetMapping("/cart/create/{m_number}/{productId}/{quantity}")
     public String CreatecartBy(@PathVariable("m_number") Integer m_number,@PathVariable("productId") Integer ProductId,@PathVariable("quantity") Integer quantity ) {
 
@@ -48,7 +49,19 @@ public class CartItemController {
         cartItemService.CreateCart(m_number,ProductId,quantity);
          return "redirect:/AllProductIndex";
     }
-	
+
+	@MemberLogin
+	@GetMapping("/cart/create//{productId}/{quantity}")
+	public String CreatecartBy(@PathVariable("productId") Integer ProductId,@PathVariable("quantity") Integer quantity ) {
+
+//		System.out.println( "會員名字"+m_number);
+//		System.out.println( "產品"+ProductId);
+//		System.out.println( "數量"+quantity);
+//		cartItemService.CreateCart(m_number,ProductId,quantity);
+		return "redirect:/AllProductIndex";
+	}
+
+
 	@GetMapping("/cart/find/{m_number}")	
 	public String findCart(@PathVariable("m_number")Integer m_number,Model model,HttpSession session) {
 

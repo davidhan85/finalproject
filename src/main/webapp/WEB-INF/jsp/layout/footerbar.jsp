@@ -48,7 +48,7 @@
 			<div class="row">
 				<div class="col-md-4 footer-col">
 					<div class="footer_contact">
-						<h4>Contact Us</h4>
+						<h4 style="font-family: 'CustomFont', Arial, sans-serif;">聯繫方式</h4>
 						<div class="contact_link_box">
 							<a href=""> <i class="fa fa-map-marker" aria-hidden="true"></i>
 								<span> Location </span>
@@ -62,24 +62,22 @@
 				</div>
 				<div class="col-md-4 footer-col">
 					<div class="footer_detail">
-						<a href="" class="footer-logo"> 書贏遊你來決定 </a>
-						<p>Necessary, making this the first true generator on the
-							Internet. It uses a dictionary of over 200 Latin words, combined
-							with</p>
-						<div class="footer_social">
-							<a href=""> <i class="fa fa-facebook" aria-hidden="true"></i>
-							</a> <a href=""> <i class="fa fa-twitter" aria-hidden="true"></i>
-							</a> <a href=""> <i class="fa fa-linkedin" aria-hidden="true"></i>
-							</a> <a href=""> <i class="fa fa-instagram" aria-hidden="true"></i>
-							</a> <a href=""> <i class="fa fa-pinterest" aria-hidden="true"></i>
-							</a>
-						</div>
+						<a href="" class="footer-logo" style="font-family: 'CustomFont', Arial, sans-serif;"> 書贏遊你來決定 </a>
+						<p>將你的收藏交換成新的冒險!</p>
+<%--						<div class="footer_social">--%>
+<%--							<a href=""> <i class="fa fa-facebook" aria-hidden="true"></i>--%>
+<%--							</a> <a href=""> <i class="fa fa-twitter" aria-hidden="true"></i>--%>
+<%--							</a> <a href=""> <i class="fa fa-linkedin" aria-hidden="true"></i>--%>
+<%--							</a> <a href=""> <i class="fa fa-instagram" aria-hidden="true"></i>--%>
+<%--							</a> <a href=""> <i class="fa fa-pinterest" aria-hidden="true"></i>--%>
+<%--							</a>--%>
+<%--						</div>--%>
 					</div>
 				</div>
 				<div class="col-md-4 footer-col">
-					<h4>Opening Hours</h4>
-					<p>Everyday</p>
-					<p>10.00 Am -10.00 Pm</p>
+					<h4 style="font-family: 'CustomFont', Arial, sans-serif;">服務時間</h4>
+					<p>24小時全年無休</p>
+<%--					<p></p>--%>
 				</div>
 			</div>
 			<div class="footer-info">

@@ -93,6 +93,19 @@
 									id="submit_button" />
 							</div>
 						</form:form>
+						<button id="default">預存</button>
+						<script
+								src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+						<script>
+							$('#default').click(function () {
+								$('#activity_id').val("1001")
+								$('#name').val("余新")
+								$('#email').val("abc123@gmail.com")
+							})
+
+						</script>
+
 						<script>
 							function showConfirmation() {
 								if (confirm("確定資訊正確嗎？要確定捏")) {

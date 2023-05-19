@@ -101,7 +101,10 @@
 
 															<button type="submit" class="btn btn-primary">提交</button>
 									</form:form>
+
+
 								</div>
+									<button id="default">預存</button>
 							</div>
 
 						</div>
@@ -110,6 +113,15 @@
 							<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 						</div>
 
+							<script>
+
+								$('#default').click(function () {
+									$('#productName').val("死亡筆記本")
+									$('#productDescription').val("遊戲背景敘述一個日本學生夜神月，無意中撿到一本死神所遺落的死亡筆記本，只要名字被寫上筆記裡的人類便會死去 ...。 遊戲開始死亡筆記本左邊會出現名字，為了要拯救這些人，你必須盡快在右邊那堆字中把名字找出來然後擦掉。名字是有連貫性的，有斜的也有直的排列，只要先找到頭。一個字就可以很容易將其餘字找出來。把所有人都救出來吧，加油！")
+									$('#unitPrice').val("900")
+									$('#productQuantity').val("10")
+								})
+							</script>
 					</body>
 
 					</html>

@@ -65,6 +65,10 @@
 		.card::-webkit-scrollbar-thumb:hover {
 			background-color: #555; /* 悬停时的滚动条滑块颜色 */
 		}
+/*		.img-box{*/
+/*			width:100%;*/
+/*height:300px;*/
+/*		}*/
 	</style>
 
 
@@ -178,7 +182,7 @@
             						<div>
             							<div class="img-box" >
 
-            								<img src="<jstl:url value='/ProductImage/${product.productImage.productImageId}'/>" alt="" width="315" height="315" class="product-img" onclick="window.location.href='${contextRoot}/ProductDetail/${product.productId}'">
+            								<img src="<jstl:url value='/ProductImage/${product.productImage.productImageId}'/>" alt="" width="100%" class="product-img" onclick="window.location.href='${contextRoot}/ProductDetail/${product.productId}'">
 
             							</div>
             							<div class="detail-box">
@@ -192,7 +196,7 @@
             									<h6 style="position: absolute; left: 5%; bottom:3%">
             											$${product.unitPrice}
             									</h6>
-            									<a href="${contextRoot}/cart/create/${memberbean.m_number}/${product.productId}/1" style="position: absolute;right: 5%;bottom: 3%">
+            									<a href="${contextRoot}/cart/create/${memberbean.m_number}/${product.productId}/1"  id="${product.productName}" style="position: absolute;right: 5%;bottom: 3%">
             										<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                   <g>
             						  <g>
@@ -223,7 +227,13 @@
             					</div>
             				</div>
 
+ <script>
+	 $(${product.productName}).click(function () {
+		 alert("加入購物車成功")
 
+	 })
+
+ </script>
 
 
 								</jstl:forEach>
@@ -338,7 +348,9 @@
 <div>&#8203;</div>
 
 <div class="text-center">
-  <img src="https://via.placeholder.com/1200x300" class="img-fluid mx-auto" alt="...">
+	<a href="${contextRoot}/newmember">
+  <img src="${contextRoot}/images/1800x300.jpg" class="img-fluid mx-auto" alt="...">
+	</a>
 </div>
 
 <div>&nbsp;</div>

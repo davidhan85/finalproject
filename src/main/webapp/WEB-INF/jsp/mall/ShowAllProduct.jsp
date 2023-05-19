@@ -63,7 +63,9 @@
 		padding: 500px;
 		z-index: 1;
 	}
+.th-style{
 
+}
 
 }
 </style>
@@ -74,21 +76,23 @@
 </div>
 
 
-	<div class="container py-5"  style="width:150%;right:15%;top:-3%;position:absolute;">
-		<h1 class="text-center mb-4">All Listed Products</h1>
+	<div class="container-fluid"  style="width:85%;right:0%;top:1%;position:absolute;">
+		<h1 class="text-center mb-4">所有商品列表</h1>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Product ID</th>
-						<th>Product Name</th>
-						<th>Product Category</th>
-						<th>Product Description</th>
-						<th>Unit Price</th>
-						<th>Product Quantity</th>
-						<th>Status</th>
-						<th>Product Image</th>
-						<th>Action</th>
+
+						<th style="width:120px;">商品<br>編號</th>
+						<th style="width:120px;">商品<br>名稱</th>
+						<th style="width:120px;">商品<br>分類</th>
+						<th style="width:500px;">商品<br>描述</th>
+						<th style="width:120px;">商品<br>價格</th>
+						<th style="width:120px;">商品<br>剩餘數量</th>
+						<th style="width:120px;">商品<br>狀態</th>
+						<th style="width:120px;">商品<br>圖片</th>
+						<th style="width:120px;">商品<br>編輯</th>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -98,7 +102,7 @@
 							<td>${product.productName}</td>
 							<td>${product.productCategoryNumber.categoryName}</td>
 							<td>${product.productDescription}</td>
-							<td>${product.unitPrice}</td>
+							<td>$${product.unitPrice}</td>
 							<td>${product.productQuantity}</td>
 							<td class="product-status">${product.productUploadStatus}</td>
 							<td><img

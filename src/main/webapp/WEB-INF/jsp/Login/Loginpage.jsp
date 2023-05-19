@@ -59,12 +59,12 @@ html, body {
 							<form action="${contextRoot}/checkLogin" method="post">
 								<div class="form-group">
 									<label for="username">帳號:</label> <input type="text"
-										class="form-control" id="username" placeholder="請輸入您的帳號"
+										class="form-control" id="username1" placeholder="請輸入您的帳號"
 										name="username">
 								</div>
 								<div class="form-group">
 									<label for="pwd">密碼:</label> <input type="password"
-										class="form-control" id="pwd" placeholder="請輸入您的密碼"
+										class="form-control" id="pwd1" placeholder="請輸入您的密碼"
 										name="pwd">
 								</div>
 								<button type="submit" class="btn btn-warning btn-block">登入</button>
@@ -81,14 +81,28 @@ html, body {
 							<div class="text-center">
 								<a href="${contextRoot}/forgetpwdpage">忘記密碼</a>
 							</div>
+							<button id="user1">使用者</button>
+							<button id="admin">管理者</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+		$('#user1').click(function () {
+			$('#username1').val("hsin0303")
+			$('#pwd1').val("hsin0303")
+		})
+
+		$('#admin').click(function () {
+			$('#username1').val("a5438520a")
+			$('#pwd1').val("qwert85288")
+		})
+	</script>
 	<c:if test="${not empty msg}">
 	<script>
+
 	Membernull();
     </script>	
 	</c:if>

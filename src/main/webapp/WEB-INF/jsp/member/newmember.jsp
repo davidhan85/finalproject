@@ -69,7 +69,7 @@ label {
 									class="col-md-4 col-form-label text-md-right">密碼</label>
 								<div class="col-md-6">
 									<form:input path="m_password" required="true" id="password"
-										class="form-control" />
+										class="form-control"   type="password"/>
 									<span id="passwordError"></span>
 								</div>
 							</div>
@@ -154,8 +154,12 @@ label {
 											id="privacyPolicy" required> <label
 											class="form-check-label" for="privacyPolicy">
 											我已閱讀並同意隱私權政策 </label>
+
 									</div>
+									<button id="user1">使用者1</button>
+
 								</div>
+
 							</div>
 
 							<div class="form-group row mb-0">
@@ -172,6 +176,20 @@ label {
 	</div>
 
 	<script>
+		$('#user1').click(function () {
+			$('#account').val("a5438520aaaa")
+			$('#password').val("qwert852888")
+			$('#name').val("pekora")
+			$('#address').val("佩客拉島57號")
+			$('#phone').val("0983060869")
+			$('#email').val("joanne45644@gmail.com")
+			$('#id').val("A123456789")
+
+
+		})
+
+
+
               function submitForm() {
                 var useraccount = document.getElementById("account").value;
                 var pwd = document.getElementById("password").value;

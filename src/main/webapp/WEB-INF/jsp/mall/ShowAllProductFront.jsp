@@ -296,7 +296,7 @@
 		options.classList.add("options");
 
 		const h6 = document.createElement("h6");
-		h6.textContent = product.unitPrice;
+		h6.textContent = "$"+product.unitPrice;
 
 		const a = document.createElement("a");
 		a.href = "";

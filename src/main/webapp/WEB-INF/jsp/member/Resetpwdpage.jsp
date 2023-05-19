@@ -40,12 +40,32 @@ font-color:black;
         <input type="password" class="form-control" name="password" id="password">     
         <small class="text-danger" id="passwordError"></small>
       </div>
-      <button type="submit" class="btn btn-primary">送出</button>
+        <div class="form-group">
+            <label for="Password2">再輸入一次新密碼：</label>
+            <input type="password" class="form-control" id="Password2" name="Password2" />
+            <small id="passwordError2" class="form-text text-danger"></small>
+        </div>
+      <button type="submit" class="btn btn-primary" id="submitbotton">送出</button>
     </form>
   </div>
 </div>
 	<jsp:include page="../layout/footerbar.jsp"></jsp:include>
 	<script>
+        var pwd=document.getElementById("password")
+        var pwd2=document.getElementById("Password2")
+        var submit=document.getElementById("submitbotton")
+
+        pwd2.addEventListener("input", function () {
+            if (pwd2.value != pwd.value) {
+                document.getElementById("passwordError2").innerHTML = ("兩次密碼不同,請檢查輸入的密碼");
+                submit.disabled = true;
+            } else {
+                document.getElementById("passwordError2").innerHTML = ("");
+                submit.disabled = false;
+            }
+
+        })
+
 	function submitForm() {
 		 var pwd = document.getElementById("password").value;
 		 var pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
